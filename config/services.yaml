@@ -1,6 +1,10 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    google_client_id: 1013404295441-gl59pcmdm76kb5h9mh2u9c4ummkk4f48.apps.googleusercontent.com
+    google_client_secret: dRhDQBwqdnQipAbc0N40U64i
+    google_hosted_domain: http://localhost:8000
+    google_redirect: http://localhost:8000/login/check-user
 
 services:
     # default configuration for services in *this* file

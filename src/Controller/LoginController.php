@@ -13,23 +13,13 @@ class LoginController extends Controller
 {
 
     /**
-     * @Route("/", name="index")
-     * @param Session $session
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
-    public function index(Session $session)
-    {
-        if ($session->has('gmail'))
-            return $this->redirectToRoute('dashboard');
-        return $this->redirectToRoute('login');
-    }
-
-    /**
      * @Route("/login", name="login")
+     * @Route("/login/error", name="error-login")
      * @param Session $session
+     * @param Request $request
      * @return Response|\Symfony\Component\HttpFoundation\Response
      */
-    public function login(Session $session)
+    public function login(Session $session, Request $request)
     {
         if (!$session->has("gmail")) {
             $client = $this->create_client();
@@ -37,10 +27,19 @@ class LoginController extends Controller
             $client->addScope(\Google_Service_Oauth2::USERINFO_EMAIL);
 
             $url = $client->createAuthUrl();
+            $currentRoute = $request->attributes->get('_route');
 
-            return $this->render("login/login.html.twig", array(
-                "url" => $url
-            ));
+            if ($currentRoute == 'error-login') {
+                return $this->render('login/login.html.twig', array(
+                    'error' => 'error',
+                    'url' => $client->createAuthUrl()
+                ));
+            }
+            else {
+                return $this->render("login/login.html.twig", array(
+                    "url" => $url
+                ));
+            }
         }
 
         return $this->redirectToRoute('dashboard');
@@ -65,24 +64,37 @@ class LoginController extends Controller
             $userDetails = $service->userinfo_v2_me->get();
             $email = $userDetails->email;
 
-            if ($user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['gmail' => $email])) {
+            $em = $this->getDoctrine()->getManager();
+            $user = $em->getRepository(User::class)->findOneBy(['gmail' => $email]);
 
-                $session = new Session();
+            if ($user) {
+                if ($user->getImageUrl() != $userDetails->picture) {
+                    $user->setImageUrl($userDetails->picture);
+                    $em->flush();
+                }
 
-                $session->set('given_name', $user->getGivenName());
-                $session->set('family_name', $user->getFamilyName());
-                $session->set('gmail', $user->getGmail());
-                $session->set('dob', $user->getDob());
-                $session->set('phone_nb', $user->getPhoneNb());
-                $session->set('date_created', $user->getDateCreated());
+                $user_id = $user->getId();
+                $user = $this->getDoctrine()->getRepository(User::class)->getUser($user_id);
 
-                $session->set('image', $userDetails->picture);
-                $session->set('token', $client->getAccessToken());
+                if ($user) {
 
-                return $this->redirectToRoute('dashboard');
+                    $roles = $user[0]->getRoles();
+                    $session = new Session();
+                    $session->set('given_name', $user[0]->getGivenName());
+                    $session->set('gmail', $user[0]->getGmail());
+                    $session->set('roles', $roles->count());
+                    $session->set('image', $userDetails->picture);
+                    $session->set('token', $client->getAccessToken());
+
+//                    print_r($roles->count());
+//                    return $this->render('dashboard/dashboard.html.twig');
+                    return $this->redirectToRoute('dashboard');
+                }
+
             } else {
-                $client->revokeToken(['refresh_token' => $client->getAccessToken()]);
-                return $this->redirectToRoute('login');
+                return new Response(
+                    '<script type="text/javascript">document.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:8000/login/error"</script>'
+                );
             }
         }
 
@@ -90,7 +102,7 @@ class LoginController extends Controller
     }
 
     /**
-     * @Route("/logout", name="logout")
+     * @Route("/logout/{slug}", name="logout")
      * @param Session $session
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */

@@ -5981,7 +5981,7 @@ function stringify_formula(formula, range, cell, supbooks, opts) {
                 if(!argc) argc = 0;
                 var args = stack.slice(-argc);
                 stack.length -= argc;
-                if(func === 'User') func = args.shift();
+                if(func === 'UserForm') func = args.shift();
                 stack.push(func + "(" + args.join(",") + ")");
                 break;
 
@@ -6772,7 +6772,7 @@ var Ftab = {
     0x00FC: 'FREQUENCY',
     0x00FD: 'ADD.TOOLBAR',
     0x00FE: 'DELETE.TOOLBAR',
-    0x00FF: 'User',
+    0x00FF: 'UserForm',
     0x0100: 'RESET.TOOLBAR',
     0x0101: 'EVALUATE',
     0x0102: 'GET.TOOLBAR',
@@ -9307,7 +9307,7 @@ function parse_workbook(blob, options) {
         sharedf: shared_formulae, // shared formulae by address
         arrayf: array_formulae, // array formulae array
         rrtabid: [], // RRTabId
-        lastuser: "", // Last User from WriteAccess
+        lastuser: "", // Last UserForm from WriteAccess
         biff: 8, // BIFF version
         codepage: 0, // CP from CodePage record
         winlocked: 0, // fLockWn from WinProtect

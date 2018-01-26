@@ -5,6 +5,7 @@ parameters:
     google_client_secret: dRhDQBwqdnQipAbc0N40U64i
     google_hosted_domain: http://localhost:8000
     google_redirect: http://localhost:8000/login/check-user
+    locale: 'en'
 
 services:
     # default configuration for services in *this* file

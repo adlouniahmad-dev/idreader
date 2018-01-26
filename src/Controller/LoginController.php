@@ -49,6 +49,7 @@ class LoginController extends Controller
      * @Route("/login/check-user")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @throws \Doctrine\DBAL\DBALException
      */
     public function check_user(Request $request)
     {
@@ -74,20 +75,26 @@ class LoginController extends Controller
                 }
 
                 $user_id = $user->getId();
-                $user = $this->getDoctrine()->getRepository(User::class)->getUser($user_id);
+                $userRoles = $this->getDoctrine()->getRepository(User::class)->getUserRoles($user_id);
 
-                if ($user) {
+                if ($userRoles) {
 
-                    $roles = $user[0]->getRoles();
                     $session = new Session();
-                    $session->set('given_name', $user[0]->getGivenName());
-                    $session->set('gmail', $user[0]->getGmail());
-                    $session->set('roles', $roles->count());
+
+                    $session->set('given_name', $user->getGivenName());
+                    $session->set('gmail', $user->getGmail());
                     $session->set('image', $userDetails->picture);
+
+                    $index = 1;
+                    $roleKey = 'role_';
+                    for ($i = 0; $i < sizeof($userRoles); $i++) {
+                        $roleKeyNb = $roleKey . $index;
+                        $session->set($roleKeyNb, $userRoles[$i]['role_name']);
+                        $index++;
+                    }
+
                     $session->set('token', $client->getAccessToken());
 
-//                    print_r($roles->count());
-//                    return $this->render('dashboard/dashboard.html.twig');
                     return $this->redirectToRoute('dashboard');
                 }
 
@@ -102,7 +109,7 @@ class LoginController extends Controller
     }
 
     /**
-     * @Route("/logout/{slug}", name="logout")
+     * @Route("/logout", name="logout")
      * @param Session $session
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
@@ -129,6 +136,5 @@ class LoginController extends Controller
         $client->setHostedDomain($this->getParameter('google_hosted_domain'));
         return $client;
     }
-
 
 }

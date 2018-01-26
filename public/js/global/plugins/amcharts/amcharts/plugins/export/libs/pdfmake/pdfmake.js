@@ -22881,7 +22881,7 @@
 	    return err(strm, Z_BUF_ERROR);
 	  }
 
-	  /* User must not provide more input after the first FINISH: */
+	  /* UserForm must not provide more input after the first FINISH: */
 	  if (s.status === FINISH_STATE && strm.avail_in !== 0) {
 	    return err(strm, Z_BUF_ERROR);
 	  }

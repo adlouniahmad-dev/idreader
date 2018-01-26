@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add Building{% endblock %}
+{% block pagetitle %}Manage Buildings{% endblock %}
+{% block pagetitlesmall %}Add Building{% endblock %}
+{% block pagebartitle %}Add Building{% endblock %}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <div class="portlet light ">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="icon-equalizer font-red-sunglo"></i>
+                <span class="caption-subject font-red-sunglo bold uppercase">Add Building</span>
+            </div>
+        </div>
+
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">
+                    <strong>{{ label|capitalize }}!</strong> {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        {% if errors is defined or error is defined %}
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Errors</h3>
+                </div>
+                <div class="panel-body">
+                    {% if errors is defined %}
+                        {% for error in errors %}
+                            <p>{{ error.message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                    {% if error is defined %}
+                        <p>{{ error }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+
+        <div class="portlet-body form">
+            {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+            <div class="form-body">
+                <div class="form-group">
+                    {{ form_label(form.name) }}
+                    <div class="col-md-4">
+                        {{ form_widget(form.name) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.location) }}
+                    <div class="col-md-4">
+                        {{ form_widget(form.location) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.startFloor) }}
+                    <div class="col-md-4">
+                        {{ form_widget(form.startFloor) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.endFloor) }}
+                    <div class="col-md-4">
+                        {{ form_widget(form.endFloor) }}
+                    </div>
+                </div>
+            </div>
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-4">
+                        {{ form_widget(form.save) }}
+                        {{ form_widget(form.reset) }}
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

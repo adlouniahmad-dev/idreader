@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Validator\Constraints as UserAssert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -24,11 +25,11 @@ class User
      * @Assert\Length(
      *     min="2",
      *     max="30",
-     *     minMessage="Member first name must be at least {{ limit }} characters long",
-     *     maxMessage="Member first name cannot be longer than {{ limit }} characters"
+     *     minMessage="Member first name must be at least {{ limit }} characters long.",
+     *     maxMessage="Member first name cannot be longer than {{ limit }} characters."
      * )
      * @Assert\Regex(
-     *     pattern="/^[A-Z][a-zA-Z ]+$/",
+     *     pattern="/^[A-Za-z][a-zA-Z ]+$/",
      *     message="Member first name must consists only of letters"
      * )
      */
@@ -40,23 +41,24 @@ class User
      * @Assert\Length(
      *     min="2",
      *     max="30",
-     *     minMessage="Member last name must be at least {{ limit }} characters long",
-     *     maxMessage="Member last name cannot be longer than {{ limit }} characters"
+     *     minMessage="Member last name must be at least {{ limit }} characters long.",
+     *     maxMessage="Member last name cannot be longer than {{ limit }} characters."
      * )
      * @Assert\Regex(
-     *     pattern="/^[A-Z][a-zA-Z ]+$/",
-     *     message="Member last name must consists only of letters"
+     *     pattern="/^[A-Za-z][a-zA-Z ]+$/",
+     *     message="Member last name must consists only of letters."
      * )
      */
     private $familyName;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", unique=true)
      * @Assert\NotBlank()
      * @Assert\Regex(
-     *     pattern="/^[a-z0-9](\.?[a-z0-9]){5,}@g(oogle)?mail\.com$/",
-     *     message="Gmail account must contain letters, numbers and dots"
+     *     pattern="/^[A-Za-z0-9](\.?[A-Za-z0-9]){5,}@g(oogle)?mail\.com$/",
+     *     message="Gmail account must consist of letters, numbers or dots then @gmail.com."
      * )
+     * @UserAssert\UniqueUserEmail()
      */
     private $gmail;
 
@@ -70,9 +72,9 @@ class User
      * @Assert\Length(
      *     min="8",
      *     max="8",
-     *     minMessage="Phone number must be 8 numbers"
-     *     maxMessage="Phone number must not exceed 8 numbers"
+     *     exactMessage="Phone number must be 8 numbers."
      * )
+     * @UserAssert\UniqueUserPhone()
      */
     private $phoneNb;
 
@@ -82,7 +84,7 @@ class User
     private $dateCreated;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $imageUrl;
 
@@ -223,7 +225,7 @@ class User
     public function addRole(Role $role): void
     {
         $role->addUser($this);
-        $this->roles[] = $role;
+        $this->roles->add($role);
     }
 
     /**
@@ -241,5 +243,6 @@ class User
     {
         $this->imageUrl = $imageUrl;
     }
+
 
 }

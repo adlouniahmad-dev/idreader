@@ -30,3 +30,21 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    unique_user_email_validator:
+        class: App\Validator\Constraints\UniqueUserEmailValidator
+        arguments:
+            - "@doctrine.orm.entity_manager"
+        tags:
+            -
+                name: validator.constraint_validator
+                alias: unique_user_email
+
+    unique_user_phone_validator:
+            class: App\Validator\Constraints\UniqueUserPhoneValidator
+            arguments:
+                - "@doctrine.orm.entity_manager"
+            tags:
+                -
+                    name: validator.constraint_validator
+                    alias: unique_user_phone

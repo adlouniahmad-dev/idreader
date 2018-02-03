@@ -11,7 +11,6 @@ namespace App\Form\Type;
 
 use App\Entity\Building;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ResetType;
@@ -26,26 +25,19 @@ class BuildingType extends AbstractType
             ->add('name', TextType::class, array(
                 'attr' => ['class' => 'form-control', 'placeholder' => 'Building Name'],
                 'label' => 'Building Name',
-                'label_attr' => ['class' => 'col-md-3 control-label'],
-                'required' => false
             ))
             ->add('location', TextType::class, array(
                 'attr' => ['class' => 'form-control', 'placeholder' => 'Building Address'],
                 'label' => 'Building Address',
-                'label_attr' => ['class' => 'col-md-3 control-label'],
                 'required' => false
             ))
-            ->add('startFloor', IntegerType::class, array(
+            ->add('startFloor', TextType::class, array(
                 'attr' => ['class' => 'form-control', 'placeholder' => 'Starting Floor'],
                 'label' => 'Starting Floor',
-                'label_attr' => ['class' => 'col-md-3 control-label'],
-                'required' => false
             ))
-            ->add('endFloor', IntegerType::class, array(
+            ->add('endFloor', TextType::class, array(
                 'attr' => ['class' => 'form-control', 'placeholder' => 'Ending Floor'],
                 'label' => 'Ending Floor',
-                'label_attr' => ['class' => 'col-md-3 control-label'],
-                'required' => false
             ))
             ->add('save', SubmitType::class, array(
                 'attr' => ['class' => 'btn green'],

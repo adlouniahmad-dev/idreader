@@ -49,6 +49,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/doctrine-bridge" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/dotenv" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/event-dispatcher" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/expression-language" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/filesystem" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/finder" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/flex" />
@@ -136,6 +137,7 @@
           <root url="file://$MODULE_DIR$/vendor/symfony/doctrine-bridge" />
           <root url="file://$MODULE_DIR$/vendor/symfony/dotenv" />
           <root url="file://$MODULE_DIR$/vendor/symfony/event-dispatcher" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/expression-language" />
           <root url="file://$MODULE_DIR$/vendor/symfony/filesystem" />
           <root url="file://$MODULE_DIR$/vendor/symfony/finder" />
           <root url="file://$MODULE_DIR$/vendor/symfony/flex" />
@@ -219,6 +221,7 @@
           <root url="file://$MODULE_DIR$/vendor/symfony/doctrine-bridge" />
           <root url="file://$MODULE_DIR$/vendor/symfony/dotenv" />
           <root url="file://$MODULE_DIR$/vendor/symfony/event-dispatcher" />
+          <root url="file://$MODULE_DIR$/vendor/symfony/expression-language" />
           <root url="file://$MODULE_DIR$/vendor/symfony/filesystem" />
           <root url="file://$MODULE_DIR$/vendor/symfony/finder" />
           <root url="file://$MODULE_DIR$/vendor/symfony/flex" />
@@ -260,5 +263,7 @@
     </orderEntry>
     <orderEntry type="library" name="platform" level="application" />
     <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="dataloader" level="application" />
+    <orderEntry type="library" name="export" level="application" />
   </component>
 </module>

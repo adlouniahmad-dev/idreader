@@ -47,7 +47,7 @@ class Visitor
     private $documentType;
 
     /**
-     * @ORM\Column(type="binary")
+     * @ORM\Column(type="boolean")
      */
     private $hasCard;
 

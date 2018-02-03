@@ -21,12 +21,12 @@
                     </div>
                     <div class="profile-usertitle">
                         <div class="profile-usertitle-name">{{ user.givenName() }} {{ user.familyName() }}</div>
-                        {% for i in 0..userRoles|length - 1 %}
-                            {% if userRoles[i]['role_name'] == 'fowner' %}
+                        {% for i in 0..user.roles|length - 1 %}
+                            {% if user.roles.get(i).roleName == 'fowner' %}
                                 <div class="profile-usertitle-job">Facility Owner</div>
-                            {% elseif userRoles[i]['role_name'] == 'fadmin' %}
+                            {% elseif user.roles.get(i).getRoleName == 'fadmin' %}
                                 <div class="profile-usertitle-job">Facility Administrator</div>
-                            {% elseif userRoles[i]['role_name'] == 'powner' %}
+                            {% elseif user.roles.get(i).getRoleName == 'powner' %}
                                 <div class="profile-usertitle-job">Premise Owner</div>
                             {% else %}
                                 <div class="profile-usertitle-job">Security Guard</div>
@@ -68,12 +68,13 @@
                                             {{ form_widget(form.gmail, {'attr': {'class': 'form-control', 'placeholder': user.gmail}}) }}
                                         </div>
                                         {#<div class="form-group">#}
-                                            {#{{ form_label(form.dob, 'Gmail Account', {'attr': {'class': 'control-label'}}) }}#}
-                                            {#{{ form_widget(form.dob, {'attr': {'class': 'form-control', 'placeholder': user.dob}}) }}#}
+                                        {#{{ form_label(form.dob, 'Gmail Account', {'attr': {'class': 'control-label'}}) }}#}
+                                        {#{{ form_widget(form.dob, {'attr': {'class': 'form-control', 'placeholder': user.dob}}) }}#}
                                         {#</div>#}
                                         <div class="form-group">
                                             <label class="control-label">Date of Birth</label>
-                                            <input type="text" placeholder="{{ user.dob|date('Y-m-d') }}" class="form-control"/>
+                                            <input type="text" placeholder="{{ user.dob|date('Y-m-d') }}"
+                                                   class="form-control"/>
                                         </div>
                                         <div class="margiv-top-10">
                                             {{ form_widget(form.save, {'attr': {'class': 'btn green'}, 'label': 'Save Changes'}) }}

@@ -23,7 +23,6 @@ class UProfileController extends Controller
      * @param Session $session
      * @param $account
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
-     * @throws \Doctrine\DBAL\DBALException
      */
     public function viewProfile(Session $session, $account)
     {
@@ -34,14 +33,11 @@ class UProfileController extends Controller
         $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['gmail' => $gmail]);
 
         if ($user) {
-            $userRoles = $this->getDoctrine()->getRepository(User::class)->getUserRoles($user->getId());
-
             $userForm = new User();
             $form = $this->createForm(UserType::class, $userForm);
 
             return $this->render('uprofile/uprofile.html.twig', array(
                 'user' => $user,
-                'userRoles' => $userRoles,
                 'form' => $form->createView()
             ));
         }

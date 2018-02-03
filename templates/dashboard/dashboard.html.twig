@@ -5,14 +5,15 @@
 {% block pagebartitle %}Dashboard{% endblock %}
 {% block pagetitlesmall %}Dashboard & Statistics{% endblock %}
 
-{% block stylesheets %}
+{%- block stylesheets -%}
     {{ parent() }}
+    <link href="https://www.amcharts.com/lib/3/plugins/export/export.css" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css') }}" rel="stylesheet"
           type="text/css"/>
     <link href="{{ asset('css/global/plugins/morris/morris.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('css/global/plugins/fullcalendar/fullcalendar.min.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('css/global/plugins/jqvmap/jqvmap/jqvmap.css') }}" rel="stylesheet" type="text/css"/>
-{% endblock %}
+{%- endblock -%}
 
 {% block content %}
     <div class="row">
@@ -124,34 +125,70 @@
     </div>
 
     <div class="row">
-        <div class="col-md-12">
-            <!-- BEGIN ROW -->
-            <div class="row">
-                <div class="col-md-12">
-                    <!-- BEGIN CHART PORTLET-->
-                    <div class="portlet light bordered">
-                        <div class="portlet-title">
-                            <div class="caption">
-                                <i class="icon-bar-chart font-green-haze"></i>
-                                <span class="caption-subject bold uppercase font-green-haze">Bar Charts</span>
-                                <span class="caption-helper">column and line mix</span>
-                            </div>
-                            <div class="tools">
-                                <a href="javascript:" class="collapse"> </a>
-                                <a href="javascript:" class="fullscreen"> </a>
-                            </div>
-                        </div>
-                        <div class="portlet-body">
-                            <div id="chart_1" class="chart" style="height: 500px;"></div>
+        <div class="col-md-6 col-sm-6">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-bar-chart font-green-haze"></i>
+                        <span class="caption-subject bold uppercase font-green-haze">Number of Scans Per Gate</span>
+                        <span class="caption-helper">For Selected Day</span>
+                    </div>
+                    <div class="tools">
+                        <a href="javascript:" class="collapse"> </a>
+                        <a href="javascript:" class="fullscreen"> </a>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="tool-buildings clearfix">
+                        <div>
+                            <label for="gateBuildings">Building</label>
+                            <select id="gateBuildings" class="form-control">
+                                {{ buildings|raw }}
+                            </select>
+                            <label for="gateDate">Date</label>
+                            <input type="date" id="gateDate" class="form-control"/>
+                            <button class="btn green" id="gateDoneButton">Get Results</button>
                         </div>
                     </div>
+                    <div id="scansPerGateChart" class="CSSAnimationChart"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-bar-chart font-red"></i>
+                        <span class="caption-subject bold uppercase font-red">Number of Scans Per Day</span>
+                        <span class="caption-helper">For Selected Month</span>
+                    </div>
+                    <div class="tools">
+                        <a href="javascript:" class="collapse"> </a>
+                        <a href="javascript:" class="fullscreen"> </a>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="tool-buildings clearfix">
+                        <div>
+                            <label for="gateBuildingsMonth">Building</label>
+                            <select id="gateBuildingsMonth" class="form-control">
+                                {{ buildings|raw }}
+                            </select>
+                            <label for="gateDate">Date</label>
+                            <input type="month" id="monthDate" class="form-control"/>
+                            <button class="btn green" id="monthDoneButton">Get Results</button>
+                        </div>
+                    </div>
+
+                    <div id="scansPerDayPerMonthChart" class="CSSAnimationChart"></div>
                 </div>
             </div>
         </div>
     </div>
 {% endblock %}
 
-{% block javascripts %}
+{%- block javascripts -%}
     {{ parent() }}
     <script src="{{ asset('js/global/plugins/moment.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js') }}"
@@ -162,32 +199,20 @@
     <script src="{{ asset('js/global/plugins/counterup/jquery.counterup.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/global/plugins/amcharts/amcharts/amcharts.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/global/plugins/amcharts/amcharts/serial.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/global/plugins/amcharts/amcharts/pie.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/global/plugins/amcharts/amcharts/radar.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/global/plugins/amcharts/amcharts/themes/light.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/global/plugins/amcharts/amcharts/themes/patterns.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/global/plugins/amcharts/amcharts/themes/chalk.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/global/plugins/amcharts/ammap/ammap.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/global/plugins/amcharts/ammap/maps/js/worldLow.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/global/plugins/amcharts/amstockcharts/amstock.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/global/plugins/fullcalendar/fullcalendar.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/global/plugins/flot/jquery.flot.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/global/plugins/flot/jquery.flot.resize.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/global/plugins/flot/jquery.flot.categories.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/global/plugins/jquery-easypiechart/jquery.easypiechart.min.js') }}"
+    <script src="http://www.amcharts.com/lib/3/plugins/dataloader/dataloader.min.js" type="text/javascript"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.js" type="text/javascript"></script>
+    <script src="{{ asset('js/global/plugins/amcharts/amcharts/plugins/export/libs/fabric.js/fabric.min.js') }}"
             type="text/javascript"></script>
-    <script src="{{ asset('js/global/plugins/jquery.sparkline.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/global/plugins/jqvmap/jqvmap/jquery.vmap.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js') }}"
+    <script src="{{ asset('js/global/plugins/amcharts/amcharts/plugins/export/libs/FileSaver.js/FileSaver.min.js') }}"
             type="text/javascript"></script>
-    <script src="{{ asset('js/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js') }}"
+    <script src="{{ asset('js/global/plugins/amcharts/amcharts/plugins/export/libs/jszip/jszip.min.js') }}"
             type="text/javascript"></script>
-    <script src="{{ asset('js/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js') }}"
+    <script src="{{ asset('js/global/plugins/amcharts/amcharts/plugins/export/libs/pdfmake/pdfmake.min.js') }}"
             type="text/javascript"></script>
-    <script src="{{ asset('js/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js') }}"
+    <script src="{{ asset('js/global/plugins/amcharts/amcharts/plugins/export/libs/xlsx/xlsx.min.js') }}"
             type="text/javascript"></script>
-    <script src="{{ asset('js/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js') }}"
+    <script src="{{ asset('js/global/plugins/amcharts/amcharts/plugins/export/libs/pdfmake/vfs_fonts.js') }}"
             type="text/javascript"></script>
-    <script src="{{ asset('js/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js') }}"
-            type="text/javascript"></script>
-{% endblock %}
+    <script src="{{ asset('js/pages/charts-amcharts.js') }}" type="text/javascript"></script>
+{%- endblock -%}

@@ -36,15 +36,29 @@ class Building
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank()
+     * @Assert\Regex(
+     *     pattern="/^[0-9]{1,3}$/",
+     *     message="Starting floor must be a number"
+     * )
      * @Assert\GreaterThanOrEqual(
      *     value="0",
      *     message="Starting floor must be greater than or equal to zero"
+     * )
+     * @Assert\Expression(
+     *     "value <= this.getEndFloor()",
+     *     message="Starting floor must be less than or equal to ending floor"
      * )
      */
     private $startFloor;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank()
+     * @Assert\Regex(
+     *     pattern="/^[0-9]{1,3}$/",
+     *     message="Ending floor must be a number"
+     * )
      * @Assert\LessThanOrEqual(
      *     value="163",
      *     message="Ending floor must not exceed {{ compared_value }} floor"

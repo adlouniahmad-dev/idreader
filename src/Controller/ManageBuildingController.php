@@ -13,51 +13,40 @@ use App\Entity\Building;
 use App\Form\Type\BuildingType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class ManageBuildingController extends Controller
 {
 
     /**
      * @Route("/manage-buildings/add-building", name="addBuilding")
+     * @param Session $session
      * @param Request $request
-     * @param ValidatorInterface $validator
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function addBuilding(Request $request, ValidatorInterface $validator)
+    public function addBuilding(Session $session, Request $request)
     {
+        if (!$session->has('gmail'))
+            return $this->redirectToRoute('login');
+
+
         $building = new Building();
         $form = $this->createForm(BuildingType::class, $building);
 
         $form->handleRequest($request);
+
         if ($form->isSubmitted()) {
 
-            $data = $form->getData();
-
             if (!$form->isValid()) {
-                $errors = $validator->validate($building);
-
-                if ($data->getStartFloor() > $data->getEndFloor()) {
-                    return $this->render('manageBuildings/addBuilding.html.twig', array(
-                        'error' => "Starting floor must be less than or equal to ending floor",
-                        'errors' => $errors,
-                        'form' => $form->createView()
-                    ));
-                }
-                else {
-                    return $this->render('manageBuildings/addBuilding.html.twig', array(
-                        'errors' => $errors,
-                        'form' => $form->createView()
-                    ));
-                }
-            }
-
-            if ($data->getStartFloor() > $data->getEndFloor()) {
+                $this->addFlash(
+                    'danger',
+                    'You have some errors. Please check below.'
+                );
                 return $this->render('manageBuildings/addBuilding.html.twig', array(
-                    'error' => "Starting floor must be less than or equal to ending floor",
-                    'form' => $form->createView()
-                ));
+                        'form' => $form->createView()
+                    )
+                );
             }
 
             $building->setDateCreated(new \DateTime());
@@ -73,7 +62,9 @@ class ManageBuildingController extends Controller
 
             return $this->redirectToRoute('addBuilding');
         }
-        return $this->render('manageBuildings/addBuilding.html.twig', ['form' => $form->createView()]);
+        return $this->render('manageBuildings/addBuilding.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
 
     /**
@@ -83,5 +74,6 @@ class ManageBuildingController extends Controller
     {
 
     }
+
 
 }

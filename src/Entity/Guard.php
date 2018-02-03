@@ -17,14 +17,14 @@ class Guard
     private $id;
 
     /**
-     * @ORM\Column(type="binary")
+     * @ORM\Column(type="boolean")
      */
-    private $isActivated;
+    private $isActivated = 0;
 
     /**
-     * @ORM\Column(type="binary")
+     * @ORM\Column(type="boolean")
      */
-    private $isBlocked;
+    private $isBlocked = 0;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\User")

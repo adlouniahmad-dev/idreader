@@ -37,7 +37,7 @@ class Log
     private $dateCreated;
 
     /**
-     * @ORM\Column(type="binary")
+     * @ORM\Column(type="boolean")
      */
     private $isSuspicious;
 

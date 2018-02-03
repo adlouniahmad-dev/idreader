@@ -47,11 +47,13 @@
 
 <div class="content">
     <div class="login-form">
-        {% if error is defined %}
+
+        {% for message in app.flashes('danger') %}
             <div class="alert alert-danger">
-                <strong>Error!</strong> Access Denied.
+                <strong>Error!</strong> {{ message }}
             </div>
-        {% endif %}
+        {% endfor %}
+
         <div class="form-title">
             <span class="form-title">Welcome.</span>
             <span class="form-subtitle">Please login.</span>

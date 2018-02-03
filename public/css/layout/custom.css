@@ -15,7 +15,20 @@ a.logo-default:active {
     color: #fff;
 }
 
+.page-header.navbar .menu-toggler.responsive-toggler {
+    display: none;
+    float: right;
+    margin: 24px 14px 0 6px;
+    background-image: url('../../images/sidebar-toggler-inverse.png');
+}
+
 .page-header.navbar .menu-toggler {
+    display: block;
+    cursor: pointer;
+    opacity: .6;
+    filter: alpha(opacity=60);
+    width: 20px;
+    height: 20px;
     background: url("../../images/sidebar-toggler.png") no-repeat center center;
 }
 
@@ -93,6 +106,7 @@ a.logo-default:active {
 #sign-in-btn {
     text-decoration: none;
 }
+
 /*end google sign in button*/
 
 .profile-usertitle {
@@ -102,3 +116,108 @@ a.logo-default:active {
 .panel-body > p {
     margin: 0 0 5px;
 }
+
+.close {
+    background-image: url("../../images/remove-icon-small.png") !important;
+}
+
+.birthday-date {
+    margin-left: 15px;
+    width: auto;
+    display: inline-block;
+}
+
+.tool-buildings {
+    padding: 0 0 18px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eef1f5;
+}
+
+#gateDoneButton,
+#monthDoneButton,
+.tool-buildings label {
+    margin-left: 20px;
+}
+
+.tool-buildings select,
+.tool-buildings input[type='date'],
+.tool-buildings input[type='month'] {
+    width: auto;
+    margin-left: 10px;
+}
+
+.tool-buildings > div {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+@media (max-width: 767px) {
+    .page-header.navbar .menu-toggler.responsive-toggler {
+        background-image: url("../../images/sidebar-toggler.png");
+    }
+}
+
+@media (max-width: 991px) {
+    .page-header.navbar .menu-toggler.responsive-toggler {
+        display: inline-block;
+    }
+}
+
+@media (max-width: 1430px) and (min-width: 768px) {
+    .tool-buildings > div {
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: flex-start;
+    }
+
+    .tool-buildings select,
+    .tool-buildings input[type='date'],
+    .tool-buildings input[type='month'] {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .tool-buildings label {
+        margin-left: 0;
+    }
+
+    #gateDoneButton,
+    #monthDoneButton {
+        margin-left: 0;
+    }
+
+    .tool-buildings > div > *:not(:last-child) {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 610px) {
+    .tool-buildings > div {
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: flex-start;
+    }
+
+    .tool-buildings select,
+    .tool-buildings input[type='date'],
+    .tool-buildings input[type='month'] {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .tool-buildings label {
+        margin-left: 0;
+    }
+
+    #gateDoneButton,
+    #monthDoneButton {
+        margin-left: 0;
+    }
+
+    .tool-buildings > div > *:not(:last-child) {
+        margin-bottom: 10px;
+    }
+}
+
+

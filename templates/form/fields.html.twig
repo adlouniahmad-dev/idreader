@@ -1,0 +1,123 @@
+{% form_theme form _self %}
+
+{# form_errors.html.twig #}
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+            {% if compound %}
+                <ul>
+                    {% for error in errors %}
+                        <li>{{ error.message }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                {% for error in errors %}
+                    <span id="name-error" class="help-block help-block-error">{{ error.message }}</span>
+                {% endfor %}
+            {% endif %}
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}
+
+{# form_row #}
+{% block form_row %}
+    {% spaceless %}
+        <div class="form-group {% if form.vars.valid == false %}has-error{% endif %}">
+            {{ form_label(form) }}
+            {{ form_widget(form) }}
+        </div>
+    {% endspaceless %}
+{% endblock form_row %}
+
+
+{# form_div_layout.html.twig #}
+{% block form_widget_simple %}
+    <div class="col-md-4">
+        {% set type = type|default('text') %}
+        {% if type == 'text' %}
+            <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+            {{ form_errors(form) }}
+        {% elseif type == 'email' %}
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+            </div>
+            {{ form_errors(form) }}
+        {% endif %}
+    </div>
+{% endblock form_widget_simple %}
+
+{# text_widget #}
+{% block text_widget %}
+    {% set type = type|default('text') %}
+    {{ block('form_widget_simple') }}
+{% endblock %}
+
+{# email_widget #}
+{% block email_widget %}
+    {% set type = type|default('email') %}
+    {{ block('form_widget_simple') }}
+{% endblock %}
+
+{# form_label #}
+{% block form_label %}
+    {% if not compound %}
+        {% set label_attr = label_attr|merge({'for': id}) %}
+    {% endif %}
+
+    {% set label_attr = label_attr|merge({
+        'class': (label_attr.class|default('') ~ ' col-md-3 control-label')|trim
+    }) %}
+
+    {% if label is empty %}
+        {% set label = name|humanize %}
+    {% endif %}
+
+    <label
+    {% for attrname, attrvalue in label_attr -%}
+        {{ attrname }}="{{ attrvalue }}"
+    {%- endfor %}
+    >
+    {{ label|trans({}, translation_domain) }}
+
+    {% if required %}
+        <span class="required" aria-required="true"> * </span>
+    {% endif %}
+
+    </label>
+{% endblock form_label %}
+
+{%- block choice_widget_collapsed -%}
+    {%- if required and placeholder is none and not placeholder_in_choices and not multiple and (attr.size is not defined or attr.size <= 1) -%}
+        {% set required = false %}
+    {%- endif -%}
+
+    {% set routeName = app.request.attributes.get("_route") %}
+
+    {% if routeName == 'addMember' %}
+        {% set attr = attr|merge({
+            'class': (attr.class|default('') ~ ' form-control birthday-date')|trim
+        }) %}
+    {% else %}
+        {% set attr = attr|merge({
+            'class': (attr.class|default('') ~ ' form-control')|trim
+        }) %}
+    {% endif %}
+
+    <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
+        {%- if placeholder is not none -%}
+            <option value=""{% if required and value is empty %} selected="selected"{% endif %}>{{ placeholder != '' ? (translation_domain is same as(false) ? placeholder : placeholder|trans({}, translation_domain)) }}</option>
+        {%- endif -%}
+        {%- if preferred_choices|length > 0 -%}
+            {% set options = preferred_choices %}
+            {{- block('choice_widget_options') -}}
+            {%- if choices|length > 0 and separator is not none -%}
+                <option disabled="disabled">{{ separator }}</option>
+            {%- endif -%}
+        {%- endif -%}
+        {%- set options = choices -%}
+        {{- block('choice_widget_options') -}}
+    </select>
+{%- endblock choice_widget_collapsed -%}
+
+

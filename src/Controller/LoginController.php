@@ -14,12 +14,10 @@ class LoginController extends Controller
 
     /**
      * @Route("/login", name="login")
-     * @Route("/login/error", name="error-login")
      * @param Session $session
-     * @param Request $request
      * @return Response|\Symfony\Component\HttpFoundation\Response
      */
-    public function login(Session $session, Request $request)
+    public function login(Session $session)
     {
         if (!$session->has("gmail")) {
             $client = $this->create_client();
@@ -27,19 +25,10 @@ class LoginController extends Controller
             $client->addScope(\Google_Service_Oauth2::USERINFO_EMAIL);
 
             $url = $client->createAuthUrl();
-            $currentRoute = $request->attributes->get('_route');
 
-            if ($currentRoute == 'error-login') {
-                return $this->render('login/login.html.twig', array(
-                    'error' => 'error',
-                    'url' => $client->createAuthUrl()
-                ));
-            }
-            else {
-                return $this->render("login/login.html.twig", array(
-                    "url" => $url
-                ));
-            }
+            return $this->render("login/login.html.twig", array(
+                "url" => $url
+            ));
         }
 
         return $this->redirectToRoute('dashboard');
@@ -49,7 +38,6 @@ class LoginController extends Controller
      * @Route("/login/check-user")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
-     * @throws \Doctrine\DBAL\DBALException
      */
     public function check_user(Request $request)
     {
@@ -73,34 +61,27 @@ class LoginController extends Controller
                     $user->setImageUrl($userDetails->picture);
                     $em->flush();
                 }
-
-                $user_id = $user->getId();
-                $userRoles = $this->getDoctrine()->getRepository(User::class)->getUserRoles($user_id);
-
-                if ($userRoles) {
-
-                    $session = new Session();
-
-                    $session->set('given_name', $user->getGivenName());
-                    $session->set('gmail', $user->getGmail());
-                    $session->set('image', $userDetails->picture);
-
-                    $index = 1;
-                    $roleKey = 'role_';
-                    for ($i = 0; $i < sizeof($userRoles); $i++) {
-                        $roleKeyNb = $roleKey . $index;
-                        $session->set($roleKeyNb, $userRoles[$i]['role_name']);
-                        $index++;
-                    }
-
-                    $session->set('token', $client->getAccessToken());
-
-                    return $this->redirectToRoute('dashboard');
+                $roles = $user->getRoles();
+                $rolesArray = array();
+                foreach ($roles as $value) {
+                    $rolesArray[] = $value->getRoleName();
                 }
 
+                $session = new Session();
+                $session->set('user', $user);
+                $session->set('roles', $rolesArray);
+                $session->set('gmail', $user->getGmail());
+                $session->set('token', $client->getAccessToken());
+
+                return $this->redirectToRoute('dashboard');
+
             } else {
+                $this->addFlash(
+                    'danger',
+                    'Access Denied.'
+                );
                 return new Response(
-                    '<script type="text/javascript">document.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:8000/login/error"</script>'
+                    '<script type="text/javascript">document.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:8000/login"</script>'
                 );
             }
         }

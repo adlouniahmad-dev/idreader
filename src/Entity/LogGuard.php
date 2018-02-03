@@ -17,7 +17,7 @@ class LogGuard
     private $id;
 
     /**
-     * @ORM\Column(type="time")
+     * @ORM\Column(type="datetime")
      */
     private $time;
 

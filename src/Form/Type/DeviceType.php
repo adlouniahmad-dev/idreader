@@ -21,12 +21,7 @@ class DeviceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('macAddress', TextType::class, array(
-                'attr' => ['class' => 'form-control', 'placeholder' => 'Mobile Mac Address'],
-                'label' => 'Mobile Mac Address',
-                'label_attr' => ['class' => 'col-md-3 control-label'],
-                'required' => false
-            ));
+            ->add('macAddress', TextType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)

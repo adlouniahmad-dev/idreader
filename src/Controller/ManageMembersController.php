@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 
+use App\Entity\Role;
 use App\Entity\User;
 use App\Form\Type\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -23,7 +24,7 @@ class ManageMembersController extends Controller
      * @Route("/manage-members/add-member", name="addMember")
      * @param Session $session
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function addMember(Session $session, Request $request)
     {
@@ -34,9 +35,40 @@ class ManageMembersController extends Controller
         $form = $this->createForm(UserType::class, $user);
 
         $form->handleRequest($request);
+        if ($form->isSubmitted()) {
 
-        return $this->render('manageBuildings/addBuilding.html.twig', array(
-           'form' => $form
+            if (!$form->isValid()) {
+
+                $this->addFlash(
+                    'danger',
+                    'You have some errors. Please check below.'
+                );
+                return $this->render('manageMembers/addMember.html.twig', array(
+                    'form' => $form->createView()
+                ));
+            }
+
+            $em = $this->getDoctrine()->getManager();
+
+            $roleValue = $form['role']->getData();
+            $role = $em->getRepository(Role::class)->findOneBy(['roleName' => $roleValue]);
+
+            $user->addRole($role);
+            $user->setDateCreated(new \DateTime());
+
+            $em->persist($user);
+            $em->flush();
+
+            $this->addFlash(
+                'success',
+                'Member added successfully!'
+            );
+
+            return $this->redirectToRoute('addMember');
+        }
+
+        return $this->render('manageMembers/addMember.html.twig', array(
+            'form' => $form->createView()
         ));
     }
 }

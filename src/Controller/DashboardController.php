@@ -9,7 +9,12 @@
 namespace App\Controller;
 
 
+use App\Entity\Building;
+use App\Entity\LogGate;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -22,10 +27,53 @@ class DashboardController extends Controller
      */
     public function dashboard(Session $session)
     {
-        if ($session->has("gmail"))
-        {
-            return $this->render('dashboard/dashboard.html.twig');
+        if (!$session->has("gmail"))
+            return $this->redirectToRoute('login');
+
+        $buildingsOptions = '';
+        if (in_array('fowner', $session->get('roles'))) {
+            $buildings = $this->getDoctrine()->getRepository(Building::class)->findAll();
+            foreach ($buildings as $building) {
+                $buildingsOptions .= '<option value=' . $building->getId() . '>' . $building->getName() . '</option>';
+            }
+        } else if (in_array('fadmin', $session->get('roles'))) {
+            $building = $this->getDoctrine()->getRepository(Building::class)->findOneBy(['admin' => $session->get('user')->getId()]);
+            $buildingsOptions .= '<option value=' . $building->getId() . '>' . $building->getName() . '</option>';
         }
-        return $this->redirectToRoute('login');
+
+        return $this->render('dashboard/dashboard.html.twig', array(
+            'buildings' => $buildingsOptions
+        ));
+
     }
+
+    /**
+     * @Route("/api/getScansPerGate/{buildingId}/{date}")
+     * @param $buildingId
+     * @param $date
+     * @return JsonResponse|Response
+     * @throws \Doctrine\DBAL\DBALException
+     * @Method("GET")
+     */
+    public function getScansPerGate($buildingId, $date)
+    {
+        $result = $this->getDoctrine()->getRepository(LogGate::class)->findByDate($buildingId, $date);
+        return new JsonResponse($result);
+    }
+
+    /**
+     * @Route("/api/getScansPerDayPerMonth/{buildingId}/{month}/{year}")
+     * @param $buildingId
+     * @param $month
+     * @param $year
+     * @return JsonResponse
+     * @throws \Doctrine\DBAL\DBALException
+     * @Method("GET")
+     */
+    public function getScansPerDayPerMonth($buildingId, $month, $year)
+    {
+        $result = $this->getDoctrine()->getRepository(LogGate::class)->findByMonth($buildingId, $month, $year);
+        return new JsonResponse($result);
+    }
+
 }

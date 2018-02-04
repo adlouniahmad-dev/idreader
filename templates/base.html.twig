@@ -92,9 +92,7 @@
             <ul class="page-sidebar-menu  page-header-fixed page-sidebar-menu-hover-submenu " data-keep-expanded="false"
                 data-auto-scroll="true" data-slide-speed="200">
 
-                {% set role = app.session.get('roles')[0] %}
-
-                {%- if role == 'fowner' or role == 'fadmin' -%}
+                {%- if 'fowner' in app.session.get('roles') or 'fadmin' in app.session.get('roles') -%}
                     <li class="nav-item start">
                         <a href="{{ path('dashboard') }}" class="nav-link nav-toggle">
                             <i class="icon-home"></i>
@@ -104,7 +102,7 @@
                     </li>
                 {%- endif -%}
 
-                {%- if role == 'fowner' -%}
+                {%- if 'fowner' in app.session.get('roles') -%}
                     <li class="nav-item start">
                         <a href="{{ path('dashboard') }}" class="nav-link nav-toggle">
                             <i class="fa fa-building-o"></i>
@@ -119,12 +117,6 @@
                                 </a>
                             </li>
                             <li class="nav-item start ">
-                                <a href="{{ path('addBuilding') }}" class="nav-link ">
-                                    <i class="fa fa-plus"></i>
-                                    <span class="title">Add Office</span>
-                                </a>
-                            </li>
-                            <li class="nav-item start ">
                                 <a href="" class="nav-link ">
                                     <i class="fa fa-list-ul"></i>
                                     <span class="title">View Buildings</span>
@@ -134,7 +126,42 @@
                     </li>
                 {%- endif -%}
 
-                {%- if role == 'fowner' or role == 'fadmin' -%}
+                {%- if 'fowner' in app.session.get('roles') or 'fadmin' in app.session.get('roles') -%}
+                    <li class="nav-item start">
+                        <a href="{{ path('dashboard') }}" class="nav-link nav-toggle">
+                            <i class="fa fa-building-o"></i>
+                            <span class="title">Manage Offices</span>
+                            <span class="arrow open"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item start ">
+                                <a href="{{ path('addOffice') }}" class="nav-link ">
+                                    <i class="fa fa-plus"></i>
+                                    <span class="title">Add Office</span>
+                                </a>
+                            </li>
+                            <li class="nav-item start ">
+                                <a href="" class="nav-link ">
+                                    <i class="fa fa-list-ul"></i>
+                                    <span class="title">View Offices</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                {%- endif -%}
+
+                {%- if 'fowner' in app.session.get('roles') or 'fadmin' in app.session.get('roles') -%}
+                    <li class="nav-item start">
+                        <a href="{{ path('dashboard') }}" class="nav-link nav-toggle">
+                            <i class="fa fa-building-o"></i>
+                            <span class="title">Manage Gates</span>
+                            <span class="arrow open"></span>
+                            <span class="selected"></span>
+                        </a>
+                    </li>
+                {%- endif -%}
+
+                {%- if 'fowner' in app.session.get('roles') or 'fadmin' in app.session.get('roles') -%}
                     <li class="nav-item start">
                         <a href="{{ path('dashboard') }}" class="nav-link nav-toggle">
                             <i class="fa fa-users"></i>
@@ -160,7 +187,7 @@
                     </li>
                 {%- endif -%}
 
-                {%- if role == 'fowner' or role == 'fadmin' -%}
+                {%- if 'fowner' in app.session.get('roles') or 'fadmin' in app.session.get('roles') -%}
                     <li class="nav-item start">
                         <a href="{{ path('dashboard') }}" class="nav-link nav-toggle">
                             <i class="fa fa-list-ul"></i>
@@ -170,7 +197,7 @@
                     </li>
                 {%- endif -%}
 
-                {%- if role == 'fowner' -%}
+                {%- if 'fowner' in app.session.get('roles') -%}
                     <li class="nav-item start">
                         <a href="{{ path('dashboard') }}" class="nav-link nav-toggle">
                             <i class="fa fa-history"></i>
@@ -180,16 +207,6 @@
                     </li>
                 {%- endif -%}
 
-                {%- if role == 'fadmin' -%}
-                    <li class="nav-item start">
-                        <a href="{{ path('dashboard') }}" class="nav-link nav-toggle">
-                            <i class="fa fa-building-o"></i>
-                            <span class="title">Manage Gates</span>
-                            <span class="arrow open"></span>
-                            <span class="selected"></span>
-                        </a>
-                    </li>
-                {%- endif -%}
             </ul>
         </div>
     </div>

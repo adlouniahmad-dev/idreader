@@ -31,6 +31,7 @@ class Building
 
     /**
      * @ORM\Column(type="string", nullable=true)
+     * @Assert\NotBlank()
      */
     private $location;
 
@@ -180,6 +181,15 @@ class Building
     public function setAdmin($admin): void
     {
         $this->admin = $admin;
+    }
+
+    public function getFloors()
+    {
+        $floors = array();
+        for ($i = $this->startFloor; $i <= $this->endFloor; $i++) {
+            $floors[] = $i;
+        }
+        return $floors;
     }
 
 }

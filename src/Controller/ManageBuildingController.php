@@ -45,8 +45,7 @@ class ManageBuildingController extends Controller
                 );
                 return $this->render('manageBuildings/addBuilding.html.twig', array(
                         'form' => $form->createView()
-                    )
-                );
+                ));
             }
 
             $building->setDateCreated(new \DateTime());

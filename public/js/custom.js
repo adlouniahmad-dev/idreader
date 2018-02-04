@@ -3,8 +3,8 @@ $('#logout').on('click', function () {
 });
 
 $(document).ready(function () {
-    var date = new Date();
-    var day, month, year;
+    let date = new Date();
+    let day, month, year;
 
     if (date.getMonth() + 1 < 10)
         month = '0' + (date.getMonth() + 1);
@@ -18,9 +18,11 @@ $(document).ready(function () {
 
     year = date.getFullYear();
 
-    var todayDate = year + '-' + month + '-' + day;
-    var todayMonth = year + '-' + month;
+    let todayDate = year + '-' + month + '-' + day;
+    let todayMonth = year + '-' + month;
 
     $('#gateDate').val(todayDate).attr('max', todayDate);
     $('#monthDate').val(todayMonth).attr('max', todayMonth);
 });
+
+

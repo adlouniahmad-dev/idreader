@@ -37,6 +37,7 @@ class Office
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Building")
      * @ORM\JoinColumn(name="building_id", referencedColumnName="id")
+     * @Assert\NotBlank()
      */
     private $building;
 

@@ -127,6 +127,10 @@ a.logo-default:active {
     display: inline-block;
 }
 
+.select-menu {
+    display: inline-block;
+}
+
 .tool-buildings {
     padding: 0 0 18px 0;
     margin-bottom: 20px;

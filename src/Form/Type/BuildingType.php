@@ -29,7 +29,6 @@ class BuildingType extends AbstractType
             ->add('location', TextType::class, array(
                 'attr' => ['class' => 'form-control', 'placeholder' => 'Building Address'],
                 'label' => 'Building Address',
-                'required' => false
             ))
             ->add('startFloor', TextType::class, array(
                 'attr' => ['class' => 'form-control', 'placeholder' => 'Starting Floor'],

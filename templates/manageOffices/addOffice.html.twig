@@ -1,0 +1,116 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'form/fields.html.twig' %}
+
+{% block title %}Add Office{% endblock %}
+{% block pagetitle %}Manage Offices{% endblock %}
+{% block pagetitlesmall %}Add Office{% endblock %}
+{% block pagebartitle %}Add Office{% endblock %}
+
+{% block content %}
+    <div class="portlet light ">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="icon-equalizer font-red-sunglo"></i>
+                <span class="caption-subject font-red-sunglo bold uppercase">Add Office</span>
+            </div>
+        </div>
+
+        <div class="portlet-body form">
+            {{ form_start(form, {'attr': {'class': 'form-horizontal', 'novalidate': 'novalidate'}}) }}
+            <div class="form-body">
+
+                {% for label, messages in app.flashes %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ label }}">
+                            <button class="close" data-close="alert"></button>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+
+                {{ form_row(form.officeNb) }}
+                {{ form_row(form.building) }}
+                {{ form_row(form.floorNb) }}
+
+            </div>
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-4">
+                        {{ form_widget(form.save) }}
+                        {{ form_widget(form.reset) }}
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+
+        {#function get_floors(buildingId) {#}
+
+            {#$.ajax({#}
+                {#contentType: 'application/json charset=utf-8',#}
+                {#type: 'get',#}
+                {#dataType: 'json',#}
+                {#url: '{{ path('getFloors') }}',#}
+                {#data: {#}
+                    {#buildingId: buildingId#}
+                {#},#}
+                {#success: function (response) {#}
+                    {#console.log(response);#}
+                    {#update_floor_options(response);#}
+                {#}#}
+            {#})#}
+
+        {#}#}
+
+        {#function check_if_floor_is_selected() {#}
+            {#let buildingId = $('#office_building').val();#}
+            {#if (buildingId !== '') {#}
+                {#get_floors(buildingId);#}
+            {#}#}
+        {#}#}
+
+        {#$(function () {#}
+            {#$('#office_building').on('change', function () {#}
+                {#let buildingId = $('#office_building').val();#}
+                {#if (buildingId !== '')#}
+                    {#get_floors(buildingId);#}
+                {#else#}
+                    {#update_floor_options();#}
+            {#})#}
+        {#});#}
+
+        {#function update_floor_options(response = []) {#}
+            {#let floorOptions = '<option value selected="selected">Select</option>';#}
+            {#if (response.length > 0) {#}
+                {#$.each(response, function (index, value) {#}
+                    {#floorOptions += '<option value=' + index + '>' + value + '</option>';#}
+                {#});#}
+            {#}#}
+            {#$('#office_floor').empty();#}
+            {#$('#office_floor').html(floorOptions);#}
+        {#}#}
+
+        {#check_if_floor_is_selected();#}
+
+        let $building = $('#office_building');
+        $building.change(function() {
+            let $form = $(this).closest('form');
+            let data = {};
+            data[$building.attr('name')] = $building.val();
+
+            $.ajax({
+                url: $form.attr('action'),
+                type: $form.attr('method'),
+                data: data,
+                success: function
+            })
+        })
+
+    </script>
+{% endblock %}

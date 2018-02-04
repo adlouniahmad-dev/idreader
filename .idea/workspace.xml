@@ -2,121 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50e69e48-8f17-4cc9-ac75-48078c3b9921" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/images/remove-icon-small.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/images/sidebar-toggler-inverse.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/LICENSE" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/README.md" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker.standalone.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker.standalone.min.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.standalone.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.standalone.min.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.ar.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.az.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.bg.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.bs.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.ca.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.cs.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.cy.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.da.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.de.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.el.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.en-GB.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.et.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.eu.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.fa.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.fi.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.fo.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.fr-CH.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.fr.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.gl.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.he.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.hr.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.hu.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.hy.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.id.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.is.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.it-CH.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.it.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.ja.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.ka.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.kh.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.kk.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.kr.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.lt.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.lv.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.me.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.mk.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.ms.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.nb.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.nl-BE.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.nl.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.no.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.pl.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.pt.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.ro.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.rs-latin.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.rs.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.ru.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.sk.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.sl.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.sq.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.sr-latin.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.sr.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.sv.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.sw.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.th.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.tr.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.uk.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.vi.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.zh-TW.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/pages/charts-amcharts.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/Validator/Constraints/UniqueUserEmail.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/Validator/Constraints/UniqueUserEmailValidator.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/Validator/Constraints/UniqueUserPhone.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/Validator/Constraints/UniqueUserPhoneValidator.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/templates/form/fields.html.twig" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/Controller/ManageOfficeController.php" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/templates/manageOffices/addOffice.html.twig" />
+      <change beforePath="$PROJECT_DIR$/.env.dist" afterPath="$PROJECT_DIR$/.env.dist" />
       <change beforePath="$PROJECT_DIR$/.idea/idreader.iml" afterPath="$PROJECT_DIR$/.idea/idreader.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" afterPath="$PROJECT_DIR$/.idea/php.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
       <change beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" afterPath="$PROJECT_DIR$/config/services.yaml" />
+      <change beforePath="$PROJECT_DIR$/config/bundles.php" afterPath="$PROJECT_DIR$/config/bundles.php" />
+      <change beforePath="$PROJECT_DIR$/phpunit.xml.dist" afterPath="$PROJECT_DIR$/phpunit.xml.dist" />
       <change beforePath="$PROJECT_DIR$/public/css/layout/custom.css" afterPath="$PROJECT_DIR$/public/css/layout/custom.css" />
       <change beforePath="$PROJECT_DIR$/public/js/custom.js" afterPath="$PROJECT_DIR$/public/js/custom.js" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/DashboardController.php" afterPath="$PROJECT_DIR$/src/Controller/DashboardController.php" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/LoginController.php" afterPath="$PROJECT_DIR$/src/Controller/LoginController.php" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ManageBuildingController.php" afterPath="$PROJECT_DIR$/src/Controller/ManageBuildingController.php" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ManageMembersController.php" afterPath="$PROJECT_DIR$/src/Controller/ManageMembersController.php" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UProfileController.php" afterPath="$PROJECT_DIR$/src/Controller/UProfileController.php" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Building.php" afterPath="$PROJECT_DIR$/src/Entity/Building.php" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Guard.php" afterPath="$PROJECT_DIR$/src/Entity/Guard.php" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Log.php" afterPath="$PROJECT_DIR$/src/Entity/Log.php" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/LogGate.php" afterPath="$PROJECT_DIR$/src/Entity/LogGate.php" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/LogGuard.php" afterPath="$PROJECT_DIR$/src/Entity/LogGuard.php" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Role.php" afterPath="$PROJECT_DIR$/src/Entity/Role.php" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" afterPath="$PROJECT_DIR$/src/Entity/User.php" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Visitor.php" afterPath="$PROJECT_DIR$/src/Entity/Visitor.php" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Office.php" afterPath="$PROJECT_DIR$/src/Entity/Office.php" />
       <change beforePath="$PROJECT_DIR$/src/Form/Type/BuildingType.php" afterPath="$PROJECT_DIR$/src/Form/Type/BuildingType.php" />
-      <change beforePath="$PROJECT_DIR$/src/Form/Type/DeviceType.php" afterPath="$PROJECT_DIR$/src/Form/Type/DeviceType.php" />
+      <change beforePath="$PROJECT_DIR$/src/Form/Type/OfficeType.php" afterPath="$PROJECT_DIR$/src/Form/Type/OfficeType.php" />
       <change beforePath="$PROJECT_DIR$/src/Form/Type/UserType.php" afterPath="$PROJECT_DIR$/src/Form/Type/UserType.php" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/LogGateRepository.php" afterPath="$PROJECT_DIR$/src/Repository/LogGateRepository.php" />
+      <change beforePath="$PROJECT_DIR$/src/Form/UserForm.php" afterPath="" />
       <change beforePath="$PROJECT_DIR$/symfony.lock" afterPath="$PROJECT_DIR$/symfony.lock" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" afterPath="$PROJECT_DIR$/templates/base.html.twig" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard/dashboard.html.twig" afterPath="$PROJECT_DIR$/templates/dashboard/dashboard.html.twig" />
-      <change beforePath="$PROJECT_DIR$/templates/login/login.html.twig" afterPath="$PROJECT_DIR$/templates/login/login.html.twig" />
-      <change beforePath="$PROJECT_DIR$/templates/manageBuildings/addBuilding.html.twig" afterPath="$PROJECT_DIR$/templates/manageBuildings/addBuilding.html.twig" />
-      <change beforePath="$PROJECT_DIR$/templates/manageMembers/addMember.html.twig" afterPath="$PROJECT_DIR$/templates/manageMembers/addMember.html.twig" />
-      <change beforePath="$PROJECT_DIR$/templates/uprofile/uprofile.html.twig" afterPath="$PROJECT_DIR$/templates/uprofile/uprofile.html.twig" />
+      <change beforePath="$PROJECT_DIR$/templates/form/fields.html.twig" afterPath="$PROJECT_DIR$/templates/form/fields.html.twig" />
+      <change beforePath="$PROJECT_DIR$/templates/test.html.twig" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -142,14 +51,58 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DashboardController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/DashboardController.php">
+      <file leaf-file-name="ManageOfficeController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Controller/ManageOfficeController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1380">
-              <caret line="74" column="111" lean-forward="false" selection-start-line="74" selection-start-column="111" selection-end-line="74" selection-end-column="111" />
+            <state relative-caret-position="-105">
+              <caret line="55" column="79" lean-forward="false" selection-start-line="55" selection-start-column="79" selection-end-line="55" selection-end-column="79" />
               <folding>
-                <element signature="e#130#154#0#PHP" expanded="true" />
+                <element signature="e#125#149#0#PHP" expanded="true" />
+                <element signature="e#1378#1413#0#PHP" expanded="true" />
+                <element signature="e#2085#2120#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ManageBuildingController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Controller/ManageBuildingController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OfficeType.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Form/Type/OfficeType.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="70" column="14" lean-forward="false" selection-start-line="70" selection-start-column="14" selection-end-line="70" selection-end-column="14" />
+              <folding>
+                <element signature="e#129#153#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Building.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Entity/Building.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="855">
+              <caret line="191" column="23" lean-forward="false" selection-start-line="191" selection-start-column="23" selection-end-line="191" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="addOffice.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/manageOffices/addOffice.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="855">
+              <caret line="110" column="33" lean-forward="false" selection-start-line="110" selection-start-column="33" selection-end-line="110" selection-end-column="33" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -157,74 +110,28 @@
       <file leaf-file-name="dashboard.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/dashboard/dashboard.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="20">
+            <state relative-caret-position="-100">
               <caret line="133" column="56" lean-forward="false" selection-start-line="133" selection-start-column="56" selection-end-line="133" selection-end-column="56" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="charts-amcharts.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/js/pages/charts-amcharts.js">
+      <file leaf-file-name="Office.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Entity/Office.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1025">
-              <caret line="69" column="25" lean-forward="false" selection-start-line="69" selection-start-column="25" selection-end-line="69" selection-end-column="25" />
-              <folding>
-                <marker date="1517681178982" expanded="true" signature="1160:1175" ph="..." />
-                <marker date="1517681178982" expanded="true" signature="1220:1236" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserType.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Form/Type/UserType.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="27" column="21" lean-forward="false" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+            <state relative-caret-position="360">
+              <caret line="28" column="7" lean-forward="false" selection-start-line="28" selection-start-column="7" selection-end-line="28" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="custom.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/custom.js">
+      <file leaf-file-name="ManageMembersController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Controller/ManageMembersController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="24" column="60" lean-forward="false" selection-start-line="24" selection-start-column="60" selection-end-line="24" selection-end-column="60" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LogGateRepository.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Repository/LogGateRepository.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="980">
-              <caret line="53" column="43" lean-forward="false" selection-start-line="53" selection-start-column="43" selection-end-line="53" selection-end-column="43" />
-              <folding>
-                <marker date="1517507502718" expanded="true" signature="691:952" ph="SELECT g.nam... gate" />
-                <marker date="1517507502718" expanded="true" signature="1384:1626" ph="SELECT l.dat... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Gate.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Entity/Gate.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="custom.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/css/layout/custom.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2720">
-              <caret line="136" column="17" lean-forward="false" selection-start-line="136" selection-start-column="17" selection-end-line="136" selection-end-column="17" />
+            <state relative-caret-position="160">
+              <caret line="34" column="55" lean-forward="false" selection-start-line="34" selection-start-column="55" selection-end-line="34" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -233,8 +140,8 @@
       <file leaf-file-name="base.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4980">
-              <caret line="249" column="60" lean-forward="false" selection-start-line="249" selection-start-column="60" selection-end-line="249" selection-end-column="60" />
+            <state relative-caret-position="495">
+              <caret line="161" column="29" lean-forward="false" selection-start-line="161" selection-start-column="29" selection-end-line="161" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -263,6 +170,7 @@
       <find>length</find>
       <find>roboto</find>
       <find>Roboto</find>
+      <find>birt</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -271,18 +179,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Entity/Schedule.php" />
-        <option value="$PROJECT_DIR$/public/js/google-login.js" />
-        <option value="$PROJECT_DIR$/templates/test.html.twig" />
         <option value="$PROJECT_DIR$/config/routes.yaml" />
         <option value="$PROJECT_DIR$/config/packages/framework.yaml" />
-        <option value="$PROJECT_DIR$/src/Form/Type/OfficeType.php" />
-        <option value="$PROJECT_DIR$/src/Entity/Office.php" />
         <option value="$PROJECT_DIR$/src/Form/UserForm.php" />
         <option value="$PROJECT_DIR$/src/Entity/Device.php" />
         <option value="$PROJECT_DIR$/src/Form/Type/RoleType.php" />
-        <option value="$PROJECT_DIR$/src/Entity/Building.php" />
-        <option value="$PROJECT_DIR$/src/Form/Type/BuildingType.php" />
         <option value="$PROJECT_DIR$/src/Repository/UserRepository.php" />
         <option value="$PROJECT_DIR$/src/Validator/UniqueUserEmail.php" />
         <option value="$PROJECT_DIR$/src/Validator/UniqueUserEmailValidator.php" />
@@ -291,7 +192,6 @@
         <option value="$PROJECT_DIR$/src/Validator/Constraints/UniqueUserEmail.php" />
         <option value="$PROJECT_DIR$/src/Form/Type/BirthdateType.php" />
         <option value="$PROJECT_DIR$/src/Form/Type/BirthdayDateType.php" />
-        <option value="$PROJECT_DIR$/src/Controller/ManageBuildingController.php" />
         <option value="$PROJECT_DIR$/templates/manageBuildings/addBuilding.html.twig" />
         <option value="$PROJECT_DIR$/src/Validator/Constraints/UniqueUserPhone.php" />
         <option value="$PROJECT_DIR$/src/Validator/Constraints/UniqueUserPhoneValidator.php" />
@@ -311,17 +211,25 @@
         <option value="$PROJECT_DIR$/src/Entity/Visitor.php" />
         <option value="$PROJECT_DIR$/src/Entity/LogGuard.php" />
         <option value="$PROJECT_DIR$/src/Entity/Log.php" />
-        <option value="$PROJECT_DIR$/templates/form/fields.html.twig" />
         <option value="$PROJECT_DIR$/src/Entity/LogGate.php" />
         <option value="$PROJECT_DIR$/public/js/global/plugins/amcharts/amcharts/plugins/export/libs/pdfmake/pdfmake.js" />
-        <option value="$PROJECT_DIR$/templates/base.html.twig" />
-        <option value="$PROJECT_DIR$/public/css/layout/custom.css" />
-        <option value="$PROJECT_DIR$/public/js/custom.js" />
-        <option value="$PROJECT_DIR$/src/Form/Type/UserType.php" />
         <option value="$PROJECT_DIR$/src/Repository/LogGateRepository.php" />
-        <option value="$PROJECT_DIR$/templates/dashboard/dashboard.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/DashboardController.php" />
         <option value="$PROJECT_DIR$/public/js/pages/charts-amcharts.js" />
+        <option value="$PROJECT_DIR$/src/Form/Type/BuildingType.php" />
+        <option value="$PROJECT_DIR$/src/Entity/Office.php" />
+        <option value="$PROJECT_DIR$/public/css/layout/custom.css" />
+        <option value="$PROJECT_DIR$/templates/form/fields.html.twig" />
+        <option value="$PROJECT_DIR$/src/Form/Type/UserType.php" />
+        <option value="$PROJECT_DIR$/templates/dashboard/dashboard.html.twig" />
+        <option value="$PROJECT_DIR$/config/bundles.php" />
+        <option value="$PROJECT_DIR$/public/js/custom.js" />
+        <option value="$PROJECT_DIR$/templates/base.html.twig" />
+        <option value="$PROJECT_DIR$/src/Controller/ManageBuildingController.php" />
+        <option value="$PROJECT_DIR$/src/Controller/ManageOfficeController.php" />
+        <option value="$PROJECT_DIR$/src/Entity/Building.php" />
+        <option value="$PROJECT_DIR$/src/Form/Type/OfficeType.php" />
+        <option value="$PROJECT_DIR$/templates/manageOffices/addOffice.html.twig" />
       </list>
     </option>
   </component>
@@ -415,6 +323,24 @@
       <path value="$PROJECT_DIR$/vendor/symfony/validator" />
       <path value="$PROJECT_DIR$/vendor/symfony/translation" />
       <path value="$PROJECT_DIR$/vendor/symfony/expression-language" />
+      <path value="$PROJECT_DIR$/vendor/friendsofsymfony/rest-bundle" />
+      <path value="$PROJECT_DIR$/vendor/willdurand/negotiation" />
+      <path value="$PROJECT_DIR$/vendor/willdurand/jsonp-callback-validator" />
+      <path value="$PROJECT_DIR$/vendor/symfony/templating" />
+      <path value="$PROJECT_DIR$/vendor/phpcollection/phpcollection" />
+      <path value="$PROJECT_DIR$/vendor/phpoption/phpoption" />
+      <path value="$PROJECT_DIR$/vendor/jms/parser-lib" />
+      <path value="$PROJECT_DIR$/vendor/jms/serializer" />
+      <path value="$PROJECT_DIR$/vendor/jms/serializer-bundle" />
+      <path value="$PROJECT_DIR$/vendor/jms/metadata" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-common" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/type-resolver" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
+      <path value="$PROJECT_DIR$/vendor/webmozart/assert" />
+      <path value="$PROJECT_DIR$/vendor/symfony/serializer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/serializer-pack" />
+      <path value="$PROJECT_DIR$/vendor/symfony/property-info" />
+      <path value="$PROJECT_DIR$/vendor/nelmio/cors-bundle" />
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
@@ -488,7 +414,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -499,35 +424,18 @@
             <path>
               <item name="idreader" type="b2602c69:ProjectViewProjectNode" />
               <item name="idreader" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="idreader" type="b2602c69:ProjectViewProjectNode" />
+              <item name="idreader" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="packages" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="idreader" type="b2602c69:ProjectViewProjectNode" />
               <item name="idreader" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="idreader" type="b2602c69:ProjectViewProjectNode" />
-              <item name="idreader" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="global" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="idreader" type="b2602c69:ProjectViewProjectNode" />
-              <item name="idreader" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="global" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="plugins" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="idreader" type="b2602c69:ProjectViewProjectNode" />
-              <item name="idreader" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="pages" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="idreader" type="b2602c69:ProjectViewProjectNode" />
@@ -568,31 +476,14 @@
               <item name="idreader" type="b2602c69:ProjectViewProjectNode" />
               <item name="idreader" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="templates" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="dashboard" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="idreader" type="b2602c69:ProjectViewProjectNode" />
-              <item name="idreader" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="templates" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="form" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="idreader" type="b2602c69:ProjectViewProjectNode" />
-              <item name="idreader" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="templates" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="manageMembers" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="idreader" type="b2602c69:ProjectViewProjectNode" />
-              <item name="idreader" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="templates" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="uprofile" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="manageBuildings" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -602,15 +493,16 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Ahmad Adlouni\senior\idreader\public\js\global\plugins" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Ahmad Adlouni\senior\idreader\templates\manageOffices" />
       <recent name="C:\Users\Ahmad Adlouni\senior\idreader\public\css\global\plugins" />
       <recent name="C:\Users\Ahmad Adlouni\senior\idreader\public\js\pages" />
       <recent name="C:\Users\Ahmad Adlouni\senior\idreader\public\images" />
       <recent name="C:\Users\Ahmad Adlouni\senior\idreader\src\Controller" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Ahmad Adlouni\senior\idreader\templates" />
+      <recent name="C:\Users\Ahmad Adlouni\senior\idreader\public\js\global\plugins" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -655,7 +547,8 @@
       <workItem from="1517315148494" duration="11755000" />
       <workItem from="1517394248921" duration="31527000" />
       <workItem from="1517476128981" duration="16758000" />
-      <workItem from="1517560519649" duration="3965000" />
+      <workItem from="1517560519649" duration="4899000" />
+      <workItem from="1517744938262" duration="23549000" />
     </task>
     <task id="LOCAL-00001" summary="DONE">
       <created>1516447201961</created>
@@ -692,32 +585,40 @@
       <option name="project" value="LOCAL" />
       <updated>1516988808661</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="DONE">
+      <created>1517687514497</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1517687514497</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="231341000" />
+    <option name="totallyTimeSpent" value="255824000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -737,67 +638,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Validator/Constraints/UniqueUserEmail.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="24" lean-forward="false" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Validator/Constraints/UniqueUserEmailValidator.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="21" column="50" lean-forward="false" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Form/Type/BirthdateType.php" />
-    <entry file="file://$PROJECT_DIR$/templates/manageBuildings/addBuilding.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="10" column="35" lean-forward="false" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Form/Type/BuildingType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="12" column="40" lean-forward="false" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/var/cache/dev/twig/a1/a104675a3073c40acc44eb5e357cc7192556f988dccb0b227eabe4cddb3d3796.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/var/cache/dev/twig/95/95b54fba2eb245f947d9f0543d9e95d0e8b72131a3bda81ead71cd26a2eeac54.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3500">
-          <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Form/Type/BirthdaydateType.php" />
-    <entry file="file://$PROJECT_DIR$/src/Controller/ManageBuildingController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1220">
-          <caret line="66" column="8" lean-forward="false" selection-start-line="66" selection-start-column="8" selection-end-line="66" selection-end-column="8" />
-          <folding>
-            <element signature="e#130#154#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/login/login.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="960">
-          <caret line="48" column="28" lean-forward="false" selection-start-line="48" selection-start-column="28" selection-end-line="48" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Form/Type/RoleType.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -854,13 +694,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="22" column="53" lean-forward="false" selection-start-line="22" selection-start-column="53" selection-end-line="22" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/services.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="775">
-          <caret line="49" column="44" lean-forward="false" selection-start-line="49" selection-start-column="44" selection-end-line="49" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -883,13 +717,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Form/Type/GuardType.php" />
-    <entry file="file://$PROJECT_DIR$/templates/manageMembers/addMember.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
-          <caret line="36" column="39" lean-forward="false" selection-start-line="36" selection-start-column="39" selection-end-line="36" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Entity/Device.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
@@ -902,6 +729,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -922,16 +750,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/pages/charts-amcharts.min.js" />
-    <entry file="file://$PROJECT_DIR$/src/Controller/ManageMembersController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="34" column="55" lean-forward="false" selection-start-line="34" selection-start-column="55" selection-end-line="34" selection-end-column="55" />
-          <folding>
-            <element signature="e#131#151#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Entity/LogGuard.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
@@ -947,25 +765,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Building.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="51" column="7" lean-forward="false" selection-start-line="51" selection-start-column="7" selection-end-line="51" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/form/fields.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2">
-          <caret line="68" column="80" lean-forward="false" selection-start-line="68" selection-start-column="80" selection-end-line="68" selection-end-column="80" />
         </state>
       </provider>
     </entry>
@@ -1020,22 +823,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4980">
-          <caret line="249" column="60" lean-forward="false" selection-start-line="249" selection-start-column="60" selection-end-line="249" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/layout/custom.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2720">
-          <caret line="136" column="17" lean-forward="false" selection-start-line="136" selection-start-column="17" selection-end-line="136" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Entity/Gate.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1044,19 +831,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/custom.js">
+    <entry file="file://$PROJECT_DIR$/public/js/pages/charts-amcharts.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="24" column="60" lean-forward="false" selection-start-line="24" selection-start-column="60" selection-end-line="24" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Form/Type/UserType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="27" column="21" lean-forward="false" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
-          <folding />
+        <state relative-caret-position="-1025">
+          <caret line="69" column="25" lean-forward="false" selection-start-line="69" selection-start-column="25" selection-end-line="69" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -1071,32 +849,179 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/dashboard/dashboard.html.twig">
+    <entry file="file://$PROJECT_DIR$/templates/manageMembers/addMember.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="133" column="56" lean-forward="false" selection-start-line="133" selection-start-column="56" selection-end-line="133" selection-end-column="56" />
+        <state relative-caret-position="520">
+          <caret line="36" column="39" lean-forward="false" selection-start-line="36" selection-start-column="39" selection-end-line="36" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/layout/custom.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="126" column="26" lean-forward="false" selection-start-line="126" selection-start-column="26" selection-end-line="126" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/form/fields.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="855">
+          <caret line="139" column="12" lean-forward="false" selection-start-line="139" selection-start-column="12" selection-end-line="139" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Form/Type/UserType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="87" column="37" lean-forward="false" selection-start-line="87" selection-start-column="37" selection-end-line="87" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/DashboardController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1380">
-          <caret line="74" column="111" lean-forward="false" selection-start-line="74" selection-start-column="111" selection-end-line="74" selection-end-column="111" />
+        <state relative-caret-position="-85">
+          <caret line="34" column="89" lean-forward="false" selection-start-line="34" selection-start-column="88" selection-end-line="34" selection-end-column="89" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/services.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="798">
+          <caret line="49" column="44" lean-forward="false" selection-start-line="49" selection-start-column="44" selection-end-line="49" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/packages/security.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/packages/framework.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Kernel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-365">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/bundles.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="17" column="2" lean-forward="false" selection-start-line="17" selection-start-column="2" selection-end-line="17" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/custom.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/dashboard/dashboard.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-100">
+          <caret line="133" column="56" lean-forward="false" selection-start-line="133" selection-start-column="56" selection-end-line="133" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="161" column="29" lean-forward="false" selection-start-line="161" selection-start-column="29" selection-end-line="161" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Form/Type/BuildingType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="30" column="46" lean-forward="false" selection-start-line="30" selection-start-column="46" selection-end-line="30" selection-end-column="46" />
           <folding>
-            <element signature="e#130#154#0#PHP" expanded="true" />
+            <element signature="e#129#153#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/pages/charts-amcharts.js">
+    <entry file="file://$PROJECT_DIR$/src/Entity/Office.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1025">
-          <caret line="69" column="25" lean-forward="false" selection-start-line="69" selection-start-column="25" selection-end-line="69" selection-end-column="25" />
+        <state relative-caret-position="360">
+          <caret line="28" column="7" lean-forward="false" selection-start-line="28" selection-start-column="7" selection-end-line="28" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/ManageMembersController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="34" column="55" lean-forward="false" selection-start-line="34" selection-start-column="55" selection-end-line="34" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/ManageOfficeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-105">
+          <caret line="55" column="79" lean-forward="false" selection-start-line="55" selection-start-column="79" selection-end-line="55" selection-end-column="79" />
           <folding>
-            <marker date="1517681178982" expanded="true" signature="1160:1175" ph="..." />
-            <marker date="1517681178982" expanded="true" signature="1220:1236" ph="..." />
+            <element signature="e#125#149#0#PHP" expanded="true" />
+            <element signature="e#1378#1413#0#PHP" expanded="true" />
+            <element signature="e#2085#2120#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Form/Type/OfficeType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="70" column="14" lean-forward="false" selection-start-line="70" selection-start-column="14" selection-end-line="70" selection-end-column="14" />
+          <folding>
+            <element signature="e#129#153#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Building.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="855">
+          <caret line="191" column="23" lean-forward="false" selection-start-line="191" selection-start-column="23" selection-end-line="191" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/ManageBuildingController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/manageOffices/addOffice.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="855">
+          <caret line="110" column="33" lean-forward="false" selection-start-line="110" selection-start-column="33" selection-end-line="110" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>

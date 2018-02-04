@@ -78,14 +78,14 @@ class UserType extends AbstractType
 
                 if (in_array('fowner', $this->session->get('roles'))) {
                     $roleChoices = array(
-                        'Select' => 'select',
+                        'Select' => '',
                         'Facility Administrator' => 'fadmin',
                         'Premise Owner' => 'powner',
                         'Security Guard' => 'sguard'
                     );
                 } else if (in_array('fadmin', $this->session->get('roles'))) {
                     $roleChoices = array(
-                        'Select' => 'select',
+                        'Select' => '',
                         'Premise Owner' => 'powner',
                         'Security Guard' => 'sguard'
                     );
@@ -96,7 +96,6 @@ class UserType extends AbstractType
                     'choices' => $roleChoices
                 ));
             });
-
     }
 
     public function configureOptions(OptionsResolver $resolver)

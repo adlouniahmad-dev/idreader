@@ -20,5 +20,5 @@ class UniqueUserPhone extends Constraint
 {
     public $msgPhoneExists = 'Phone number already exists.';
 
-    public $msgPhoneInvalid = 'Phone number invalid';
+    public $msgPhoneInvalid = 'Phone number is invalid. Please note that it should be a Lebanese number.';
 }

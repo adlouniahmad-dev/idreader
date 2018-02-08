@@ -29,45 +29,27 @@ class OfficeType extends AbstractType
 
     private $session;
     private $em;
+    private $buildings;
 
     public function __construct(SessionInterface $session, EntityManagerInterface $em)
     {
         $this->session = $session;
         $this->em = $em;
+        $this->buildings = array();
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
-        $buildings = array();
-        $buildings['Select'] = '';
-
-        if (in_array('fowner', $this->session->get('roles'))) {
-            $result = $this->em->getRepository(Building::class)->findAll();
-            foreach ($result as $building)
-                $buildings[$building->getName()] = $building;
-
-        } else if (in_array('fadmin', $this->session->get('roles'))) {
-            $result = $this->em->getRepository(Building::class)->findBy(['admin' => $this->session->get('user')->getId()]);
-            foreach ($result as $building)
-                $buildings[$building->getName()] = $building;
-        }
+        $this->setBuildingChoices();
 
         $builder
             ->add('officeNb', TextType::class, array(
                 'attr' => ['class' => 'form-control', 'placeholder' => 'e.g. B216'],
                 'label' => 'Office Number',
             ))
-//            ->add('floor', ChoiceType::class, array(
-//                'attr' => ['class' => 'form-control'],
-//                'label' => 'Floor Number',
-//                'choices' => array(
-//                    'Select' => '',
-//                ),
-//                'mapped' => false
-//            ))
             ->add('building', ChoiceType::class, array(
-                'choices' => $buildings
+                'choices' => $this->buildings
             ))
             ->add('save', SubmitType::class, array(
                 'attr' => ['class' => 'btn green'],
@@ -82,7 +64,6 @@ class OfficeType extends AbstractType
             $floors = null === $building ? array() : $building->getFloors();
 
             $form->add('floorNb', ChoiceType::class, array(
-                'attr' => ['class' => 'form-control'],
                 'label' => 'Floor Number',
                 'choices' => $floors
             ));
@@ -91,43 +72,17 @@ class OfficeType extends AbstractType
         $builder->addEventListener(
             FormEvents::PRE_SET_DATA,
             function (FormEvent $event) use ($formModifier) {
-                $data = $event->getData();
-                $formModifier($event->getForm(), $data->getBuilding());
+                $formModifier($event->getForm(), reset($this->buildings));
             }
         );
 
         $builder->get('building')->addEventListener(
             FormEvents::POST_SUBMIT,
             function (FormEvent $event) use ($formModifier) {
-                $data = $event->getData();
-                $formModifier($event->getForm(), $data->getBuilding());
+                $building = $event->getForm()->getData();
+                $formModifier($event->getForm()->getParent(), $building);
             }
         );
-
-//        $builder->addEventListener(
-//            FormEvents::PRE_SET_DATA,
-//            function (FormEvent $event) {
-//                $form = $event->getForm();
-//
-//                $buildings = array();
-//                $buildings['Select'] = '';
-//
-//                if (in_array('fowner', $this->session->get('roles'))) {
-//                    $result = $this->em->getRepository(Building::class)->findAll();
-//                    foreach ($result as $building)
-//                        $buildings[$building->getName()] = $building;
-//
-//                } else if (in_array('fadmin', $this->session->get('roles'))) {
-//                    $result = $this->em->getRepository(Building::class)->findBy(['admin' => $this->session->get('user')->getId()]);
-//                    foreach ($result as $building)
-//                        $buildings[$building->getName()] = $building;
-//                }
-//
-//                $form->add('building', ChoiceType::class, array(
-//                    'choices' => $buildings
-//                ));
-//            });
-
 
     }
 
@@ -137,4 +92,20 @@ class OfficeType extends AbstractType
             'data_class' => Office::class
         ));
     }
+
+    public function setBuildingChoices(): void
+    {
+        if (in_array('fowner', $this->session->get('roles'))) {
+            $result = $this->em->getRepository(Building::class)->findAll();
+            foreach ($result as $building)
+                $this->buildings[$building->getName()] = $building;
+
+        } else if (in_array('fadmin', $this->session->get('roles'))) {
+            $result = $this->em->getRepository(Building::class)->findBy(['admin' => $this->session->get('user')->getId()]);
+            foreach ($result as $building)
+                $this->buildings[$building->getName()] = $building;
+        }
+    }
+
+
 }

@@ -9,12 +9,9 @@
 namespace App\Controller;
 
 
-use App\Entity\Building;
 use App\Entity\Office;
 use App\Form\Type\OfficeType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
@@ -35,7 +32,6 @@ class ManageOfficeController extends Controller
 
         $office = new Office();
         $form = $this->createForm(OfficeType::class, $office);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
@@ -50,20 +46,15 @@ class ManageOfficeController extends Controller
                 ));
             }
 
-            $em = $this->getDoctrine()->getManager();
-
-//            $buildingId = $form->getData()->getBuilding();
-//            $building = $em->getRepository(Building::class)->find($buildingId);
-
-//            $office->setBuilding($building);
             $office->setDateCreated(new \DateTime());
 
+            $em = $this->getDoctrine()->getManager();
             $em->persist($office);
             $em->flush();
 
             $this->addFlash(
                 'success',
-                'Building added successfully!'
+                'Office added successfully!'
             );
 
             return $this->redirectToRoute('addOffice');
@@ -74,30 +65,4 @@ class ManageOfficeController extends Controller
         ));
     }
 
-    /**
-     * @Route("/api/getFloors", name="getFloors")
-     * @param Request $request
-     * @return JsonResponse* @Method("GET")
-     */
-    public function getFloors(Request $request)
-    {
-        if ($request->isXmlHttpRequest()) {
-
-            $buildingId = $request->query->get('buildingId');
-
-            $result = $this->getDoctrine()->getRepository(Building::class)->findOneBy(['id' => $buildingId]);
-
-            $startFloor = $result->getStartFloor();
-            $endFloor = $result->getEndFloor();
-            $floors = array();
-
-            for ($i = $startFloor; $i <= $endFloor; $i++)
-                $floors[] = $i;
-
-            return new JsonResponse($floors);
-        }
-
-        else
-            die('Error has occurred');
-    }
 }

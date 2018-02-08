@@ -187,7 +187,7 @@ class Building
     {
         $floors = array();
         for ($i = $this->startFloor; $i <= $this->endFloor; $i++) {
-            $floors[] = $i;
+            $floors[$i] = $i;
         }
         return $floors;
     }

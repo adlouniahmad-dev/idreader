@@ -32,19 +32,22 @@
 
 {# form_div_layout.html.twig #}
 {% block form_widget_simple %}
-    <div class="col-md-4">
-        {% set type = type|default('text') %}
-        {% if type == 'text' %}
-            <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
-            {{ form_errors(form) }}
-        {% elseif type == 'email' %}
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+
+    {% if type != 'hidden' %}
+        <div class="col-md-4">
+            {% set type = type|default('text') %}
+            {% if type == 'text' %}
                 <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
-            </div>
-            {{ form_errors(form) }}
-        {% endif %}
-    </div>
+                {{ form_errors(form) }}
+            {% elseif type == 'email' %}
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+                </div>
+                {{ form_errors(form) }}
+            {% endif %}
+        </div>
+    {% endif %}
 {% endblock form_widget_simple %}
 
 {# text_widget #}

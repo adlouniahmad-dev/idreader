@@ -50,8 +50,7 @@ class ManageMembersController extends Controller
 
             $em = $this->getDoctrine()->getManager();
 
-            $roleValue = $form['role']->getData();
-            $role = $em->getRepository(Role::class)->findOneBy(['roleName' => $roleValue]);
+            $role = $form['role']->getData();
 
             $user->addRole($role);
             $user->setDateCreated(new \DateTime());

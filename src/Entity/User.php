@@ -64,11 +64,13 @@ class User
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\NotBlank()
      */
     private $dob;
 
     /**
      * @ORM\Column(type="string", nullable=true)
+     * @Assert\NotBlank()
      * @Assert\Length(
      *     min="8",
      *     max="8",
@@ -226,6 +228,14 @@ class User
     {
         $role->addUser($this);
         $this->roles->add($role);
+    }
+
+    /**
+     * @param Role $role
+     */
+    public function removeRole(Role $role)
+    {
+        $this->roles->removeElement($role);
     }
 
     /**

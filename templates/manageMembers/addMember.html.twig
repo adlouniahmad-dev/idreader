@@ -32,9 +32,21 @@
                 {{ form_row(form.familyName) }}
                 {{ form_row(form.gmail) }}
                 {{ form_row(form.dob) }}
+                {{ form_errors(form.dob) }}
                 {{ form_row(form.phoneNb) }}
                 {{ form_row(form.role) }}
-                {{ form_row(form.device) }}
+
+                <div id="dynamic">
+                    <div>
+                        {% if form.device is defined %}
+                            {{ form_row(form.device) }}
+                        {% endif %}
+
+                        {% if form.building is defined %}
+                            {{ form_row(form.building) }}
+                        {% endif %}
+                    </div>
+                </div>
 
             </div>
             <div class="form-actions">
@@ -48,4 +60,38 @@
             {{ form_end(form) }}
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        let $role = $('#user_role');
+        let $dynamicField = $('#dynamic');
+
+        $role.change(function () {
+            let $form = $(this).closest('form');
+            let data = {};
+            data[$role.attr('name')] = $role.val();
+
+            $.ajax({
+                url: $form.attr('action'),
+                type: $form.attr('method'),
+                data: data,
+                success: function (html) {
+                    let userRoleText = $role.find('option:selected').text();
+
+                    $dynamicField.find('> div').empty();
+                    if (userRoleText === 'Security Guard') {
+                        $dynamicField.find('> div').append(
+                            $(html).find('#user_device').parent().parent()
+                        )
+                    } else if (userRoleText === 'Facility Administrator') {
+                        $dynamicField.find('> div').append(
+                            $(html).find('#user_building').parent()
+                        )
+                    }
+                }
+            });
+        });
+    </script>
 {% endblock %}

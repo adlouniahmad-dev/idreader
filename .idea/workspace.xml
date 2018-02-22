@@ -1,59 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="50e69e48-8f17-4cc9-ac75-48078c3b9921" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/css/profile-2.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/css/profile-2.min.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/global/datatables/datatables.all.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/global/datatables/datatables.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/global/datatables/datatables.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/global/datatables/datatables.min.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/global/datatables/datatables.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/global/datatables/images/Sorting icons.psd" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/global/datatables/images/back_disabled.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/global/datatables/images/back_enabled.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/global/datatables/images/back_enabled_hover.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/global/datatables/images/favicon.ico" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/global/datatables/images/forward_disabled.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/global/datatables/images/forward_enabled.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/global/datatables/images/forward_enabled_hover.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/global/datatables/images/sort_asc.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/global/datatables/images/sort_asc_disabled.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/global/datatables/images/sort_both.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/global/datatables/images/sort_desc.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/global/datatables/images/sort_desc_disabled.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/global/datatables/plugins/bootstrap/datatables.bootstrap.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/global/datatables/plugins/bootstrap/datatables.bootstrap.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/pages/datatable.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/pages/datatable.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/pages/view-all-buildings.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/Controller/ManageGatesController.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/Form/Type/GateType.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/Validator/Constraints/UniqueGateName.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/Validator/Constraints/UniqueGateNameValidator.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/Validator/Constraints/UniqueOfficeNumber.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/Validator/Constraints/UniqueOfficeNumberValidator.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/templates/baseUserProfile.html.twig" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/templates/manageBuildings/viewBuildings.html.twig" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/templates/manageGates/addGate.html.twig" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/templates/manageMembers/editUserProfile.twig" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/templates/manageMembers/viewUserProfile.html.twig" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/templates/manageMembers/viewUsers.html.twig" />
+    <list default="true" id="50e69e48-8f17-4cc9-ac75-48078c3b9921" name="Default" comment="DONE">
+      <change beforePath="" afterPath="$PROJECT_DIR$/config/packages/security.yaml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" afterPath="$PROJECT_DIR$/config/services.yaml" />
-      <change beforePath="$PROJECT_DIR$/public/css/layout/custom.css" afterPath="$PROJECT_DIR$/public/css/layout/custom.css" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ManageBuildingController.php" afterPath="$PROJECT_DIR$/src/Controller/ManageBuildingController.php" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ManageMembersController.php" afterPath="$PROJECT_DIR$/src/Controller/ManageMembersController.php" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UProfileController.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Building.php" afterPath="$PROJECT_DIR$/src/Entity/Building.php" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Gate.php" afterPath="$PROJECT_DIR$/src/Entity/Gate.php" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Office.php" afterPath="$PROJECT_DIR$/src/Entity/Office.php" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Role.php" afterPath="$PROJECT_DIR$/src/Entity/Role.php" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" afterPath="$PROJECT_DIR$/src/Entity/User.php" />
-      <change beforePath="$PROJECT_DIR$/src/Form/Type/UserType.php" afterPath="$PROJECT_DIR$/src/Form/Type/UserType.php" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" afterPath="$PROJECT_DIR$/templates/base.html.twig" />
-      <change beforePath="$PROJECT_DIR$/templates/manageMembers/addMember.html.twig" afterPath="$PROJECT_DIR$/templates/manageMembers/addMember.html.twig" />
-      <change beforePath="$PROJECT_DIR$/templates/uprofile/uprofile.html.twig" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -186,8 +136,8 @@
       <file leaf-file-name="security.yaml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config/packages/security.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="16" column="27" lean-forward="true" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+            <state relative-caret-position="360">
+              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -687,7 +637,7 @@
       <workItem from="1518350660315" duration="12050000" />
       <workItem from="1518688535981" duration="15906000" />
       <workItem from="1518764906822" duration="4321000" />
-      <workItem from="1519222862597" duration="22300000" />
+      <workItem from="1519222862597" duration="22488000" />
     </task>
     <task id="LOCAL-00001" summary="DONE">
       <created>1516447201961</created>
@@ -745,17 +695,23 @@
       <option name="project" value="LOCAL" />
       <updated>1518125059448</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="DONE">
+      <created>1519297176132</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1519297176132</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="365522000" />
+    <option name="totallyTimeSpent" value="365710000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -1202,8 +1158,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/packages/security.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="16" column="27" lean-forward="true" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+        <state relative-caret-position="360">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding />
         </state>
       </provider>

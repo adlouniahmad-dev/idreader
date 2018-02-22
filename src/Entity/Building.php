@@ -23,8 +23,8 @@ class Building
      * @Assert\Length(
      *     min="2",
      *     max="20",
-     *     minMessage="Building name must be at least {{ limit }} characters long",
-     *     maxMessage = "Building name cannot be longer than {{ limit }} characters"
+     *     minMessage="Building name must be at least {{ limit }} characters long.",
+     *     maxMessage = "Building name cannot be longer than {{ limit }} characters."
      * )
      */
     private $name;
@@ -40,15 +40,15 @@ class Building
      * @Assert\NotBlank()
      * @Assert\Regex(
      *     pattern="/^[0-9]{1,3}$/",
-     *     message="Starting floor must be a number"
+     *     message="Starting floor must be a number."
      * )
      * @Assert\GreaterThanOrEqual(
      *     value="0",
-     *     message="Starting floor must be greater than or equal to zero"
+     *     message="Starting floor must be greater than or equal to zero."
      * )
      * @Assert\Expression(
      *     "value <= this.getEndFloor()",
-     *     message="Starting floor must be less than or equal to ending floor"
+     *     message="Starting floor must be less than or equal to ending floor."
      * )
      */
     private $startFloor;
@@ -58,11 +58,11 @@ class Building
      * @Assert\NotBlank()
      * @Assert\Regex(
      *     pattern="/^[0-9]{1,3}$/",
-     *     message="Ending floor must be a number"
+     *     message="Ending floor must be a number."
      * )
      * @Assert\LessThanOrEqual(
      *     value="163",
-     *     message="Ending floor must not exceed {{ compared_value }} floor"
+     *     message="Ending floor must not exceed {{ compared_value }} floor."
      * )
      */
     private $endFloor;
@@ -85,7 +85,6 @@ class Building
     {
         return $this->id;
     }
-
 
     /**
      * @return mixed
@@ -183,7 +182,10 @@ class Building
         $this->admin = $admin;
     }
 
-    public function getFloors()
+    /**
+     * @return array
+     */
+    public function getFloors(): array
     {
         $floors = array();
         for ($i = $this->startFloor; $i <= $this->endFloor; $i++) {

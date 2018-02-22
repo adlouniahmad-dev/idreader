@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'form/fields.html.twig' %}
+
+{% block title %}Add Gate{% endblock %}
+{% block pagetitle %}Manage Gates{% endblock %}
+{% block pagetitlesmall %}Add Gate{% endblock %}
+{% block pagebartitle %}Add Gate{% endblock %}
+
+{% block content %}
+    <div class="portlet light ">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="icon-equalizer font-red-sunglo"></i>
+                <span class="caption-subject font-red-sunglo bold uppercase">Add Gate</span>
+            </div>
+        </div>
+
+        <div class="portlet-body form">
+            {{ form_start(form, {'attr': {'class': 'form-horizontal', 'novalidate': 'novalidate'}}) }}
+            <div class="form-body">
+
+                {% for label, messages in app.flashes %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ label }}">
+                            <button class="close" data-close="alert"></button>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+
+                {{ form_row(form.name) }}
+                {{ form_row(form.building) }}
+
+            </div>
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-4">
+                        {{ form_widget(form.save) }}
+                        {{ form_widget(form.reset) }}
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

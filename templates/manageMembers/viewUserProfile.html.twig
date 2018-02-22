@@ -1,0 +1,92 @@
+{% extends 'baseUserProfile.html.twig' %}
+
+{% block content %}
+    {{ parent() }}
+    <div class="profile-content">
+        <div class="row">
+            <div class="col-md-8 profile-info">
+                <div class="portlet light">
+                    <div class="portlet-title">
+                        <h1 class="font-green sbold uppercase">{{ user.fullName }}</h1>
+                    </div>
+                    <h4 class="block">Role(s):</h4>
+                    <ul class="list-inline">
+                        {% for i in 0..user.roles|length - 1 %}
+                            {% if user.roles.get(i).roleName == 'fowner' %}
+                                <li><i class="fa fa-briefcase"></i> Facility Owner</li>
+                            {% elseif user.roles.get(i).getRoleName == 'fadmin' %}
+                                <li><i class="fa fa-briefcase"></i> Facility Administrator</li>
+                            {% elseif user.roles.get(i).getRoleName == 'powner' %}
+                                <li><i class="fa fa-briefcase"></i> Premise Owner</li>
+                            {% else %}
+                                <li><i class="fa fa-briefcase"></i> Security Guard</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                    <hr>
+                    <h4 class="block">User Details:</h4>
+                    <ul class="list-inline">
+                        <li><i class="fa fa-calendar"></i> {{ user.dob|date('jS F, Y') }}</li>
+                        <li><i class="fa fa-google"></i> {{ user.gmail }}</li>
+                        <li><i class="fa fa-phone"></i> +961 {{ user.phoneNb }}</li>
+                    </ul>
+
+                    {% if 'fadmin' in roles %}
+                        <hr>
+                        <h4 class="block">Administrator of:</h4>
+                        <ul class="list-inline">
+                            {% for building in userDetails['buildings'] %}
+                                <li><i class="fa fa-building-o"></i> {{ building.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+
+                    {% if 'powner' in roles %}
+                        <hr>
+                        <h4 class="block">Office:</h4>
+                        <ul class="list-inline">
+                            {% for office in userDetails['offices'] %}
+                                <li><i class="fa fa-building-o"></i> {{ office.officeNb }} - {{ office.building.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+
+                    {% if 'sguard' in roles %}
+                        <hr>
+                        <h4 class="block">Device MAC Address:</h4>
+                        <ul class="list-inline">
+                            {% for guard in userDetails['guard'] %}
+                                <li><i class="fa fa-mobile-phone"></i> {{ guard.device.macAddress|upper }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-4 profile-info">
+                <div class="portlet light">
+                    <div class="portlet-title">
+                        <h1 class="font-red sbold uppercase">Other info</h1>
+                    </div>
+                    <h4 class="block">Account created on:</h4>
+                    <ul class="list-inline">
+                        <li><i class="fa fa-calendar"></i> {{ user.dateCreated|date('jS F, Y \\a\\t g:ia') }}</li>
+                        {% if 'sguard' in roles %}
+                            <hr>
+                            <h4 class="block">Device created on:</h4>
+                            <ul class="list-inline">
+                                {% for guard in userDetails['guard'] %}
+                                    <li><i class="fa fa-calendar"></i> {{ guard.device.dateCreated|date('jS F, Y \\a\\t g:ia') }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}
+
+
+

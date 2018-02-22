@@ -73,4 +73,12 @@ class Role
         $this->users[] = $user;
     }
 
+    /**
+     * @param User $user
+     */
+    public function removeUser(User $user)
+    {
+        $this->users->remove($user);
+    }
+
 }

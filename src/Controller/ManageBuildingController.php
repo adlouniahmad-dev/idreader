@@ -11,8 +11,11 @@ namespace App\Controller;
 
 use App\Entity\Building;
 use App\Form\Type\BuildingType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -44,7 +47,7 @@ class ManageBuildingController extends Controller
                     'You have some errors. Please check below.'
                 );
                 return $this->render('manageBuildings/addBuilding.html.twig', array(
-                        'form' => $form->createView()
+                    'form' => $form->createView()
                 ));
             }
 
@@ -71,8 +74,31 @@ class ManageBuildingController extends Controller
      */
     public function viewBuildings()
     {
-
+        return $this->render('manageBuildings/viewBuildings.html.twig');
     }
 
+    /**
+     * @Route("/api/getAllBuildings", name="getAllBuildings")
+     * @Method("GET")
+     * @return JsonResponse
+     */
+    public function getAllBuildings()
+    {
+        $buildings = $this->getDoctrine()->getRepository(Building::class)->findAll();
+        $buildingsArray = array();
+
+        foreach ($buildings as $building) {
+            $buildingInfo = array();
+            $buildingInfo['id'] = $building->getId();
+            $buildingInfo['name'] = $building->getName();
+            $buildingInfo['location'] = $building->getLocation();
+            $buildingInfo['admin'] = $building->getAdmin()->getFullName();
+            $buildingInfo['dateCreated'] = $building->getDateCreated();
+
+            $buildingsArray['buildings'][] = $buildingInfo;
+        }
+
+        return new JsonResponse($buildingsArray);
+    }
 
 }

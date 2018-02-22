@@ -56,7 +56,7 @@ class User
      * @Assert\NotBlank()
      * @Assert\Regex(
      *     pattern="/^[A-Za-z0-9](\.?[A-Za-z0-9]){5,}@g(oogle)?mail\.com$/",
-     *     message="Gmail account must consist of letters, numbers or dots then @gmail.com."
+     *     message="Gmail must consist of letters, numbers or dots then @gmail.com."
      * )
      * @UserAssert\UniqueUserEmail()
      */
@@ -235,6 +235,7 @@ class User
      */
     public function removeRole(Role $role)
     {
+        $role->removeUser($this);
         $this->roles->removeElement($role);
     }
 
@@ -254,5 +255,12 @@ class User
         $this->imageUrl = $imageUrl;
     }
 
+    /**
+     * @return string
+     */
+    public function getFullName(): string
+    {
+        return $this->givenName . ' ' . $this->familyName;
+    }
 
 }

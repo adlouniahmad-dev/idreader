@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ user.fullName }}{% endblock %}
+{% block pagetitle %}{{ user.fullName }}{% endblock %}
+{% block pagetitlesmall %}User Profile{% endblock %}
+{% block pagebartitle %}User Profile{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/profile.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('css/profile-2.min.css') }}" rel="stylesheet" type="text/css"/>
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="profile-sidebar">
+            <div class="portlet light profile-sidebar-portlet ">
+                <div class="profile-userpic">
+                    <img src="{{ user.imageUrl() }}" class="img-responsive img-circle"
+                         alt="{{ user.fullName }}">
+                </div>
+                <div class="profile-usermenu">
+                    <ul class="nav">
+                        {% set routeName = app.request.attributes.get("_route") %}
+
+                        <li class="{% if routeName == 'viewProfile' %}active{% endif %}">
+                            <a href="{{ path('viewProfile', {'userId': user.id}) }}"><i class="icon-home"></i>
+                                Overview </a>
+                        </li>
+                        {% if 'fowner' in app.session.get('roles') %}
+                            <li class="{% if routeName == 'editProfile' %}active{% endif %}">
+                                <a href="{{ path('editProfile', {'userId': user.id}) }}"><i class="icon-settings"></i>
+                                    Account Settings </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endblock %}

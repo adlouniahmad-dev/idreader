@@ -1,0 +1,75 @@
+{% extends 'baseUserProfile.html.twig' %}
+
+{% block content %}
+    {{ parent() }}
+    <div class="profile-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="portlet light ">
+                    <div class="portlet-title tabbable-line">
+                        <div class="caption caption-md">
+                            <i class="icon-globe theme-font hide"></i>
+                            <span class="caption-subject font-blue-madison bold uppercase">Profile Account</span>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="tab-content">
+
+                            <div class="tab-pane active" id="tab_1_1">
+                                {{ form_start(form, {'attr': {'class': 'form-horizontal', 'novalidate': 'novalidate'}}) }}
+                                <div class="form-body">
+
+                                    {% for label, messages in app.flashes %}
+                                        {% for message in messages %}
+                                            <div class="alert alert-{{ label }}">
+                                                <button class="close" data-close="alert"></button>
+                                                {{ message }}
+                                            </div>
+                                        {% endfor %}
+                                    {% endfor %}
+
+                                    {{ form_row(form.givenName, {'value': user.givenName}) }}
+                                    {{ form_row(form.familyName, {'value': user.familyName}) }}
+                                    {{ form_row(form.gmail, {'value': user.gmail}) }}
+                                    {{ form_row(form.dob, {'value': user.dob}) }}
+                                    {{ form_row(form.phoneNb, {'value': user.phoneNb}) }}
+
+                                    <div id="dynamic">
+                                        <div>
+                                            {% if form.device is defined %}
+                                                {{ form_row(form.device) }}
+                                            {% endif %}
+
+                                            {% if form.building is defined %}
+                                                {{ form_row(form.building) }}
+                                            {% endif %}
+
+                                            {% if form.office is defined %}
+                                                {{ form_row(form.office) }}
+                                            {% endif %}
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="form-actions">
+                                    <div class="row">
+                                        <div class="col-md-offset-3 col-md-4">
+                                            {{ form_widget(form.save) }}
+                                            {{ form_widget(form.reset) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}
+
+
+

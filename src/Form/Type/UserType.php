@@ -9,6 +9,7 @@
 namespace App\Form\Type;
 
 use App\Entity\Building;
+use App\Entity\Office;
 use App\Entity\Role;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
@@ -35,6 +36,7 @@ class UserType extends AbstractType
     private $em;
     private $roleChoices;
     private $buildingChoices;
+    private $officeChoices;
 
     public function __construct(SessionInterface $session, EntityManagerInterface $em)
     {
@@ -42,13 +44,13 @@ class UserType extends AbstractType
         $this->em = $em;
         $this->roleChoices = array();
         $this->buildingChoices = array();
+        $this->officeChoices = array();
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
         $this->setRoleChoices();
-        $this->setBuildingChoices();
 
         $builder
             ->add('givenName', TextType::class, array(
@@ -114,13 +116,18 @@ class UserType extends AbstractType
                 $this->setBuildingChoices();
                 $form->add('building', ChoiceType::class, array(
                     'choices' => $this->buildingChoices,
-                    'label' => 'Administrator of',
-                    'multiple' => false,
+                    'label' => 'Building',
                     'mapped' => false
                 ));
             }
-
         };
+
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function (FormEvent $event) use ($formModifier) {
+                $formModifier($event->getForm(), reset($this->roleChoices));
+            }
+        );
 
         $builder->get('role')->addEventListener(
             FormEvents::POST_SUBMIT,
@@ -129,7 +136,6 @@ class UserType extends AbstractType
                 $formModifier($event->getForm()->getParent(), $role);
             }
         );
-
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -139,14 +145,14 @@ class UserType extends AbstractType
         ));
     }
 
-    private function setRoleChoices()
+    private function setRoleChoices(): void
     {
         $roles = '';
 
         if (in_array('fowner', $this->session->get('roles')))
-            $roles = $this->em->getRepository(Role::class)->findAll();
+            $roles = $this->em->createQuery("select r from App\Entity\Role r where r.roleName != 'fowner'")->getResult();
         else if (in_array('fadmin', $this->session->get('roles')))
-            $roles = $this->em->createQuery('select r from role r where r.roleName != "fowner" and r.roleName != "fadmin"')->getResult();
+            $roles = $this->em->createQuery("select r from App\Entity\Role where r.roleName != 'fowner' and r.roleName != 'fadmin'")->getResult();
 
         if ($roles) {
             foreach ($roles as $role) {
@@ -160,7 +166,7 @@ class UserType extends AbstractType
      * @param Role $role
      * @return string
      */
-    private function getRoleName(Role $role)
+    private function getRoleName(Role $role): string
     {
         if ($role->getRoleName() == 'fadmin')
             $roleName = 'Facility Administrator';
@@ -174,7 +180,7 @@ class UserType extends AbstractType
         return $roleName;
     }
 
-    private function setBuildingChoices()
+    private function setBuildingChoices(): void
     {
         if (in_array('fowner', $this->session->get('roles'))) {
             $result = $this->em->getRepository(Building::class)->findAll();
@@ -186,7 +192,18 @@ class UserType extends AbstractType
             foreach ($result as $building)
                 $this->buildingChoices[$building->getName()] = $building;
         }
+    }
 
+    /**
+     * @param Building $building
+     */
+    public function setOfficeChoices(Building $building): void
+    {
+        $offices = $this->em->getRepository(Office::class)->findBy(['building' => $building]);
+        if ($offices) {
+            foreach ($offices as $office)
+                $this->officeChoices[$office->getOfficeNb()] = $office;
+        }
     }
 
 }

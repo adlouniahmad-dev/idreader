@@ -3,9 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use App\Validator\Constraints as GateAssert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\GateRepository")
+ * @GateAssert\UniqueGateName()
  */
 class Gate
 {
@@ -18,6 +21,7 @@ class Gate
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      */
     private $name;
 
@@ -29,6 +33,7 @@ class Gate
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Building")
      * @ORM\JoinColumn(name="building_id", referencedColumnName="id")
+     * @Assert\NotBlank()
      */
     private $building;
 

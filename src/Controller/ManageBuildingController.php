@@ -70,11 +70,28 @@ class ManageBuildingController extends Controller
     }
 
     /**
-     * @Route("/manage-buildings/view-buildings", name="viewBuildings")
+     * @Route("/manage-buildings/all-buildings", name="viewBuildings")
      */
     public function viewBuildings()
     {
         return $this->render('manageBuildings/viewBuildings.html.twig');
+    }
+
+    /**
+     * @Route("/manage-buildings/building/{buildingId}", requirements={"buildingId"="\d+"})
+     * @param $buildingId
+     * @return Response
+     */
+    public function viewBuilding($buildingId)
+    {
+        $building = $this->getDoctrine()->getRepository(Building::class)->find($buildingId);
+
+        if (!$building)
+            throw $this->createNotFoundException('Building Not found.');
+
+        return $this->render('manageBuildings/building.html.twig', array(
+            'building' => $building
+        ));
     }
 
     /**

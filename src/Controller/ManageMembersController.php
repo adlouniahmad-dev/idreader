@@ -15,7 +15,10 @@ use App\Entity\Guard;
 use App\Entity\Office;
 use App\Entity\User;
 use App\Form\Type\UserType;
+use FOS\RestBundle\Controller\Annotations as Rest;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -95,7 +98,7 @@ class ManageMembersController extends Controller
     }
 
     /**
-     * @Route("/user/{userId}", name="viewProfile")
+     * @Route("/member/{userId}", name="viewProfile", requirements={"userId"="\d+"})
      * @param Session $session
      * @param $userId
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
@@ -142,7 +145,7 @@ class ManageMembersController extends Controller
     }
 
     /**
-     * @Route("/user/{userId}/edit", name="editProfile")
+     * @Route("/member/{userId}/edit", name="editProfile", requirements={"userId"="\d+"})
      * @param Session $session
      * @param $userId
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
@@ -170,6 +173,50 @@ class ManageMembersController extends Controller
     }
 
     /**
+     * @Route("/manage-members/view-members", name="viewUsers")
+     * @param Session $session
+     * @return Response
+     */
+    public function viewUsers(Session $session)
+    {
+
+        if (!$session->has('gmail'))
+            return $this->redirectToRoute('login');
+
+        return $this->render('manageMembers/viewUsers.html.twig');
+
+    }
+
+    /**
+     * @Route("/api/getAllUsers", name="getAllUsers")
+     * @Method("GET")
+     * @return JsonResponse
+     */
+    public function getAllUsers()
+    {
+        $users = $this->getDoctrine()->getRepository(User::class)->findAll();
+        $usersArray = array();
+
+        foreach ($users as $user) {
+            $userInfo = array();
+            $userInfo['id'] = $user->getId();
+            $userInfo['name'] = $user->getFullName();
+            $userInfo['gmail'] = $user->getGmail();
+            $userInfo['dob'] = date_format($user->getDob(), 'jS F, Y');
+
+            $userRoles = $this->getUserRoles($user);
+            $userRolesText = implode('<br>', $userRoles);
+
+            $userInfo['role'] = $userRolesText;
+            $userInfo['dateCreated'] = date_format($user->getDateCreated(), 'jS F, Y, g:i a');
+
+            $usersArray['users'][] = $userInfo;
+        }
+
+        return new JsonResponse($usersArray);
+    }
+
+    /**
      * @param User $user
      * @return array
      */
@@ -178,9 +225,21 @@ class ManageMembersController extends Controller
         $roles = $user->getRoles();
         $rolesArray = array();
         foreach ($roles as $value) {
-            $rolesArray[] = $value->getRoleName();
+            $rolesArray[] = $this->getRoleName($value);
         }
 
         return $rolesArray;
+    }
+
+    private function getRoleName($role): string
+    {
+        if ($role->getRoleName() == 'fowner')
+            return 'Facility Owner';
+        else if ($role->getRoleName() == 'fadmin')
+            return 'Facility Administrator';
+        else if ($role->getRoleName() == 'powner')
+            return 'Premise Owner';
+        else
+            return 'Security Guard';
     }
 }

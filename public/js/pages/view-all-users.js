@@ -28,28 +28,29 @@ let TableDatatablesRowreorder = function () {
             rowReorder: true,
 
             ajax: {
-                url: "/api/getAllBuildings",
-                dataSrc: "buildings"
+                url: "/api/getAllUsers",
+                dataSrc: "users"
             },
             columns: [
                 { data: 'id' },
                 { data: 'name' },
-                { data: 'location' },
-                { data: 'admin' },
-                { data: 'dateCreated.date' }
+                { data: 'gmail' },
+                { data: 'dob' },
+                { data: 'role' },
+                { data: 'dateCreated' }
             ],
             columnDefs: [{
-                targets: 5,
+                targets: 6,
                 data: "id",
                 render: function (data) {
-                    return '<a href="/manage-buildings/building/' + data + '">View</a> | <a href="' + data + '">Edit</a>'
+                    return '<a href="/user/' + data + '">View</a> | <a href="' + data + '">Edit</a>'
                 }
             }],
 
             "order": [
                 [0, 'asc']
             ],
-            
+
             "lengthMenu": [
                 [5, 10, 15, 20, -1],
                 [5, 10, 15, 20, "All"]

@@ -15,7 +15,7 @@ use App\Entity\Guard;
 use App\Entity\Office;
 use App\Entity\User;
 use App\Form\Type\UserType;
-use FOS\RestBundle\Controller\Annotations as Rest;
+use App\SSP;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -114,17 +114,17 @@ class ManageMembersController extends Controller
 
             $userDetails = array();
 
-            if (in_array('sguard', $this->getUserRoles($user))) {
+            if (in_array('Security Guard', $this->getUserRoles($user))) {
                 $guard = $this->getDoctrine()->getRepository(Guard::class)->findBy(['user' => $user]);
                 $userDetails['guard'] = $guard;
             }
 
-            if (in_array('fadmin', $this->getUserRoles($user))) {
+            if (in_array('Facility Administrator', $this->getUserRoles($user))) {
                 $buildings = $this->getDoctrine()->getRepository(Building::class)->findBy(['admin' => $user]);
                 $userDetails['buildings'] = $buildings;
             }
 
-            if (in_array('powner', $this->getUserRoles($user))) {
+            if (in_array('Premise Owner', $this->getUserRoles($user))) {
                 $offices = $this->getDoctrine()->getRepository(Office::class)->findBy(['user' => $user]);
                 $userDetails['offices'] = $offices;
             }

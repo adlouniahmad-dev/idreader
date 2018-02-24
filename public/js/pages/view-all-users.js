@@ -3,7 +3,7 @@ let TableDatatablesRowreorder = function () {
     let initTable1 = function () {
         let table = $('#all_buildings');
 
-        let oTable = table.dataTable({
+        let oTable = table.DataTable({
 
             "language": {
                 "aria": {
@@ -16,13 +16,15 @@ let TableDatatablesRowreorder = function () {
                 "infoFiltered": "(filtered1 from _MAX_ total entries)",
                 "lengthMenu": "_MENU_ entries",
                 "search": "Search:",
-                "zeroRecords": "No matching records found"
+                "zeroRecords": "No matching records found",
+                "loadingRecords": "Loading...",
+                "processing": "Processing...",
             },
 
             buttons: [
-                { extend: 'print', className: 'btn dark btn-outline' },
-                { extend: 'pdf', className: 'btn green btn-outline' },
-                { extend: 'csv', className: 'btn purple btn-outline ' }
+                {extend: 'print', className: 'btn dark btn-outline'},
+                {extend: 'pdf', className: 'btn green btn-outline'},
+                {extend: 'csv', className: 'btn purple btn-outline '}
             ],
 
             rowReorder: true,
@@ -43,20 +45,14 @@ let TableDatatablesRowreorder = function () {
                 targets: 6,
                 data: "id",
                 render: function (data) {
-                    return '<a href="/user/' + data + '">View</a> | <a href="' + data + '">Edit</a>'
+                    return '<a href="/member/' + data + '">View</a> | <a href="' + data + '">Edit</a>'
                 }
             }],
+
 
             "order": [
                 [0, 'asc']
             ],
-
-            "lengthMenu": [
-                [5, 10, 15, 20, -1],
-                [5, 10, 15, 20, "All"]
-            ],
-
-            "pageLength": 5,
 
             "dom": "<'row' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table-scrollable't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>",
         });
@@ -74,6 +70,6 @@ let TableDatatablesRowreorder = function () {
 
 }();
 
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
     TableDatatablesRowreorder.init();
 });

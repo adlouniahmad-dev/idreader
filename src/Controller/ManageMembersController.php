@@ -15,7 +15,6 @@ use App\Entity\Guard;
 use App\Entity\Office;
 use App\Entity\User;
 use App\Form\Type\UserType;
-use App\SSP;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -179,7 +178,6 @@ class ManageMembersController extends Controller
      */
     public function viewUsers(Session $session)
     {
-
         if (!$session->has('gmail'))
             return $this->redirectToRoute('login');
 
@@ -190,11 +188,17 @@ class ManageMembersController extends Controller
     /**
      * @Route("/api/getAllUsers", name="getAllUsers")
      * @Method("GET")
+     * @param Session $session
      * @return JsonResponse
      */
-    public function getAllUsers()
+    public function getAllUsers(Session $session)
     {
-        $users = $this->getDoctrine()->getRepository(User::class)->findAll();
+
+        $users = '';
+
+        if (in_array('fowner', $session->get('roles')))
+            $users = $this->getDoctrine()->getRepository(User::class)->findAll();
+
         $usersArray = array();
 
         foreach ($users as $user) {
@@ -203,11 +207,7 @@ class ManageMembersController extends Controller
             $userInfo['name'] = $user->getFullName();
             $userInfo['gmail'] = $user->getGmail();
             $userInfo['dob'] = date_format($user->getDob(), 'jS F, Y');
-
-            $userRoles = $this->getUserRoles($user);
-            $userRolesText = implode('<br>', $userRoles);
-
-            $userInfo['role'] = $userRolesText;
+            $userInfo['role'] = implode(',<br>', $this->getUserRoles($user));
             $userInfo['dateCreated'] = date_format($user->getDateCreated(), 'jS F, Y, g:i a');
 
             $usersArray['users'][] = $userInfo;

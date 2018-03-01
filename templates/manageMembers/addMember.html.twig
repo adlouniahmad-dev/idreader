@@ -95,9 +95,39 @@
                             $(html).find('#user_building').parent()
                         )
                     }
+                    else if (userRoleText === 'Premise Owner') {
+                        $dynamicField.find('> div').append(
+                            $(html).find('#user_building').parent(),
+                            $(html).find('#user_office').parent()
+                        )
+                    }
                 }
             });
         });
+
+        $(function () {
+            // if ($dynamicField.find('#user_office').length > 0) {
+                $(document).on('change', '#user_building', function () {
+                    let $form = $(this).closest('form');
+                    let data = {};
+                    data[$('#user_building').attr('name')] = $('#user_building').val();
+                    data[$role.attr('name')] = $role.val();
+                    console.log($('#user_building').val());
+                    $.ajax({
+                        url: $form.attr('action'),
+                        type: $form.attr('method'),
+                        data: data,
+                        success: function (html) {
+                            console.log($('#user_building').val());
+                            $('#user_office').replaceWith(
+                                $(html).find('#user_office')
+                            );
+                        }
+                    });
+                })
+            // }
+        })
+
 
     </script>
 {% endblock %}

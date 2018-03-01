@@ -17,6 +17,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\ResetType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -88,7 +89,7 @@ class UserType extends AbstractType
                 'label' => 'Reset'
             ));
 
-        $formModifier = function (FormInterface $form, Role $role = null) {
+        $formModifier = function (FormInterface $form, Role $role = null, Building $building = null) {
 
             if ($role->getRoleName() == 'sguard') {
 
@@ -119,6 +120,17 @@ class UserType extends AbstractType
                     'label' => 'Building',
                     'mapped' => false
                 ));
+            } else if ($role->getRoleName() == 'powner') {
+
+                if ($form->has('device'))
+                    $form->remove('device');
+
+                $building === null ? $this->setOfficeChoices(reset($this->buildingChoices)) : $this->setOfficeChoices($building);
+
+                $form->add('office', ChoiceType::class, array(
+                    'choices' => $this->officeChoices,
+                    'mapped' => false
+                ));
             }
         };
 
@@ -136,6 +148,18 @@ class UserType extends AbstractType
                 $formModifier($event->getForm()->getParent(), $role);
             }
         );
+
+        if ($builder->has('office')) {
+
+            $builder->get('building')->addEventListener(
+                FormEvents::POST_SUBMIT,
+                function (FormEvent $event) use ($formModifier) {
+                    $role = $event->getForm()->getData();
+                    $building = $event->getForm()->get('building')->getData();
+                    $formModifier($event->getForm()->getParent(), $role, $building);
+                }
+            );
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -197,8 +221,9 @@ class UserType extends AbstractType
     /**
      * @param Building $building
      */
-    public function setOfficeChoices(Building $building): void
+    private function setOfficeChoices(Building $building): void
     {
+
         $offices = $this->em->getRepository(Office::class)->findBy(['building' => $building]);
         if ($offices) {
             foreach ($offices as $office)

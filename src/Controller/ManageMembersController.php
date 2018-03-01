@@ -15,6 +15,7 @@ use App\Entity\Guard;
 use App\Entity\Office;
 use App\Entity\User;
 use App\Form\Type\UserType;
+use App\SSP;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -186,18 +187,30 @@ class ManageMembersController extends Controller
     }
 
     /**
-     * @Route("/api/getAllUsers", name="getAllUsers")
+     * @param int $page
+     * @Route("/api/getAllUsers/{page}", name="getAllUsers", requirements={"page"="\d+"})
      * @Method("GET")
-     * @param Session $session
      * @return JsonResponse
      */
-    public function getAllUsers(Session $session)
+    public function getAllUsers($page = 1)
     {
 
-        $users = '';
+        $currentPage = $page;
 
-        if (in_array('fowner', $session->get('roles')))
-            $users = $this->getDoctrine()->getRepository(User::class)->findAll();
+        $repo = $this->getDoctrine()->getRepository(User::class);
+        $users = $repo->getAllUsers($currentPage);
+
+        $totalUsersReturned = $users->getIterator()->count();
+        $totalUsers = $users->count();
+        $limit = 10;
+        $maxPages = ceil($totalUsers / $limit);
+
+        $data = array();
+        $data['totalUsers'] = $totalUsers;
+        $data['totalUsersReturned'] = $totalUsersReturned;
+        $data['limit'] = $limit;
+        $data['currentPage'] = (int) $currentPage;
+        $data['maxPages'] = $maxPages;
 
         $usersArray = array();
 
@@ -210,10 +223,14 @@ class ManageMembersController extends Controller
             $userInfo['role'] = implode(',<br>', $this->getUserRoles($user));
             $userInfo['dateCreated'] = date_format($user->getDateCreated(), 'jS F, Y, g:i a');
 
-            $usersArray['users'][] = $userInfo;
+            $usersArray[] = $userInfo;
         }
 
-        return new JsonResponse($usersArray);
+        $data['users'] = $usersArray;
+
+        return new JsonResponse($data);
+
+
     }
 
     /**

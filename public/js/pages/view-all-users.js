@@ -1,75 +1,60 @@
-let TableDatatablesRowreorder = function () {
-
-    let initTable1 = function () {
-        let table = $('#all_buildings');
-
-        let oTable = table.DataTable({
-
-            "language": {
-                "aria": {
-                    "sortAscending": ": activate to sort column ascending",
-                    "sortDescending": ": activate to sort column descending"
-                },
-                "emptyTable": "No data available in table",
-                "info": "Showing _START_ to _END_ of _TOTAL_ entries",
-                "infoEmpty": "No entries found",
-                "infoFiltered": "(filtered1 from _MAX_ total entries)",
-                "lengthMenu": "_MENU_ entries",
-                "search": "Search:",
-                "zeroRecords": "No matching records found",
-                "loadingRecords": "Loading...",
-                "processing": "Processing...",
-            },
-
-            buttons: [
-                {extend: 'print', className: 'btn dark btn-outline'},
-                {extend: 'pdf', className: 'btn green btn-outline'},
-                {extend: 'csv', className: 'btn purple btn-outline '}
-            ],
-
-            rowReorder: true,
-
-            ajax: {
-                url: "/api/getAllUsers",
-                dataSrc: "users"
-            },
-            columns: [
-                { data: 'id' },
-                { data: 'name' },
-                { data: 'gmail' },
-                { data: 'dob' },
-                { data: 'role' },
-                { data: 'dateCreated' }
-            ],
-            columnDefs: [{
-                targets: 6,
-                data: "id",
-                render: function (data) {
-                    return '<a href="/member/' + data + '">View</a> | <a href="' + data + '">Edit</a>'
-                }
-            }],
-
-
-            "order": [
-                [0, 'asc']
-            ],
-
-            "dom": "<'row' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table-scrollable't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>",
-        });
-    };
-
-    return {
-        init: function () {
-
-            if (!jQuery().dataTable) {
-                return;
+let firstLoad = true;
+function getUsers(page) {
+    $.ajax({
+        url: '/api/getAllUsers/' + page,
+        type: 'get',
+        dataType: 'json',
+        success: function (data) {
+            renderUsersRecords(data.users);
+            if (firstLoad) {
+                renderPagination(data.totalUsers, data.maxPages);
+                firstLoad = false;
             }
-            initTable1();
+            renderTablesInfo(data.totalUsers, data.currentPage, data.maxPages, data.totalUsersReturned);
+        },
+        beforeSend: function () {
+            loadingUsers();
         }
-    };
+    })
+}
 
-}();
+function renderUsersRecords(users) {
+    let $rows = '';
+    let $tbody = $('tbody');
 
-jQuery(document).ready(function () {
-    TableDatatablesRowreorder.init();
-});
+    if (users.length === 0) {
+        noRecords();
+    } else {
+        $.each(users, function (index, user) {
+            $rows +=
+                '<tr role="row" class="' + checkRowIndex(index) + '">' +
+                '<td class="sorting_1">' + user.id + '</td>' +
+                '<td>' + user.name + '</td>' +
+                '<td><a href="mailto:' + user.gmail + '">' + user.gmail + '</a></td>' +
+                '<td>' + user.dob + '</td>' +
+                '<td>' + user.role + '</td>' +
+                '<td>' + user.dateCreated + '</td>' +
+                '<td><a href="/member/' + user.id + '">View</a> | <a href="/member/' + user.id + '/edit">Edit</a></td>';
+        });
+        $tbody.empty();
+        $tbody.html($rows);
+    }
+}
+
+function renderPagination(totalUsers, maxPages) {
+    let $pagination = $('#all_users_paginate').find('.pagination');
+    $pagination.empty();
+    $pagination.twbsPagination({
+        totalPages: maxPages,
+        visiblePages: 5,
+        prev: '<i class="fa fa-angle-left"></i>',
+        next: '<i class="fa fa-angle-right"></i>',
+        first: '<i class="fa fa-angle-double-left"></i>',
+        last: '<i class="fa fa-angle-double-right"></i>',
+        onPageClick: function (event, page) {
+            getUsers(page);
+        }
+    })
+}
+
+getUsers(1);

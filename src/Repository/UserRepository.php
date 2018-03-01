@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\DBAL\DBALException;
+use Doctrine\ORM\QueryBuilder;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class UserRepository extends ServiceEntityRepository
@@ -27,5 +29,40 @@ class UserRepository extends ServiceEntityRepository
         $stmt->execute(['user_id' => $user_id]);
 
         return $stmt->fetchAll();
+    }
+
+    /**
+     * @param int $currentPage
+     * @return Paginator
+     */
+    public function getAllUsers($currentPage = 1)
+    {
+        $em = $this->getEntityManager();
+        $qb = new QueryBuilder($em);
+
+        $query = $qb->select('u')
+            ->from('App:User', 'u')
+            ->orderBy('u.id', 'ASC')
+            ->getQuery();
+
+        $paginator = $this->paginate($query, $currentPage);
+
+        return $paginator;
+    }
+
+    /**
+     * @param $dql
+     * @param int $page
+     * @param int $limit
+     * @return Paginator
+     */
+    private function paginate($dql, $page = 1, $limit = 10)
+    {
+        $paginator = new Paginator($dql);
+        $paginator->getQuery()
+            ->setFirstResult($limit * ($page - 1))
+            ->setMaxResults($limit);
+
+        return $paginator;
     }
 }

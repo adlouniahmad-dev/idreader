@@ -2,13 +2,9 @@ function checkRowIndex(index) {
     return index % 2 === 0 ? 'even' : 'odd';
 }
 
-function renderTablesInfo(totalUsers, currentPage, maxPages, totalUsersReturned) {
+function renderTablesInfo(totalUsers) {
     let $tablesInfo = $('#all_users_info');
-    let from, to;
-    from = currentPage === 1 ? (totalUsersReturned - 9) : ((currentPage - 1) * 10 + 1);
-    to = (currentPage - 1) * 10 + totalUsersReturned;
-    let info = 'Showing ' + from + ' to ' + to + ' of ' + totalUsers + ' entries';
-
+    let info = 'Total: ' + totalUsers + ' entries';
     $tablesInfo.empty();
     $tablesInfo.html(info);
 }

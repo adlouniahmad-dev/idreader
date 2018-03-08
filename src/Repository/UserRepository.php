@@ -33,9 +33,10 @@ class UserRepository extends ServiceEntityRepository
 
     /**
      * @param int $currentPage
+     * @param string $string
      * @return Paginator
      */
-    public function getAllUsers($currentPage = 1)
+    public function getAllUsers($currentPage = 1, $string = '')
     {
         $em = $this->getEntityManager();
         $qb = new QueryBuilder($em);
@@ -43,6 +44,15 @@ class UserRepository extends ServiceEntityRepository
         $query = $qb->select('u')
             ->from('App:User', 'u')
             ->orderBy('u.id', 'ASC')
+            ->where(
+                'u.givenName LIKE :string
+                 OR u.familyName LIKE :string
+                 OR u.gmail LIKE :string
+                 OR u.dob LIKE :string
+                 OR u.phoneNb LIKE :string
+                 OR u.dateCreated LIKE :string'
+            )
+            ->setParameter('string', '%' . $string . '%')
             ->getQuery();
 
         $paginator = $this->paginate($query, $currentPage);

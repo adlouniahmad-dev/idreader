@@ -15,7 +15,6 @@ use App\Entity\Guard;
 use App\Entity\Office;
 use App\Entity\User;
 use App\Form\Type\UserType;
-use App\SSP;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -188,17 +187,19 @@ class ManageMembersController extends Controller
 
     /**
      * @param int $page
-     * @Route("/api/getAllUsers/{page}", name="getAllUsers", requirements={"page"="\d+"})
-     * @Method("GET")
+     * @param string $query
      * @return JsonResponse
+     * @Route("/api/getAllUsers/{page}", name="getAllUsers", requirements={"page"="\d+"})
+     * @Route("/api/getAllUsers/{page}/{query}")
+     * @Method("GET")
      */
-    public function getAllUsers($page = 1)
+    public function getAllUsers($page = 1, $query = '')
     {
 
         $currentPage = $page;
 
         $repo = $this->getDoctrine()->getRepository(User::class);
-        $users = $repo->getAllUsers($currentPage);
+        $users = $repo->getAllUsers($currentPage, $query);
 
         $totalUsersReturned = $users->getIterator()->count();
         $totalUsers = $users->count();
@@ -217,7 +218,8 @@ class ManageMembersController extends Controller
         foreach ($users as $user) {
             $userInfo = array();
             $userInfo['id'] = $user->getId();
-            $userInfo['name'] = $user->getFullName();
+            $userInfo['givenName'] = $user->getGivenName();
+            $userInfo['familyName'] = $user->getFamilyName();
             $userInfo['gmail'] = $user->getGmail();
             $userInfo['dob'] = date_format($user->getDob(), 'jS F, Y');
             $userInfo['role'] = implode(',<br>', $this->getUserRoles($user));

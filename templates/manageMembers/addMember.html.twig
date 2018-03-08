@@ -108,6 +108,7 @@
         $(function () {
             // if ($dynamicField.find('#user_office').length > 0) {
                 $(document).on('change', '#user_building', function () {
+                    //alert('tete');
                     let $form = $(this).closest('form');
                     let data = {};
                     data[$('#user_building').attr('name')] = $('#user_building').val();
@@ -119,7 +120,9 @@
                         data: data,
                         success: function (html) {
                             console.log($('#user_building').val());
+                            alert($(html).find('#user_office'));
                             $('#user_office').replaceWith(
+
                                 $(html).find('#user_office')
                             );
                         }

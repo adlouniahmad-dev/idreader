@@ -60,6 +60,7 @@
                 type: $form.attr('method'),
                 data: data,
                 success: function(html) {
+                    alert($(html).find('#office_floorNb'));
                     $('#office_floorNb').replaceWith(
                         $(html).find('#office_floorNb')
                     )

@@ -1,16 +1,25 @@
-let firstLoad = true;
-function getUsers(page) {
+let isFilter = false;
+
+function getUsers(page, string = '') {
+
+    let url = '';
+    if (string) {
+        url = '/api/getAllUsers/' + page + '/' + string;
+        isFilter = true;
+    }
+    else {
+        url = '/api/getAllUsers/' + page;
+        isFilter = false;
+    }
+
     $.ajax({
-        url: '/api/getAllUsers/' + page,
+        url: url,
         type: 'get',
         dataType: 'json',
         success: function (data) {
             renderUsersRecords(data.users);
-            if (firstLoad) {
-                renderPagination(data.totalUsers, data.maxPages);
-                firstLoad = false;
-            }
-            renderTablesInfo(data.totalUsers, data.currentPage, data.maxPages, data.totalUsersReturned);
+            renderTablesInfo(data.totalUsers);
+            renderPagination(data.maxPages, string);
         },
         beforeSend: function () {
             loadingUsers();
@@ -29,7 +38,8 @@ function renderUsersRecords(users) {
             $rows +=
                 '<tr role="row" class="' + checkRowIndex(index) + '">' +
                 '<td class="sorting_1">' + user.id + '</td>' +
-                '<td>' + user.name + '</td>' +
+                '<td>' + user.givenName + '</td>' +
+                '<td>' + user.familyName + '</td>' +
                 '<td><a href="mailto:' + user.gmail + '">' + user.gmail + '</a></td>' +
                 '<td>' + user.dob + '</td>' +
                 '<td>' + user.role + '</td>' +
@@ -41,20 +51,28 @@ function renderUsersRecords(users) {
     }
 }
 
-function renderPagination(totalUsers, maxPages) {
+function renderPagination(maxPages, string) {
     let $pagination = $('#all_users_paginate').find('.pagination');
-    $pagination.empty();
-    $pagination.twbsPagination({
+    let currentPage = $pagination.twbsPagination('getCurrentPage');
+    $pagination.twbsPagination('destroy');
+    $pagination.twbsPagination($.extend({}, {
         totalPages: maxPages,
+        startPage: currentPage,
         visiblePages: 5,
+        initiateStartPageClick: false,
         prev: '<i class="fa fa-angle-left"></i>',
         next: '<i class="fa fa-angle-right"></i>',
         first: '<i class="fa fa-angle-double-left"></i>',
         last: '<i class="fa fa-angle-double-right"></i>',
-        onPageClick: function (event, page) {
-            getUsers(page);
+        onPageClick: function (evt, page) {
+            getUsers(page, string);
         }
-    })
+    }));
 }
+
+$('#search_users').keyup(function () {
+    let string = $(this).val();
+    getUsers(1, string);
+});
 
 getUsers(1);

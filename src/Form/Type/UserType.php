@@ -76,7 +76,6 @@ class UserType extends AbstractType
                     'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
                 )
             ))
-            ->add('building', HiddenType::class)
             ->add('role', ChoiceType::class, array(
                 'choices' => $this->roleChoices,
                 'mapped' => false,
@@ -150,23 +149,15 @@ class UserType extends AbstractType
             }
         );
 
-//        if ($builder->getForm()->get('building')->getData()->getName() === 'Vanrise') {
-//            die('hello');
-//        }
 
-//        if ($builder->has('office')) {
-
-
-
-            $builder->get('building')->addEventListener(
-                FormEvents::POST_SUBMIT,
-                function (FormEvent $event) use ($formModifier) {
-                    $role = $event->getForm()->getData();
-                    $building = $event->getForm()->get('building')->getData();
-                    $formModifier($event->getForm()->getParent(), $role, $building);
-                }
-            );
-//        }
+//        $builder->get('building')->addEventListener(
+//            FormEvents::POST_SUBMIT,
+//            function (FormEvent $event) use ($formModifier) {
+//                $role = $event->getForm()->getData();
+//                $building = $event->getForm()->get('building')->getData();
+//                $formModifier($event->getForm()->getParent(), $role, $building);
+//            }
+//        );
     }
 
     public function configureOptions(OptionsResolver $resolver)

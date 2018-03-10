@@ -79,6 +79,11 @@ class Building
     private $dateCreated;
 
     /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="buildings")
+     */
+    private $users;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -181,6 +186,23 @@ class Building
     {
         $this->admin = $admin;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * @param mixed $users
+     */
+    public function setUsers($users): void
+    {
+        $this->users = $users;
+    }
+
 
     /**
      * @return array

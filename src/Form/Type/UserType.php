@@ -91,6 +91,7 @@ class UserType extends AbstractType
 
         $formModifier = function (FormInterface $form, Role $role = null, Building $building = null) {
 
+
             if ($role->getRoleName() == 'sguard') {
 
                 if ($form->has('building'))
@@ -149,15 +150,6 @@ class UserType extends AbstractType
             }
         );
 
-
-//        $builder->get('building')->addEventListener(
-//            FormEvents::POST_SUBMIT,
-//            function (FormEvent $event) use ($formModifier) {
-//                $role = $event->getForm()->getData();
-//                $building = $event->getForm()->get('building')->getData();
-//                $formModifier($event->getForm()->getParent(), $role, $building);
-//            }
-//        );
     }
 
     public function configureOptions(OptionsResolver $resolver)

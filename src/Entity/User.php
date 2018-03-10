@@ -96,9 +96,16 @@ class User
      */
     private $roles;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Building", inversedBy="users")
+     * @ORM\JoinColumn(name="users_buildings")
+     */
+    private $buildings;
+
     public function __construct()
     {
         $this->roles = new ArrayCollection();
+        $this->buildings = new ArrayCollection();
     }
 
     /**
@@ -253,6 +260,22 @@ class User
     public function setImageUrl($imageUrl): void
     {
         $this->imageUrl = $imageUrl;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBuildings()
+    {
+        return $this->buildings;
+    }
+
+    /**
+     * @param mixed $buildings
+     */
+    public function setBuildings($buildings): void
+    {
+        $this->buildings = $buildings;
     }
 
     /**

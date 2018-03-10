@@ -195,7 +195,6 @@ class ManageMembersController extends Controller
      */
     public function getAllUsers($page = 1, $query = '')
     {
-
         $currentPage = $page;
 
         $repo = $this->getDoctrine()->getRepository(User::class);
@@ -227,12 +226,9 @@ class ManageMembersController extends Controller
 
             $usersArray[] = $userInfo;
         }
-
         $data['users'] = $usersArray;
 
         return new JsonResponse($data);
-
-
     }
 
     /**
@@ -260,5 +256,13 @@ class ManageMembersController extends Controller
             return 'Premise Owner';
         else
             return 'Security Guard';
+    }
+
+    /**
+     * @Route("/testing")
+     */
+    public function test()
+    {
+
     }
 }

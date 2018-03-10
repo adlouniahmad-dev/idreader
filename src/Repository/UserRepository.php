@@ -8,12 +8,16 @@ use Doctrine\DBAL\DBALException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class UserRepository extends ServiceEntityRepository
 {
-    public function __construct(RegistryInterface $registry)
+    private $session;
+
+    public function __construct(RegistryInterface $registry, SessionInterface $session)
     {
         parent::__construct($registry, User::class);
+        $this->session = $session;
     }
 
     /**

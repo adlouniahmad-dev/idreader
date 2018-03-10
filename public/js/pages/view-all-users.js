@@ -44,7 +44,8 @@ function renderUsersRecords(users) {
                 '<td>' + user.dob + '</td>' +
                 '<td>' + user.role + '</td>' +
                 '<td>' + user.dateCreated + '</td>' +
-                '<td><a href="/member/' + user.id + '">View</a> | <a href="/member/' + user.id + '/edit">Edit</a></td>';
+                '<td><a href="/member/' + user.id + '">View</a> | <a href="/member/' + user.id + '/edit">Edit</a></td>' +
+                '</tr>';
         });
         $tbody.empty();
         $tbody.html($rows);
@@ -54,6 +55,7 @@ function renderUsersRecords(users) {
 function renderPagination(maxPages, string) {
     let $pagination = $('#all_users_paginate').find('.pagination');
     let currentPage = $pagination.twbsPagination('getCurrentPage');
+
     $pagination.twbsPagination('destroy');
     $pagination.twbsPagination($.extend({}, {
         totalPages: maxPages,

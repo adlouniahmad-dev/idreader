@@ -13,6 +13,7 @@ use App\Entity\Building;
 use App\Entity\Device;
 use App\Entity\Guard;
 use App\Entity\Office;
+use App\Entity\Schedule;
 use App\Entity\User;
 use App\Form\Type\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -30,7 +31,7 @@ class ManageMembersController extends Controller
      * @Route("/manage-members/add-member", name="addMember")
      * @param Session $session
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Request|Response
      */
     public function addMember(Session $session, Request $request)
     {
@@ -56,31 +57,32 @@ class ManageMembersController extends Controller
 
             $em = $this->getDoctrine()->getManager();
             $role = $form['role']->getData();
+            $building = $form['building']->getData();
 
             $user->addRole($role);
+            $user->addBuilding($building);
             $user->setDateCreated(new \DateTime());
             $em->persist($user);
             $em->flush();
 
             if ($role->getRoleName() == 'sguard') {
 
-                $device = new Device();
-                $device->setDateCreated(new \DateTime());
-                $device->setMacAddress($form['device']->getData());
-                $em->persist($device);
-                $em->flush();
-
                 $guard = new Guard();
                 $guard->setUser($user);
-                $guard->setDevice($device);
                 $em->persist($guard);
                 $em->flush();
+
+                return $this->redirectToRoute('addSecurityGuard', array(
+                    'userId' => $user->getId(),
+                ));
+
 
             } else if ($role->getRoleName() == 'fadmin') {
 
                 $building = $em->getRepository(Building::class)->find($form['building']->getData()->getId());
                 $building->setAdmin($user);
                 $em->flush();
+
             }
 
             $this->addFlash(
@@ -89,11 +91,33 @@ class ManageMembersController extends Controller
             );
 
             return $this->redirectToRoute('addMember');
+
         }
 
         return $this->render('manageMembers/addMember.html.twig', array(
             'form' => $form->createView()
         ));
+    }
+
+    /**
+     * @Route("/manageMembers/addMember/addSecurityGuard/{userId}", name="addSecurityGuard")
+     * @param Request $request
+     * @param $userId
+     * @return Response|void
+     */
+    public function addSecurityGuard(Request $request, $userId)
+    {
+        if ($request->headers->get('referer')) {
+            $user = $this->getDoctrine()->getRepository(User::class)->find($userId);
+            $guard = $this->getDoctrine()->getRepository(Guard::class)->findOneBy(['user' => $user]);
+
+            $shecdule = new Schedule();
+            $device = new Device();
+
+            return $this->render('manageMembers/addSecurityGuard.html.twig');
+        }
+
+        die(DAY_1);
     }
 
     /**
@@ -209,7 +233,7 @@ class ManageMembersController extends Controller
         $data['totalUsers'] = $totalUsers;
         $data['totalUsersReturned'] = $totalUsersReturned;
         $data['limit'] = $limit;
-        $data['currentPage'] = (int) $currentPage;
+        $data['currentPage'] = (int)$currentPage;
         $data['maxPages'] = $maxPages;
 
         $usersArray = array();
@@ -258,11 +282,4 @@ class ManageMembersController extends Controller
             return 'Security Guard';
     }
 
-    /**
-     * @Route("/testing")
-     */
-    public function test()
-    {
-
-    }
 }

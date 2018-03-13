@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ShiftRepository")
@@ -23,11 +24,13 @@ class Shift
 
     /**
      * @ORM\Column(type="time")
+     * @Assert\NotBlank()
      */
     private $startTime;
 
     /**
      * @ORM\Column(type="time")
+     * @Assert\NotBlank()
      */
     private $endTime;
 

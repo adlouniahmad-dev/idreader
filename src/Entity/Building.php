@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -82,6 +83,11 @@ class Building
      * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="buildings")
      */
     private $users;
+
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
 
     /**
      * @return mixed
@@ -196,11 +202,16 @@ class Building
     }
 
     /**
-     * @param mixed $users
+     * @param User $user
      */
-    public function setUsers($users): void
+    public function addUser(User $user): void
     {
-        $this->users = $users;
+        $this->users[] = $user;
+    }
+
+    public function removeUser(User $user)
+    {
+        $this->users->remove($user);
     }
 
 

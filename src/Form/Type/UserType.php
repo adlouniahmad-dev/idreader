@@ -12,6 +12,7 @@ use App\Entity\Building;
 use App\Entity\Office;
 use App\Entity\Role;
 use App\Entity\User;
+use App\Validator\Constraints\UniqueAdminBuildingValidator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
@@ -52,6 +53,7 @@ class UserType extends AbstractType
     {
 
         $this->setRoleChoices();
+        $this->setBuildingChoices();
 
         $builder
             ->add('givenName', TextType::class, array(
@@ -80,6 +82,11 @@ class UserType extends AbstractType
                 'choices' => $this->roleChoices,
                 'mapped' => false,
             ))
+            ->add('building', ChoiceType::class, array(
+                'choices' => $this->buildingChoices,
+                'label' => 'Building',
+                'mapped' => false,
+            ))
             ->add('save', SubmitType::class, array(
                 'attr' => ['class' => 'btn green'],
                 'label' => 'Add Member'
@@ -88,67 +95,6 @@ class UserType extends AbstractType
                 'attr' => ['class' => 'btn default'],
                 'label' => 'Reset'
             ));
-
-        $formModifier = function (FormInterface $form, Role $role = null, Building $building = null) {
-
-
-            if ($role->getRoleName() == 'sguard') {
-
-                if ($form->has('building'))
-                    $form->remove('building');
-
-                $form->add('device', TextType::class, array(
-                    'attr' => ['class' => 'form-control', 'placeholder' => 'e.g. aa:88:44:f3:ab:58'],
-                    'label' => 'MAC Address',
-                    'mapped' => false,
-                    'constraints' => array(
-                        new NotBlank(),
-                        new Regex(array(
-                            'pattern' => '/^([0-9A-Fa-f]{2}[:]){5}([0-9A-Fa-f]{2})$/',
-                            'message' => 'MAC address must be consist of six groups of two hexadecimal digits, separated by colons :',
-                        ))
-                    ),
-                ));
-
-            } else if ($role->getRoleName() == 'fadmin') {
-
-                if ($form->has('device'))
-                    $form->remove('device');
-
-                $this->setBuildingChoices();
-                $form->add('building', ChoiceType::class, array(
-                    'choices' => $this->buildingChoices,
-                    'label' => 'Building',
-                    'mapped' => false
-                ));
-            } else if ($role->getRoleName() == 'powner') {
-
-                if ($form->has('device'))
-                    $form->remove('device');
-
-                $building === null ? $this->setOfficeChoices(reset($this->buildingChoices)) : $this->setOfficeChoices($building);
-
-                $form->add('office', ChoiceType::class, array(
-                    'choices' => $this->officeChoices,
-                    'mapped' => false
-                ));
-            }
-        };
-
-        $builder->addEventListener(
-            FormEvents::PRE_SET_DATA,
-            function (FormEvent $event) use ($formModifier) {
-                $formModifier($event->getForm(), reset($this->roleChoices));
-            }
-        );
-
-        $builder->get('role')->addEventListener(
-            FormEvents::POST_SUBMIT,
-            function (FormEvent $event) use ($formModifier) {
-                $role = $event->getForm()->getData();
-                $formModifier($event->getForm()->getParent(), $role);
-            }
-        );
 
     }
 

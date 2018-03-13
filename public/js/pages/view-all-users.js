@@ -22,7 +22,7 @@ function getUsers(page, string = '') {
             renderPagination(data.maxPages, string);
         },
         beforeSend: function () {
-            loadingUsers(8);
+            loadingUsers(colspan = 8);
         }
     })
 }
@@ -32,7 +32,7 @@ function renderUsersRecords(users) {
     let $tbody = $('tbody');
 
     if (users.length === 0) {
-        noRecords(8);
+        noRecords(colspan = 8);
     } else {
         $.each(users, function (index, user) {
             $rows +=

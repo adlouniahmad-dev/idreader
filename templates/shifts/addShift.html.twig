@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 {% form_theme form 'form/fields.html.twig' %}
 
-{% block title %}Add Member{% endblock %}
-{% block pagetitle %}Manage Members{% endblock %}
-{% block pagetitlesmall %}Add Member{% endblock %}
-{% block pagebartitle %}Add Member{% endblock %}
+{% block title %}Add Shift{% endblock %}
+{% block pagetitle %}Add Shift{% endblock %}
+{% block pagetitlesmall %}Add Shift{% endblock %}
+{% block pagebartitle %}Add Shift{% endblock %}
 
 {% block content %}
     <div class="portlet light ">
         <div class="portlet-title">
             <div class="caption">
                 <i class="icon-equalizer font-red-sunglo"></i>
-                <span class="caption-subject font-red-sunglo bold uppercase">Add Member</span>
+                <span class="caption-subject font-red-sunglo bold uppercase">Add Shift</span>
             </div>
         </div>
 
@@ -28,13 +28,9 @@
                     {% endfor %}
                 {% endfor %}
 
-                {{ form_row(form.givenName) }}
-                {{ form_row(form.familyName) }}
-                {{ form_row(form.gmail) }}
-                {{ form_row(form.dob) }}
-                {{ form_row(form.phoneNb) }}
-                {{ form_row(form.role) }}
-                {{ form_row(form.building) }}
+                {{ form_row(form.day) }}
+                {{ form_row(form.startTime) }}
+                {{ form_row(form.endTime) }}
 
             </div>
             <div class="form-actions">
@@ -48,4 +44,14 @@
             {{ form_end(form) }}
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $('#shift_startTime').find('> div').removeClass('col-md-4');
+        $('#shift_endTime').find('> div').removeClass('col-md-4');
+        $('#shift_startTime').find('> div').addClass('birthday-date');
+        $('#shift_endTime').find('> div').addClass('birthday-date');
+    </script>
 {% endblock %}

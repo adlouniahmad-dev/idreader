@@ -271,11 +271,12 @@ class User
     }
 
     /**
-     * @param mixed $buildings
+     * @param Building $building
      */
-    public function setBuildings($buildings): void
+    public function addBuilding(Building $building): void
     {
-        $this->buildings = $buildings;
+        $building->addUser($this);
+        $this->buildings->add($building);
     }
 
     /**

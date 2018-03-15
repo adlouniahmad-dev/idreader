@@ -15,6 +15,8 @@ use App\Entity\Guard;
 use App\Entity\Office;
 use App\Entity\Schedule;
 use App\Entity\User;
+use App\Form\Type\OfficeUserType;
+use App\Form\Type\ScheduleType;
 use App\Form\Type\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -74,14 +76,21 @@ class ManageMembersController extends Controller
 
                 return $this->redirectToRoute('addSecurityGuard', array(
                     'userId' => $user->getId(),
+                    'buildingId' => $building->getId()
                 ));
-
 
             } else if ($role->getRoleName() == 'fadmin') {
 
                 $building = $em->getRepository(Building::class)->find($form['building']->getData()->getId());
                 $building->setAdmin($user);
                 $em->flush();
+
+            } else if ($role->getRoleName() == 'powner') {
+
+                return $this->redirectToRoute('addPremiseOwner', array(
+                    'userId' => $user->getId(),
+                    'buildingId' => $building->getId()
+                ));
 
             }
 
@@ -100,24 +109,124 @@ class ManageMembersController extends Controller
     }
 
     /**
-     * @Route("/manageMembers/addMember/addSecurityGuard/{userId}", name="addSecurityGuard")
+     * @Route("/manageMembers/addMember/addSecurityGuard/{userId}/{buildingId}", name="addSecurityGuard")
      * @param Request $request
      * @param $userId
-     * @return Response|void
+     * @param $buildingId
+     * @return Response
      */
-    public function addSecurityGuard(Request $request, $userId)
+    public function addSecurityGuard(Request $request, $userId, $buildingId)
     {
         if ($request->headers->get('referer')) {
+
             $user = $this->getDoctrine()->getRepository(User::class)->find($userId);
-            $guard = $this->getDoctrine()->getRepository(Guard::class)->findOneBy(['user' => $user]);
+            $building = $this->getDoctrine()->getRepository(Building::class)->find($buildingId);
 
-            $shecdule = new Schedule();
-            $device = new Device();
+            $schedule = new Schedule();
+            $form = $this->createForm(ScheduleType::class, $schedule, array(
+                'building' => $building
+            ));
 
-            return $this->render('manageMembers/addSecurityGuard.html.twig');
+            $form->handleRequest($request);
+            if ($form->isSubmitted()) {
+
+                if (!$form->isValid()) {
+                    $this->addFlash(
+                        'danger',
+                        'You have some errors. Please check below.'
+                    );
+                    return $this->render('manageMembers/addSecurityGuard.html.twig', array(
+                        'form' => $form->createView()
+                    ));
+                }
+
+                $em = $this->getDoctrine()->getManager();
+
+                $deviceMac = $form['device']->getData();
+                $device = new Device();
+                $device->setDateCreated(new \DateTime());
+                $device->setMacAddress($deviceMac);
+                $em->persist($device);
+                $em->flush();
+
+                $guard = $this->getDoctrine()->getRepository(Guard::class)->findOneBy(['user' => $user]);
+                $guard->setDevice($device);
+                $em->flush();
+
+                $schedule->setGuard($guard);
+                $em->persist($schedule);
+                $em->flush();
+
+                $this->addFlash(
+                    'success',
+                    'Member added successfully!'
+                );
+
+                return $this->redirectToRoute('addMember');
+            }
+
+            return $this->render('manageMembers/addSecurityGuard.html.twig', array(
+                'form' => $form->createView()
+            ));
         }
 
-        die(DAY_1);
+        die('Error Occurred');
+    }
+
+    /**
+     * @Route("/manageMembers/addMember/addPremiseOwner/{userId}/{buildingId}", name="addPremiseOwner")
+     * @param Request $request
+     * @param $userId
+     * @param $buildingId
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
+    public function addPremiseOwner(Request $request, $userId, $buildingId)
+    {
+        if ($request->headers->get('referer')) {
+
+            $user = $this->getDoctrine()->getRepository(User::class)->find($userId);
+            $building = $this->getDoctrine()->getRepository(Building::class)->find($buildingId);
+
+            $form = $this->createForm(OfficeUserType::class, null, array(
+                'building' => $building
+            ));
+
+            $form->handleRequest($request);
+            if ($form->isSubmitted()) {
+
+                $office = $form->get('office')->getData();
+                die($office->getId());
+
+                if (!$form->isValid()) {
+                    $this->addFlash(
+                        'danger',
+                        'You have some errors. Please check below.'
+                    );
+                    return $this->render('manageMembers/addPremiseOwner.html.twig', array(
+                        'form' => $form->createView()
+                    ));
+                }
+
+                $em = $this->getDoctrine()->getManager();
+                $office = $form->get('office')->getData();
+
+                $officeUpdate = $em->getRepository(Office::class)->find($office->getId());
+                $officeUpdate->setUser($user);
+                $em->flush();
+
+                $this->addFlash(
+                    'success',
+                    'Member added successfully!'
+                );
+
+                return $this->redirectToRoute('addMember');
+            }
+
+            return $this->render('manageMembers/addPremiseOwner.html.twig', array(
+                'form' => $form->createView()
+            ));
+        }
+        die('Error Occurred');
     }
 
     /**

@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 {% form_theme form 'form/fields.html.twig' %}
 
-{% block title %}Add Security Guard{% endblock %}
+{% block title %}Add Premise Owner{% endblock %}
 {% block pagetitle %}Manage Members{% endblock %}
-{% block pagetitlesmall %}Add Security Guard{% endblock %}
-{% block pagebartitle %}Add Security Guard{% endblock %}
+{% block pagetitlesmall %}Add Premise Owner{% endblock %}
+{% block pagebartitle %}Add Premise Owner{% endblock %}
 
 {% block content %}
     <div class="portlet light ">
@@ -28,16 +28,13 @@
                     {% endfor %}
                 {% endfor %}
 
-                {{ form_row(form.shift) }}
-                {{ form_row(form.gate) }}
-                {{ form_row(form.device) }}
+                {{ form_row(form.office) }}
 
             </div>
             <div class="form-actions">
                 <div class="row">
                     <div class="col-md-offset-3 col-md-4">
                         {{ form_widget(form.save) }}
-                        {{ form_widget(form.reset) }}
                     </div>
                 </div>
             </div>

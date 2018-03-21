@@ -30,7 +30,7 @@ class ManageMembersController extends Controller
 {
 
     /**
-     * @Route("/manage-members/add-member", name="addMember")
+     * @Route("/manageMembers/addMember", name="addMember")
      * @param Session $session
      * @param Request $request
      * @return Request|Response
@@ -39,6 +39,9 @@ class ManageMembersController extends Controller
     {
         if (!$session->has('gmail'))
             return $this->redirectToRoute('login');
+
+        if (!in_array('fowner', $session->get('roles')) || !in_array('fadmin', $session->get('roles')))
+            return $this->render('errors/access_denied.html.twig');
 
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
@@ -194,9 +197,6 @@ class ManageMembersController extends Controller
             $form->handleRequest($request);
             if ($form->isSubmitted()) {
 
-                $office = $form->get('office')->getData();
-                die($office->getId());
-
                 if (!$form->isValid()) {
                     $this->addFlash(
                         'danger',
@@ -287,6 +287,9 @@ class ManageMembersController extends Controller
         if (!$session->has('gmail'))
             return $this->redirectToRoute('login');
 
+        if (!in_array('fowner', $session->get('roles')))
+            return $this->render('errors/access_denied.html.twig');
+
         $user = $this->getDoctrine()->getRepository(User::class)->find($userId);
 
         if ($user) {
@@ -305,7 +308,7 @@ class ManageMembersController extends Controller
     }
 
     /**
-     * @Route("/manage-members/view-members", name="viewUsers")
+     * @Route("/manageMembers/viewMembers", name="viewUsers")
      * @param Session $session
      * @return Response
      */

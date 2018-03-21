@@ -17,7 +17,6 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\NotBlank;
 
 class OfficeUserType extends AbstractType
 {
@@ -33,11 +32,7 @@ class OfficeUserType extends AbstractType
     {
         $builder
             ->add('office', ChoiceType::class, array(
-                'placeholder' => 'Select',
                 'choices' => $this->getOffices($options['building']),
-                'constraints' => array(
-                    new NotBlank(),
-                )
             ))
             ->add('save', SubmitType::class, array(
                 'attr' => ['class' => 'btn green'],
@@ -49,6 +44,7 @@ class OfficeUserType extends AbstractType
     {
         $resolver->setDefaults(array(
             'building' => null,
+            'validation_groups' => false
         ));
     }
 

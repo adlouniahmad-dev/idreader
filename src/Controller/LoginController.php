@@ -57,6 +57,17 @@ class LoginController extends Controller
             $user = $em->getRepository(User::class)->findOneBy(['gmail' => $email]);
 
             if ($user) {
+
+                if (!in_array('fowner', $user->getRoles()) || !in_array('fadmin', $user->getRoles()) || !in_array('powner', $user->getRoles())) {
+                    $this->addFlash(
+                        'danger',
+                        'Access Denied.'
+                    );
+                    return new Response(
+                        '<script type="text/javascript">document.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:8000/login"</script>'
+                    );
+                }
+
                 if ($user->getImageUrl() != $userDetails->picture) {
                     $user->setImageUrl($userDetails->picture);
                     $em->flush();

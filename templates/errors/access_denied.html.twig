@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Access Denied{% endblock %}
+{% block pagetitle %}Access Denied{% endblock %}
+{% block pagetitlesmall %}{% endblock %}
+{% block pagebartitle %}Access Denied{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/global/css/error.min.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 page-500">
+            <div class=" number font-red"> 401 </div>
+            <div class=" details">
+                <h3>Oops! Something went wrong.</h3>
+                <p> Access Denied.
+                    <br> </p>
+                <p>
+                    <a href="{{ path('dashboard') }}" class="btn red btn-outline"> Return home </a>
+                    <br> </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

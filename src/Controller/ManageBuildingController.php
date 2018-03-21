@@ -10,6 +10,8 @@ namespace App\Controller;
 
 
 use App\Entity\Building;
+use App\Entity\Office;
+use App\Entity\User;
 use App\Form\Type\BuildingType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -23,7 +25,7 @@ class ManageBuildingController extends Controller
 {
 
     /**
-     * @Route("/manage-buildings/add-building", name="addBuilding")
+     * @Route("/manageBuildings/addBuilding", name="addBuilding")
      * @param Session $session
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
@@ -33,6 +35,8 @@ class ManageBuildingController extends Controller
         if (!$session->has('gmail'))
             return $this->redirectToRoute('login');
 
+        if (!in_array('fowner', $session->get('roles')))
+            return $this->render('errors/access_denied.html.twig');
 
         $building = new Building();
         $form = $this->createForm(BuildingType::class, $building);
@@ -70,52 +74,136 @@ class ManageBuildingController extends Controller
     }
 
     /**
-     * @Route("/manage-buildings/all-buildings", name="viewBuildings")
-     */
-    public function viewBuildings()
-    {
-        return $this->render('manageBuildings/viewBuildings.html.twig');
-    }
-
-    /**
-     * @Route("/manage-buildings/building/{buildingId}", requirements={"buildingId"="\d+"})
-     * @param $buildingId
+     * @Route("/manageBuildings/viewBuildings", name="viewBuildings")
+     * @param Session $session
      * @return Response
      */
-    public function viewBuilding($buildingId)
+    public function viewBuildings(Session $session)
     {
-        $building = $this->getDoctrine()->getRepository(Building::class)->find($buildingId);
+        if (!$session->has('gmail'))
+            return $this->redirectToRoute('login');
 
-        if (!$building)
-            throw $this->createNotFoundException('Building Not found.');
+        if (!in_array('fowner', $session->get('roles')) || !in_array('fadmin', $session->get('roles')))
+            return $this->render('errors/access_denied.html.twig');
 
-        return $this->render('manageBuildings/building.html.twig', array(
-            'building' => $building
+        if (in_array('fowner', $session->get('roles')))
+            $buildings = $this->getDoctrine()->getRepository(Building::class)->findAll();
+        else
+            $buildings = $this->getDoctrine()->getRepository(Building::class)->findBy(['user' => $session->get('user')]);
+
+        return $this->render('manageBuildings/viewBuildings.html.twig', array(
+            'buildings' => $buildings
         ));
     }
 
     /**
-     * @Route("/api/getAllBuildings", name="getAllBuildings")
+     * @Route("/manageBuildings/building/{buildingId}", requirements={"buildingId"="\d+"}, name="viewBuilding")
+     * @param Session $session
+     * @param $buildingId
+     * @return Response
+     */
+    public function viewBuilding(Session $session, $buildingId)
+    {
+        if (!$session->has('gmail'))
+            return $this->redirectToRoute('login');
+
+        $building = $this->getDoctrine()->getRepository(Building::class)->find($buildingId);
+
+        if (!$building)
+            return $this->render('errors/not_found.html.twig');
+
+        if (!in_array('fowner', $session->get('roles')) ||
+            !in_array('fadmin', $session->get('roles')) &&
+            $session->get('user')->getId() !== $building->getAdmin()->getId())
+            return $this->render('errors/access_denied.html.twig');
+
+        $offices = $this->getDoctrine()->getRepository(Office::class)->findBy(['building' => $building]);
+
+        return $this->render('manageBuildings/building.html.twig', array(
+            'building' => $building,
+            'offices' => $offices
+        ));
+    }
+
+    /**
+     * @Route("/manageBuildings/building/{buildingId}/edit", requirements={"buildingId"="\d+"}, name="editBuilding")
+     * @param $buildingId
+     */
+    public function editBuilding($buildingId)
+    {
+
+    }
+
+    /**
+     * @Route("/api/offices/{buildingId}/{page}", name="getOfficesBuilding")
+     * @param $buildingId
+     * @param int $page
      * @Method("GET")
      * @return JsonResponse
      */
-    public function getAllBuildings()
+    public function getOffices($buildingId, $page = 1)
     {
-        $buildings = $this->getDoctrine()->getRepository(Building::class)->findAll();
-        $buildingsArray = array();
+        $building = $this->getDoctrine()->getRepository(Building::class)->find($buildingId);
+        $currentPage = $page;
 
-        foreach ($buildings as $building) {
-            $buildingInfo = array();
-            $buildingInfo['id'] = $building->getId();
-            $buildingInfo['name'] = $building->getName();
-            $buildingInfo['location'] = $building->getLocation();
-            $buildingInfo['admin'] = $building->getAdmin()->getFullName();
-            $buildingInfo['dateCreated'] = $building->getDateCreated();
+        $repo = $this->getDoctrine()->getRepository(Office::class);
+        $offices = $repo->getAllOfficesBuilding($currentPage, $building);
 
-            $buildingsArray['buildings'][] = $buildingInfo;
+        $totalOffices = $offices->count();
+        $limit = 10;
+        $maxPages = ceil($totalOffices / $limit);
+
+        $data = array();
+        $data['maxPages'] = $maxPages;
+
+        $officesArray = array();
+
+        foreach ($offices as $office) {
+            $officeInfo = array();
+            $officeInfo['id'] = $office->getId();
+            $officeInfo['officeNumber'] = $office->getOfficeNb();
+
+            $officesArray[] = $officeInfo;
         }
+        $data['offices'] = $officesArray;
 
-        return new JsonResponse($buildingsArray);
+        return new JsonResponse($data);
+    }
+
+    /**
+     * @Route("/api/membersBuilding/{buildingId}/{page}")
+     * @param $buildingId
+     * @param int $page
+     * @return JsonResponse
+     */
+    public function getMembers($buildingId, $page = 1)
+    {
+        $building = $this->getDoctrine()->getRepository(Building::class)->find($buildingId);
+        $currentPage = $page;
+
+        $repo = $this->getDoctrine()->getRepository(User::class);
+        $users = $repo->getAllUsersFromSpecificBuilding($currentPage, $building);
+
+        $totalUsers = $users->count();
+        $limit = 10;
+        $maxPages = ceil($totalUsers / $limit);
+
+        $data = array();
+        $data['total'] = $totalUsers;
+        $data['maxPages'] = $maxPages;
+
+        $usersArray = array();
+
+        foreach ($users as $user) {
+            $userInfo = array();
+            $userInfo['id'] = $user->getId();
+            $userInfo['name'] = $user->getFullName();
+
+            $usersArray[] = $userInfo;
+        }
+        $data['users'] = $usersArray;
+
+        return new JsonResponse($data);
     }
 
 }

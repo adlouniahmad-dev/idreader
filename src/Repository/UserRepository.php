@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Building;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\DBAL\DBALException;
@@ -33,6 +34,28 @@ class UserRepository extends ServiceEntityRepository
         $stmt->execute(['user_id' => $user_id]);
 
         return $stmt->fetchAll();
+    }
+
+    /**
+     * @param int $currentPage
+     * @param Building $building
+     * @return Paginator
+     */
+    public function getAllUsersFromSpecificBuilding($currentPage = 1, Building $building)
+    {
+        $em = $this->getEntityManager();
+        $qb = new QueryBuilder($em);
+
+        $query = $qb->select('u')
+            ->from('App:User', 'u')
+            ->innerJoin('u.buildings', 'b')
+            ->where('b.id = :building')
+            ->setParameter('building', $building->getId())
+            ->getQuery();
+
+        $paginator = $this->paginate($query, $currentPage);
+
+        return $paginator;
     }
 
     /**

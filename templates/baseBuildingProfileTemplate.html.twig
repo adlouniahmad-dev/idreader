@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ building.name }} Building{% endblock %}
+{% block pagetitle %}{{ building.name }} Building{% endblock %}
+{% block pagetitlesmall %}Building Information{% endblock %}
+{% block pagebartitle %}{{ building.name }} Building{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/profile.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('css/profile-2.min.css') }}" rel="stylesheet" type="text/css"/>
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="profile-sidebar">
+            <div class="portlet light profile-sidebar-portlet ">
+                <div class="profile-userpic">
+                    <iframe src="//www.google.com/maps/embed/v1/place?q={{ building.name }},{{ building.location }},Lebanon&zoom=15&key=AIzaSyADv1fqlt15DtNkRcFk4YCIllJzGp9DQe0">
+                    </iframe>
+                </div>
+                <div class="profile-usermenu">
+                    <ul class="nav">
+                        {% set routeName = app.request.attributes.get("_route") %}
+
+                        <li class="{% if routeName == 'viewBuilding' %}active{% endif %}">
+                            <a href="{{ path('viewBuilding', {'buildingId': building.id}) }}"><i class="icon-home"></i>
+                                Overview </a>
+                        </li>
+                        {% if 'fowner' in app.session.get('roles') %}
+                            <li class="{% if routeName == 'editProfile' %}active{% endif %}">
+                                <a href="{{ path('editBuilding', {'buildingId': building.id}) }}"><i class="icon-settings"></i>
+                                    Building Settings </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endblock %}

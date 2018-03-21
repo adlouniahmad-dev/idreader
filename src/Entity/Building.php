@@ -227,4 +227,20 @@ class Building
         return $floors;
     }
 
+    /**
+     * @return int
+     */
+    public function getNumberOfFloors(): int
+    {
+        return $this->endFloor - $this->startFloor + 1;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNumberOfMembers(): int
+    {
+        return $this->users->count();
+    }
+
 }

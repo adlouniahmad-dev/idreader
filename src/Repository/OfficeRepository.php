@@ -2,8 +2,11 @@
 
 namespace App\Repository;
 
+use App\Entity\Building;
 use App\Entity\Office;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class OfficeRepository extends ServiceEntityRepository
@@ -13,16 +16,41 @@ class OfficeRepository extends ServiceEntityRepository
         parent::__construct($registry, Office::class);
     }
 
-    /*
-    public function findBySomething($value)
+    /**
+     * @param int $currentPage
+     * @param Building $building
+     * @return Paginator
+     */
+    public function getAllOfficesBuilding($currentPage = 1, Building $building)
     {
-        return $this->createQueryBuilder('o')
-            ->where('o.something = :value')->setParameter('value', $value)
+        $em = $this->getEntityManager();
+        $qb = new QueryBuilder($em);
+
+        $query = $qb->select('o')
+            ->from('App:Office', 'o')
             ->orderBy('o.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+            ->where('o.building = :building')
+            ->setParameter('building', $building)
+            ->getQuery();
+
+        $paginator = $this->paginate($query, $currentPage);
+
+        return $paginator;
     }
-    */
+
+    /**
+     * @param $dql
+     * @param int $page
+     * @param int $limit
+     * @return Paginator
+     */
+    private function paginate($dql, $page = 1, $limit = 10)
+    {
+        $paginator = new Paginator($dql);
+        $paginator->getQuery()
+            ->setFirstResult($limit * ($page - 1))
+            ->setMaxResults($limit);
+
+        return $paginator;
+    }
 }

@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Entity\Building;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class BuildingRepository extends ServiceEntityRepository
@@ -13,16 +15,19 @@ class BuildingRepository extends ServiceEntityRepository
         parent::__construct($registry, Building::class);
     }
 
-    /*
-    public function findBySomething($value)
+    /**
+     * @param $dql
+     * @param int $page
+     * @param int $limit
+     * @return Paginator
+     */
+    private function paginate($dql, $page = 1, $limit = 10)
     {
-        return $this->createQueryBuilder('b')
-            ->where('b.something = :value')->setParameter('value', $value)
-            ->orderBy('b.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $paginator = new Paginator($dql);
+        $paginator->getQuery()
+            ->setFirstResult($limit * ($page - 1))
+            ->setMaxResults($limit);
+
+        return $paginator;
     }
-    */
 }

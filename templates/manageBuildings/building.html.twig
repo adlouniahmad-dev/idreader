@@ -1,11 +1,79 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}{{ building.name }} Building{% endblock %}
-{% block pagetitle %}View Building{% endblock %}
-{% block pagetitlesmall %}Building Information{% endblock %}
-{% block pagebartitle %}{{ building.name }} Building{% endblock %}
+{% extends 'baseBuildingProfileTemplate.html.twig' %}
 
 {% block content %}
-
+    {{ parent() }}
+    <div class="profile-content">
+        <div class="row">
+            <div class="col-md-8 profile-info">
+                <div class="portlet light">
+                    <div class="portlet-title">
+                        <h1 class="font-green sbold uppercase">{{ building.name }}</h1>
+                    </div>
+                    <h4 class="block">Administrator:</h4>
+                    <ul class="list-inline">
+                        <li><i class="icon-user"></i> <a
+                                    href="{{ path('viewProfile', {'userId': building.admin.id}) }}">{{ building.admin.getFullName }}</a>
+                        </li>
+                    </ul>
+                    <hr>
+                    <h4 class="block">Location:</h4>
+                    <ul class="list-inline">
+                        <li><i class="fa fa-map-o"></i> {{ building.location }}</li>
+                    </ul>
+                    <hr>
+                    <div class="row">
+                        <div class="col-lg-5 col-md-12">
+                            <h4 class="block">Offices:</h4>
+                            <ul class="list" id="offices"></ul>
+                            <div class="clearfix">
+                                <div id="pagination-offices" style="float:right;"></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-7 col-md-12">
+                            <h4 class="block">Members:</h4>
+                            <ul class="list-news" id="members"></ul>
+                            <div class="clearfix">
+                                <div id="pagination-members" style="float:right;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 profile-info">
+                <div class="portlet light">
+                    <div class="portlet-title">
+                        <h1 class="font-red sbold uppercase">Other info</h1>
+                    </div>
+                    <h4 class="block">Building created on:</h4>
+                    <ul class="list-inline">
+                        <li><i class="fa fa-calendar"></i> {{ building.dateCreated|date('jS F, Y \\a\\t g:ia') }}</li>
+                    </ul>
+                    <hr>
+                    <h4 class="block">Number of Members:</h4>
+                    <ul class="list-inline">
+                        <li><i class="icon-users"></i> {{ building.numberOfMembers }}</li>
+                    </ul>
+                    <hr>
+                    <h4 class="block">Floors:</h4>
+                    <ul class="list-inline">
+                        <li><i class="icon-drawer"></i> {{ building.numberOfFloors }} floors</li>
+                        <li><i class="icon-arrow-up"></i> Starting floor: {{ building.startFloor }}</li>
+                        <li><i class="icon-arrow-down"></i> Ending floor: {{ building.endFloor }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/pagination/jquery.twbsPagination.min.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">let building = {{ building.id }};</script>
+    <script type="text/javascript" src="{{ asset('js/pages/getOfficesBuildingPage.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/pages/getMembersBuildingPage.js') }}"></script>
+{% endblock %}
+
 

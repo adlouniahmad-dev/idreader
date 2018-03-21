@@ -239,3 +239,8 @@ table.dataTable thead .sorting_asc {
         margin-bottom: 10px;
     }
 }
+
+iframe {
+    width: 100%;
+    border-width: 0;
+}

@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Access Denied{% endblock %}
-{% block pagetitle %}Access Denied{% endblock %}
+{% block title %}404 Error{% endblock %}
+{% block pagetitle %}404 Error{% endblock %}
 {% block pagetitlesmall %}{% endblock %}
 {% block pagebartitle %}System{% endblock %}
 
@@ -13,13 +13,13 @@
 {% block content %}
     <div class="row">
         <div class="col-md-12 page-500">
-            <div class=" number font-red"> 401 </div>
+            <div class=" number font-green"> 404 </div>
             <div class=" details">
-                <h3>Oops! Something went wrong.</h3>
-                <p> Access Denied.
+                <h3>Oops! You're lost.</h3>
+                <p> We can not find the page you're looking for.
                     <br> </p>
                 <p>
-                    <a href="{{ path('dashboard') }}" class="btn red btn-outline"> Return home </a>
+                    <a href="{{ path('dashboard') }}" class="btn green btn-outline"> Return home </a>
                     <br> </p>
             </div>
         </div>

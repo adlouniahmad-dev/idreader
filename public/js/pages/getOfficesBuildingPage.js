@@ -25,8 +25,13 @@ function renderOfficesRecords(offices) {
     } else {
         $.each(offices, function (index, office) {
             $rows +=
-                '<li>' +
+                '<li class="mt-list-item">' +
+                '<div class="list-icon-container"><i class="icon-check"></i></div>' +
+                '<div class="list-item-content">' +
+                '<h3 class="uppercase">' +
                 '<a href="/manageOffices/office/' + office.id + '">' + office.officeNumber + '</a>' +
+                '</h3>' +
+                '</div>' +
                 '</li>';
         });
         $officeContainer.empty();
@@ -46,8 +51,8 @@ function renderPaginationOffices(maxPages) {
         initiateStartPageClick: false,
         prev: '<i class="fa fa-angle-left"></i>',
         next: '<i class="fa fa-angle-right"></i>',
-        first: null,
-        last: null,
+        first: '<i class="fa fa-angle-double-left"></i>',
+        last: '<i class="fa fa-angle-double-right"></i>',
         onPageClick: function (evt, page) {
             getOffices(building, page);
         }

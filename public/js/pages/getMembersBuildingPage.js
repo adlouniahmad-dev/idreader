@@ -25,8 +25,13 @@ function renderMembersRecords(members) {
     } else {
         $.each(members, function (index, member) {
             $rows +=
-                '<li>' +
+                '<li class="mt-list-item">' +
+                '<div class="list-icon-container"><i class="icon-user"></i></div>' +
+                '<div class="list-item-content">' +
+                '<h3 class="text-capitalize">' +
                 '<a href="/member/' + member.id + '">' + member.name + '</a>' +
+                '</h3>' +
+                '</div>' +
                 '</li>';
         });
         $memberContainer.empty();
@@ -46,8 +51,8 @@ function renderPaginationMembers(maxPages) {
         initiateStartPageClick: false,
         prev: '<i class="fa fa-angle-left"></i>',
         next: '<i class="fa fa-angle-right"></i>',
-        first: null,
-        last: null,
+        first: '<i class="fa fa-angle-double-left"></i>',
+        last: '<i class="fa fa-angle-double-right"></i>',
         onPageClick: function (evt, page) {
             getMembers(building, page);
         }

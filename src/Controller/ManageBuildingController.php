@@ -10,6 +10,7 @@ namespace App\Controller;
 
 
 use App\Entity\Building;
+use App\Entity\Gate;
 use App\Entity\Office;
 use App\Entity\User;
 use App\Form\Type\BuildingType;
@@ -44,7 +45,6 @@ class ManageBuildingController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
-
             if (!$form->isValid()) {
                 $this->addFlash(
                     'danger',
@@ -117,21 +117,63 @@ class ManageBuildingController extends Controller
             $session->get('user')->getId() !== $building->getAdmin()->getId())
             return $this->render('errors/access_denied.html.twig');
 
-        $offices = $this->getDoctrine()->getRepository(Office::class)->findBy(['building' => $building]);
+        $gates = $this->getDoctrine()->getRepository(Gate::class)->findBy(['building' => $building]);
 
         return $this->render('manageBuildings/building.html.twig', array(
             'building' => $building,
-            'offices' => $offices
+            'gates' => $gates
         ));
     }
 
     /**
      * @Route("/manageBuildings/building/{buildingId}/edit", requirements={"buildingId"="\d+"}, name="editBuilding")
+     * @param Request $request
+     * @param Session $session
      * @param $buildingId
+     * @return Response
      */
-    public function editBuilding($buildingId)
+    public function editBuilding(Request $request, Session $session, $buildingId)
     {
+        if (!$session->has('gmail'))
+            return $this->redirectToRoute('login');
 
+        if (!in_array('fowner', $session->get('roles')))
+            return $this->render('errors/access_denied.html.twig');
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $building = $entityManager->getRepository(Building::class)->find($buildingId);
+        if (!$building)
+            return $this->render('errors/not_found.html.twig');
+
+        $form = $this->createForm(BuildingType::class, $building);
+        $form->remove('reset');
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            if (!$form->isValid()) {
+                $this->addFlash(
+                    'danger',
+                    'You have some errors. Please check below.'
+                );
+                return $this->render('manageBuildings/editBuilding.html.twig', array(
+                    'building' => $building,
+                    'form' => $form->createView()
+                ));
+            }
+
+            $entityManager->flush();
+            $this->addFlash(
+                'success',
+                'Building updated successfully!'
+            );
+            return $this->redirectToRoute('editBuilding', array(
+                'buildingId' => $building->getId()
+            ));
+        }
+
+        return $this->render('manageBuildings/editBuilding.html.twig', array(
+            'building' => $building,
+            'form' => $form->createView()
+        ));
     }
 
     /**
@@ -189,7 +231,6 @@ class ManageBuildingController extends Controller
         $maxPages = ceil($totalUsers / $limit);
 
         $data = array();
-        $data['total'] = $totalUsers;
         $data['maxPages'] = $maxPages;
 
         $usersArray = array();

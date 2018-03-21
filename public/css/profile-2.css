@@ -126,7 +126,8 @@ Profile Page
   font-size: 13px;
   margin-right: 15px;
   margin-bottom: 5px;
-  padding: 0 !important; }
+  /*padding: 0 !important; */
+}
 
 .profile-info li i {
   color: #b5c1c9;

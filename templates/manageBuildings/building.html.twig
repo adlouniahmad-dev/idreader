@@ -7,12 +7,13 @@
             <div class="col-md-8 profile-info">
                 <div class="portlet light">
                     <div class="portlet-title">
-                        <h1 class="font-green sbold uppercase">{{ building.name }}</h1>
+                        <h1 class="font-green sbold uppercase">{{ building.name }} Building</h1>
                     </div>
                     <h4 class="block">Administrator:</h4>
                     <ul class="list-inline">
-                        <li><i class="icon-user"></i> <a
-                                    href="{{ path('viewProfile', {'userId': building.admin.id}) }}">{{ building.admin.getFullName }}</a>
+                        <li>
+                            <i class="icon-user"></i>
+                            <a href="{{ path('viewProfile', {'userId': building.admin.id}) }}">{{ building.admin.getFullName }}</a>
                         </li>
                     </ul>
                     <hr>
@@ -21,19 +22,49 @@
                         <li><i class="fa fa-map-o"></i> {{ building.location }}</li>
                     </ul>
                     <hr>
-                    <div class="row">
-                        <div class="col-lg-5 col-md-12">
-                            <h4 class="block">Offices:</h4>
-                            <ul class="list" id="offices"></ul>
-                            <div class="clearfix">
-                                <div id="pagination-offices" style="float:right;"></div>
+                    <h4 class="block">Members:</h4>
+                    <div class="portlet-body">
+                        <div class="mt-element-list">
+                            <div class="mt-list-container list-simple">
+                                <ul id="members"></ul>
                             </div>
                         </div>
-                        <div class="col-lg-7 col-md-12">
-                            <h4 class="block">Members:</h4>
-                            <ul class="list-news" id="members"></ul>
-                            <div class="clearfix">
-                                <div id="pagination-members" style="float:right;"></div>
+                    </div>
+                    <div class="dataTables_paginate paging_bootstrap_number clearfix">
+                        <ul id="pagination-members" class="pagination"></ul>
+                    </div>
+                    <hr>
+                    <h4 class="block">Offices:</h4>
+                    <div class="portlet-body">
+                        <div class="mt-element-list">
+                            <div class="mt-list-container list-simple">
+                                <ul id="offices"></ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dataTables_paginate paging_bootstrap_number clearfix">
+                        <ul id="pagination-offices" class="pagination"></ul>
+                    </div>
+                    <hr>
+                    <h4 class="block">Gates:</h4>
+                    <div class="portlet-body">
+                        <div class="mt-element-list">
+                            <div class="mt-list-container list-simple">
+                                <ul id="gates">
+                                    {% for gate in gates %}
+                                        <li class="mt-list-item">
+                                            <div class="list-icon-container">
+                                                <i class="icon-close"></i>
+                                            </div>
+                                            <div class="list-datetime"> {{ gate.dateCreated|date('d M') }} </div>
+                                            <div class="list-item-content">
+                                                <h3 class="text-capitalize">
+                                                    <a href="javascript:;">{{ gate.name }}</a>
+                                                </h3>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
                             </div>
                         </div>
                     </div>

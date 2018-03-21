@@ -29,7 +29,7 @@
                                 Overview </a>
                         </li>
                         {% if 'fowner' in app.session.get('roles') %}
-                            <li class="{% if routeName == 'editProfile' %}active{% endif %}">
+                            <li class="{% if routeName == 'editBuilding' %}active{% endif %}">
                                 <a href="{{ path('editBuilding', {'buildingId': building.id}) }}"><i class="icon-settings"></i>
                                     Building Settings </a>
                             </li>

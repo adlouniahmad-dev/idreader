@@ -110,7 +110,7 @@ a.logo-default:active {
 /*end google sign in button*/
 
 /*.profile-usertitle {*/
-    /*padding-bottom: 20px;*/
+/*padding-bottom: 20px;*/
 /*}*/
 
 .panel-body > p {
@@ -243,4 +243,21 @@ table.dataTable thead .sorting_asc {
 iframe {
     width: 100%;
     border-width: 0;
+}
+
+.price-column-container {
+    border-radius: 4px;
+}
+
+.price-table-head {
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+}
+
+.price-column-container.border-active:hover {
+    box-shadow: 0 15px 50px 0 rgba(0, 0, 0, .1);
+}
+
+.mt-element-list .list-simple.mt-list-container ul > .mt-list-item > .list-item-content > h3 {
+    font-size: 13px;
 }

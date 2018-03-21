@@ -278,11 +278,12 @@ class ManageMembersController extends Controller
 
     /**
      * @Route("/member/{userId}/edit", name="editProfile", requirements={"userId"="\d+"})
+     * @param Request $request
      * @param Session $session
      * @param $userId
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function editProfile(Session $session, $userId)
+    public function editProfile(Request $request, Session $session, $userId)
     {
         if (!$session->has('gmail'))
             return $this->redirectToRoute('login');
@@ -290,21 +291,42 @@ class ManageMembersController extends Controller
         if (!in_array('fowner', $session->get('roles')))
             return $this->render('errors/access_denied.html.twig');
 
-        $user = $this->getDoctrine()->getRepository(User::class)->find($userId);
+        $entityManager = $this->getDoctrine()->getManager();
+        $user = $entityManager->getRepository(User::class)->find($userId);
 
-        if ($user) {
-            $userForm = new User();
-            $form = $this->createForm(UserType::class, $userForm);
-            $form->remove('role');
-            $form->remove('building');
+        if (!$user)
+            return $this->render('errors/not_found.html.twig');
 
-            return $this->render('manageMembers/editUserProfile.twig', array(
-                'user' => $user,
-                'form' => $form->createView()
+        $form = $this->createForm(UserType::class, $user);
+        $form->remove('role');
+        $form->remove('building');
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            if (!$form->isValid()) {
+                $this->addFlash(
+                    'danger',
+                    'You have some errors. Please check below.'
+                );
+                return $this->render('manageMembers/editUserProfile.twig', array(
+                    'form' => $form->createView(),
+                    'user' => $user
+                ));
+            }
+            $entityManager->flush();
+            $this->addFlash(
+                'success',
+                'User personal info updated successfully!'
+            );
+            return $this->redirectToRoute('editProfile', array(
+                'userId' => $userId
             ));
         }
 
-        die('User not found');
+        return $this->render('manageMembers/editUserProfile.twig', array(
+            'user' => $user,
+            'form' => $form->createView()
+        ));
+
     }
 
     /**
@@ -319,6 +341,22 @@ class ManageMembersController extends Controller
 
         return $this->render('manageMembers/viewUsers.html.twig');
 
+    }
+
+    /**
+     * @Route("/manageMembers/search", name="userAdvancedSearch")
+     * @param Session $session
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
+    public function advancedSearch(Session $session)
+    {
+        if (!$session->has('gmail'))
+            return $this->redirectToRoute('login');
+
+        if (!in_array('fowner', $session->get('roles')) || !in_array('fadmin', $session->get('roles')))
+            return $this->render('errors/access_denied.html.twig');
+
+        return $this->render('manageMembers/searchMembers.html.twig');
     }
 
     /**

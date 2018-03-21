@@ -146,7 +146,6 @@ class ManageBuildingController extends Controller
             return $this->render('errors/not_found.html.twig');
 
         $form = $this->createForm(BuildingType::class, $building);
-        $form->remove('reset');
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if (!$form->isValid()) {
@@ -166,7 +165,7 @@ class ManageBuildingController extends Controller
                 'Building updated successfully!'
             );
             return $this->redirectToRoute('editBuilding', array(
-                'buildingId' => $building->getId()
+                'buildingId' => $buildingId
             ));
         }
 

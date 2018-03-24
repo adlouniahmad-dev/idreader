@@ -65,4 +65,20 @@ class ManageOfficeController extends Controller
         ));
     }
 
+    /**
+     * @Route("/manageOffices/offices")
+     * @param Session $session
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    public function viewOffices(Session $session)
+    {
+        if (!$session->has('gmail'))
+            return $this->redirectToRoute('login');
+
+        if (!in_array('fowner', $session->get('roles')) || !in_array('fadmin', $session->get('roles')))
+            return $this->render('errors/not_found.html.twig');
+
+        return $this->render('manageOffices/viewOffices.html.twig');
+    }
+
 }

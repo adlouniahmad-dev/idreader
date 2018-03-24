@@ -4,9 +4,11 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\DeviceRepository")
+ * @UniqueEntity(fields="macAddress", message="This device already exists.")
  */
 class Device
 {
@@ -21,7 +23,7 @@ class Device
      * @ORM\Column(type="string")
      * @Assert\NotBlank()
      * @Assert\Regex(
-     *     pattern="([0-9A-Fa-f]{2}[:]){5}([0-9A-Fa-f]{2})",
+     *     pattern="/^([0-9A-Fa-f]{2}[:]){5}([0-9A-Fa-f]{2})$/",
      *     message="MAC address must be consist of six groups of two hexadecimal digits, separated by colons :"
      * )
      */

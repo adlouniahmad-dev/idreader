@@ -3,6 +3,12 @@
 {% if buildingAdministratorForm is not null %}
     {% form_theme buildingAdministratorForm 'form/fields.html.twig' %}
 {% endif %}
+{% if officeForm is not null %}
+    {% form_theme officeForm 'form/fields.html.twig' %}
+{% endif %}
+{% if deviceForm is not null %}
+    {% form_theme deviceForm 'form/fields.html.twig' %}
+{% endif %}
 
 {% block content %}
     {{ parent() }}
@@ -22,15 +28,15 @@
                             {% for i in 0..user.roles|length - 1 %}
                                 {% if user.roles.get(i).getRoleName == 'fadmin' %}
                                     <li>
-                                        <a href="#admin_info" data-toggle="tab">Administrator Info</a>
+                                        <a href="#admin_info" data-toggle="tab">Change Building Admin</a>
                                     </li>
                                 {% elseif user.roles.get(i).getRoleName == 'powner' %}
                                     <li>
-                                        <a href="" data-toggle="tab">Office Info</a>
+                                        <a href="#office_info" data-toggle="tab">Change Office</a>
                                     </li>
                                 {% elseif user.roles.get(i).getRoleName == 'sguard' %}
                                     <li>
-                                        <a href="" data-toggle="tab">Device Info</a>
+                                        <a href="#device_info" data-toggle="tab">Change Device</a>
                                     </li>
                                 {% endif %}
                             {% endfor %}
@@ -41,14 +47,18 @@
                             <div class="tab-pane active" id="personal_info">
                                 {{ form_start(personalInfoForm, {'attr': {'class': 'form-horizontal', 'novalidate': 'novalidate'}}) }}
                                 <div class="form-body">
-                                    {% for label, messages in app.flashes %}
-                                        {% for message in messages %}
-                                            <div class="alert alert-{{ label }}">
-                                                <button class="close" data-close="alert"></button>
-                                                {{ message }}
-                                            </div>
+
+                                    {% if fragment == 'personal_info' %}
+                                        {% for label, messages in app.flashes %}
+                                            {% for message in messages %}
+                                                <div class="alert alert-{{ label }}">
+                                                    <button class="close" data-close="alert"></button>
+                                                    {{ message }}
+                                                </div>
+                                            {% endfor %}
                                         {% endfor %}
-                                    {% endfor %}
+                                    {% endif %}
+
                                     {{ form_row(personalInfoForm.givenName) }}
                                     {{ form_row(personalInfoForm.familyName) }}
                                     {{ form_row(personalInfoForm.gmail) }}
@@ -71,14 +81,17 @@
                                 <div class="tab-pane" id="admin_info">
                                     {{ form_start(buildingAdministratorForm, {'attr': {'class': 'form-horizontal', 'novalidate': 'novalidate'}}) }}
                                     <div class="form-body">
-                                        {% for label, messages in app.flashes %}
-                                            {% for message in messages %}
-                                                <div class="alert alert-{{ label }}">
-                                                    <button class="close" data-close="alert"></button>
-                                                    {{ message }}
-                                                </div>
+
+                                        {% if fragment == 'admin_info' %}
+                                            {% for label, messages in app.flashes %}
+                                                {% for message in messages %}
+                                                    <div class="alert alert-{{ label }}">
+                                                        <button class="close" data-close="alert"></button>
+                                                        {{ message }}
+                                                    </div>
+                                                {% endfor %}
                                             {% endfor %}
-                                        {% endfor %}
+                                        {% endif %}
 
                                         {{ form_row(buildingAdministratorForm.building) }}
                                     </div>
@@ -91,6 +104,66 @@
                                         </div>
                                     </div>
                                     {{ form_end(buildingAdministratorForm) }}
+                                </div>
+                            {% endif %}
+
+                            {% if officeForm is not null %}
+                                <div class="tab-pane" id="office_info">
+                                    {{ form_start(officeForm, {'attr': {'class': 'form-horizontal', 'novalidate': 'novalidate'}}) }}
+                                    <div class="form-body">
+
+                                        {% if fragment == 'office_info' %}
+                                            {% for label, messages in app.flashes %}
+                                                {% for message in messages %}
+                                                    <div class="alert alert-{{ label }}">
+                                                        <button class="close" data-close="alert"></button>
+                                                        {{ message }}
+                                                    </div>
+                                                {% endfor %}
+                                            {% endfor %}
+                                        {% endif %}
+
+                                        {{ form_row(officeForm.office) }}
+                                    </div>
+                                    <div class="form-actions">
+                                        <div class="row">
+                                            <div class="col-md-offset-3 col-md-4">
+                                                {{ form_widget(officeForm.save, {'label': 'Save'}) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{ form_end(officeForm) }}
+                                </div>
+                            {% endif %}
+
+                            {% if deviceForm is not null %}
+                                <div class="tab-pane" id="device_info">
+                                    {{ form_start(deviceForm, {'attr': {'class': 'form-horizontal', 'novalidate': 'novalidate'}}) }}
+                                    <div class="form-body">
+
+                                        {% if fragment == 'device_info' %}
+                                            {% for label, messages in app.flashes %}
+                                                {% for message in messages %}
+                                                    <div class="alert alert-{{ label }}">
+                                                        <button class="close" data-close="alert"></button>
+                                                        {{ message }}
+                                                    </div>
+                                                {% endfor %}
+                                            {% endfor %}
+                                        {% endif %}
+
+                                        {{ form_row(deviceForm.macAddress) }}
+
+                                    </div>
+                                    <div class="form-actions">
+                                        <div class="row">
+                                            <div class="col-md-offset-3 col-md-4">
+                                                {{ form_widget(deviceForm.save) }}
+                                                {{ form_widget(deviceForm.reset) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{ form_end(deviceForm) }}
                                 </div>
                             {% endif %}
                         </div>

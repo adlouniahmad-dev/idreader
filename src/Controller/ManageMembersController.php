@@ -17,6 +17,7 @@ use App\Entity\Schedule;
 use App\Entity\User;
 use App\Form\Type\AdminBuildingUpdateType;
 use App\Form\Type\DeviceType;
+use App\Form\Type\OfficeUpdateUserType;
 use App\Form\Type\OfficeUserType;
 use App\Form\Type\ScheduleType;
 use App\Form\Type\UserType;
@@ -345,30 +346,32 @@ class ManageMembersController extends Controller
 
         // Block that checks the submission of the personal info form
         if ($personalInfoForm->isSubmitted()) {
+            $fragment = 'personal_info';
             if (!$personalInfoForm->isValid()) {
                 $this->addFlash(
                     'danger',
                     'You have some errors. Please check below.'
                 );
-                return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm);
+                return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm, $fragment);
             }
             $entityManager->flush();
             $this->addFlash(
                 'success',
                 'User personal info updated successfully!'
             );
-            return $this->redirectToRoute('editProfile');
+            return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm, $fragment);
         }
 
         // Block that checks the submission of the building info form (admin)
         if ($buildingAdministratorForm !== null) {
             if ($buildingAdministratorForm->isSubmitted()) {
+                $fragment = 'admin_info';
                 if (!$buildingAdministratorForm->isValid()) {
                     $this->addFlash(
                         'danger',
                         'You have some errors. Please check below.'
                     );
-                    return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm);
+                    return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm, $fragment);
                 }
                 $building = $buildingAdministratorForm->get('building')->getData();
                 $building->setAdmin($user);
@@ -377,34 +380,57 @@ class ManageMembersController extends Controller
                     'success',
                     'Administrator info updated successfully!'
                 );
-                return $this->redirectToRoute('editProfile');
+                return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm, $fragment);
             }
         }
 
         // Block that checks the submission of the office info form
         if ($officeForm !== null) {
             if ($officeForm->isSubmitted()) {
+                $fragment = 'office_info';
                 if (!$officeForm->isValid()) {
                     $this->addFlash(
                         'danger',
                         'You have some errors. Please check below.'
                     );
-                    return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm);
+                    return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm, $fragment);
                 }
+
+                $oldOffice = $entityManager->getRepository(Office::class)->findOneBy(['user' => $user]);
+                $oldOffice->removeUser();
+                $entityManager->flush();
+
+                $newOffice = $officeForm->get('office')->getData();
+                $newOffice->setUser($user);
+                $entityManager->flush();
+
+                $this->addFlash(
+                    'success',
+                    'Office info updated successfully!'
+                );
+                return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm, $fragment);
             }
         }
 
+        // Block that checks the submission of the device form
         if ($deviceForm !== null) {
-            $deviceForm->handleRequest($request);
             if ($deviceForm->isSubmitted()) {
+                $fragment = 'device_info';
                 if (!$deviceForm->isValid()) {
-                    return $this->render('manageMembers/editUserProfile.twig', array(
-                        'personalInfoForm' => $personalInfoForm->createView(),
-                        'user' => $user
-                    ));
+                    $this->addFlash(
+                        'danger',
+                        'You have some errors. Please check below.'
+                    );
+                    return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm, $fragment);
                 }
-
                 $entityManager->flush();
+
+                $this->addFlash(
+                    'success',
+                    'Office info updated successfully!'
+                );
+
+                return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm, $fragment);
             }
         }
 
@@ -417,9 +443,10 @@ class ManageMembersController extends Controller
      * @param $deviceForm
      * @param $officeForm
      * @param $buildingAdministratorForm
+     * @param $fragment
      * @return Response
      */
-    private function renderEditProfilePage(User $user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm)
+    private function renderEditProfilePage(User $user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm, $fragment = null)
     {
         return $this->render('manageMembers/editUserProfile.twig', array(
             'user' => $user,
@@ -427,6 +454,7 @@ class ManageMembersController extends Controller
             'deviceForm' => $deviceForm !== null ? $deviceForm->createView() : null,
             'officeForm' => $officeForm !== null ? $officeForm->createView() : null,
             'buildingAdministratorForm' => $buildingAdministratorForm !== null ? $buildingAdministratorForm->createView() : null,
+            'fragment' => $fragment
         ));
     }
 

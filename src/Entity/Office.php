@@ -137,4 +137,9 @@ class Office
         $this->user = $user;
     }
 
+    public function removeUser(): void
+    {
+        $this->user = null;
+    }
+
 }

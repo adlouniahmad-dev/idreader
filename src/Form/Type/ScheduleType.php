@@ -62,7 +62,7 @@ class ScheduleType extends AbstractType
             ->add('reset', ResetType::class, array(
                 'attr' => ['class' => 'btn default'],
                 'label' => 'Reset'
-            ));;
+            ));
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -6,9 +6,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use App\Validator\Constraints as UserAssert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @UniqueEntity(fields="gmail", message="Gmail already exists.")
+ * @UniqueEntity(fields="phoneNb", message="Phone number already exists.")
  */
 class User
 {
@@ -58,7 +61,6 @@ class User
      *     pattern="/^[A-Za-z0-9](\.?[A-Za-z0-9]){5,}@g(oogle)?mail\.com$/",
      *     message="Gmail must consist of letters, numbers or dots then @gmail.com."
      * )
-     * @UserAssert\UniqueUserEmail()
      */
     private $gmail;
 

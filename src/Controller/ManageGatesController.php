@@ -64,4 +64,21 @@ class ManageGatesController extends Controller
             'form' => $form->createView()
         ));
     }
+
+    /**
+     * @Route("/manageGates/viewGates", name="viewGates")
+     * @param Session $session
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    public function viewGates(Session $session)
+    {
+        if (!$session->has('gmail'))
+            return $this->redirectToRoute('login');
+
+        if (!in_array('fowner', $session->get('roles')) || !in_array('fadmin', $session->get('roles')))
+            return $this->render('errors/access_denied.html.twig');
+
+        return $this->render('manageGates/viewGates.html.twig');
+
+    }
 }

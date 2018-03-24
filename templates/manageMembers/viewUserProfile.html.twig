@@ -35,9 +35,7 @@
                         <hr>
                         <h4 class="block">Administrator of:</h4>
                         <ul class="list-inline">
-                            {% for building in userDetails['buildings'] %}
-                                <li><i class="fa fa-building-o"></i> {{ building.name }}</li>
-                            {% endfor %}
+                            <li><i class="fa fa-building-o"></i> {{ userDetails['buildings'].name }}</li>
                         </ul>
                     {% endif %}
 
@@ -45,20 +43,19 @@
                         <hr>
                         <h4 class="block">Office:</h4>
                         <ul class="list-inline">
-                            {% for office in userDetails['offices'] %}
-                                <li><i class="fa fa-building-o"></i> {{ office.officeNb }} - {{ office.building.name }}
-                                </li>
-                            {% endfor %}
+                            <li>
+                                <i class="fa fa-building-o"></i> {{ userDetails['offices'].officeNb }}
+                                - {{ userDetails['offices'].building.name }}
+                            </li>
                         </ul>
                     {% endif %}
 
-                    {% if 'Security Guard' in roles %}
+                    {% if 'Security Guard' in roles and userDetails['guard'].device is not null %}
                         <hr>
                         <h4 class="block">Device MAC Address:</h4>
                         <ul class="list-inline">
-                            {% for guard in userDetails['guard'] %}
-                                <li><i class="fa fa-mobile-phone"></i> {{ guard.device.macAddress|upper }}</li>
-                            {% endfor %}
+                            <li><i class="fa fa-mobile-phone"></i> {{ userDetails['guard'].device.macAddress|upper }}
+                            </li>
                         </ul>
                     {% endif %}
                 </div>
@@ -72,15 +69,13 @@
                     <ul class="list-inline">
                         <li><i class="fa fa-calendar"></i> {{ user.dateCreated|date('jS F, Y \\a\\t g:ia') }}</li>
                     </ul>
-                    {% if 'Security Guard' in roles %}
+                    {% if 'Security Guard' in roles and userDetails['guard'].device is not null %}
                         <hr>
                         <h4 class="block">Device created on:</h4>
                         <ul class="list-inline">
-                            {% for guard in userDetails['guard'] %}
-                                <li>
-                                    <i class="fa fa-calendar"></i> {{ guard.device.dateCreated|date('jS F, Y \\a\\t g:ia') }}
-                                </li>
-                            {% endfor %}
+                            <li>
+                                <i class="fa fa-calendar"></i> {{ userDetails['guard'].device.dateCreated|date('jS F, Y \\a\\t g:ia') }}
+                            </li>
                         </ul>
                     {% endif %}
 

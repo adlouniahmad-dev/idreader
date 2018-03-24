@@ -97,7 +97,7 @@
 
     {% set routeName = app.request.attributes.get("_route") %}
 
-    {% if routeName == 'addMember' or routeName == 'editProfile' %}
+    {% if routeName == 'addMember' or routeName == 'editProfile' or routeName == 'editProfileAdmin' %}
         {% set attr = attr|merge({
             'class': (attr.class|default('') ~ ' form-control birthday-date')|trim
         }) %}
@@ -107,7 +107,7 @@
         }) %}
     {% endif %}
 
-    {% if routeName != 'addMember' and routeName != 'editProfile' %}
+    {% if routeName != 'addMember' and routeName != 'editProfile' and routeName != 'editProfileAdmin' %}
         <div class="col-md-4">
             <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
                 {%- if placeholder is not none -%}

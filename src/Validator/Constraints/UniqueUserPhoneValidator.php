@@ -39,14 +39,14 @@ class UniqueUserPhoneValidator extends ConstraintValidator
                     ->addViolation();
             }
 
-            else {
-                $conflicts = $this->em->getRepository(User::class)->findBy(['phoneNb' => $value]);
-
-                if (count($conflicts) > 0) {
-                    $this->context->buildViolation($constraint->msgPhoneExists)
-                        ->addViolation();
-                }
-            }
+//            else {
+//                $conflicts = $this->em->getRepository(User::class)->findBy(['phoneNb' => $value]);
+//
+//                if (count($conflicts) > 0) {
+//                    $this->context->buildViolation($constraint->msgPhoneExists)
+//                        ->addViolation();
+//                }
+//            }
         }
     }
 

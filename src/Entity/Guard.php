@@ -49,7 +49,7 @@ class Guard
     /**
      * @return mixed
      */
-    public function getisActivated()
+    public function getIsActivated()
     {
         return $this->isActivated;
     }
@@ -65,7 +65,7 @@ class Guard
     /**
      * @return mixed
      */
-    public function getisBlocked()
+    public function getIsBlocked()
     {
         return $this->isBlocked;
     }

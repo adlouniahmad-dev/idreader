@@ -15,11 +15,14 @@ use App\Entity\Guard;
 use App\Entity\Office;
 use App\Entity\Schedule;
 use App\Entity\User;
+use App\Form\Type\AdminBuildingUpdateType;
+use App\Form\Type\DeviceType;
 use App\Form\Type\OfficeUserType;
 use App\Form\Type\ScheduleType;
 use App\Form\Type\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -247,17 +250,17 @@ class ManageMembersController extends Controller
             $userDetails = array();
 
             if (in_array('Security Guard', $this->getUserRoles($user))) {
-                $guard = $this->getDoctrine()->getRepository(Guard::class)->findBy(['user' => $user]);
+                $guard = $this->getDoctrine()->getRepository(Guard::class)->findOneBy(['user' => $user]);
                 $userDetails['guard'] = $guard;
             }
 
             if (in_array('Facility Administrator', $this->getUserRoles($user))) {
-                $buildings = $this->getDoctrine()->getRepository(Building::class)->findBy(['admin' => $user]);
+                $buildings = $this->getDoctrine()->getRepository(Building::class)->findOneBy(['admin' => $user]);
                 $userDetails['buildings'] = $buildings;
             }
 
             if (in_array('Premise Owner', $this->getUserRoles($user))) {
-                $offices = $this->getDoctrine()->getRepository(Office::class)->findBy(['user' => $user]);
+                $offices = $this->getDoctrine()->getRepository(Office::class)->findOneBy(['user' => $user]);
                 $userDetails['offices'] = $offices;
             }
 
@@ -273,11 +276,11 @@ class ManageMembersController extends Controller
             ));
         }
 
-        die('User not found.');
+        return $this->render('errors/not_found.html.twig');
     }
 
     /**
-     * @Route("/member/{userId}/edit", name="editProfile", requirements={"userId"="\d+"})
+     * @Route("/member/{userId}/edit", name="editProfile")
      * @param Request $request
      * @param Session $session
      * @param $userId
@@ -297,36 +300,134 @@ class ManageMembersController extends Controller
         if (!$user)
             return $this->render('errors/not_found.html.twig');
 
-        $form = $this->createForm(UserType::class, $user);
-        $form->remove('role');
-        $form->remove('building');
-        $form->handleRequest($request);
-        if ($form->isSubmitted()) {
-            if (!$form->isValid()) {
+        // Create the form for the personal information
+        $personalInfoForm = $this->createForm(UserType::class, $user, array(
+            'action' => $this->generateUrl('editProfile', ['_fragment' => 'personal_info', 'userId' => $userId])
+        ));
+        $personalInfoForm->remove('role');
+        $personalInfoForm->remove('building');
+        $personalInfoForm->handleRequest($request);
+
+        // Create the form for the building administrator info
+        if (in_array('Facility Administrator', $this->getUserRoles($user))) {
+            $buildingAdministratorForm = $this->createForm(AdminBuildingUpdateType::class, null, array(
+                'action' => $this->generateUrl('editProfile', ['_fragment' => 'admin_info', 'userId' => $userId])
+            ));
+            $buildingAdministratorForm->handleRequest($request);
+        } else {
+            $buildingAdministratorForm = null;
+        }
+
+        // Create the form for the device info (Security Guard - MAC Address)
+        if (in_array('Security Guard', $this->getUserRoles($user))) {
+            $guard = $entityManager->getRepository(Guard::class)->findOneBy(['user' => $user]);
+            $device = $guard->getDevice();
+            $deviceForm = $this->createForm(DeviceType::class, $device, array(
+                'action' => $this->generateUrl('editProfile', ['_fragment' => 'device_info', 'userId' => $userId])
+            ));
+            $deviceForm->handleRequest($request);
+        } else {
+            $deviceForm = null;
+        }
+
+        // Create the form for the office info (Premise Owner)
+        if (in_array('Premise Owner', $this->getUserRoles($user))) {
+            $buildings = $user->getBuildings();
+            $building = $buildings->get(0);
+            $officeForm = $this->createForm(OfficeUserType::class, null, array(
+                'building' => $building,
+                'action' => $this->generateUrl('editProfile', ['_fragment' => 'office_info', 'userId' => $userId])
+            ));
+            $officeForm->handleRequest($request);
+        } else {
+            $officeForm = null;
+        }
+
+        // Block that checks the submission of the personal info form
+        if ($personalInfoForm->isSubmitted()) {
+            if (!$personalInfoForm->isValid()) {
                 $this->addFlash(
                     'danger',
                     'You have some errors. Please check below.'
                 );
-                return $this->render('manageMembers/editUserProfile.twig', array(
-                    'form' => $form->createView(),
-                    'user' => $user
-                ));
+                return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm);
             }
             $entityManager->flush();
             $this->addFlash(
                 'success',
                 'User personal info updated successfully!'
             );
-            return $this->redirectToRoute('editProfile', array(
-                'userId' => $userId
-            ));
+            return $this->redirectToRoute('editProfile');
         }
 
+        // Block that checks the submission of the building info form (admin)
+        if ($buildingAdministratorForm !== null) {
+            if ($buildingAdministratorForm->isSubmitted()) {
+                if (!$buildingAdministratorForm->isValid()) {
+                    $this->addFlash(
+                        'danger',
+                        'You have some errors. Please check below.'
+                    );
+                    return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm);
+                }
+                $building = $buildingAdministratorForm->get('building')->getData();
+                $building->setAdmin($user);
+                $entityManager->flush();
+                $this->addFlash(
+                    'success',
+                    'Administrator info updated successfully!'
+                );
+                return $this->redirectToRoute('editProfile');
+            }
+        }
+
+        // Block that checks the submission of the office info form
+        if ($officeForm !== null) {
+            if ($officeForm->isSubmitted()) {
+                if (!$officeForm->isValid()) {
+                    $this->addFlash(
+                        'danger',
+                        'You have some errors. Please check below.'
+                    );
+                    return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm);
+                }
+            }
+        }
+
+        if ($deviceForm !== null) {
+            $deviceForm->handleRequest($request);
+            if ($deviceForm->isSubmitted()) {
+                if (!$deviceForm->isValid()) {
+                    return $this->render('manageMembers/editUserProfile.twig', array(
+                        'personalInfoForm' => $personalInfoForm->createView(),
+                        'user' => $user
+                    ));
+                }
+
+                $entityManager->flush();
+            }
+        }
+
+        return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm);
+    }
+
+    /**
+     * @param User $user
+     * @param $personalInfoForm
+     * @param $deviceForm
+     * @param $officeForm
+     * @param $buildingAdministratorForm
+     * @return Response
+     */
+    private function renderEditProfilePage(User $user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm)
+    {
         return $this->render('manageMembers/editUserProfile.twig', array(
             'user' => $user,
-            'form' => $form->createView()
+            'personalInfoForm' => $personalInfoForm->createView(),
+            'deviceForm' => $deviceForm !== null ? $deviceForm->createView() : null,
+            'officeForm' => $officeForm !== null ? $officeForm->createView() : null,
+            'buildingAdministratorForm' => $buildingAdministratorForm !== null ? $buildingAdministratorForm->createView() : null,
         ));
-
     }
 
     /**
@@ -420,6 +521,10 @@ class ManageMembersController extends Controller
         return $rolesArray;
     }
 
+    /**
+     * @param $role
+     * @return string
+     */
     private function getRoleName($role): string
     {
         if ($role->getRoleName() == 'fowner')
@@ -431,5 +536,4 @@ class ManageMembersController extends Controller
         else
             return 'Security Guard';
     }
-
 }

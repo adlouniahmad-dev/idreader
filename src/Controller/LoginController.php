@@ -58,7 +58,13 @@ class LoginController extends Controller
 
             if ($user) {
 
-                if (!in_array('fowner', $user->getRoles()) || !in_array('fadmin', $user->getRoles()) || !in_array('powner', $user->getRoles())) {
+                $roles = $user->getRoles();
+                $rolesArray = array();
+                foreach ($roles as $value) {
+                    $rolesArray[] = $value->getRoleName();
+                }
+
+                if (!in_array('fowner', $rolesArray) && !in_array('fadmin', $rolesArray) && !in_array('powner', $rolesArray)) {
                     $this->addFlash(
                         'danger',
                         'Access Denied.'
@@ -71,11 +77,6 @@ class LoginController extends Controller
                 if ($user->getImageUrl() != $userDetails->picture) {
                     $user->setImageUrl($userDetails->picture);
                     $em->flush();
-                }
-                $roles = $user->getRoles();
-                $rolesArray = array();
-                foreach ($roles as $value) {
-                    $rolesArray[] = $value->getRoleName();
                 }
 
                 $session = new Session();

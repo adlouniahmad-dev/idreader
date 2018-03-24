@@ -17,13 +17,11 @@ use App\Entity\Schedule;
 use App\Entity\User;
 use App\Form\Type\AdminBuildingUpdateType;
 use App\Form\Type\DeviceType;
-use App\Form\Type\OfficeUpdateUserType;
 use App\Form\Type\OfficeUserType;
 use App\Form\Type\ScheduleType;
 use App\Form\Type\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -323,6 +321,10 @@ class ManageMembersController extends Controller
         if (in_array('Security Guard', $this->getUserRoles($user))) {
             $guard = $entityManager->getRepository(Guard::class)->findOneBy(['user' => $user]);
             $device = $guard->getDevice();
+
+            if (!$device)
+                $device = new Device();
+
             $deviceForm = $this->createForm(DeviceType::class, $device, array(
                 'action' => $this->generateUrl('editProfile', ['_fragment' => 'device_info', 'userId' => $userId])
             ));
@@ -423,11 +425,19 @@ class ManageMembersController extends Controller
                     );
                     return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm, $fragment);
                 }
+
+                $device = $deviceForm->getData();
+                $device->setDateCreated(new \DateTime());
+                $entityManager->persist($device);
+                $entityManager->flush();
+
+                $guard = $entityManager->getRepository(Guard::class)->findOneBy(['user' => $user]);
+                $guard->setDevice($device);
                 $entityManager->flush();
 
                 $this->addFlash(
                     'success',
-                    'Office info updated successfully!'
+                    'Device info updated successfully!'
                 );
 
                 return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm, $fragment);

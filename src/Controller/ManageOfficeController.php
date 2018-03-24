@@ -20,7 +20,7 @@ class ManageOfficeController extends Controller
 {
 
     /**
-     * @Route("/manage-offices/add-office", name="addOffice")
+     * @Route("/manageOffices/addOffice", name="addOffice")
      * @param Session $session
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response

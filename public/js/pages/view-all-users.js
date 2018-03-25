@@ -44,7 +44,10 @@ function renderUsersRecords(users) {
                 '<td>' + user.dob + '</td>' +
                 '<td>' + user.role + '</td>' +
                 '<td>' + user.dateCreated + '</td>' +
-                '<td><a href="/member/' + user.id + '">View</a> | <a href="/member/' + user.id + '/edit">Edit</a></td>' +
+                '<td>' +
+                '<a href="/member/' + user.id + '" class="btn btn-sm btn-outline green margin-bottom-5"><i class="fa fa-search"></i> View</a>' +
+                '<a href="/member/' + user.id + '/edit" class="btn btn-sm btn-outline red margin-bottom-5"><i class="fa fa-edit"></i> Edit</a>' +
+                '</td>' +
                 '</tr>';
         });
         $tbody.empty();

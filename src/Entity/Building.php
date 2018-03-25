@@ -243,4 +243,9 @@ class Building
         return $this->users->count();
     }
 
+    public function removeAdmin(): void
+    {
+        $this->admin = null;
+    }
+
 }

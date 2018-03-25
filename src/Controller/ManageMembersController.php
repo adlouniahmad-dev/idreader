@@ -469,6 +469,66 @@ class ManageMembersController extends Controller
     }
 
     /**
+     * @Route("/manage/{userId}/edit/delete", name="deleteAccount")
+     * @param $userId
+     * @return JsonResponse
+     */
+    public function deleteAccount($userId)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $user = $entityManager->getRepository(User::class)->find($userId);
+
+        if (!$user) {
+            $error = array(
+                'success' => 'no'
+            );
+            return new JsonResponse($error);
+        }
+
+        if (in_array('Facility Administrator', $this->getUserRoles($user))) {
+            $buildings = $entityManager->getRepository(Building::class)->findBy(['admin' => $user]);
+            if ($buildings) {
+                foreach ($buildings as $building) {
+                    $building->removeAdmin();
+                    $entityManager->flush();
+                }
+            }
+        }
+
+        if (in_array('Premise Owner', $this->getUserRoles($user))) {
+            $offices = $entityManager->getRepository(Office::class)->findBy(['user' => $user]);
+            if ($offices) {
+                foreach ($offices as $office) {
+                    $office->removeUser();
+                    $entityManager->flush();
+                }
+            }
+        }
+
+        if (in_array('Security Guard', $this->getUserRoles($user))) {
+            $guard = $entityManager->getRepository(Guard::class)->findOneBy(['user' => $user]);
+            $schedules = $entityManager->getRepository(Schedule::class)->findBy(['guard' => $guard]);
+            if ($schedules) {
+                foreach ($schedules as $schedule) {
+                    $entityManager->remove($schedule);
+                    $entityManager->flush();
+                }
+            }
+            $entityManager->remove($guard);
+            $entityManager->flush();
+        }
+
+        $entityManager->remove($user);
+        $entityManager->flush();
+
+        $success = array(
+            'success' => 'yes'
+        );
+
+        return new JsonResponse($success);
+    }
+
+    /**
      * @Route("/manageMembers/viewMembers", name="viewUsers")
      * @param Session $session
      * @return Response
@@ -479,7 +539,6 @@ class ManageMembersController extends Controller
             return $this->redirectToRoute('login');
 
         return $this->render('manageMembers/viewUsers.html.twig');
-
     }
 
     /**

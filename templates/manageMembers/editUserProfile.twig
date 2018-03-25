@@ -40,6 +40,9 @@
                                     </li>
                                 {% endif %}
                             {% endfor %}
+                            <li>
+                                <a href="#delete_account" data-toggle="tab">Delete Account</a>
+                            </li>
                         </ul>
                     </div>
                     <div class="portlet-body">
@@ -166,6 +169,16 @@
                                     {{ form_end(deviceForm) }}
                                 </div>
                             {% endif %}
+
+                            <div class="tab-pane" id="delete_account">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p>All the data and content in that account will be lost.</p>
+                                        <button class="btn red" data-toggle="confirmation" data-placement="right" id="delete_account_btn">Delete Account</button>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -174,6 +187,12 @@
     </div>
     </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/pages/bootstrap-confirmation/bootstrap-confirmation.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/pages/delete_account.js') }}"></script>
 {% endblock %}
 
 

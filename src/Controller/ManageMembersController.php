@@ -576,7 +576,7 @@ class ManageMembersController extends Controller
     /**
      * @Route("/api/members/search", name="searchMembers", methods={"GET"})
      * @param Request $request
-     * @return JsonResponse|void
+     * @return JsonResponse
      * @throws \Doctrine\DBAL\DBALException
      */
     public function getUsers(Request $request)
@@ -637,18 +637,24 @@ class ManageMembersController extends Controller
     }
 
     /**
+     * @param Session $session
      * @param int $page
      * @param string $query
      * @return JsonResponse
-     * @Route("/api/getAllUsers/{page}", name="getAllUsers", requirements={"page"="\d+"}, methods={"GET"})
+     * @Route("/api/getAllUsers/{page}", name="getAllUsers", methods={"GET"})
      * @Route("/api/getAllUsers/{page}/{query}", methods={"GET"})
      */
-    public function getAllUsers($page = 1, $query = '')
+    public function getAllUsers(Session $session, $page = 1, $query = '')
     {
         $currentPage = $page;
 
+        if (in_array('fowner', $session->get('roles')))
+            $building = null;
+        else
+            $building = $this->getDoctrine()->getRepository(Building::class)->findOneBy(['admin' => $session->get('user')]);
+
         $repo = $this->getDoctrine()->getRepository(User::class);
-        $users = $repo->getAllUsers($currentPage, $query);
+        $users = $repo->getAllUsers($currentPage, $query, $building);
 
         $totalUsersReturned = $users->getIterator()->count();
         $totalUsers = $users->count();

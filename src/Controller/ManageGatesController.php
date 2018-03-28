@@ -11,7 +11,6 @@ namespace App\Controller;
 
 use App\Entity\Building;
 use App\Entity\Gate;
-use App\Entity\Guard;
 use App\Entity\Schedule;
 use App\Form\Type\GateType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -22,7 +21,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ManageGatesController extends Controller
 {
     /**
-     * @Route("/manage-gates/add-gate", name="addGate")
+     * @Route("/manageGates/addGate", name="addGate")
      * @param Session $session
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
@@ -70,7 +69,6 @@ class ManageGatesController extends Controller
     /**
      * @Route("/manageGates/viewGates", name="viewGates")
      * @param Session $session
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function viewGates(Session $session)
     {
@@ -110,7 +108,7 @@ class ManageGatesController extends Controller
     }
 
     /**
-     * @Route("manageGates/gate/{gateId}", name="viewGate")
+     * @Route("/manageGates/gate/{gateId}", name="viewGate")
      * @param Session $session
      * @param $gateId
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
@@ -139,7 +137,7 @@ class ManageGatesController extends Controller
     }
 
     /**
-     * @Route("/manageGates/{gateId}/edit", name="editGate")
+     * @Route("/manageGates/gate/{gateId}/edit", name="editGate")
      * @param Request $request
      * @param Session $session
      * @param $gateId

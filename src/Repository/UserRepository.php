@@ -61,9 +61,10 @@ class UserRepository extends ServiceEntityRepository
     /**
      * @param int $currentPage
      * @param string $string
+     * @param Building|null $building
      * @return Paginator
      */
-    public function getAllUsers($currentPage = 1, $string = '')
+    public function getAllUsers($currentPage = 1, $string = '', Building $building = null)
     {
         $em = $this->getEntityManager();
         $qb = new QueryBuilder($em);
@@ -80,6 +81,7 @@ class UserRepository extends ServiceEntityRepository
                  OR u.dateCreated LIKE :string'
             )
             ->setParameter('string', '%' . $string . '%')
+//            ->setParameter('building', $building === null ? '%%' : $building)
             ->getQuery();
 
         $paginator = $this->paginate($query, $currentPage);

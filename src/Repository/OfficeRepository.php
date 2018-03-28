@@ -39,6 +39,35 @@ class OfficeRepository extends ServiceEntityRepository
     }
 
     /**
+     * @param int $currentPage
+     * @param string $string
+     * @param Building $building
+     * @return Paginator
+     */
+    public function getAllOffices($currentPage = 1, $string = '', Building $building = null)
+    {
+        $em = $this->getEntityManager();
+        $qb = new QueryBuilder($em);
+
+        $query = $qb->select('o')
+            ->from('App:Office', 'o')
+            ->orderBy('o.id', 'ASC')
+            ->where(
+                'o.dateCreated LIKE :string
+                OR o.officeNb LIKE :string
+                OR o.floorNb LIKE :string
+                OR o.building = :building'
+            )
+            ->setParameter('string', '%' . $string . '%')
+            ->setParameter('building', $building === null ? '%%' : $building)
+            ->getQuery();
+
+        $paginator = $this->paginate($query, $currentPage);
+
+        return $paginator;
+    }
+
+    /**
      * @param $dql
      * @param int $page
      * @param int $limit

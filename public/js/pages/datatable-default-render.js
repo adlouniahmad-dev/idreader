@@ -2,14 +2,14 @@ function checkRowIndex(index) {
     return index % 2 === 0 ? 'even' : 'odd';
 }
 
-function renderTablesInfo(totalUsers) {
+function renderTablesInfo(totalRecords) {
     let $tablesInfo = $('#all_users_info');
-    let info = 'Total: ' + totalUsers + ' entries';
+    let info = 'Total: ' + totalRecords + ' entries';
     $tablesInfo.empty();
     $tablesInfo.html(info);
 }
 
-function loadingUsers(colspan) {
+function loadingRecords(colspan) {
     $('tbody').html(
         '<tr class="odd">' +
         '<td valign="top" colspan="' + colspan + '" class="dataTables_empty">Loading...</td>' +

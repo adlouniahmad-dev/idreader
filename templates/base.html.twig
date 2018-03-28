@@ -128,7 +128,7 @@
 
                 {%- if 'fowner' in app.session.get('roles') or 'fadmin' in app.session.get('roles') -%}
                     <li class="nav-item">
-                        <a href="{{ path('dashboard') }}" class="nav-link nav-toggle">
+                        <a href="#" class="nav-link nav-toggle">
                             <i class="fa fa-building-o"></i>
                             <span class="title">Manage Offices</span>
                             <span class="arrow open"></span>
@@ -141,9 +141,15 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="" class="nav-link ">
+                                <a href="{{ path('viewOffices') }}" class="nav-link ">
                                     <i class="fa fa-list-ul"></i>
                                     <span class="title">View Offices</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ path('officesAdvancedSearch') }}" class="nav-link ">
+                                    <i class="fa fa-search"></i>
+                                    <span class="title">Advanced Search</span>
                                 </a>
                             </li>
                         </ul>

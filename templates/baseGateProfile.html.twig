@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ gate.name }}{% endblock %}
+{% block pagetitle %}{{ gate.name }}{% endblock %}
+{% block pagetitlesmall %}Gate Information{% endblock %}
+{% block pagebartitle %}{{ gate.name }}{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/profile.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('css/profile-2.min.css') }}" rel="stylesheet" type="text/css"/>
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="profile-sidebar">
+            <div class="portlet light profile-sidebar-portlet ">
+                <div class="profile-usermenu">
+                    <ul class="nav">
+                        {% set routeName = app.request.attributes.get("_route") %}
+
+                        <li class="{% if routeName == 'viewGate' %}active{% endif %}">
+                            <a href="{{ path('viewGate', {'gateId': gate.id}) }}"><i class="icon-home"></i>
+                                Overview </a>
+                        </li>
+                        {% if 'fowner' in app.session.get('roles') %}
+                            <li class="{% if routeName == 'editGate' %}active{% endif %}">
+                                <a href="{{ path('editGate', {'gateId': gate.id}) }}"><i class="icon-settings"></i>
+                                    Gate Settings </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endblock %}

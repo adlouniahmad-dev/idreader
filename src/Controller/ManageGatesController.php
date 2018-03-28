@@ -110,9 +110,39 @@ class ManageGatesController extends Controller
     }
 
     /**
-     * @Route("/manageGates/{gateId}/edit")
+     * @Route("manageGates/gate/{gateId}", name="viewGate")
+     * @param Session $session
+     * @param $gateId
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    public function viewGate(Session $session, $gateId)
+    {
+        if (!$session->has('gmail'))
+            return $this->redirectToRoute('login');
+
+        if (!in_array('fowner', $session->get('roles')) || !in_array('fadmin', $session->get('roles')))
+            return $this->render('errors/access_denied.html.twig');
+
+        $gate = $this->getDoctrine()->getRepository(Gate::class)->find($gateId);
+        if (!$gate)
+            return $this->render('errors/not_found.html.twig');
+
+        $schedules = $this->getDoctrine()->getRepository(Schedule::class)->findBy(['gate' => $gate]);
+        $guards = array();
+        foreach ($schedules as $schedule)
+            $guards[] = $schedule->getGuard();
+
+        return $this->render('manageGates/gate.html.twig', array(
+            'gate' => $gate,
+            'guards' => $guards,
+        ));
+    }
+
+    /**
+     * @Route("/manageGates/{gateId}/edit", name="editGate")
      * @param Request $request
      * @param Session $session
+     * @param $gateId
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editGate(Request $request, Session $session, $gateId)
@@ -123,21 +153,42 @@ class ManageGatesController extends Controller
         if (!in_array('fowner', $session->get('roles')) || !in_array('fadmin', $session->get('roles')))
             return $this->render('errors/access_denied.html.twig');
 
-        $gate = $this->getDoctrine()->getRepository(Gate::class)->find($gateId);
+        $entityManager = $this->getDoctrine()->getManager();
+        $gate = $entityManager->getRepository(Gate::class)->find($gateId);
 
         if (!$gate)
             return $this->render('errors/not_found.html.twig');
 
-        return $this->render('manageGates/editGate.html.twig');
+        $form = $this->createForm(GateType::class, $gate);
+        $form->remove('building');
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            if (!$form->isValid()) {
+                $this->addFlash(
+                    'danger',
+                    'You have some errors. Please check below.'
+                );
+                return $this->render('manageGates/editGate.html.twig', array(
+                    'gate' => $gate,
+                    'form' => $form->createView(),
+                ));
+            }
+
+            $entityManager->flush();
+
+            $this->addFlash(
+                'success',
+                'Gate updated successfully!'
+            );
+
+            return $this->redirectToRoute('editGate', array('gateId' => $gateId));
+
+        }
+
+        return $this->render('manageGates/editGate.html.twig', array(
+            'gate' => $gate,
+            'form' => $form->createView(),
+        ));
     }
 
-    /**
-     * @Route("manageGates/gate/{gateId}", name="viewGate")
-     * @param Session $session
-     * @param $gateId
-     */
-    public function viewGate(Session $session, $gateId)
-    {
-
-    }
 }

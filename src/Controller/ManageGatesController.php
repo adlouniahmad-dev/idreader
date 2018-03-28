@@ -88,20 +88,6 @@ class ManageGatesController extends Controller
             $gates = $this->getDoctrine()->getRepository(Gate::class)->findBy(['building' => $buildings]);
         }
 
-//        $data = array();
-//        foreach ($buildings as $building) {
-//            $data[$building->getName()] = array();
-//            foreach ($gates as $gate) {
-//                if ($gate->getBuilding()->getId() === $building->getId()) {
-//                    $data[$building->getName()][$gate->getName()] = array();
-//                    $guards = $this->getDoctrine()->getRepository(Schedule::class)->findBy(['gate' => $gate]);
-//                    foreach ($guards as $guard) {
-//                        $data[$building->getName()][$gate->getName()][] = $guard->getGuard()->getUser();
-//                    }
-//                }
-//            }
-//        }
-
         $data = array();
         foreach ($buildings as $building) {
             $data[$building->getName()] = array();
@@ -117,9 +103,6 @@ class ManageGatesController extends Controller
                 }
             }
         }
-
-//        print_r($data);
-//        die();
 
         return $this->render('manageGates/viewGates.html.twig', array(
             'data' => $data

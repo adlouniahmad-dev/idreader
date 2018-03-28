@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="50e69e48-8f17-4cc9-ac75-48078c3b9921" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/templates/shifts/baseGateProfile.html.twig" afterPath="$PROJECT_DIR$/templates/baseGateProfile.html.twig" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ManageGatesController.php" afterPath="$PROJECT_DIR$/src/Controller/ManageGatesController.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -58,7 +58,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="baseGateProfile.html.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="baseGateProfile.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/baseGateProfile.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
@@ -68,15 +68,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ManageGatesController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ManageGatesController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Controller/ManageGatesController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="675">
-              <caret line="151" column="57" lean-forward="false" selection-start-line="151" selection-start-column="57" selection-end-line="151" selection-end-column="57" />
+            <state relative-caret-position="495">
+              <caret line="89" column="0" lean-forward="true" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
               <folding>
                 <element signature="e#125#149#0#PHP" expanded="true" />
-                <element signature="e#5291#5319#1#PHP" expanded="true" />
-                <element signature="e#5352#5384#1#PHP" expanded="true" />
+                <element signature="e#4577#4605#1#PHP" expanded="true" />
+                <element signature="e#4638#4670#1#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -204,8 +204,8 @@
         <option value="$PROJECT_DIR$/public/js/pages/search_members.js" />
         <option value="$PROJECT_DIR$/src/Repository/UserRepository.php" />
         <option value="$PROJECT_DIR$/src/Entity/Building.php" />
-        <option value="$PROJECT_DIR$/src/Controller/ManageGatesController.php" />
         <option value="$PROJECT_DIR$/templates/manageGates/viewGates.html.twig" />
+        <option value="$PROJECT_DIR$/src/Controller/ManageGatesController.php" />
       </list>
     </option>
   </component>
@@ -516,6 +516,11 @@
               <item name="templates" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="shifts" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
+            <path>
+              <item name="idreader" type="b2602c69:ProjectViewProjectNode" />
+              <item name="idreader" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="translations" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -620,7 +625,7 @@
       <workItem from="1521298693223" duration="12000" />
       <workItem from="1521543833685" duration="1798000" />
       <workItem from="1521629714367" duration="39992000" />
-      <workItem from="1521889165431" duration="93039000" />
+      <workItem from="1521889165431" duration="93135000" />
     </task>
     <task id="LOCAL-00001" summary="DONE">
       <created>1516447201961</created>
@@ -888,14 +893,22 @@
       <option name="project" value="LOCAL" />
       <updated>1522265329734</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="DONE">
+      <created>1522265394543</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1522265394543</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="636510000" />
+    <option name="totallyTimeSpent" value="636606000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -903,7 +916,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21458334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21458334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -935,14 +948,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2980">
-          <caret line="159" column="28" lean-forward="false" selection-start-line="159" selection-start-column="28" selection-end-line="159" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Form/Type/GateType.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="560">
@@ -1324,18 +1329,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/ManageGatesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="151" column="57" lean-forward="false" selection-start-line="151" selection-start-column="57" selection-end-line="151" selection-end-column="57" />
-          <folding>
-            <element signature="e#125#149#0#PHP" expanded="true" />
-            <element signature="e#5291#5319#1#PHP" expanded="true" />
-            <element signature="e#5352#5384#1#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/manageGates/viewGates.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -1359,11 +1352,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/translations/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/baseGateProfile.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/ManageGatesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="89" column="0" lean-forward="true" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+          <folding>
+            <element signature="e#125#149#0#PHP" expanded="true" />
+            <element signature="e#4577#4605#1#PHP" expanded="true" />
+            <element signature="e#4638#4670#1#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

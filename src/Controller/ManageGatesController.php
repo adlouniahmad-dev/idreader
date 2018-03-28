@@ -9,7 +9,10 @@
 namespace App\Controller;
 
 
+use App\Entity\Building;
 use App\Entity\Gate;
+use App\Entity\Guard;
+use App\Entity\Schedule;
 use App\Form\Type\GateType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +21,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ManageGatesController extends Controller
 {
-
     /**
      * @Route("/manage-gates/add-gate", name="addGate")
      * @param Session $session
@@ -78,7 +80,81 @@ class ManageGatesController extends Controller
         if (!in_array('fowner', $session->get('roles')) || !in_array('fadmin', $session->get('roles')))
             return $this->render('errors/access_denied.html.twig');
 
-        return $this->render('manageGates/viewGates.html.twig');
+        if (in_array('fowner', $session->get('roles'))) {
+            $buildings = $this->getDoctrine()->getRepository(Building::class)->findAll();
+            $gates = $this->getDoctrine()->getRepository(Gate::class)->findAll();
+        } else {
+            $buildings = $this->getDoctrine()->getRepository(Building::class)->findOneBy(['admin' => $session->get('user')]);
+            $gates = $this->getDoctrine()->getRepository(Gate::class)->findBy(['building' => $buildings]);
+        }
+
+//        $data = array();
+//        foreach ($buildings as $building) {
+//            $data[$building->getName()] = array();
+//            foreach ($gates as $gate) {
+//                if ($gate->getBuilding()->getId() === $building->getId()) {
+//                    $data[$building->getName()][$gate->getName()] = array();
+//                    $guards = $this->getDoctrine()->getRepository(Schedule::class)->findBy(['gate' => $gate]);
+//                    foreach ($guards as $guard) {
+//                        $data[$building->getName()][$gate->getName()][] = $guard->getGuard()->getUser();
+//                    }
+//                }
+//            }
+//        }
+
+        $data = array();
+        foreach ($buildings as $building) {
+            $data[$building->getName()] = array();
+            foreach ($gates as $gate) {
+                if ($gate->getBuilding()->getId() === $building->getId()) {
+                    $data[$building->getName()][$gate->getName()] = array();
+                    $data[$building->getName()][$gate->getName()]['gate_id'] = $gate->getId();
+                    $guards = $this->getDoctrine()->getRepository(Schedule::class)->findBy(['gate' => $gate]);
+                    $data[$building->getName()][$gate->getName()]['guards'] = array();
+                    foreach ($guards as $guard) {
+                        $data[$building->getName()][$gate->getName()]['guards'][] = $guard->getGuard()->getUser();
+                    }
+                }
+            }
+        }
+
+//        print_r($data);
+//        die();
+
+        return $this->render('manageGates/viewGates.html.twig', array(
+            'data' => $data
+        ));
+    }
+
+    /**
+     * @Route("/manageGates/{gateId}/edit")
+     * @param Request $request
+     * @param Session $session
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    public function editGate(Request $request, Session $session, $gateId)
+    {
+        if (!$session->has('gmail'))
+            return $this->redirectToRoute('login');
+
+        if (!in_array('fowner', $session->get('roles')) || !in_array('fadmin', $session->get('roles')))
+            return $this->render('errors/access_denied.html.twig');
+
+        $gate = $this->getDoctrine()->getRepository(Gate::class)->find($gateId);
+
+        if (!$gate)
+            return $this->render('errors/not_found.html.twig');
+
+        return $this->render('manageGates/editGate.html.twig');
+    }
+
+    /**
+     * @Route("manageGates/gate/{gateId}", name="viewGate")
+     * @param Session $session
+     * @param $gateId
+     */
+    public function viewGate(Session $session, $gateId)
+    {
 
     }
 }

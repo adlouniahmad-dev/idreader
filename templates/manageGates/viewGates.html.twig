@@ -12,5 +12,57 @@
 {% endblock %}
 
 {% block content %}
-
+    {% for building_name, gates in data %}
+        <div class="portlet light portlet-fit ">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-building-o font-green"></i>
+                    <span class="caption-subject font-green bold uppercase">{{ building_name }}</span>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="pricing-content-1">
+                    <div class="row">
+                        {% for gate_name, gate in gates %}
+                            <div class="col-md-3 margin-bottom-20 box">
+                                <div class="price-column-container border-active">
+                                    <div class="price-table-head bg-red">
+                                        <h2 class="no-margin">{{ gate_name }}</h2>
+                                    </div>
+                                    <div class="price-table-content">
+                                        {% if gate['guards']|length == 0 %}
+                                            <div class="row mobile-padding">
+                                                <div class="col-xs-3 text-right mobile-padding">
+                                                    <i class="icon-user"></i>
+                                                </div>
+                                                <div class="col-xs-9 text-left mobile-padding">0 Guards</div>
+                                            </div>
+                                        {% else %}
+                                            {% for guard in gate['guards'] %}
+                                                <div class="row mobile-padding">
+                                                    <div class="col-xs-3 text-right mobile-padding">
+                                                        <i class="icon-user"></i>
+                                                    </div>
+                                                    <div class="col-xs-9 text-left mobile-padding">
+                                                        <a href="{{ path('viewProfile', {'userId': guard.id}) }}">{{ guard.fullName }}</a>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                    <div class="arrow-down arrow-grey"></div>
+                                    <div class="price-table-footer">
+                                        <a href="{{ path('viewGate', {'gateId': gate['gate_id']}) }}"
+                                           class="btn grey-salsa btn-outline sbold uppercase price-button">
+                                            More info
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 {% endblock %}

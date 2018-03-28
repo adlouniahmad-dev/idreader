@@ -171,12 +171,19 @@
                             {% endif %}
 
                             <div class="tab-pane" id="delete_account">
+
+                                <div class="alert hidden">
+                                    <button class="close" data-close="alert"></button>
+                                    <span id="error-text"></span>
+                                </div>
+
                                 <div class="row">
                                     <div class="col-md-12">
                                         <p>All the data and content in that account will be lost.</p>
                                         <button class="btn red" data-toggle="confirmation" data-placement="right" id="delete_account_btn">Delete Account</button>
                                     </div>
                                 </div>
+
                             </div>
 
                         </div>
@@ -192,6 +199,7 @@
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript" src="{{ asset('js/pages/bootstrap-confirmation/bootstrap-confirmation.min.js') }}"></script>
+    <script type="text/javascript">let userId = {{ user.id }};</script>
     <script type="text/javascript" src="{{ asset('js/pages/delete_account.js') }}"></script>
 {% endblock %}
 

@@ -13,6 +13,7 @@ use App\Entity\Building;
 use App\Entity\Device;
 use App\Entity\Guard;
 use App\Entity\Office;
+use App\Entity\Role;
 use App\Entity\Schedule;
 use App\Entity\User;
 use App\Form\Type\AdminBuildingUpdateType;
@@ -20,7 +21,6 @@ use App\Form\Type\DeviceType;
 use App\Form\Type\OfficeUserType;
 use App\Form\Type\ScheduleType;
 use App\Form\Type\UserType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -469,21 +469,20 @@ class ManageMembersController extends Controller
     }
 
     /**
-     * @Route("/manage/{userId}/edit/delete", name="deleteAccount")
+     * @Route("/member/{userId}/edit/delete", name="deleteAccount")
      * @param $userId
      * @return JsonResponse
      */
     public function deleteAccount($userId)
     {
+        $error = array('success' => 'no');
+        $success = array('success' => 'yes');
+
         $entityManager = $this->getDoctrine()->getManager();
         $user = $entityManager->getRepository(User::class)->find($userId);
 
-        if (!$user) {
-            $error = array(
-                'success' => 'no'
-            );
+        if (!$user)
             return new JsonResponse($error);
-        }
 
         if (in_array('Facility Administrator', $this->getUserRoles($user))) {
             $buildings = $entityManager->getRepository(Building::class)->findBy(['admin' => $user]);
@@ -521,10 +520,10 @@ class ManageMembersController extends Controller
         $entityManager->remove($user);
         $entityManager->flush();
 
-        $success = array(
-            'success' => 'yes'
-        );
+        $user = $entityManager->getRepository(User::class)->find($userId);
 
+        if ($user)
+            return new JsonResponse($error);
         return new JsonResponse($success);
     }
 
@@ -554,16 +553,95 @@ class ManageMembersController extends Controller
         if (!in_array('fowner', $session->get('roles')) || !in_array('fadmin', $session->get('roles')))
             return $this->render('errors/access_denied.html.twig');
 
-        return $this->render('manageMembers/searchMembers.html.twig');
+        $rolesOptions = '';
+        $roles = $this->getDoctrine()->getRepository(Role::class)->findAll();
+        foreach ($roles as $role) {
+            if ($role->getRoleName() === 'fowner' || $role->getRoleName() === 'fadmin')
+                continue;
+            $rolesOptions .= '<option value="' . $role->getId() . '">' . $this->getRoleName($role) . '</option>';
+        }
+
+        if (in_array('fowner', $session->get('roles'))) {
+            $buildings = $this->getDoctrine()->getRepository(Building::class)->findAll();
+        } else {
+            $buildings = $this->getDoctrine()->getRepository(Building::class)->findBy(['admin' => $session->get('user')]);
+        }
+
+        return $this->render('manageMembers/searchMembers.html.twig', array(
+            'buildings' => $buildings,
+            'roles' => $rolesOptions,
+        ));
+    }
+
+    /**
+     * @Route("/api/members/search", name="searchMembers", methods={"GET"})
+     * @param Request $request
+     * @return JsonResponse|void
+     * @throws \Doctrine\DBAL\DBALException
+     */
+    public function getUsers(Request $request)
+    {
+        $member_id = $request->query->get('member_id');
+        $first_name = $request->query->get('member_first_name');
+        $last_name = $request->query->get('member_last_name');
+        $phone_number = $request->query->get('member_phone_number');
+        $gmail = $request->query->get('member_gmail');
+        $member_role = $request->query->get('member_role');
+        $buildingId = $request->query->get('member_building');
+        $dateCreated = $request->query->get('member_date_created');
+
+        if ($buildingId !== null)
+            $building = $this->getDoctrine()->getRepository(Building::class)->find($buildingId);
+
+        if ($member_role !== null)
+            $role = $this->getDoctrine()->getRepository(Role::class)->find($member_role);
+
+
+        $users = $this->getDoctrine()->getRepository(User::class)->advancedSearch($member_id, $first_name, $last_name,
+            $gmail, $phone_number, $member_role, $buildingId, $dateCreated);
+
+        $iTotalRecords = count($users);
+        $iDisplayLength = intval($request->query->get('length'));
+        $iDisplayLength = $iDisplayLength < 0 ? $iTotalRecords : $iDisplayLength;
+        $iDisplayStart = intval($request->query->get('start'));
+        $sEcho = intval($request->query->get('draw'));
+
+        $records = array();
+        $records['data'] = array();
+
+        $end = $iDisplayStart + $iDisplayLength;
+        $end = $end > $iTotalRecords ? $iTotalRecords : $end;
+
+
+        for ($i = $iDisplayStart; $i < $end; $i++) {
+            $id = ($i + 1);
+            $records['data'][] = array(
+                '<input type="checkbox" name="id[]" value="' . $id . '">',
+                $users[$i]['id'],
+                $users[$i]['date_created'],
+                $users[$i]['given_name'],
+                $users[$i]['family_name'],
+                $users[$i]['gmail'],
+                '+961 ' . $users[$i]['phone_nb'],
+                $this->getRoleName($role),
+                $building->getName(),
+                '<a href="' . $this->generateUrl('viewProfile', ['userId' => $users[$i]['id']]) . '" class="btn btn-sm btn-outline grey-salsa"><i class="fa fa-search"></i> View</a>',
+            );
+        }
+
+        $records['draw'] = $sEcho;
+        $records['recordsTotal'] = $iTotalRecords;
+        $records['recordsFiltered'] = $iTotalRecords;
+
+        return new JsonResponse($records);
     }
 
     /**
      * @param int $page
      * @param string $query
      * @return JsonResponse
-     * @Route("/api/getAllUsers/{page}", name="getAllUsers", requirements={"page"="\d+"})
-     * @Route("/api/getAllUsers/{page}/{query}")
-     * @Method("GET")
+     * @Route("/api/getAllUsers/{page}", name="getAllUsers", requirements={"page"="\d+"}, methods={"GET"})
+     * @Route("/api/getAllUsers/{page}/{query}", methods={"GET"})
      */
     public function getAllUsers($page = 1, $query = '')
     {

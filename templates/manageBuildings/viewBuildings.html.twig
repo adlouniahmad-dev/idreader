@@ -37,7 +37,7 @@
                                         <div class="col-xs-3 text-right mobile-padding">
                                             <i class="icon-user"></i>
                                         </div>
-                                        <div class="col-xs-9 text-left mobile-padding">{{ building.admin.getFullName }}</div>
+                                        <div class="col-xs-9 text-left mobile-padding">{% if building.admin is not null %}{{ building.admin.getFullName }}{% else %}No Administrator{% endif %}</div>
                                     </div>
                                     <div class="row mobile-padding">
                                         <div class="col-xs-3 text-right mobile-padding">

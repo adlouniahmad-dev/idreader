@@ -102,4 +102,47 @@ class UserRepository extends ServiceEntityRepository
 
         return $paginator;
     }
+
+    /**
+     * @param $id
+     * @param $firstName
+     * @param $lastName
+     * @param $gmail
+     * @param $phone
+     * @param $role
+     * @param $building
+     * @param $dateCreated
+     * @return array
+     * @throws DBALException
+     */
+    public function advancedSearch($id, $firstName, $lastName, $gmail, $phone, $role, $building, $dateCreated)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $role = $role === '' ? 1 : $role;
+
+        $sql = "select user.id, user.given_name, user.family_name, user.gmail, user.phone_nb, user.date_created, users_roles.role_id, user_building.building_id
+                from user, user_building, users_roles
+                where user_building.user_id = user.id and users_roles.user_id = user.id AND user_building.building_id = :building and users_roles.role_id LIKE :role AND
+                user.id LIKE :id AND
+                user.given_name LIKE :firstName AND
+                user.family_name LIKE :lastName AND
+                user.gmail LIKE :gmail AND
+                user.phone_nb LIKE :phone AND
+                user.date_created LIKE :dateCreated";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(array(
+            'id' => '%'. $id . '%',
+            'building' => $building,
+            'firstName' => '%' . $firstName . '%',
+            'lastName' => '%' . $lastName . '%',
+            'gmail' => '%' . $gmail . '%',
+            'phone' => '%' . $phone . '%',
+            'role' => '%' . $role . '%',
+            'dateCreated' => '%' . $dateCreated . '%'
+        ));
+
+        return $stmt->fetchAll();
+    }
 }

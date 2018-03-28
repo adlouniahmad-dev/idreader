@@ -13,7 +13,11 @@
                     <ul class="list-inline">
                         <li>
                             <i class="icon-user"></i>
-                            <a href="{{ path('viewProfile', {'userId': building.admin.id}) }}">{{ building.admin.getFullName }}</a>
+                            {% if building.admin is not null %}
+                                <a href="{{ path('viewProfile', {'userId': building.admin.id}) }}">{{ building.admin.getFullName }}</a>
+                            {% else %}
+                                No Administrator
+                            {% endif %}
                         </li>
                     </ul>
                     <hr>

@@ -26,10 +26,6 @@
         <!-- ###+ google/apiclient ### -->
         <env name="GOOGLE_API_KEY" value=""/>
         <!-- ###- google/apiclient ### -->
-
-        <!-- ###+ nelmio/cors-bundle ### -->
-        <env name="CORS_ALLOW_ORIGIN" value="^https?://localhost:?[0-9]*$"/>
-        <!-- ###- nelmio/cors-bundle ### -->
     </php>
 
     <testsuites>

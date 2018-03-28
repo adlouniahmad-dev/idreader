@@ -2,21 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50e69e48-8f17-4cc9-ac75-48078c3b9921" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/pages/view-all-offices.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/templates/manageOffices/searchOffices.html.twig" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/public/js/pages/datatable-default-render.js" afterPath="$PROJECT_DIR$/public/js/pages/datatable-default-render.js" />
-      <change beforePath="$PROJECT_DIR$/public/js/pages/view-all-users.js" afterPath="$PROJECT_DIR$/public/js/pages/view-all-users.js" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ManageGatesController.php" afterPath="$PROJECT_DIR$/src/Controller/ManageGatesController.php" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ManageMembersController.php" afterPath="$PROJECT_DIR$/src/Controller/ManageMembersController.php" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ManageOfficeController.php" afterPath="$PROJECT_DIR$/src/Controller/ManageOfficeController.php" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/OfficeRepository.php" afterPath="$PROJECT_DIR$/src/Repository/OfficeRepository.php" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/UserRepository.php" afterPath="$PROJECT_DIR$/src/Repository/UserRepository.php" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" afterPath="$PROJECT_DIR$/templates/base.html.twig" />
-      <change beforePath="$PROJECT_DIR$/templates/baseOfficeProfile.html.twig" afterPath="$PROJECT_DIR$/templates/baseOfficeProfile.html.twig" />
-      <change beforePath="$PROJECT_DIR$/templates/manageOffices/editOffice.html.twig" afterPath="$PROJECT_DIR$/templates/manageOffices/editOffice.html.twig" />
-      <change beforePath="$PROJECT_DIR$/templates/manageOffices/office.html.twig" afterPath="$PROJECT_DIR$/templates/manageOffices/office.html.twig" />
-      <change beforePath="$PROJECT_DIR$/templates/manageOffices/viewOffices.html.twig" afterPath="$PROJECT_DIR$/templates/manageOffices/viewOffices.html.twig" />
+      <change beforePath="$PROJECT_DIR$/templates/manageOffices/searchOffices.html.twig" afterPath="$PROJECT_DIR$/templates/manageOffices/searchOffices.html.twig" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -84,8 +71,8 @@
       <file leaf-file-name="searchOffices.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/manageOffices/searchOffices.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2420">
-              <caret line="121" column="0" lean-forward="true" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
+            <state relative-caret-position="-1128">
+              <caret line="23" column="94" lean-forward="false" selection-start-line="23" selection-start-column="94" selection-end-line="23" selection-end-column="94" />
               <folding />
             </state>
           </provider>
@@ -609,7 +596,7 @@
       <workItem from="1521298693223" duration="12000" />
       <workItem from="1521543833685" duration="1798000" />
       <workItem from="1521629714367" duration="39992000" />
-      <workItem from="1521889165431" duration="102117000" />
+      <workItem from="1521889165431" duration="102165000" />
     </task>
     <task id="LOCAL-00001" summary="DONE">
       <created>1516447201961</created>
@@ -905,11 +892,18 @@
       <option name="project" value="LOCAL" />
       <updated>1522268015936</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="DONE">
+      <created>1522274538766</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1522274538766</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="645588000" />
+    <option name="totallyTimeSpent" value="645636000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1402,8 +1396,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/manageOffices/searchOffices.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2420">
-          <caret line="121" column="0" lean-forward="true" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
+        <state relative-caret-position="-1128">
+          <caret line="23" column="94" lean-forward="false" selection-start-line="23" selection-start-column="94" selection-end-line="23" selection-end-column="94" />
           <folding />
         </state>
       </provider>

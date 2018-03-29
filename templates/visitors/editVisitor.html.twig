@@ -1,0 +1,61 @@
+{% extends 'baseVisitorProfile.html.twig' %}
+{% form_theme form 'form/fields.html.twig' %}
+
+{% block content %}
+    {{ parent() }}
+    <div class="profile-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="portlet light ">
+                    <div class="portlet-title tabbable-line">
+                        <div class="caption caption-md">
+                            <i class="icon-globe theme-font hide"></i>
+                            <span class="caption-subject font-blue-madison bold uppercase">Visitor Settings</span>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="tab-content">
+
+                            <div class="tab-pane active" id="tab_1_1">
+                                {{ form_start(form, {'attr': {'class': 'form-horizontal', 'novalidate': 'novalidate'}}) }}
+                                <div class="form-body">
+
+                                    {% for label, messages in app.flashes %}
+                                        {% for message in messages %}
+                                            <div class="alert alert-{{ label }}">
+                                                <button class="close" data-close="alert"></button>
+                                                {{ message }}
+                                            </div>
+                                        {% endfor %}
+                                    {% endfor %}
+
+                                    {{ form_row(form.firstName) }}
+                                    {{ form_row(form.middleName) }}
+                                    {{ form_row(form.lastName) }}
+                                    {{ form_row(form.nationality) }}
+                                    {{ form_row(form.documentType) }}
+                                    {{ form_row(form.ssn) }}
+
+                                </div>
+                                <div class="form-actions">
+                                    <div class="row">
+                                        <div class="col-md-offset-3 col-md-4">
+                                            {{ form_widget(form.save) }}
+                                            {{ form_widget(form.reset) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}
+
+
+

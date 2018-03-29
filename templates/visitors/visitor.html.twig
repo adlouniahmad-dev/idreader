@@ -1,0 +1,64 @@
+{% extends 'baseVisitorProfile.html.twig' %}
+
+{% block content %}
+    {{ parent() }}
+    <div class="profile-content">
+        <div class="row">
+            <div class="col-md-8 profile-info">
+                <div class="portlet light">
+                    <div class="portlet-title">
+                        <h1 class="font-green sbold uppercase">{{ visitor.fullName }}</h1>
+                    </div>
+                    <h4 class="block">Nationality:</h4>
+                    <ul class="list-inline">
+                        <li>
+                            <i class="fa fa-flag-o"></i> {{ visitor.country }}
+                        </li>
+                    </ul>
+                    <hr>
+                    <h4 class="block">Has ID Card:</h4>
+                    <ul class="list-inline">
+                        <li><i class="fa fa-question"></i> {% if visitor.hasCard == 0 %}No{% else %}Yes{% endif %}</li>
+                    </ul>
+                    <hr>
+                    <h4 class="block">Document Type:</h4>
+                    <ul class="list-inline">
+                        <li><i class="fa fa-credit-card"></i> {{ visitor.documentType }} - {{ visitor.ssn }}</li>
+                    </ul>
+                    <hr>
+                    <h4 class="block">Blacklisted:</h4>
+                    <ul class="list-inline">
+                        <li><i class="fa fa-list"></i>
+                            {% if visitorBlacklist is null %}
+                                <span class="font-green">No</span>
+                            {% else %}
+                                <span class="font-red">Yes</span>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4 profile-info">
+                <div class="portlet light">
+                    <div class="portlet-title">
+                        <h1 class="font-red sbold uppercase">Other info</h1>
+                    </div>
+                    <h4 class="block">Visitor's account created in:</h4>
+                    <ul class="list-inline">
+                        <li><i class="fa fa-calendar"></i> {{ visitor.dateCreated|date('jS F, Y \\a\\t g:ia') }}</li>
+                    </ul>
+                    {% if visitorBlacklist is not null %}
+                        <hr>
+                        <h4 class="block">Blacklisted in:</h4>
+                        <ul class="list-inline">
+                            <li><i class="fa fa-calendar"></i> {{ visitorBlacklist.dateAdded|date('jS F, Y') }}</li>
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}
+

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "caf1b69ec5ec41b948a2242217e876a7",
+    "content-hash": "937a46bc7267c54e4e4730af64cec64f",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -3634,16 +3634,16 @@
         },
         {
             "name": "symfony/intl",
-            "version": "v4.0.3",
+            "version": "v4.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/intl.git",
-                "reference": "e67537d88dd27c7ae9ca1ff05c51ebb8eb59c391"
+                "reference": "929953d9e64c7209afb907fc34ac64b135c79cb8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/intl/zipball/e67537d88dd27c7ae9ca1ff05c51ebb8eb59c391",
-                "reference": "e67537d88dd27c7ae9ca1ff05c51ebb8eb59c391",
+                "url": "https://api.github.com/repos/symfony/intl/zipball/929953d9e64c7209afb907fc34ac64b135c79cb8",
+                "reference": "929953d9e64c7209afb907fc34ac64b135c79cb8",
                 "shasum": ""
             },
             "require": {
@@ -3705,7 +3705,7 @@
                 "l10n",
                 "localization"
             ],
-            "time": "2018-01-03T07:38:00+00:00"
+            "time": "2018-02-03T00:57:23+00:00"
         },
         {
             "name": "symfony/lts",

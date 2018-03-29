@@ -79,7 +79,7 @@ class ManageOfficeController extends Controller
             return $this->redirectToRoute('login');
 
         if (!in_array('fowner', $session->get('roles')) || !in_array('fadmin', $session->get('roles')))
-            return $this->render('errors/not_found.html.twig');
+            return $this->render('errors/access_denied.html.twig');
 
         return $this->render('manageOffices/viewOffices.html.twig');
     }
@@ -96,7 +96,7 @@ class ManageOfficeController extends Controller
             return $this->redirectToRoute('login');
 
         if (!in_array('fowner', $session->get('roles')) || !in_array('fadmin', $session->get('roles')))
-            return $this->render('errors/not_found.html.twig');
+            return $this->render('errors/access_denied.html.twig');
 
         $office = $this->getDoctrine()->getRepository(Office::class)->find($officeId);
         if (!$office)
@@ -120,7 +120,7 @@ class ManageOfficeController extends Controller
             return $this->redirectToRoute('login');
 
         if (!in_array('fowner', $session->get('roles')) || !in_array('fadmin', $session->get('roles')))
-            return $this->render('errors/not_found.html.twig');
+            return $this->render('errors/access_denied.html.twig');
 
         $entityManager = $this->getDoctrine()->getManager();
         $office = $entityManager->getRepository(Office::class)->find($officeId);

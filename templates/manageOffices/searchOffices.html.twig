@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Search Members{% endblock %}
-{% block pagetitle %}Manage Members{% endblock %}
-{% block pagetitlesmall %}Search Members{% endblock %}
-{% block pagebartitle %}Search Members{% endblock %}
+{% block title %}Search Offices{% endblock %}
+{% block pagetitle %}Manage Offices{% endblock %}
+{% block pagetitlesmall %}Search Offices{% endblock %}
+{% block pagebartitle %}Search Offices{% endblock %}
 
 {% block stylesheets %}
     <link type="text/css" href="{{ asset('global/datatables/datatables.min.js') }}">
@@ -16,7 +16,6 @@
 {% block content %}
     <div class="row">
         <div class="col-md-12">
-            <!-- Begin: life time stats -->
             <div class="portlet light portlet-fit portlet-datatable ">
                 <div class="portlet-title">
                     <div class="caption">
@@ -35,24 +34,23 @@
                                     <input type="checkbox" class="group-checkable">
                                 </th>
                                 <th width="5%"> ID&nbsp;#</th>
-                                <th width="15%"> Date Created</th>
-                                <th width="12.66%"> First Name</th>
-                                <th width="12.66%"> Last Name</th>
-                                <th width="12.66%"> Gmail</th>
-                                <th width="10%"> Phone Number</th>
-                                <th width="10%"> Role</th>
-                                <th width="10%"> Building</th>
+                                <th width="16.6%"> Date Created</th>
+                                <th width="16.6%"> Office Number</th>
+                                <th width="16.6%"> Member</th>
+                                <th width="16.6%"> Building</th>
+                                <th width="16.6%"> Floor Number</th>
                                 <th width="10%"> Actions</th>
                             </tr>
                             <tr role="row" class="filter">
                                 <td></td>
                                 <td>
-                                    <input type="text" class="form-control form-filter input-sm" name="member_id"></td>
+                                    <input type="text" class="form-control form-filter input-sm" name="office_id">
+                                </td>
                                 <td>
                                     <div class="input-group date date-picker margin-bottom-5"
                                          data-date-format="yyyy-mm-dd">
                                         <input type="text" class="form-control form-filter input-sm" readonly
-                                               name="member_date_created" placeholder="Date Created">
+                                               name="office_date_created" placeholder="Date Created">
                                         <span class="input-group-btn">
                                             <button class="btn btn-sm default" type="button">
                                                 <i class="fa fa-calendar"></i>
@@ -62,27 +60,21 @@
                                 </td>
                                 <td>
                                     <input type="text" class="form-control form-filter input-sm"
-                                           name="member_first_name"></td>
+                                           name="office_number"></td>
                                 <td>
                                     <input type="text" class="form-control form-filter input-sm"
-                                           name="member_last_name"></td>
+                                           name="member_name"></td>
                                 <td>
-                                    <input type="text" class="form-control form-filter input-sm"
-                                           name="member_gmail"></td>
-                                <td>
-                                    <div class="margin-bottom-5">
-                                        <input type="text" class="form-control form-filter input-sm"
-                                               name="member_phone_number"/>
-                                    </div>
-                                </td>
-                                <td>
-                                    <select name="member_role" class="form-control form-filter input-sm">
-                                        {{ roles|raw }}
-                                    </select>
-                                <td>
-                                    <select name="member_building" class="form-control form-filter input-sm">
+                                    <select name="office_building" class="form-control form-filter input-sm">
                                         {% for building in buildings %}
                                             <option value="{{ building.id }}">{{ building.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                <td>
+                                    <select name="floor_number" class="form-control form-filter input-sm">
+                                        <option value="">All</option>
+                                        {% for key, floor in floors %}
+                                            <option value="{{ key }}">{{ floor }}</option>
                                         {% endfor %}
                                     </select>
                                 </td>
@@ -103,7 +95,6 @@
                     </div>
                 </div>
             </div>
-            <!-- End: life time stats -->
         </div>
     </div>
     </div>
@@ -117,5 +108,5 @@
             src="{{ asset('global/datatables/plugins/bootstrap/datatables.bootstrap.js') }}"></script>
     <script type="text/javascript"
             src="{{ asset('js/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/pages/search_members.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/pages/search_offices.js') }}"></script>
 {% endblock %}

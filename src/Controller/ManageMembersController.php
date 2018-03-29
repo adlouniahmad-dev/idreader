@@ -612,7 +612,6 @@ class ManageMembersController extends Controller
         $end = $iDisplayStart + $iDisplayLength;
         $end = $end > $iTotalRecords ? $iTotalRecords : $end;
 
-
         for ($i = $iDisplayStart; $i < $end; $i++) {
             $id = ($i + 1);
             $records['data'][] = array(

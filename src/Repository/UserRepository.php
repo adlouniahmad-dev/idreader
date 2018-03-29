@@ -121,9 +121,9 @@ class UserRepository extends ServiceEntityRepository
     {
         $conn = $this->getEntityManager()->getConnection();
 
-        $sql = "select user.id, user.given_name, user.family_name, user.gmail, user.phone_nb, user.date_created, users_roles.role_id, user_building.building_id
-                from user, user_building, users_roles
-                where user_building.user_id = user.id and users_roles.user_id = user.id AND user_building.building_id = :building and users_roles.role_id LIKE :role AND
+        $sql = "SELECT user.id, user.given_name, user.family_name, user.gmail, user.phone_nb, user.date_created, users_roles.role_id, user_building.building_id
+                FROM user, user_building, users_roles
+                WHERE user_building.user_id = user.id AND users_roles.user_id = user.id AND user_building.building_id = :building AND users_roles.role_id LIKE :role AND
                 user.id LIKE :id AND
                 user.given_name LIKE :firstName AND
                 user.family_name LIKE :lastName AND

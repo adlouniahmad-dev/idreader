@@ -16,7 +16,6 @@
 {% block content %}
     <div class="row">
         <div class="col-md-12">
-            <!-- Begin: life time stats -->
             <div class="portlet light portlet-fit portlet-datatable ">
                 <div class="portlet-title">
                     <div class="caption">
@@ -47,7 +46,8 @@
                             <tr role="row" class="filter">
                                 <td></td>
                                 <td>
-                                    <input type="text" class="form-control form-filter input-sm" name="member_id"></td>
+                                    <input type="text" class="form-control form-filter input-sm" name="member_id">
+                                </td>
                                 <td>
                                     <div class="input-group date date-picker margin-bottom-5"
                                          data-date-format="yyyy-mm-dd">
@@ -70,15 +70,14 @@
                                     <input type="text" class="form-control form-filter input-sm"
                                            name="member_gmail"></td>
                                 <td>
-                                    <div class="margin-bottom-5">
-                                        <input type="text" class="form-control form-filter input-sm"
-                                               name="member_phone_number"/>
-                                    </div>
+                                    <input type="text" class="form-control form-filter input-sm"
+                                           name="member_phone_number"/>
                                 </td>
                                 <td>
                                     <select name="member_role" class="form-control form-filter input-sm">
                                         {{ roles|raw }}
                                     </select>
+                                </td>
                                 <td>
                                     <select name="member_building" class="form-control form-filter input-sm">
                                         {% for building in buildings %}
@@ -103,7 +102,6 @@
                     </div>
                 </div>
             </div>
-            <!-- End: life time stats -->
         </div>
     </div>
     </div>

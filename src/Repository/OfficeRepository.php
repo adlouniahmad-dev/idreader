@@ -68,6 +68,42 @@ class OfficeRepository extends ServiceEntityRepository
     }
 
     /**
+     * @param $officeId
+     * @param $dateCreated
+     * @param $officeNb
+     * @param $memberName
+     * @param $buildingId
+     * @param $floorNb
+     * @return array
+     * @throws \Doctrine\DBAL\DBALException
+     */
+    public function advancedSearch($officeId, $dateCreated, $officeNb, $memberName, $buildingId, $floorNb)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = "SELECT office.id, office.date_created, office.office_nb, CONCAT(user.given_name, ' ', user.family_name) AS member, building.name, office.floor_nb
+                FROM office, building, user
+                WHERE office.building_id = building.id AND office.building_id LIKE :buildingId AND office.user_id = user.id 
+                AND office.id LIKE :officeId
+                AND office.office_nb LIKE :officeNb
+                AND office.date_created LIKE :dateCreated
+                AND office.floor_nb LIKE :floorNb
+                AND CONCAT(user.given_name, ' ', user.family_name) LIKE :memberName";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(array(
+            'officeId' => '%' . $officeId . '%',
+            'officeNb' => '%' . $officeNb . '%',
+            'dateCreated' => '%' . $dateCreated . '%',
+            'memberName' => '%' . $memberName . '%',
+            'buildingId' => '%' . $buildingId . '%',
+            'floorNb' => $floorNb === '' ? '%%' : $floorNb,
+        ));
+
+        return $stmt->fetchAll();
+    }
+
+    /**
      * @param $dql
      * @param int $page
      * @param int $limit

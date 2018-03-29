@@ -15,6 +15,7 @@ use App\Form\Type\OfficeType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -169,7 +170,88 @@ class ManageOfficeController extends Controller
         if (!in_array('fowner', $session->get('roles')) || !in_array('fadmin', $session->get('roles')))
             return $this->render('errors/access_denied.html.twig');
 
-        return $this->render('manageOffices/searchOffices.html.twig');
+        if (in_array('fowner', $session->get('roles'))) {
+            $buildings = $this->getDoctrine()->getRepository(Building::class)->findAll();
+        } else {
+            $buildings = $this->getDoctrine()->getRepository(Building::class)->findBy(['admin' => $session->get('user')]);
+        }
+
+        $floors = $buildings[0]->getFloors();
+
+        return $this->render('manageOffices/searchOffices.html.twig', array(
+            'buildings' => $buildings,
+            'floors' => $floors,
+        ));
+    }
+
+    /**
+     * @Route("/api/office/search", name="searchOffices", methods={"GET"})
+     * @param Request $request
+     * @return JsonResponse
+     * @throws \Doctrine\DBAL\DBALException
+     */
+    public function getOfficesAdvancedSearch(Request $request)
+    {
+        $office_id = $request->query->get('office_id');
+        $dateCreated = $request->query->get('office_date_created');
+        $officeNumber = $request->query->get('office_number');
+        $memberName = $request->query->get('member_name');
+        $buildingId = $request->query->get('office_building');
+        $floorNumber = $request->query->get('floor_number');
+
+        $offices = $this->getDoctrine()->getRepository(Office::class)->advancedSearch($office_id, $dateCreated, $officeNumber,
+            $memberName, $buildingId, $floorNumber);
+
+        $iTotalRecords = count($offices);
+        $iDisplayLength = intval($request->query->get('length'));
+        $iDisplayLength = $iDisplayLength < 0 ? $iTotalRecords : $iDisplayLength;
+        $iDisplayStart = intval($request->query->get('start'));
+        $sEcho = intval($request->query->get('draw'));
+
+        $records = array();
+        $records['data'] = array();
+
+        $end = $iDisplayStart + $iDisplayLength;
+        $end = $end > $iTotalRecords ? $iTotalRecords : $end;
+
+        for ($i = $iDisplayStart; $i < $end; $i++) {
+            $id = ($i + 1);
+            $records['data'][] = array(
+                '<input type="checkbox" name="id[]" value="' . $id . '">',
+                $offices[$i]['id'],
+                $offices[$i]['date_created'],
+                $offices[$i]['office_nb'],
+                $offices[$i]['member'],
+                $offices[$i]['name'],
+                $offices[$i]['floor_nb'],
+                '<a href="' . $this->generateUrl('viewOffice', ['officeId' => $offices[$i]['id']]) . '" class="btn btn-sm btn-outline grey-salsa"><i class="fa fa-search"></i> View</a>',
+            );
+        }
+
+        $records['draw'] = $sEcho;
+        $records['recordsTotal'] = $iTotalRecords;
+        $records['recordsFiltered'] = $iTotalRecords;
+
+        return new JsonResponse($records);
+    }
+
+    /**
+     * @Route("/api/office/getBuildingFloors/{buildingId}", methods={"GET"}, name="getBuildingFloors")
+     * @param $buildingId
+     * @return Response
+     */
+    public function getBuildingFloors($buildingId)
+    {
+        $building = $this->getDoctrine()->getRepository(Building::class)->find($buildingId);
+        if (!$building)
+            return new Response('Building not found', Response::HTTP_NOT_FOUND);
+
+        $floors = $building->getFloors();
+        $options = '<option value="">All</option>';
+        foreach ($floors as $key => $floor)
+            $options .= '<option value="' . $key . '">' . $floor . '</option>';
+
+        return new Response($options, Response::HTTP_OK);
     }
 
     /**

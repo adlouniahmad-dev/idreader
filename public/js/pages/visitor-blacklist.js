@@ -47,9 +47,10 @@ function add_remove_blacklist(button, option, visitorId) {
                     let textButton = option === 'add' ? 'Added' : 'Removed';
                     $(button).html(textButton);
 
+                    location.href = 'http://localhost:8000/visitor/' + visitorId + '/settings#blacklist';
                     setInterval(function () {
-                        location.href = 'http://localhost:8000/visitor/' + visitorId + '/settings'
-                    }, 2000);
+                        location.reload();
+                    }, 1000);
 
                 } else if (response.success === 'no') {
 

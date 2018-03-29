@@ -75,7 +75,7 @@ function renderPagination(maxPages, string) {
     }));
 }
 
-$('#search_users').keyup(function () {
+$('#search').keyup(function () {
     let string = $(this).val();
     getUsers(1, string);
 });

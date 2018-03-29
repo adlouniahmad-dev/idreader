@@ -31,6 +31,8 @@ class ManageVisitorController extends Controller
         if (!$session->has('gmail'))
             return $this->redirectToRoute('login');
 
+
+
         return $this->render('visitors/viewVisitors.html.twig');
     }
 
@@ -99,6 +101,8 @@ class ManageVisitorController extends Controller
                 'success',
                 'Visitor\'s info updated successfully.'
             );
+
+            return $this->redirectToRoute('visitorSettings', ['visitorId' => $visitorId]);
         }
 
         return $this->render('visitors/editVisitor.html.twig', array(
@@ -106,6 +110,55 @@ class ManageVisitorController extends Controller
             'form' => $form->createView(),
             'visitorBlacklist' => $visitorBlacklist
         ));
+    }
+
+    /**
+     * @Route("/api/getAllVisitors/{page}", methods={"GET"})
+     * @Route("/api/getAllVisitors/{page}/{query}", methods={"GET"})
+     * @param int $page
+     * @param string $query
+     * @return JsonResponse
+     */
+    public function getAllVisitors($page = 1, $query = '')
+    {
+        $currentPage = $page;
+
+        $repo = $this->getDoctrine()->getRepository(Visitor::class);
+        $visitors = $repo->getAllVisitors($currentPage, $query);
+
+        $totalVisitorsReturned = $visitors->getIterator()->count();
+        $totalVisitors = $visitors->count();
+        $limit = 10;
+        $maxPages = ceil($totalVisitors / $limit);
+
+        $data = array();
+        $data['totalVisitors'] = $totalVisitors;
+        $data['totalVisitorsReturned'] = $totalVisitorsReturned;
+        $data['limit'] = $limit;
+        $data['currentPage'] = (int)$currentPage;
+        $data['maxPages'] = $maxPages;
+
+        $visitorsArray = array();
+
+        foreach ($visitors as $visitor) {
+
+            $b = $this->getDoctrine()->getRepository(Blacklist::class)->findOneBy(['visitor' => $visitor]);
+
+            $visitorInfo = array();
+            $visitorInfo['id'] = $visitor->getId();
+            $visitorInfo['firstName'] = $visitor->getFirstName();
+            $visitorInfo['middleName'] = $visitor->getMiddleName();
+            $visitorInfo['lastName'] = $visitor->getLastName();
+            $visitorInfo['nationality'] = $visitor->getCountry();
+            $visitorInfo['documentType'] = $visitor->getDocumentType();
+            $visitorInfo['ssn'] = $visitor->getSsn();
+            $visitorInfo['blacklisted'] = $b === null ? 'No' : 'Yes';
+            $visitorInfo['span'] = $b === null ? 'success' : 'danger';
+            $visitorsArray[] = $visitorInfo;
+        }
+        $data['visitors'] = $visitorsArray;
+
+        return new JsonResponse($data);
     }
 
     /**

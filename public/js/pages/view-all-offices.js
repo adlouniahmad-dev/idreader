@@ -74,7 +74,7 @@ function renderPagination(maxPages, string) {
     }));
 }
 
-$('#search_offices').keyup(function () {
+$('#search').keyup(function () {
     let string = $(this).val();
     getOffices(1, string);
 });

@@ -3,7 +3,7 @@ function checkRowIndex(index) {
 }
 
 function renderTablesInfo(totalRecords) {
-    let $tablesInfo = $('#all_users_info');
+    let $tablesInfo = $('#records_info');
     let info = 'Total: ' + totalRecords + ' entries';
     $tablesInfo.empty();
     $tablesInfo.html(info);

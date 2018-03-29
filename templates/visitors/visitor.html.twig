@@ -26,16 +26,13 @@
                         <li><i class="fa fa-credit-card"></i> {{ visitor.documentType }} - {{ visitor.ssn }}</li>
                     </ul>
                     <hr>
-                    <h4 class="block">Blacklisted:</h4>
-                    <ul class="list-inline">
-                        <li><i class="fa fa-list"></i>
-                            {% if visitorBlacklist is null %}
-                                <span class="font-green">No</span>
-                            {% else %}
-                                <span class="font-red">Yes</span>
-                            {% endif %}
-                        </li>
-                    </ul>
+                    <h4 class="block">In Blacklist:
+                        {% if visitorBlacklist is null %}
+                            <span class="label label-sm label-succes">No</span>
+                        {% else %}
+                            <span class="label label-sm label-danger">Yes</span>
+                        {% endif %}
+                    </h4>
                 </div>
             </div>
             <div class="col-md-4 profile-info">

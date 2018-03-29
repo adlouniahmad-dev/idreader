@@ -12,11 +12,24 @@
                             <i class="icon-globe theme-font hide"></i>
                             <span class="caption-subject font-blue-madison bold uppercase">Visitor Settings</span>
                         </div>
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#visitor_info" data-toggle="tab">Visitor Info</a>
+                            </li>
+                            <li>
+                                <a href="#blacklist" data-toggle="tab">
+                                    {% if visitorBlacklist is not null %}
+                                        Remove from blacklist
+                                    {% else %}
+                                        Add to blacklist
+                                    {% endif %}
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                     <div class="portlet-body">
                         <div class="tab-content">
-
-                            <div class="tab-pane active" id="tab_1_1">
+                            <div class="tab-pane active" id="visitor_info">
                                 {{ form_start(form, {'attr': {'class': 'form-horizontal', 'novalidate': 'novalidate'}}) }}
                                 <div class="form-body">
 
@@ -47,6 +60,26 @@
                                 </div>
                                 {{ form_end(form) }}
                             </div>
+
+                            <div class="tab-pane" id="blacklist">
+                                <div class="alert hidden">
+                                    <button class="close" data-close="alert"></button>
+                                    <span id="error-text"></span>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        {% if visitorBlacklist is null %}
+                                            <p>Add the visitor to the blacklist.</p>
+                                            <button class="btn red" data-toggle="confirmation" data-placement="right"
+                                                    id="add">Add</button>
+                                        {% else %}
+                                            <p>Remove the visitor from the blacklist.</p>
+                                            <button class="btn red" data-toggle="confirmation" data-placement="right"
+                                                    id="remove">Remove</button>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -55,6 +88,13 @@
     </div>
     </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/pages/bootstrap-confirmation/bootstrap-confirmation.min.js') }}"></script>
+    <script type="text/javascript">let visitorId = {{ visitor.id }};</script>
+    <script type="text/javascript" src="{{ asset('js/pages/visitor-blacklist.js') }}"></script>
 {% endblock %}
 
 

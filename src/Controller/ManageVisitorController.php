@@ -13,6 +13,7 @@ use App\Entity\Blacklist;
 use App\Entity\Visitor;
 use App\Form\Type\VisitorType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
@@ -73,7 +74,12 @@ class ManageVisitorController extends Controller
         if (!$visitor)
             return $this->render('errors/not_found.html.twig');
 
-        $form = $this->createForm(VisitorType::class, $visitor);
+        $visitorBlacklist = $this->getDoctrine()->getRepository(Blacklist::class)->findOneBy(['visitor' => $visitor]);
+
+        $form = $this->createForm(VisitorType::class, $visitor, array(
+            'action' => $this->generateUrl('visitorSettings', ['visitorId' => $visitorId, '_fragment' => 'info'])
+        ));
+
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if (!$form->isValid()) {
@@ -84,6 +90,7 @@ class ManageVisitorController extends Controller
                 return $this->render('visitors/editVisitor.html.twig', array(
                     'form' => $form->createView(),
                     'visitor' => $visitor,
+                    'visitorBlacklist' => $visitorBlacklist
                 ));
             }
 
@@ -96,8 +103,48 @@ class ManageVisitorController extends Controller
 
         return $this->render('visitors/editVisitor.html.twig', array(
             'visitor' => $visitor,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'visitorBlacklist' => $visitorBlacklist
         ));
+    }
+
+    /**
+     * @Route("/api/blacklist/{option}/{visitorId}")
+     * @param $visitorId
+     * @param $option
+     * @return JsonResponse
+     */
+    public function removeAddBlacklist($visitorId, $option)
+    {
+        $error = array('success' => 'no');
+        $success = array('success' => 'yes');
+        $visitor = $this->getDoctrine()->getRepository(Visitor::class)->find($visitorId);
+
+        $entityManager = $this->getDoctrine()->getManager();
+
+        if ($option === 'add') {
+            $visitorBlacklist = new Blacklist();
+            $visitorBlacklist->setVisitor($visitor);
+            $visitorBlacklist->setDateAdded(new \DateTime());
+            $entityManager->persist($visitorBlacklist);
+            $entityManager->flush();
+
+            $v = $entityManager->getRepository(Blacklist::class)->findOneBy(['visitor' => $visitor]);
+            if ($v)
+                return new JsonResponse($success);
+
+            return new JsonResponse($error);
+
+        }
+        $visitorBlacklist = $entityManager->getRepository(Blacklist::class)->findOneBy(['visitor' => $visitor]);
+        $entityManager->remove($visitorBlacklist);
+        $entityManager->flush();
+
+        $v = $entityManager->getRepository(Blacklist::class)->findOneBy(['visitor' => $visitor]);
+        if ($v)
+            return new JsonResponse($error);
+
+        return new JsonResponse($success);
     }
 
 }

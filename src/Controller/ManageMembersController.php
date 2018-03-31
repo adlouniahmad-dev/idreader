@@ -647,13 +647,13 @@ class ManageMembersController extends Controller
     {
         $currentPage = $page;
 
-        if (in_array('fowner', $session->get('roles')))
-            $building = null;
-        else
-            $building = $this->getDoctrine()->getRepository(Building::class)->findOneBy(['admin' => $session->get('user')]);
+//        if (in_array('fowner', $session->get('roles')))
+//            $building = null;
+//        else
+//            $building = $this->getDoctrine()->getRepository(Building::class)->findOneBy(['admin' => $session->get('user')]);
 
         $repo = $this->getDoctrine()->getRepository(User::class);
-        $users = $repo->getAllUsers($currentPage, $query, $building);
+        $users = $repo->getAllUsers($currentPage, $query);
 
         $totalUsersReturned = $users->getIterator()->count();
         $totalUsers = $users->count();

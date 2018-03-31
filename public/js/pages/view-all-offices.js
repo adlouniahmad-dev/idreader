@@ -17,7 +17,7 @@ function getOffices(page, string = '') {
         type: 'get',
         dataType: 'json',
         success: function (data) {
-            renderUsersRecords(data.offices);
+            renderRecords(data.offices);
             renderTablesInfo(data.totalOffices);
             renderPagination(data.maxPages, string);
         },
@@ -27,7 +27,7 @@ function getOffices(page, string = '') {
     })
 }
 
-function renderUsersRecords(offices) {
+function renderRecords(offices) {
     let $rows = '';
     let $tbody = $('tbody');
 

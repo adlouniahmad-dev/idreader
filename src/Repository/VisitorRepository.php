@@ -27,7 +27,7 @@ class VisitorRepository extends ServiceEntityRepository
 
         $query = $qb->select('v')
             ->from('App:Visitor', 'v')
-            ->orderBy('v.id', 'ASC')
+            ->orderBy('v.id', 'DESC')
             ->where(
                 'v.id LIKE :string
                 OR v.firstName LIKE :string

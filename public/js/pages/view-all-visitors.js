@@ -17,7 +17,7 @@ function getVisitors(page, string = '') {
         type: 'get',
         dataType: 'json',
         success: function (data) {
-            renderUsersRecords(data.visitors);
+            renderRecords(data.visitors);
             renderTablesInfo(data.totalVisitors);
             renderPagination(data.maxPages, string);
         },
@@ -27,7 +27,7 @@ function getVisitors(page, string = '') {
     })
 }
 
-function renderUsersRecords(visitors) {
+function renderRecords(visitors) {
     let $rows = '';
     let $tbody = $('tbody');
 

@@ -226,7 +226,7 @@
 
                 {%- if 'fowner' in app.session.get('roles') or 'fadmin' in app.session.get('roles') -%}
                     <li class="nav-item">
-                        <a href="{{ path('dashboard') }}" class="nav-link nav-toggle">
+                        <a href="{{ path('viewBlacklist') }}" class="nav-link nav-toggle">
                             <i class="fa fa-list-ul"></i>
                             <span class="title">Blacklist</span>
                             <span class="selected"></span>

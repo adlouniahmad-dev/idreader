@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 
+use App\Entity\Blacklist;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,7 +31,44 @@ class ManageBlacklistController extends Controller
             return $this->render('errors/access_denied.html.twig');
 
 
-
         return $this->render('blacklist/blacklist.html.twig');
+    }
+
+    /**
+     * @Route("/api/getBlacklist/{query}", methods={"GET"})
+     * @param string $query
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function getTheBlacklist($query = '')
+    {
+
+        $repo = $this->getDoctrine()->getRepository(Blacklist::class);
+        $visitors = $repo->getAllBlacklistedVisitors($query);
+
+        $totalVisitors = count($visitors) / 2;
+
+        $data = array();
+        $data['totalVisitors'] = $totalVisitors;
+
+        $visitorsArray = array();
+
+        for ($i = 0; $i < count($visitors) - 1; $i += 2) {
+            $visitorInfo = array();
+            $visitorInfo['id'] = $visitors[$i]->getId();
+            $visitorInfo['dateAddedToBlacklist'] = date_format($visitors[$i]->getDateAdded(), 'jS F, Y');
+
+            $visitorInfo['visitor'] = array();
+            $visitorInfo['visitor']['id'] = $visitors[$i + 1]->getId();
+            $visitorInfo['visitor']['firstName'] = $visitors[$i + 1]->getFirstName();
+            $visitorInfo['visitor']['middleName'] = $visitors[$i + 1]->getMiddleName();
+            $visitorInfo['visitor']['lastName'] = $visitors[$i + 1]->getLastName();
+            $visitorInfo['visitor']['nationality'] = $visitors[$i + 1]->getCountry();
+
+            $visitorsArray[] = $visitorInfo;
+        }
+
+        $data['blacklist'] = $visitorsArray;
+
+        return $this->json($data);
     }
 }

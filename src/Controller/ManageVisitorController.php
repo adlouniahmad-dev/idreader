@@ -31,8 +31,6 @@ class ManageVisitorController extends Controller
         if (!$session->has('gmail'))
             return $this->redirectToRoute('login');
 
-
-
         return $this->render('visitors/viewVisitors.html.twig');
     }
 

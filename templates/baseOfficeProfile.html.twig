@@ -24,7 +24,7 @@
                             <a href="{{ path('viewOffice', {'officeId': office.id}) }}"><i class="icon-home"></i>
                                 Overview </a>
                         </li>
-                        {% if 'fowner' in app.session.get('roles') %}
+                        {% if 'fowner' in app.session.get('roles') or 'fadmin' in app.session.get('roles') %}
                             <li class="{% if routeName == 'editOffice' %}active{% endif %}">
                                 <a href="{{ path('editOffice', {'officeId': office.id}) }}"><i class="icon-settings"></i>
                                     Office Settings </a>

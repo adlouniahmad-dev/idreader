@@ -89,7 +89,7 @@ class ManageBuildingController extends Controller
         if (in_array('fowner', $session->get('roles')))
             $buildings = $this->getDoctrine()->getRepository(Building::class)->findAll();
         else
-            $buildings = $this->getDoctrine()->getRepository(Building::class)->findBy(['user' => $session->get('user')]);
+            $buildings = $this->getDoctrine()->getRepository(Building::class)->findBy(['admin' => $session->get('user')]);
 
         return $this->render('manageBuildings/viewBuildings.html.twig', array(
             'buildings' => $buildings
@@ -112,7 +112,7 @@ class ManageBuildingController extends Controller
         if (!$building)
             return $this->render('errors/not_found.html.twig');
 
-        if (!in_array('fowner', $session->get('roles')) ||
+        if (!in_array('fowner', $session->get('roles')) &&
             !in_array('fadmin', $session->get('roles')) &&
             $session->get('user')->getId() !== $building->getAdmin()->getId())
             return $this->render('errors/access_denied.html.twig');

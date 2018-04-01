@@ -67,7 +67,8 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-default">
                             <li>
-                                <a href="{{ path('viewProfile', {'userId': app.session.get('user').getId()}) }}"><i class="icon-user"></i> My Profile </a>
+                                <a href="{{ path('viewProfile', {'userId': app.session.get('user').getId()}) }}"><i
+                                            class="icon-user"></i> My Profile </a>
                             </li>
                             <li class="divider"></li>
                             <li>
@@ -102,7 +103,7 @@
                     </li>
                 {%- endif -%}
 
-                {%- if 'fowner' in app.session.get('roles') -%}
+                {%- if 'fowner' in app.session.get('roles') or 'fadmin' in app.session.get('roles') -%}
                     <li class="nav-item">
                         <a href="#" class="nav-link nav-toggle">
                             <i class="fa fa-building-o"></i>
@@ -110,12 +111,14 @@
                             <span class="arrow open"></span>
                         </a>
                         <ul class="sub-menu">
-                            <li class="nav-item start">
-                                <a href="{{ path('addBuilding') }}" class="nav-link ">
-                                    <i class="fa fa-plus"></i>
-                                    <span class="title">Add Building</span>
-                                </a>
-                            </li>
+                            {%- if 'fowner' in app.session.get('roles') -%}
+                                <li class="nav-item start">
+                                    <a href="{{ path('addBuilding') }}" class="nav-link ">
+                                        <i class="fa fa-plus"></i>
+                                        <span class="title">Add Building</span>
+                                    </a>
+                                </li>
+                            {% endif %}
                             <li class="nav-item start ">
                                 <a href="{{ path('viewBuildings') }}" class="nav-link ">
                                     <i class="fa fa-list-ul"></i>
@@ -196,14 +199,14 @@
                                     <span class="title">Add Member</span>
                                 </a>
                             </li>
-
-                            <li class="nav-item">
-                                <a href="{{ path('viewUsers') }}" class="nav-link ">
-                                    <i class="fa fa-list-ul"></i>
-                                    <span class="title">View Members</span>
-                                </a>
-                            </li>
-
+                            {% if 'fowner' in app.session.get('roles') %}
+                                <li class="nav-item">
+                                    <a href="{{ path('viewUsers') }}" class="nav-link ">
+                                        <i class="fa fa-list-ul"></i>
+                                        <span class="title">View Members</span>
+                                    </a>
+                                </li>
+                            {% endif %}
                             <li class="nav-item">
                                 <a href="{{ path('userAdvancedSearch') }}" class="nav-link ">
                                     <i class="fa fa-search"></i>

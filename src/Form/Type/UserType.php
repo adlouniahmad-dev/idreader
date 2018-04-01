@@ -112,7 +112,7 @@ class UserType extends AbstractType
         if (in_array('fowner', $this->session->get('roles')))
             $roles = $this->em->createQuery("select r from App\Entity\Role r where r.roleName != 'fowner'")->getResult();
         else if (in_array('fadmin', $this->session->get('roles')))
-            $roles = $this->em->createQuery("select r from App\Entity\Role where r.roleName != 'fowner' and r.roleName != 'fadmin'")->getResult();
+            $roles = $this->em->createQuery("select r from App\Entity\Role r where r.roleName != 'fowner' and r.roleName != 'fadmin'")->getResult();
 
         if ($roles) {
             foreach ($roles as $role) {

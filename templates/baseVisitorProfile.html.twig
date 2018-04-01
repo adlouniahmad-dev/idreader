@@ -16,10 +16,6 @@
     <div class="col-md-12">
         <div class="profile-sidebar">
             <div class="portlet light profile-sidebar-portlet ">
-                {#<div class="profile-userpic">#}
-                {#<img src="{% if user.imageUrl != '' %}{{ user.imageUrl() }}{% else %}{{ asset('images/noimage.jpg') }}{% endif %}" class="img-responsive img-circle"#}
-                {#alt="{{ user.fullName }}">#}
-                {#</div>#}
                 <div class="profile-usermenu">
                     <ul class="nav">
                         {% set routeName = app.request.attributes.get("_route") %}
@@ -28,7 +24,7 @@
                             <a href="{{ path('viewVisitor', {'visitorId': visitor.id}) }}"><i class="icon-home"></i>
                                 Overview </a>
                         </li>
-                        {% if 'fowner' in app.session.get('roles') %}
+                        {% if 'fowner' in app.session.get('roles') or 'fadmin' in app.session.get('roles') %}
                             <li class="{% if routeName == 'visitorSettings' %}active{% endif %}">
                                 <a href="{{ path('visitorSettings', {'visitorId': visitor.id}) }}"><i class="icon-settings"></i>
                                     Visitor Settings </a>

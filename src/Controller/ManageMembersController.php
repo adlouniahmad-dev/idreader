@@ -537,6 +537,9 @@ class ManageMembersController extends Controller
         if (!$session->has('gmail'))
             return $this->redirectToRoute('login');
 
+        if (!in_array('fowner', $session->get('roles')))
+            return $this->render('errors/access_denied.html.twig');
+
         return $this->render('manageMembers/viewUsers.html.twig');
     }
 

@@ -15,6 +15,7 @@ use App\Entity\Schedule;
 use App\Form\Type\GateType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -83,7 +84,7 @@ class ManageGatesController extends Controller
             $buildings = $this->getDoctrine()->getRepository(Building::class)->findAll();
             $gates = $this->getDoctrine()->getRepository(Gate::class)->findAll();
         } else {
-            $buildings = $this->getDoctrine()->getRepository(Building::class)->findOneBy(['admin' => $session->get('user')]);
+            $buildings = $this->getDoctrine()->getRepository(Building::class)->findBy(['admin' => $session->get('user')]);
             $gates = $this->getDoctrine()->getRepository(Gate::class)->findBy(['building' => $buildings]);
         }
 

@@ -49,18 +49,31 @@ class OfficeRepository extends ServiceEntityRepository
         $em = $this->getEntityManager();
         $qb = new QueryBuilder($em);
 
-        $query = $qb->select('o')
-            ->from('App:Office', 'o')
-            ->orderBy('o.id', 'ASC')
-            ->where(
-                'o.dateCreated LIKE :string
+        if (!$building) {
+            $query = $qb->select('o')
+                ->from('App:Office', 'o')
+                ->orderBy('o.id', 'ASC')
+                ->where(
+                    'o.dateCreated LIKE :string
                 OR o.officeNb LIKE :string
-                OR o.floorNb LIKE :string
-                OR o.building = :building'
-            )
-            ->setParameter('string', '%' . $string . '%')
-            ->setParameter('building', $building === null ? '%%' : $building)
-            ->getQuery();
+                OR o.floorNb LIKE :string'
+                )
+                ->setParameter('string', '%' . $string . '%')
+                ->getQuery();
+        } else {
+            $query = $qb->select('o')
+                ->from('App:Office', 'o')
+                ->innerJoin('App:Building', 'b', 'WITH', 'o.building = :building')
+                ->orderBy('o.id', 'ASC')
+                ->where(
+                    'o.dateCreated LIKE :string
+                OR o.officeNb LIKE :string
+                OR o.floorNb LIKE :string'
+                )
+                ->setParameter('string', '%' . $string . '%')
+                ->setParameter('building', $building)
+                ->getQuery();
+        }
 
         $paginator = $this->paginate($query, $currentPage);
 

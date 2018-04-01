@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Intl\Locale;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\VisitorRepository")
@@ -20,7 +19,7 @@ class Visitor
     private $id;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", unique=true)
      */
     private $ssn;
 

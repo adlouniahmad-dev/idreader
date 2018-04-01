@@ -71,7 +71,7 @@ class User
     private $dob;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=true, unique=true)
      * @Assert\NotBlank()
      * @Assert\Length(
      *     min="8",

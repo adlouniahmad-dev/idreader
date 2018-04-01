@@ -45,24 +45,24 @@ class ManageBlacklistController extends Controller
         $repo = $this->getDoctrine()->getRepository(Blacklist::class);
         $visitors = $repo->getAllBlacklistedVisitors($query);
 
-        $totalVisitors = count($visitors) / 2;
+        $totalVisitors = count($visitors);
 
         $data = array();
         $data['totalVisitors'] = $totalVisitors;
 
         $visitorsArray = array();
 
-        for ($i = 0; $i < count($visitors) - 1; $i += 2) {
+        for ($i = 0; $i < count($visitors); $i++) {
             $visitorInfo = array();
             $visitorInfo['id'] = $visitors[$i]->getId();
             $visitorInfo['dateAddedToBlacklist'] = date_format($visitors[$i]->getDateAdded(), 'jS F, Y');
 
             $visitorInfo['visitor'] = array();
-            $visitorInfo['visitor']['id'] = $visitors[$i + 1]->getId();
-            $visitorInfo['visitor']['firstName'] = $visitors[$i + 1]->getFirstName();
-            $visitorInfo['visitor']['middleName'] = $visitors[$i + 1]->getMiddleName();
-            $visitorInfo['visitor']['lastName'] = $visitors[$i + 1]->getLastName();
-            $visitorInfo['visitor']['nationality'] = $visitors[$i + 1]->getCountry();
+            $visitorInfo['visitor']['id'] = $visitors[$i]->getVisitor()->getId();
+            $visitorInfo['visitor']['firstName'] = $visitors[$i]->getVisitor()->getFirstName();
+            $visitorInfo['visitor']['middleName'] = $visitors[$i]->getVisitor()->getMiddleName();
+            $visitorInfo['visitor']['lastName'] = $visitors[$i]->getVisitor()->getLastName();
+            $visitorInfo['visitor']['nationality'] = $visitors[$i]->getVisitor()->getCountry();
 
             $visitorsArray[] = $visitorInfo;
         }

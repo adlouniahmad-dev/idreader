@@ -24,7 +24,7 @@ class BlacklistRepository extends ServiceEntityRepository
         $em = $this->getEntityManager();
         $qb = new QueryBuilder($em);
 
-        $query = $qb->select('b', 'v')
+        $query = $qb->select('b')
             ->from('App:Blacklist', 'b')
             ->innerJoin('App:Visitor', 'v', 'WITH', 'b.visitor = v')
             ->where(

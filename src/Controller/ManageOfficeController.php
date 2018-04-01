@@ -78,7 +78,7 @@ class ManageOfficeController extends Controller
         if (!$session->has('gmail'))
             return $this->redirectToRoute('login');
 
-        if (!in_array('fowner', $session->get('roles')) || !in_array('fadmin', $session->get('roles')))
+        if (!in_array('fowner', $session->get('roles')) && !in_array('fadmin', $session->get('roles')))
             return $this->render('errors/access_denied.html.twig');
 
         return $this->render('manageOffices/viewOffices.html.twig');
@@ -95,7 +95,7 @@ class ManageOfficeController extends Controller
         if (!$session->has('gmail'))
             return $this->redirectToRoute('login');
 
-        if (!in_array('fowner', $session->get('roles')) || !in_array('fadmin', $session->get('roles')))
+        if (!in_array('fowner', $session->get('roles')) && !in_array('fadmin', $session->get('roles')))
             return $this->render('errors/access_denied.html.twig');
 
         $office = $this->getDoctrine()->getRepository(Office::class)->find($officeId);
@@ -119,7 +119,7 @@ class ManageOfficeController extends Controller
         if (!$session->has('gmail'))
             return $this->redirectToRoute('login');
 
-        if (!in_array('fowner', $session->get('roles')) || !in_array('fadmin', $session->get('roles')))
+        if (!in_array('fowner', $session->get('roles')) && !in_array('fadmin', $session->get('roles')))
             return $this->render('errors/access_denied.html.twig');
 
         $entityManager = $this->getDoctrine()->getManager();
@@ -167,7 +167,7 @@ class ManageOfficeController extends Controller
         if (!$session->has('gmail'))
             return $this->redirectToRoute('login');
 
-        if (!in_array('fowner', $session->get('roles')) || !in_array('fadmin', $session->get('roles')))
+        if (!in_array('fowner', $session->get('roles')) && !in_array('fadmin', $session->get('roles')))
             return $this->render('errors/access_denied.html.twig');
 
         if (in_array('fowner', $session->get('roles'))) {

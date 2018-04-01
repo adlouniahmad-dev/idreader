@@ -35,8 +35,7 @@ function renderRecords(visitors) {
                 '<td>' +
                 '<a href="/visitor/' + visitor.visitor.id + '" class="btn btn-sm btn-outline green margin-bottom-5"><i class="fa fa-search"></i> View</a>' +
                 '<a href="/visitor/' + visitor.visitor.id + '/settings" class="btn btn-sm btn-outline red margin-bottom-5"><i class="fa fa-edit"></i> Edit</a>' +
-                '<button class="btn btn-sm red margin-bottom-5 removeBtn" data-toggle="confirmation" data-singleton="true" data-placement="right" ' +
-                'id="remove-' + visitor.visitor.id + '"><i class="fa fa-remove"></i>  Remove</button>' +
+                '<a href="/visitor/' + visitor.visitor.id + '/settings#blacklist" class="btn btn-sm red margin-bottom-5 removeBtn"><i class="fa fa-remove"></i>  Remove</a>' +
                 '</td>' +
                 '</tr>';
         });
@@ -56,18 +55,10 @@ var UIConfirmations = function () {
 
     var handleSample = function () {
 
-        // let $removeButton = $('#remove');
-        // let $addButton = $('#add');
-
-        $('body').on('confirmed.bs.confirmation', '.removeBtn', function () {
+        $('table').on('confirmed.bs.confirmation', '.removeBtn', function () {
             // add_remove_blacklist(this, 'remove', visitorId);
             alert();
         });
-
-        $addButton.on('confirmed.bs.confirmation', function () {
-            add_remove_blacklist(this, 'add', visitorId);
-        })
-
     };
 
     return {

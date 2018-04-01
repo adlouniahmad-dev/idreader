@@ -42,7 +42,7 @@ class ManageMembersController extends Controller
         if (!$session->has('gmail'))
             return $this->redirectToRoute('login');
 
-        if (!in_array('fowner', $session->get('roles')) || !in_array('fadmin', $session->get('roles')))
+        if (!in_array('fowner', $session->get('roles')) && !in_array('fadmin', $session->get('roles')))
             return $this->render('errors/access_denied.html.twig');
 
         $user = new User();
@@ -550,7 +550,7 @@ class ManageMembersController extends Controller
         if (!$session->has('gmail'))
             return $this->redirectToRoute('login');
 
-        if (!in_array('fowner', $session->get('roles')) || !in_array('fadmin', $session->get('roles')))
+        if (!in_array('fowner', $session->get('roles')) && !in_array('fadmin', $session->get('roles')))
             return $this->render('errors/access_denied.html.twig');
 
         $rolesOptions = '';

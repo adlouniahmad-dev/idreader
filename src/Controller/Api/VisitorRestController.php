@@ -10,8 +10,6 @@ namespace App\Controller\Api;
 
 
 use App\Entity\Visitor;
-use Doctrine\DBAL\DBALException;
-use Doctrine\DBAL\Exception\DatabaseObjectExistsException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,10 +28,9 @@ class VisitorRestController extends Controller
         $content = $request->getContent();
         if (!$content)
             return $this->json(array(
-                'success' => 'no',
+                'success' => false,
                 'message' => 'Body is empty.',
-                'response' => Response::HTTP_NOT_FOUND,
-            ));
+            ), Response::HTTP_NOT_FOUND);
 
         $data = json_decode($content, true);
         $entityManager = $this->getDoctrine()->getManager();
@@ -55,16 +52,14 @@ class VisitorRestController extends Controller
         } catch (\Exception $e) {
 
             return $this->json(array(
-                'success' => 'no',
-                'message' => $e->getMessage(),
-                'response' => Response::HTTP_NOT_FOUND
-            ));
+                'success' => false,
+                'message' => 'Visitor already exists.',
+            ), Response::HTTP_NOT_FOUND);
         }
 
         return $this->json(array(
-            'success' => 'yes',
+            'success' => true,
             'message' => 'Visitor added successfully.',
-            'response' => Response::HTTP_OK,
-        ));
+        ), Response::HTTP_OK);
     }
 }

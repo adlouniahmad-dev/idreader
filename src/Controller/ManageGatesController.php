@@ -69,13 +69,14 @@ class ManageGatesController extends Controller
     /**
      * @Route("/manageGates/viewGates", name="viewGates")
      * @param Session $session
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function viewGates(Session $session)
     {
         if (!$session->has('gmail'))
             return $this->redirectToRoute('login');
 
-        if (!in_array('fowner', $session->get('roles')) || !in_array('fadmin', $session->get('roles')))
+        if (!in_array('fowner', $session->get('roles')) && !in_array('fadmin', $session->get('roles')))
             return $this->render('errors/access_denied.html.twig');
 
         if (in_array('fowner', $session->get('roles'))) {
@@ -118,7 +119,7 @@ class ManageGatesController extends Controller
         if (!$session->has('gmail'))
             return $this->redirectToRoute('login');
 
-        if (!in_array('fowner', $session->get('roles')) || !in_array('fadmin', $session->get('roles')))
+        if (!in_array('fowner', $session->get('roles')) && !in_array('fadmin', $session->get('roles')))
             return $this->render('errors/access_denied.html.twig');
 
         $gate = $this->getDoctrine()->getRepository(Gate::class)->find($gateId);
@@ -148,7 +149,7 @@ class ManageGatesController extends Controller
         if (!$session->has('gmail'))
             return $this->redirectToRoute('login');
 
-        if (!in_array('fowner', $session->get('roles')) || !in_array('fadmin', $session->get('roles')))
+        if (!in_array('fowner', $session->get('roles')) && !in_array('fadmin', $session->get('roles')))
             return $this->render('errors/access_denied.html.twig');
 
         $entityManager = $this->getDoctrine()->getManager();

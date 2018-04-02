@@ -61,26 +61,49 @@ class UserRepository extends ServiceEntityRepository
     /**
      * @param int $currentPage
      * @param string $string
+     * @param Building|null $building
      * @return Paginator
      */
-    public function getAllUsers($currentPage = 1, $string = '')
+    public function getAllUsers($currentPage = 1, $string = '', Building $building = null)
     {
         $em = $this->getEntityManager();
         $qb = new QueryBuilder($em);
 
-        $query = $qb->select('u')
-            ->from('App:User', 'u')
-            ->orderBy('u.id', 'ASC')
-            ->where(
-                'u.givenName LIKE :string
+        if (!$building) {
+            $query = $qb->select('u')
+                ->from('App:User', 'u')
+                ->innerJoin('u.buildings', 'b')
+                ->orderBy('u.id', 'ASC')
+                ->where(
+                    'u.givenName LIKE :string
+                 OR u.familyName LIKE :string
+                 OR u.gmail LIKE :string
+                 OR u.dob LIKE :string
+                 OR u.phoneNb LIKE :string
+                 OR u.dateCreated LIKE :string
+                 OR b.name LIKE :string'
+                )
+                ->setParameter('string', '%' . $string . '%')
+                ->getQuery();
+        } else {
+            $query = $qb->select('u')
+                ->from('App:User', 'u')
+                ->innerJoin('u.buildings', 'b', 'WITH', 'b.id = :building')
+                ->orderBy('u.id', 'ASC')
+                ->where(
+                    'u.givenName LIKE :string
                  OR u.familyName LIKE :string
                  OR u.gmail LIKE :string
                  OR u.dob LIKE :string
                  OR u.phoneNb LIKE :string
                  OR u.dateCreated LIKE :string'
-            )
-            ->setParameter('string', '%' . $string . '%')
-            ->getQuery();
+                )
+                ->setParameter('string', '%' . $string . '%')
+                ->setParameter('building', $building->getId())
+                ->getQuery();
+        }
+
+
 
         $paginator = $this->paginate($query, $currentPage);
 

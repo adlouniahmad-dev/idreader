@@ -537,8 +537,8 @@ class ManageMembersController extends Controller
         if (!$session->has('gmail'))
             return $this->redirectToRoute('login');
 
-        if (!in_array('fowner', $session->get('roles')))
-            return $this->render('errors/access_denied.html.twig');
+//        if (!in_array('fowner', $session->get('roles')))
+//            return $this->render('errors/access_denied.html.twig');
 
         return $this->render('manageMembers/viewUsers.html.twig');
     }
@@ -650,13 +650,13 @@ class ManageMembersController extends Controller
     {
         $currentPage = $page;
 
-//        if (in_array('fowner', $session->get('roles')))
-//            $building = null;
-//        else
-//            $building = $this->getDoctrine()->getRepository(Building::class)->findOneBy(['admin' => $session->get('user')]);
+        if (in_array('fowner', $session->get('roles')))
+            $building = null;
+        else
+            $building = $this->getDoctrine()->getRepository(Building::class)->findOneBy(['admin' => $session->get('user')]);
 
         $repo = $this->getDoctrine()->getRepository(User::class);
-        $users = $repo->getAllUsers($currentPage, $query);
+        $users = $repo->getAllUsers($currentPage, $query, $building);
 
         $totalUsersReturned = $users->getIterator()->count();
         $totalUsers = $users->count();
@@ -680,6 +680,7 @@ class ManageMembersController extends Controller
             $userInfo['gmail'] = $user->getGmail();
             $userInfo['dob'] = date_format($user->getDob(), 'jS F, Y');
             $userInfo['role'] = implode(',<br>', $this->getUserRoles($user));
+            $userInfo['building'] = implode(',<br>', $this->getUserBuildings($user));
             $userInfo['dateCreated'] = date_format($user->getDateCreated(), 'jS F, Y, g:i a');
 
             $usersArray[] = $userInfo;
@@ -702,6 +703,21 @@ class ManageMembersController extends Controller
         }
 
         return $rolesArray;
+    }
+
+
+    /**
+     * @param User $user
+     * @return array
+     */
+    private function getUserBuildings(User $user): array
+    {
+        $buildings = $user->getBuildings();
+        $buildingsArray = array();
+        foreach ($buildings as $building)
+            $buildingsArray[] = $building->getName();
+
+        return $buildingsArray;
     }
 
     /**

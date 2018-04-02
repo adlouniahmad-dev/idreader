@@ -24,33 +24,33 @@ class GuardRestController extends Controller
      * @param $macAddress
      * @return \Symfony\Component\HttpFoundation\JsonResponse|Response
      */
-    public function checkGuard($gmail, $macAddress)
+    public function checkLogin($gmail, $macAddress)
     {
 
         $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['gmail' => $gmail]);
         if (!$user)
             return $this->json(array(
-                'success' => 'no',
-                'response' => Response::HTTP_NOT_FOUND
-            ));
+                'success' => false,
+                'message' => 'Facility member not found.'
+            ), Response::HTTP_NOT_FOUND);
 
         $guard = $this->getDoctrine()->getRepository(Guard::class)->findOneBy(['user' => $user]);
         if (!$guard)
             return $this->json(array(
-                'success' => 'no',
-                'response' => Response::HTTP_NOT_FOUND
-            ));
+                'success' => false,
+                'message' => 'Guard not found.'
+            ), Response::HTTP_NOT_FOUND);
 
         if (strtolower($guard->getDevice()->getMacAddress()) !== strtolower($macAddress))
             return $this->json(array(
-                'success' => 'no',
-                'response' => Response::HTTP_NOT_FOUND
-            ));
+                'success' => false,
+                'message' => 'MAC Address Error.'
+            ), Response::HTTP_NOT_FOUND);
 
         return $this->json(array(
-            'success' => 'yes',
-            'response' => Response::HTTP_OK
-        ));
+            'success' => true,
+            'message' => 'Can be logged in.'
+        ), Response::HTTP_OK);
     }
 
 }

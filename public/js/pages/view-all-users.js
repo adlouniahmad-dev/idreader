@@ -22,7 +22,7 @@ function getUsers(page, string = '') {
             renderPagination(data.maxPages, string);
         },
         beforeSend: function () {
-            loadingRecords(colspan = 8);
+            loadingRecords(colspan = 9);
         }
     })
 }
@@ -32,7 +32,7 @@ function renderUsersRecords(users) {
     let $tbody = $('tbody');
 
     if (users.length === 0) {
-        noRecords(colspan = 8);
+        noRecords(colspan = 9);
     } else {
         $.each(users, function (index, user) {
             $rows +=
@@ -43,6 +43,7 @@ function renderUsersRecords(users) {
                 '<td><a href="mailto:' + user.gmail + '">' + user.gmail + '</a></td>' +
                 '<td>' + user.dob + '</td>' +
                 '<td>' + user.role + '</td>' +
+                '<td>' + user.building + '</td>' +
                 '<td>' + user.dateCreated + '</td>' +
                 '<td>' +
                 '<a href="/member/' + user.id + '" class="btn btn-sm btn-outline green margin-bottom-5"><i class="fa fa-search"></i> View</a>' +

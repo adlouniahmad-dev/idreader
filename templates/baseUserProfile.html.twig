@@ -17,7 +17,8 @@
         <div class="profile-sidebar">
             <div class="portlet light profile-sidebar-portlet ">
                 <div class="profile-userpic">
-                    <img src="{% if user.imageUrl != '' %}{{ user.imageUrl() }}{% else %}{{ asset('images/noimage.jpg') }}{% endif %}" class="img-responsive img-circle"
+                    <img src="{% if user.imageUrl != '' %}{{ user.imageUrl() }}{% else %}{{ asset('images/noimage.jpg') }}{% endif %}"
+                         class="img-responsive img-circle"
                          alt="{{ user.fullName }}">
                 </div>
                 <div class="profile-usermenu">
@@ -28,11 +29,14 @@
                             <a href="{{ path('viewProfile', {'userId': user.id}) }}"><i class="icon-home"></i>
                                 Overview </a>
                         </li>
-                        {% if 'fowner' in app.session.get('roles') %}
-                            <li class="{% if routeName == 'editProfile' %}active{% endif %}">
-                                <a href="{{ path('editProfile', {'userId': user.id}) }}"><i class="icon-settings"></i>
-                                    Account Settings </a>
-                            </li>
+                        {% if 'fowner' in app.session.get('roles') or 'fadmin' in app.session.get('roles') %}
+                            {% if 'Facility Owner' not in roles or 'fowner' in app.session.get('roles') %}
+                                <li class="{% if routeName == 'editProfile' %}active{% endif %}">
+                                    <a href="{{ path('editProfile', {'userId': user.id}) }}"><i
+                                                class="icon-settings"></i>
+                                        Account Settings </a>
+                                </li>
+                            {% endif %}
                         {% endif %}
                     </ul>
                 </div>

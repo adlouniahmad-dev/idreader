@@ -52,23 +52,32 @@ class OfficeRepository extends ServiceEntityRepository
         if (!$building) {
             $query = $qb->select('o')
                 ->from('App:Office', 'o')
+                ->leftJoin('o.user', 'u')
+                ->innerJoin('o.building', 'b')
                 ->orderBy('o.id', 'ASC')
                 ->where(
                     'o.dateCreated LIKE :string
                 OR o.officeNb LIKE :string
-                OR o.floorNb LIKE :string'
+                OR o.floorNb LIKE :string
+                OR u.givenName LIKE :string
+                OR u.familyName LIKE :string
+                OR b.name LIKE :string'
                 )
                 ->setParameter('string', '%' . $string . '%')
                 ->getQuery();
         } else {
+
             $query = $qb->select('o')
                 ->from('App:Office', 'o')
                 ->innerJoin('App:Building', 'b', 'WITH', 'o.building = :building')
+                ->leftJoin('o.user', 'u')
                 ->orderBy('o.id', 'ASC')
                 ->where(
                     'o.dateCreated LIKE :string
                 OR o.officeNb LIKE :string
-                OR o.floorNb LIKE :string'
+                OR o.floorNb LIKE :string
+                OR u.givenName LIKE :string
+                OR u.familyName LIKE :string'
                 )
                 ->setParameter('string', '%' . $string . '%')
                 ->setParameter('building', $building)

@@ -38,7 +38,8 @@ class ScheduleType extends AbstractType
     {
         $builder
             ->add('shift', ChoiceType::class, array(
-                'choices' => $this->getShifts()
+                'choices' => $this->getShifts(),
+                'multiple' => true,
             ))
             ->add('gate', ChoiceType::class, array(
                 'choices' => $this->getGates($options['building'])
@@ -57,7 +58,7 @@ class ScheduleType extends AbstractType
             ))
             ->add('save', SubmitType::class, array(
                 'attr' => ['class' => 'btn green'],
-                'label' => 'Add Shift'
+                'label' => 'Add Schedule'
             ))
             ->add('reset', ResetType::class, array(
                 'attr' => ['class' => 'btn default'],

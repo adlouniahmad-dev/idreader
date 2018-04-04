@@ -127,8 +127,7 @@ class ManageMembersController extends Controller
             $user = $this->getDoctrine()->getRepository(User::class)->find($userId);
             $building = $this->getDoctrine()->getRepository(Building::class)->find($buildingId);
 
-            $schedule = new Schedule();
-            $form = $this->createForm(ScheduleType::class, $schedule, array(
+            $form = $this->createForm(ScheduleType::class, null, array(
                 'building' => $building
             ));
 
@@ -158,9 +157,16 @@ class ManageMembersController extends Controller
                 $guard->setDevice($device);
                 $em->flush();
 
-                $schedule->setGuard($guard);
-                $em->persist($schedule);
-                $em->flush();
+                $shifts = $form->get('shift')->getData();
+                $gate = $form->get('gate')->getData();
+                foreach ($shifts as $shift) {
+                    $schedule = new Schedule();
+                    $schedule->setGuard($guard);
+                    $schedule->setGate($gate);
+                    $schedule->setShift($shift);
+                    $em->persist($schedule);
+                    $em->flush();
+                }
 
                 $this->addFlash(
                     'success',
@@ -175,7 +181,7 @@ class ManageMembersController extends Controller
             ));
         }
 
-        die('Error Occurred');
+        return $this->render('errors/access_denied.html.twig');
     }
 
     /**

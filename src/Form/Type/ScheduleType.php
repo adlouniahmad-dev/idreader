@@ -58,7 +58,7 @@ class ScheduleType extends AbstractType
             ))
             ->add('save', SubmitType::class, array(
                 'attr' => ['class' => 'btn green'],
-                'label' => 'Add Schedule'
+                'label' => 'Add'
             ))
             ->add('reset', ResetType::class, array(
                 'attr' => ['class' => 'btn default'],

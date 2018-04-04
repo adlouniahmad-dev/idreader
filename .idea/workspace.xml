@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="50e69e48-8f17-4cc9-ac75-48078c3b9921" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ManageMembersController.php" afterPath="$PROJECT_DIR$/src/Controller/ManageMembersController.php" />
-      <change beforePath="$PROJECT_DIR$/src/Form/Type/DeviceScheduleType.php" afterPath="" />
       <change beforePath="$PROJECT_DIR$/src/Form/Type/ScheduleType.php" afterPath="$PROJECT_DIR$/src/Form/Type/ScheduleType.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,13 +33,13 @@
         <entry file="file://$PROJECT_DIR$/src/Controller/ManageMembersController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="515">
-              <caret line="169" column="16" lean-forward="false" selection-start-line="169" selection-start-column="16" selection-end-line="169" selection-end-column="16" />
+              <caret line="169" column="0" lean-forward="false" selection-start-line="169" selection-start-column="0" selection-end-line="169" selection-end-column="0" />
               <folding>
                 <element signature="e#131#155#0#PHP" expanded="true" />
                 <element signature="e#4411#4453#0#PHP" expanded="true" />
-                <element signature="e#5783#5825#0#PHP" expanded="true" />
-                <element signature="e#5936#5968#1#PHP" expanded="true" />
-                <element signature="e#7853#7885#1#PHP" expanded="true" />
+                <element signature="e#5767#5809#0#PHP" expanded="true" />
+                <element signature="e#5920#5952#1#PHP" expanded="true" />
+                <element signature="e#7837#7869#1#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -55,16 +53,6 @@
               <folding>
                 <element signature="e#12#26#0#Twig" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ScheduleType.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Form/Type/ScheduleType.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-100">
-              <caret line="39" column="24" lean-forward="false" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -197,9 +185,9 @@
         <option value="$PROJECT_DIR$/src/Entity/Visitor.php" />
         <option value="$PROJECT_DIR$/src/Country.php" />
         <option value="$PROJECT_DIR$/src/Form/Type/DeviceScheduleType.php" />
-        <option value="$PROJECT_DIR$/src/Form/Type/ScheduleType.php" />
         <option value="$PROJECT_DIR$/templates/manageMembers/addSecurityGuard.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/ManageMembersController.php" />
+        <option value="$PROJECT_DIR$/src/Form/Type/ScheduleType.php" />
       </list>
     </option>
   </component>
@@ -615,14 +603,7 @@
       <workItem from="1522313210488" duration="33107000" />
       <workItem from="1522492556209" duration="1235000" />
       <workItem from="1522496979509" duration="26263000" />
-      <workItem from="1522576996684" duration="47131000" />
-    </task>
-    <task id="LOCAL-00009" summary="DONE">
-      <created>1519297176132</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1519297176132</updated>
+      <workItem from="1522576996684" duration="47190000" />
     </task>
     <task id="LOCAL-00010" summary="DONE">
       <created>1519297345437</created>
@@ -960,11 +941,18 @@
       <option name="project" value="LOCAL" />
       <updated>1522841524454</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="DONE">
+      <created>1522848805683</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1522848805683</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="755460000" />
+    <option name="totallyTimeSpent" value="755519000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1389,14 +1377,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/ManageBlacklistController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-85">
-          <caret line="40" column="27" lean-forward="false" selection-start-line="40" selection-start-column="27" selection-end-line="40" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/manageMembers/addSecurityGuard.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
@@ -1407,10 +1387,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/ManageBlacklistController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-85">
+          <caret line="40" column="27" lean-forward="false" selection-start-line="40" selection-start-column="27" selection-end-line="40" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Form/Type/ScheduleType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-100">
-          <caret line="39" column="24" lean-forward="false" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
+        <state relative-caret-position="840">
+          <caret line="60" column="31" lean-forward="false" selection-start-line="60" selection-start-column="31" selection-end-line="60" selection-end-column="31" />
           <folding />
         </state>
       </provider>
@@ -1418,13 +1406,13 @@
     <entry file="file://$PROJECT_DIR$/src/Controller/ManageMembersController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="515">
-          <caret line="169" column="16" lean-forward="false" selection-start-line="169" selection-start-column="16" selection-end-line="169" selection-end-column="16" />
+          <caret line="169" column="0" lean-forward="false" selection-start-line="169" selection-start-column="0" selection-end-line="169" selection-end-column="0" />
           <folding>
             <element signature="e#131#155#0#PHP" expanded="true" />
             <element signature="e#4411#4453#0#PHP" expanded="true" />
-            <element signature="e#5783#5825#0#PHP" expanded="true" />
-            <element signature="e#5936#5968#1#PHP" expanded="true" />
-            <element signature="e#7853#7885#1#PHP" expanded="true" />
+            <element signature="e#5767#5809#0#PHP" expanded="true" />
+            <element signature="e#5920#5952#1#PHP" expanded="true" />
+            <element signature="e#7837#7869#1#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

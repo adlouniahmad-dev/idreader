@@ -476,6 +476,48 @@ class ManageMembersController extends Controller
     }
 
     /**
+     * @Route("/api/getGuardSchedule/{guardId}", methods={"POST", "GET"})
+     * @param $guardId
+     * @return JsonResponse
+     */
+    public function getGuardSchedule($guardId)
+    {
+
+        $guard = $this->getDoctrine()->getRepository(Guard::class)->find($guardId);
+        if (!$guard)
+            die();
+
+        $schedules = $this->getDoctrine()->getRepository(Schedule::class)->findBy(['guard' => $guard]);
+        $scheduleArray = array();
+        foreach ($schedules as $schedule) {
+            $scheduleInfo = array();
+            $scheduleInfo['title'] = $schedule->getGate()->getName();
+
+            if ($schedule->getShift()->getDay() === 'Sunday')
+                $dateFromShiftDay = strtotime('-7 days', strtotime($schedule->getShift()->getDay()));
+            else
+                $dateFromShiftDay = strtotime($schedule->getShift()->getDay());
+
+            $dayLetter = date('D', $dateFromShiftDay);
+            $dayNumber = date('d', $dateFromShiftDay);
+            $month = date('M', $dateFromShiftDay);
+            $year = date('Y', $dateFromShiftDay);
+
+            $startDate = $dayLetter . ' ' . $month .  ' ' . $dayNumber . ' ' . $year . ' ' . date_format($schedule->getShift()->getStartTime(), 'H:i:s') . ' GMT0000';
+            $endDate = $dayLetter . ' ' . $month .  ' ' . $dayNumber . ' ' . $year . ' ' . date_format($schedule->getShift()->getEndTime(), 'H:i:s') . ' GMT0000';
+
+            $scheduleInfo['start'] = $startDate;
+            $scheduleInfo['end'] = $endDate;
+            $scheduleInfo['allDay'] = false;
+
+            $scheduleArray[] = $scheduleInfo;
+        }
+
+        return $this->json($scheduleArray);
+
+    }
+
+    /**
      * @Route("/member/{userId}/edit/delete", name="deleteAccount")
      * @param $userId
      * @return JsonResponse
@@ -544,8 +586,8 @@ class ManageMembersController extends Controller
         if (!$session->has('gmail'))
             return $this->redirectToRoute('login');
 
-//        if (!in_array('fowner', $session->get('roles')))
-//            return $this->render('errors/access_denied.html.twig');
+        if (!in_array('fowner', $session->get('roles')) && !in_array('fadmin', $session->get('roles')))
+            return $this->render('errors/access_denied.html.twig');
 
         return $this->render('manageMembers/viewUsers.html.twig');
     }

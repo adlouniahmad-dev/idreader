@@ -76,7 +76,7 @@ class ShiftType extends AbstractType
     private function setDays(): array
     {
         $days = array();
-        $days['Sunday'] = "Sunday";
+        $days['Sunday'] = 'Sunday';
         $days['Monday'] = 'Monday';
         $days['Tuesday'] = 'Tuesday';
         $days['Wednesday'] = 'Wednesday';

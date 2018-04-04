@@ -8,6 +8,10 @@
 {% block stylesheets %}
     <link href="{{ asset('css/profile.min.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('css/profile-2.min.css') }}" rel="stylesheet" type="text/css"/>
+    {% if 'Security Guard' in roles %}
+        <link href="{{ asset('assets/global/plugins/fullcalendar/fullcalendar.min.css') }}" rel="stylesheet"
+              type="text/css"/>
+    {% endif %}
     {{ parent() }}
 {% endblock %}
 
@@ -42,4 +46,15 @@
                 </div>
             </div>
         </div>
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ parent() }}
+            {% if 'Security Guard' in roles %}
+                <script type="text/javascript" src="{{ asset('assets/global/plugins/moment.min.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('assets/global/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('assets/global/plugins/fullcalendar/fullcalendar.min.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('js/pages/calendar.js') }}"></script>
+            {% endif %}
+
         {% endblock %}

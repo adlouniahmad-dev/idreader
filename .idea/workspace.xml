@@ -1,123 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="50e69e48-8f17-4cc9-ac75-48078c3b9921" name="Default" comment="DONE">
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/changelog.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/demos/agenda-views.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/demos/background-events.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/demos/basic-views.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/demos/default.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/demos/external-dragging.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/demos/gcal.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/demos/json.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/demos/json/events.json" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/demos/languages.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/demos/php/get-events.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/demos/php/get-timezones.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/demos/php/utils.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/demos/selectable.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/demos/theme.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/demos/timezones.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/fullcalendar.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/fullcalendar.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/fullcalendar.min.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/fullcalendar.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/fullcalendar.print.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/gcal.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang-all.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/ar-ma.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/ar-sa.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/ar-tn.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/ar.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/bg.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/ca.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/cs.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/da.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/de-at.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/de.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/el.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/en-au.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/en-ca.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/en-gb.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/es.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/fa.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/fi.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/fr-ca.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/fr.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/he.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/hi.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/hr.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/hu.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/id.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/is.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/it.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/ja.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/ko.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/lt.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/lv.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/nb.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/nl.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/pl.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/pt-br.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/pt.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/ro.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/ru.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/sk.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/sl.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/sr-cyrl.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/sr.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/sv.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/th.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/tr.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/uk.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/vi.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/zh-cn.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lang/zh-tw.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lib/cupertino/images/animated-overlay.gif" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lib/cupertino/images/ui-bg_diagonals-thick_90_eeeeee_40x40.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lib/cupertino/images/ui-bg_flat_15_cd0a0a_40x100.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lib/cupertino/images/ui-bg_glass_100_e4f1fb_1x400.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lib/cupertino/images/ui-bg_glass_50_3baae3_1x400.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lib/cupertino/images/ui-bg_glass_80_d7ebf9_1x400.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lib/cupertino/images/ui-bg_highlight-hard_100_f2f5f7_1x100.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lib/cupertino/images/ui-bg_highlight-hard_70_000000_1x100.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lib/cupertino/images/ui-bg_highlight-soft_100_deedf7_1x100.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lib/cupertino/images/ui-bg_highlight-soft_25_ffef8f_1x100.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lib/cupertino/images/ui-icons_2694e8_256x240.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lib/cupertino/images/ui-icons_2e83ff_256x240.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lib/cupertino/images/ui-icons_3d80b3_256x240.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lib/cupertino/images/ui-icons_72a7cf_256x240.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lib/cupertino/images/ui-icons_ffffff_256x240.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lib/cupertino/jquery-ui.min.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lib/jquery-ui.custom.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lib/jquery.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/lib/moment.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/license.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/jquery-ui/images/ui-bg_diagonals-thick_18_b81900_40x40.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/jquery-ui/images/ui-bg_diagonals-thick_20_666666_40x40.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/jquery-ui/images/ui-bg_flat_10_000000_40x100.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/jquery-ui/images/ui-bg_glass_100_f6f6f6_1x400.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/jquery-ui/images/ui-bg_glass_100_fdf5ce_1x400.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/jquery-ui/images/ui-bg_glass_65_ffffff_1x400.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/jquery-ui/images/ui-bg_gloss-wave_35_f6a828_500x100.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/jquery-ui/images/ui-bg_highlight-soft_100_eeeeee_1x100.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/jquery-ui/images/ui-bg_highlight-soft_75_ffe45c_1x100.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/jquery-ui/images/ui-icons_222222_256x240.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/jquery-ui/images/ui-icons_228ef1_256x240.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/jquery-ui/images/ui-icons_ef8c08_256x240.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/jquery-ui/images/ui-icons_ffd27a_256x240.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/jquery-ui/images/ui-icons_ffffff_256x240.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/jquery-ui/jquery-ui.min.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/jquery-ui/jquery-ui.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/plugins/moment.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/pages/calendar.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/pages/calendar.min.js" />
+    <list default="true" id="50e69e48-8f17-4cc9-ac75-48078c3b9921" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ManageMembersController.php" afterPath="$PROJECT_DIR$/src/Controller/ManageMembersController.php" />
-      <change beforePath="$PROJECT_DIR$/src/Form/Type/ShiftType.php" afterPath="$PROJECT_DIR$/src/Form/Type/ShiftType.php" />
-      <change beforePath="$PROJECT_DIR$/templates/baseUserProfile.html.twig" afterPath="$PROJECT_DIR$/templates/baseUserProfile.html.twig" />
-      <change beforePath="$PROJECT_DIR$/templates/baseVisitorProfile.html.twig" afterPath="$PROJECT_DIR$/templates/baseVisitorProfile.html.twig" />
-      <change beforePath="$PROJECT_DIR$/templates/manageMembers/viewUserProfile.html.twig" afterPath="$PROJECT_DIR$/templates/manageMembers/viewUserProfile.html.twig" />
+      <change beforePath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/demos/agenda-views.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/demos/background-events.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/demos/basic-views.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/demos/default.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/demos/external-dragging.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/demos/gcal.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/demos/json.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/demos/json/events.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/demos/languages.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/demos/php/get-events.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/demos/php/get-timezones.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/demos/php/utils.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/demos/selectable.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/demos/theme.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/public/assets/global/plugins/fullcalendar/demos/timezones.html" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -529,6 +429,23 @@
               <item name="idreader" type="b2602c69:ProjectViewProjectNode" />
               <item name="idreader" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="assets" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="global" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="plugins" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="idreader" type="b2602c69:ProjectViewProjectNode" />
+              <item name="idreader" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="assets" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="global" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="plugins" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="fullcalendar" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="idreader" type="b2602c69:ProjectViewProjectNode" />
+              <item name="idreader" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -755,14 +672,7 @@
       <workItem from="1522492556209" duration="1235000" />
       <workItem from="1522496979509" duration="26263000" />
       <workItem from="1522576996684" duration="47902000" />
-      <workItem from="1522850422943" duration="12212000" />
-    </task>
-    <task id="LOCAL-00011" summary="DONE">
-      <created>1519297395399</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1519297395399</updated>
+      <workItem from="1522850422943" duration="12359000" />
     </task>
     <task id="LOCAL-00012" summary="DONE">
       <created>1519297926422</created>
@@ -1100,17 +1010,23 @@
       <option name="project" value="LOCAL" />
       <updated>1522848863057</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="DONE">
+      <created>1522863869427</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1522863869442</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="768443000" />
+    <option name="totallyTimeSpent" value="768590000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21458334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21458334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />

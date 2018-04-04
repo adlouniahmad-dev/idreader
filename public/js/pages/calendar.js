@@ -50,8 +50,7 @@ var AppCalendar = function() {
                 eventSources: [{
                     url: '/api/getGuardSchedule/' + $calendar.data('id'),
                     type: 'post',
-                    color: 'red',
-                    textColor: 'black',
+                    color: 'rgb(27, 188, 155)',
                 }],
             });
 

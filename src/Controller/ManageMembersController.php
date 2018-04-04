@@ -334,9 +334,17 @@ class ManageMembersController extends Controller
             $deviceForm = $this->createForm(DeviceType::class, $device, array(
                 'action' => $this->generateUrl('editProfile', ['_fragment' => 'device_info', 'userId' => $userId])
             ));
-            $deviceForm->handleRequest($request);
+
+            $scheduleForm = $this->createForm(ScheduleType::class, null, array(
+                'action' => $this->generateUrl('editProfile', ['_fragment' => 'schedule_info', 'userId' => $userId]),
+                'building' => $user->getBuildings()->get(0)
+            ));
+            $scheduleForm->remove('device');
+
+            $scheduleForm->handleRequest($request);
         } else {
             $deviceForm = null;
+            $scheduleForm = null;
         }
 
         // Create the form for the office info (Premise Owner)
@@ -360,14 +368,14 @@ class ManageMembersController extends Controller
                     'danger',
                     'You have some errors. Please check below.'
                 );
-                return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm, $fragment);
+                return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm, $scheduleForm, $fragment);
             }
             $entityManager->flush();
             $this->addFlash(
                 'success',
                 'User personal info updated successfully!'
             );
-            return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm, $fragment);
+            return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm, $scheduleForm, $fragment);
         }
 
         // Block that checks the submission of the building info form (admin)
@@ -379,7 +387,7 @@ class ManageMembersController extends Controller
                         'danger',
                         'You have some errors. Please check below.'
                     );
-                    return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm, $fragment);
+                    return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm, $scheduleForm, $fragment);
                 }
                 $building = $buildingAdministratorForm->get('building')->getData();
                 $building->setAdmin($user);
@@ -388,7 +396,7 @@ class ManageMembersController extends Controller
                     'success',
                     'Administrator info updated successfully!'
                 );
-                return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm, $fragment);
+                return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm, $scheduleForm, $fragment);
             }
         }
 
@@ -401,7 +409,7 @@ class ManageMembersController extends Controller
                         'danger',
                         'You have some errors. Please check below.'
                     );
-                    return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm, $fragment);
+                    return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm, $scheduleForm, $fragment);
                 }
 
                 $oldOffice = $entityManager->getRepository(Office::class)->findOneBy(['user' => $user]);
@@ -416,7 +424,44 @@ class ManageMembersController extends Controller
                     'success',
                     'Office info updated successfully!'
                 );
-                return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm, $fragment);
+                return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm, $scheduleForm, $fragment);
+            }
+        }
+
+        // Block that checks the submission of the schedule form
+        if ($scheduleForm !== null) {
+            if ($scheduleForm->isSubmitted()) {
+                $fragment = 'schedule_info';
+                if (!$scheduleForm->isValid()) {
+                    $this->addFlash(
+                        'danger',
+                        'You have some errors. Please check below.'
+                    );
+
+                    return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm, $scheduleForm, $fragment);
+                }
+
+                $guard = $entityManager->getRepository(Guard::class)->findOneBy(['user' => $user]);
+                $schedules = $entityManager->getRepository(Schedule::class)->findBy(['guard' => $guard]);
+                foreach ($schedules as $schedule)
+                    $entityManager->remove($schedule);
+
+                $shifts = $scheduleForm->get('shift')->getData();
+                $gate = $scheduleForm->get('gate')->getData();
+                foreach ($shifts as $shift) {
+                    $schedule = new Schedule();
+                    $schedule->setGuard($guard);
+                    $schedule->setGate($gate);
+                    $schedule->setShift($shift);
+                    $entityManager->persist($schedule);
+                    $entityManager->flush();
+                }
+
+                $this->addFlash(
+                    'success',
+                    'Schedule updated successfully!'
+                );
+                return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm, $scheduleForm, $fragment);
             }
         }
 
@@ -429,7 +474,7 @@ class ManageMembersController extends Controller
                         'danger',
                         'You have some errors. Please check below.'
                     );
-                    return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm, $fragment);
+                    return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm, $scheduleForm, $fragment);
                 }
 
                 $device = $deviceForm->getData();
@@ -446,11 +491,11 @@ class ManageMembersController extends Controller
                     'Device info updated successfully!'
                 );
 
-                return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm, $fragment);
+                return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm, $scheduleForm, $fragment);
             }
         }
 
-        return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm);
+        return $this->renderEditProfilePage($user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm, $scheduleForm);
     }
 
     /**
@@ -459,10 +504,11 @@ class ManageMembersController extends Controller
      * @param $deviceForm
      * @param $officeForm
      * @param $buildingAdministratorForm
+     * @param $schedulesForm
      * @param $fragment
      * @return Response
      */
-    private function renderEditProfilePage(User $user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm, $fragment = null)
+    private function renderEditProfilePage(User $user, $personalInfoForm, $deviceForm, $officeForm, $buildingAdministratorForm, $schedulesForm, $fragment = null)
     {
         return $this->render('manageMembers/editUserProfile.twig', array(
             'user' => $user,
@@ -471,6 +517,7 @@ class ManageMembersController extends Controller
             'deviceForm' => $deviceForm !== null ? $deviceForm->createView() : null,
             'officeForm' => $officeForm !== null ? $officeForm->createView() : null,
             'buildingAdministratorForm' => $buildingAdministratorForm !== null ? $buildingAdministratorForm->createView() : null,
+            'schedulesForm' => $schedulesForm !== null ? $schedulesForm->createView() : null,
             'fragment' => $fragment
         ));
     }
@@ -493,7 +540,8 @@ class ManageMembersController extends Controller
             $scheduleInfo = array();
             $scheduleInfo['title'] = $schedule->getGate()->getName();
 
-            if ($schedule->getShift()->getDay() === 'Sunday')
+            $scheduleDay = $schedule->getShift()->getDay();
+            if ($scheduleDay === 'Sunday' || $scheduleDay === 'Monday' || $scheduleDay === 'Tuesday')
                 $dateFromShiftDay = strtotime('-7 days', strtotime($schedule->getShift()->getDay()));
             else
                 $dateFromShiftDay = strtotime($schedule->getShift()->getDay());
@@ -514,7 +562,6 @@ class ManageMembersController extends Controller
         }
 
         return $this->json($scheduleArray);
-
     }
 
     /**

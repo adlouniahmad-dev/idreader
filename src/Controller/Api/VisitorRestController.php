@@ -9,6 +9,7 @@
 namespace App\Controller\Api;
 
 
+use App\Country;
 use App\Entity\Visitor;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -50,7 +51,9 @@ class VisitorRestController extends Controller
             $visitor->setDocumentType($data['documentType']);
             $visitor->setHasCard($data['documentType'] === 'ID Card' ? 1 : 0);
             $visitor->setSsn($data['ssn']);
-            $visitor->setNationality($data['nationality']);
+
+            $country = new Country();
+            $visitor->setNationality($country->getCountryCode($data['nationality']));
 
             $entityManager->persist($visitor);
             $entityManager->flush();

@@ -15,6 +15,7 @@ use App\Entity\Schedule;
 use App\Entity\Shift;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\ResetType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -40,6 +41,9 @@ class ScheduleType extends AbstractType
             ->add('shift', ChoiceType::class, array(
                 'choices' => $this->getShifts(),
                 'multiple' => true,
+                'constraints' => array(
+                    new NotBlank(),
+                )
             ))
             ->add('gate', ChoiceType::class, array(
                 'choices' => $this->getGates($options['building'])
@@ -64,13 +68,15 @@ class ScheduleType extends AbstractType
                 'attr' => ['class' => 'btn default'],
                 'label' => 'Reset'
             ));
+
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => Schedule::class,
+            'data_class' => null,
             'building' => null,
+            'validation_groups' => false,
         ));
     }
 

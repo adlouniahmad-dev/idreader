@@ -1,6 +1,6 @@
-function getBlacklist(string = '') {
+function getBlacklist(page = 1, string = '') {
 
-    let url = '/api/getBlacklist' + (string === '' ? '' : '/' + string);
+    let url = '/api/getBlacklist/' + page + (string === '' ? '' : '/' + string);
 
     $.ajax({
         url: url,
@@ -9,6 +9,7 @@ function getBlacklist(string = '') {
         success: function (data) {
             renderRecords(data.blacklist);
             renderTablesInfo(data.totalVisitors);
+            renderPagination(data.maxPages, string);
         },
         beforeSend: function () {
             loadingRecords(colspan = 7);
@@ -44,83 +45,29 @@ function renderRecords(visitors) {
     }
 }
 
-$('#search').keyup(function () {
-    let string = $(this).val();
-    getBlacklist(string);
-});
+function renderPagination(maxPages, string) {
+    let $pagination = $('#all_blacklist_paginate').find('.pagination');
+    let currentPage = $pagination.twbsPagination('getCurrentPage');
 
-getBlacklist('');
-
-var UIConfirmations = function () {
-
-    var handleSample = function () {
-
-        $('table').on('confirmed.bs.confirmation', '.removeBtn', function () {
-            // add_remove_blacklist(this, 'remove', visitorId);
-            alert();
-        });
-    };
-
-    return {
-        init: function () {
-            handleSample();
+    $pagination.twbsPagination('destroy');
+    $pagination.twbsPagination($.extend({}, {
+        totalPages: maxPages,
+        startPage: currentPage,
+        visiblePages: 5,
+        initiateStartPageClick: false,
+        prev: '<i class="fa fa-angle-left"></i>',
+        next: '<i class="fa fa-angle-right"></i>',
+        first: '<i class="fa fa-angle-double-left"></i>',
+        last: '<i class="fa fa-angle-double-right"></i>',
+        onPageClick: function (evt, page) {
+            getUsers(page, string);
         }
-    };
-}();
-
-function add_remove_blacklist(button, option, visitorId) {
-
-    let url = '/api/blacklist/' + option + '/' + visitorId;
-    let $alertDialog = $('.alert');
-    let $messageContainer = $('#error-text');
-
-    $.ajax({
-        url: url,
-        dataType: 'json',
-        success: function (response) {
-            if (response !== null) {
-                if (response.success === 'yes') {
-                    $alertDialog.removeClass('hidden');
-
-                    if ($alertDialog.hasClass('alert-danger'))
-                        $alertDialog.removeClass('alert-danger');
-
-                    $alertDialog.addClass('alert-success');
-
-                    let message = option === 'add' ? 'Added to blacklist.' : 'Removed from blacklist';
-                    $messageContainer.html(message);
-
-                    let textButton = option === 'add' ? 'Added' : 'Removed';
-                    $(button).html(textButton);
-
-                    location.href = 'http://localhost:8000/visitor/' + visitorId + '/settings#blacklist';
-                    setInterval(function () {
-                        location.reload();
-                    }, 1000);
-
-                } else if (response.success === 'no') {
-
-                    $alertDialog.removeClass('hidden');
-
-                    if ($alertDialog.hasClass('alert-success'))
-                        $alertDialog.removeClass('alert-success');
-
-                    $alertDialog.addClass('alert-danger');
-                    $messageContainer.html('There is an error deleting the account.');
-
-                    let textButton = option === 'add' ? 'Add' : 'Remove';
-                    $(button).html(textButton);
-                }
-            }
-        },
-        beforeSend: function () {
-            let textButton = option === 'add' ? 'Add' : 'Remove';
-            $(button).html(textButton);
-        }
-    })
-
+    }));
 }
 
-jQuery(document).ready(function () {
-    UIConfirmations.init();
+$('#search').keyup(function () {
+    let string = $(this).val();
+    getBlacklist(1, string);
 });
+
+getBlacklist(1);

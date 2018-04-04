@@ -16,17 +16,18 @@ class BlacklistRepository extends ServiceEntityRepository
     }
 
     /**
+     * @param int $currentPage
      * @param string $string
      * @return mixed
      */
-    public function getAllBlacklistedVisitors($string = '')
+    public function getAllBlacklistedVisitors($currentPage = 1, $string = '')
     {
         $em = $this->getEntityManager();
         $qb = new QueryBuilder($em);
 
         $query = $qb->select('b')
             ->from('App:Blacklist', 'b')
-            ->innerJoin('App:Visitor', 'v', 'WITH', 'b.visitor = v')
+            ->innerJoin('b.visitor', 'v', 'WITH', 'b.visitor = v')
             ->where(
                 'b.dateAdded LIKE :string
                 OR b.id LIKE :string
@@ -39,7 +40,25 @@ class BlacklistRepository extends ServiceEntityRepository
             ->setParameter('string', '%' . $string . '%')
             ->getQuery();
 
-        return $query->getResult();
+        $paginator = $this->paginate($query, $currentPage);
+
+        return $paginator;
+    }
+
+    /**
+     * @param $dql
+     * @param int $page
+     * @param int $limit
+     * @return Paginator
+     */
+    private function paginate($dql, $page = 1, $limit = 10)
+    {
+        $paginator = new Paginator($dql);
+        $paginator->getQuery()
+            ->setFirstResult($limit * ($page - 1))
+            ->setMaxResults($limit);
+
+        return $paginator;
     }
 
 }

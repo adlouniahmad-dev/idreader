@@ -14,12 +14,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route as FRoute;
 
+/**
+ * Class VisitorRestController
+ * @package App\Controller\Api
+ * @FRoute("/api/visitor")
+ */
 class VisitorRestController extends Controller
 {
 
     /**
-     * @Route("/api/visitor/add", methods={"POST"})
+     * @Route("/add", methods={"POST"})
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\JsonResponse|Response
      */

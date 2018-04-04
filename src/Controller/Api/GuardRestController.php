@@ -14,12 +14,18 @@ use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route as FRoute;
 
+/**
+ * Class GuardRestController
+ * @package App\Controller\Api
+ * @FRoute("/api/guard")
+ */
 class GuardRestController extends Controller
 {
 
     /**
-     * @Route("/api/guard/check/{gmail}/{macAddress}", methods={"GET"})
+     * @Route("/check/{gmail}/{macAddress}", methods={"GET"})
      * @param $gmail
      * @param $macAddress
      * @return \Symfony\Component\HttpFoundation\JsonResponse|Response

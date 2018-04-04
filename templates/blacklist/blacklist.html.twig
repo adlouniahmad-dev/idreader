@@ -72,6 +72,11 @@
                             <div class="col-md-5 col-sm-12">
                                 <div class="dataTables_info" id="records_info" role="status" aria-live="polite"></div>
                             </div>
+                            <div class="col-md-7 col-sm-12">
+                                <div class="dataTables_paginate paging_bootstrap_number" id="all_blacklist_paginate">
+                                    <ul class="pagination"></ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -82,7 +87,7 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script type="text/javascript" src="{{ asset('js/pages/bootstrap-confirmation/bootstrap-confirmation.min.js') }}"></script>
+    <script src="{{ asset('js/pagination/jquery.twbsPagination.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/pages/datatable-default-render.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/pages/view-all-blacklisted-visitors.js') }}" type="text/javascript"></script>
 {% endblock %}

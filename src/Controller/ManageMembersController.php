@@ -228,7 +228,7 @@ class ManageMembersController extends Controller
                 'form' => $form->createView()
             ));
         }
-        die('Error Occurred');
+        return $this->render('errors/access_denied.html.twig');
     }
 
     /**
@@ -460,6 +460,7 @@ class ManageMembersController extends Controller
     {
         return $this->render('manageMembers/editUserProfile.twig', array(
             'user' => $user,
+            'roles' => $this->getUserRoles($user),
             'personalInfoForm' => $personalInfoForm->createView(),
             'deviceForm' => $deviceForm !== null ? $deviceForm->createView() : null,
             'officeForm' => $officeForm !== null ? $officeForm->createView() : null,
@@ -618,7 +619,7 @@ class ManageMembersController extends Controller
         for ($i = $iDisplayStart; $i < $end; $i++) {
             $id = ($i + 1);
             $records['data'][] = array(
-                '<input type="checkbox" name="id[]" value="' . $id . '">',
+                '<input type="checkbox" name="id[' . $users[$i]['id'] . ']" value="' . $id . '">',
                 $users[$i]['id'],
                 $users[$i]['date_created'],
                 $users[$i]['given_name'],
@@ -704,7 +705,6 @@ class ManageMembersController extends Controller
 
         return $rolesArray;
     }
-
 
     /**
      * @param User $user

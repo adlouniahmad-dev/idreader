@@ -35,34 +35,60 @@ class ManageBlacklistController extends Controller
     }
 
     /**
-     * @Route("/api/getBlacklist/{query}", methods={"GET"})
+     * @Route("/api/getBlacklist/{page}/{query}", methods={"GET"})
+     * @Route("/api/getBlacklist/{page}", methods={"GET"})
+     * @param int $page
      * @param string $query
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-    public function getTheBlacklist($query = '')
+    public function getTheBlacklist($page = 1, $query = '')
     {
 
-        $repo = $this->getDoctrine()->getRepository(Blacklist::class);
-        $visitors = $repo->getAllBlacklistedVisitors($query);
+        $currentPage = $page;
 
-        $totalVisitors = count($visitors);
+        $repo = $this->getDoctrine()->getRepository(Blacklist::class);
+        $visitors = $repo->getAllBlacklistedVisitors($currentPage, $query);
+
+        $totalVisitors = $visitors->count();
+        $totalVisitorsReturned = $visitors->getIterator()->count();
+        $limit = 10;
+        $maxPages = ceil($totalVisitors / $limit);
 
         $data = array();
         $data['totalVisitors'] = $totalVisitors;
+        $data['totalVisitorsReturned'] = $totalVisitorsReturned;
+        $data['limit'] = $limit;
+        $data['currentPage'] = (int)$currentPage;
+        $data['maxPages'] = $maxPages;
 
         $visitorsArray = array();
 
-        for ($i = 0; $i < count($visitors); $i++) {
+//        for ($i = 0; $i < count($visitors); $i++) {
+//            $visitorInfo = array();
+//            $visitorInfo['id'] = $visitors[$i]->getId();
+//            $visitorInfo['dateAddedToBlacklist'] = date_format($visitors[$i]->getDateAdded(), 'jS F, Y');
+//
+//            $visitorInfo['visitor'] = array();
+//            $visitorInfo['visitor']['id'] = $visitors[$i]->getVisitor()->getId();
+//            $visitorInfo['visitor']['firstName'] = $visitors[$i]->getVisitor()->getFirstName();
+//            $visitorInfo['visitor']['middleName'] = $visitors[$i]->getVisitor()->getMiddleName();
+//            $visitorInfo['visitor']['lastName'] = $visitors[$i]->getVisitor()->getLastName();
+//            $visitorInfo['visitor']['nationality'] = $visitors[$i]->getVisitor()->getCountry();
+//
+//            $visitorsArray[] = $visitorInfo;
+//        }
+
+        foreach ($visitors as $visitor) {
             $visitorInfo = array();
-            $visitorInfo['id'] = $visitors[$i]->getId();
-            $visitorInfo['dateAddedToBlacklist'] = date_format($visitors[$i]->getDateAdded(), 'jS F, Y');
+            $visitorInfo['id'] = $visitor->getId();
+            $visitorInfo['dateAddedToBlacklist'] = date_format($visitor->getDateAdded(), 'jS F, Y');
 
             $visitorInfo['visitor'] = array();
-            $visitorInfo['visitor']['id'] = $visitors[$i]->getVisitor()->getId();
-            $visitorInfo['visitor']['firstName'] = $visitors[$i]->getVisitor()->getFirstName();
-            $visitorInfo['visitor']['middleName'] = $visitors[$i]->getVisitor()->getMiddleName();
-            $visitorInfo['visitor']['lastName'] = $visitors[$i]->getVisitor()->getLastName();
-            $visitorInfo['visitor']['nationality'] = $visitors[$i]->getVisitor()->getCountry();
+            $visitorInfo['visitor']['id'] = $visitor->getVisitor()->getId();
+            $visitorInfo['visitor']['firstName'] = $visitor->getVisitor()->getFirstName();
+            $visitorInfo['visitor']['middleName'] = $visitor->getVisitor()->getMiddleName();
+            $visitorInfo['visitor']['lastName'] = $visitor->getVisitor()->getLastName();
+            $visitorInfo['visitor']['nationality'] = $visitor->getVisitor()->getCountry();
 
             $visitorsArray[] = $visitorInfo;
         }

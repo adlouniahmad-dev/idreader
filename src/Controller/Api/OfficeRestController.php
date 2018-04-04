@@ -14,12 +14,18 @@ use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route as FRoute;
 
+/**
+ * Class OfficeRestController
+ * @package App\Controller\Api
+ * @FRoute("/api/office")
+ */
 class OfficeRestController extends Controller
 {
 
     /**
-     * @Route("/api/office/getOffices/{gmail}", methods={"GET"})
+     * @Route("/getOffices/{gmail}", methods={"GET"})
      * @param $gmail
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */

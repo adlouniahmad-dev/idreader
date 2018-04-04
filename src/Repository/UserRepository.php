@@ -103,8 +103,6 @@ class UserRepository extends ServiceEntityRepository
                 ->getQuery();
         }
 
-
-
         $paginator = $this->paginate($query, $currentPage);
 
         return $paginator;

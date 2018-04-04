@@ -63,21 +63,6 @@ class ManageBlacklistController extends Controller
 
         $visitorsArray = array();
 
-//        for ($i = 0; $i < count($visitors); $i++) {
-//            $visitorInfo = array();
-//            $visitorInfo['id'] = $visitors[$i]->getId();
-//            $visitorInfo['dateAddedToBlacklist'] = date_format($visitors[$i]->getDateAdded(), 'jS F, Y');
-//
-//            $visitorInfo['visitor'] = array();
-//            $visitorInfo['visitor']['id'] = $visitors[$i]->getVisitor()->getId();
-//            $visitorInfo['visitor']['firstName'] = $visitors[$i]->getVisitor()->getFirstName();
-//            $visitorInfo['visitor']['middleName'] = $visitors[$i]->getVisitor()->getMiddleName();
-//            $visitorInfo['visitor']['lastName'] = $visitors[$i]->getVisitor()->getLastName();
-//            $visitorInfo['visitor']['nationality'] = $visitors[$i]->getVisitor()->getCountry();
-//
-//            $visitorsArray[] = $visitorInfo;
-//        }
-
         foreach ($visitors as $visitor) {
             $visitorInfo = array();
             $visitorInfo['id'] = $visitor->getId();

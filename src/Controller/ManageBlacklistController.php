@@ -43,7 +43,6 @@ class ManageBlacklistController extends Controller
      */
     public function getTheBlacklist($page = 1, $query = '')
     {
-
         $currentPage = $page;
 
         $repo = $this->getDoctrine()->getRepository(Blacklist::class);

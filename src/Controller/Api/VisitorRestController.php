@@ -10,12 +10,15 @@ namespace App\Controller\Api;
 
 
 use App\Country;
+use App\Entity\Log;
+use App\Entity\Office;
 use App\Entity\Visitor;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route as FRoute;
+use Symfony\Component\Validator\Constraints\Date;
 
 /**
  * Class VisitorRestController
@@ -58,13 +61,27 @@ class VisitorRestController extends Controller
             $entityManager->persist($visitor);
             $entityManager->flush();
 
+
+            $log = new Log();
+            $log->setVisitor($visitor);
+            $log->setTimeEntered(new \DateTime());
+            $log->setDateCreated(new \DateTime());
+            $log->setIsSuspicious(0);
+
+            $office = $this->getDoctrine()->getRepository(Office::class)->find($data['officeId']);
+            $log->setOffice($office);
+
+            $entityManager->persist($log);
+            $entityManager->flush();
+
         } catch (\Exception $e) {
 
             return $this->json(array(
                 'success' => false,
-                'message' => 'Visitor already exists.',
+                'message' => $e->getMessage(),
             ), Response::HTTP_NOT_FOUND);
         }
+
 
         return $this->json(array(
             'success' => true,

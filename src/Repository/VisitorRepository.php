@@ -35,7 +35,8 @@ class VisitorRepository extends ServiceEntityRepository
                 OR v.lastName LIKE :string
                 OR v.dateCreated LIKE :string
                 OR v.documentType LIKE :string
-                OR v.nationality LIKE :string'
+                OR v.nationality LIKE :string
+                OR v.ssn LIKE :string'
             )
             ->setParameter('string', '%' . $string . '%')
             ->getQuery();

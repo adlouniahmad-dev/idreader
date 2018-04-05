@@ -50,6 +50,11 @@ class Office
     private $user;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Log", mappedBy="office")
+     */
+    private $logs;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -141,5 +146,22 @@ class Office
     {
         $this->user = null;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getLogs()
+    {
+        return $this->logs;
+    }
+
+    /**
+     * @param mixed $logs
+     */
+    public function setLogs($logs): void
+    {
+        $this->logs = $logs;
+    }
+
 
 }

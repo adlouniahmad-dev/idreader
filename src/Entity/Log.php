@@ -22,12 +22,12 @@ class Log
     private $timeEntered;
 
     /**
-     * @ORM\Column(type="time")
+     * @ORM\Column(type="time", nullable=true)
      */
     private $timeLeft;
 
     /**
-     * @ORM\Column(type="dateinterval")
+     * @ORM\Column(type="dateinterval", nullable=true)
      */
     private $estimatedTime;
 
@@ -46,6 +46,12 @@ class Log
      * @ORM\JoinColumn(name="visitor_id", referencedColumnName="id")
      */
     private $visitor;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Office", inversedBy="logs")
+     * @ORM\JoinColumn(name="office_id", referencedColumnName="id")
+     */
+    private $office;
 
     /**
      * @return mixed
@@ -149,6 +155,22 @@ class Log
     public function setVisitor($visitor): void
     {
         $this->visitor = $visitor;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOffice()
+    {
+        return $this->office;
+    }
+
+    /**
+     * @param mixed $office
+     */
+    public function setOffice($office): void
+    {
+        $this->office = $office;
     }
 
 }

@@ -1,6 +1,6 @@
-var UIConfirmations = function () {
+var UIConfirmationsBlackList = function () {
 
-    var handleSample = function () {
+    var handleSampleBlacklist = function () {
 
         let $removeButton = $('#remove');
         let $addButton = $('#add');
@@ -17,7 +17,7 @@ var UIConfirmations = function () {
 
     return {
         init: function () {
-            handleSample();
+            handleSampleBlacklist();
         }
     };
 }();
@@ -72,11 +72,8 @@ function add_remove_blacklist(button, option, visitorId) {
             $(button).html(textButton);
         }
     });
-
-    $(button).unbined('confirmed.bs.confirmation');
-
 }
 
 jQuery(document).ready(function() {
-    UIConfirmations.init();
+    UIConfirmationsBlackList.init();
 });

@@ -24,7 +24,7 @@ class Log
     /**
      * @ORM\Column(type="time", nullable=true)
      */
-    private $timeLeft;
+    private $timeExit;
 
     /**
      * @ORM\Column(type="dateinterval", nullable=true)

@@ -10,6 +10,9 @@ namespace App\Controller;
 
 
 use App\Entity\Blacklist;
+use App\Entity\Log;
+use App\Entity\LogGate;
+use App\Entity\LogGuard;
 use App\Entity\Visitor;
 use App\Form\Type\VisitorType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -196,6 +199,65 @@ class ManageVisitorController extends Controller
             return new JsonResponse($error);
 
         return new JsonResponse($success);
+    }
+
+    /**
+     * @Route("/visitor/{visitorId}/settings/delete", name="deleteVisitor")
+     * @param $visitorId
+     * @return JsonResponse
+     */
+    public function deleteVisitor($visitorId)
+    {
+        $error = array('success' => 'no');
+        $success = array('success' => 'yes');
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $visitor = $entityManager->getRepository(Visitor::class)->find($visitorId);
+
+        if (!$visitor)
+            return $this->json($error);
+
+        $logs = $entityManager->getRepository(Log::class)->findBy(['visitor' => $visitor]);
+        if ($logs) {
+            foreach ($logs as $log) {
+                $logGates = $entityManager->getRepository(LogGate::class)->findBy(['log' => $log]);
+                if ($logGates) {
+                    foreach ($logGates as $logGate) {
+                        $entityManager->remove($logGate);
+                        $entityManager->flush();
+                    }
+                }
+
+                $logGuards = $entityManager->getRepository(LogGuard::class)->findBy(['log' => $log]);
+                if ($logGuards) {
+                    foreach ($logGuards as $logGuard) {
+                        $entityManager->remove($logGuard);
+                        $entityManager->flush();
+                    }
+                }
+
+                $entityManager->remove($log);
+                $entityManager->flush();
+            }
+        }
+
+        $inBlacklist = $entityManager->getRepository(Blacklist::class)->findOneBy(['visitor' => $visitor]);
+        if ($inBlacklist) {
+            $entityManager->remove($inBlacklist);
+            $entityManager->flush();
+        }
+
+        try {
+            $entityManager->remove($visitor);
+            $entityManager->flush();
+        } catch (\Exception $e) {
+            return $this->json(array(
+                'success' => 'no',
+                'error' => $e->getMessage()
+            ));
+        }
+
+        return $this->json($success);
     }
 
 }

@@ -25,8 +25,8 @@ var UIConfirmations = function () {
 function add_remove_blacklist(button, option, visitorId) {
 
     let url = '/api/blacklist/' + option + '/' + visitorId;
-    let $alertDialog = $('.alert');
-    let $messageContainer = $('#error-text');
+    let $alertDialog = $('#blacklist-alert');
+    let $messageContainer = $('#error-text-blacklist');
 
     $.ajax({
         url: url,
@@ -71,7 +71,9 @@ function add_remove_blacklist(button, option, visitorId) {
             let textButton = option === 'add' ? 'Add' : 'Remove';
             $(button).html(textButton);
         }
-    })
+    });
+
+    $(button).unbined('confirmed.bs.confirmation');
 
 }
 

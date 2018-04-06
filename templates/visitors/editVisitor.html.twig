@@ -25,6 +25,9 @@
                                     {% endif %}
                                 </a>
                             </li>
+                            <li>
+                                <a href="#delete_account" data-toggle="tab">Delete Account</a>
+                            </li>
                         </ul>
                     </div>
                     <div class="portlet-body">
@@ -62,21 +65,35 @@
                             </div>
 
                             <div class="tab-pane" id="blacklist">
-                                <div class="alert hidden">
+                                <div class="alert hidden" id="blacklist-alert">
                                     <button class="close" data-close="alert"></button>
-                                    <span id="error-text"></span>
+                                    <span id="error-text-blacklist"></span>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         {% if visitorBlacklist is null %}
                                             <p>Add the visitor to the blacklist.</p>
-                                            <button class="btn red" data-toggle="confirmation" data-placement="right"
+                                            <button class="btn red" data-toggle="confirmation" data-singleton="true" data-placement="right"
                                                     id="add">Add</button>
                                         {% else %}
                                             <p>Remove the visitor from the blacklist.</p>
-                                            <button class="btn red" data-toggle="confirmation" data-placement="right"
+                                            <button class="btn red" data-toggle="confirmation" data-singleton="true" data-placement="right"
                                                     id="remove">Remove</button>
                                         {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane" id="delete_account">
+                                <div class="alert hidden" id="remove-alert">
+                                    <button class="close" data-close="alert"></button>
+                                    <span id="error-text-remove"></span>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p>All the data and content (such as logs) in that account will be lost.</p>
+                                        <button class="btn red" data-toggle="confirmation" data-singleton="true"
+                                                data-placement="right" id="delete_account_btn">Delete Account</button>
                                     </div>
                                 </div>
                             </div>
@@ -95,6 +112,7 @@
     <script type="text/javascript" src="{{ asset('js/pages/bootstrap-confirmation/bootstrap-confirmation.min.js') }}"></script>
     <script type="text/javascript">let visitorId = {{ visitor.id }};</script>
     <script type="text/javascript" src="{{ asset('js/pages/visitor-blacklist.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/pages/delete_visitor.js') }}"></script>
 {% endblock %}
 
 

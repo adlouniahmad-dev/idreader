@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Gate;
 use App\Entity\Schedule;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -13,16 +14,12 @@ class ScheduleRepository extends ServiceEntityRepository
         parent::__construct($registry, Schedule::class);
     }
 
-    /*
-    public function findBySomething($value)
+    public function findByGateGroupByGuard(Gate $gate)
     {
         return $this->createQueryBuilder('s')
-            ->where('s.something = :value')->setParameter('value', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
+            ->where('s.gate = :gate')->setParameter('gate', $gate)
+            ->groupBy('s.guard')
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
-    */
 }

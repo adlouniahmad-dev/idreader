@@ -541,7 +541,7 @@ class ManageMembersController extends Controller
             $scheduleInfo['title'] = $schedule->getGate()->getName();
 
             $scheduleDay = $schedule->getShift()->getDay();
-            if ($scheduleDay === 'Sunday' || $scheduleDay === 'Monday' || $scheduleDay === 'Tuesday')
+            if ($scheduleDay === 'Sunday' || $scheduleDay === 'Monday' || $scheduleDay === 'Tuesday' || $scheduleDay === 'Wednesday')
                 $dateFromShiftDay = strtotime('-7 days', strtotime($schedule->getShift()->getDay()));
             else
                 $dateFromShiftDay = strtotime($schedule->getShift()->getDay());

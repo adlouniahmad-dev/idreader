@@ -80,17 +80,17 @@ class Log
     /**
      * @return mixed
      */
-    public function getTimeLeft()
+    public function getTimeExit()
     {
-        return $this->timeLeft;
+        return $this->timeExit;
     }
 
     /**
-     * @param mixed $timeLeft
+     * @param mixed $timeExit
      */
-    public function setTimeLeft($timeLeft): void
+    public function setTimeExit($timeExit): void
     {
-        $this->timeLeft = $timeLeft;
+        $this->timeExit = $timeExit;
     }
 
     /**
@@ -128,7 +128,7 @@ class Log
     /**
      * @return mixed
      */
-    public function getisSuspicious()
+    public function getIsSuspicious()
     {
         return $this->isSuspicious;
     }

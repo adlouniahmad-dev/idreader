@@ -95,7 +95,7 @@ class ManageGatesController extends Controller
                 if ($gate->getBuilding()->getId() === $building->getId()) {
                     $data[$building->getName()][$gate->getName()] = array();
                     $data[$building->getName()][$gate->getName()]['gate_id'] = $gate->getId();
-                    $guards = $this->getDoctrine()->getRepository(Schedule::class)->findBy(['gate' => $gate]);
+                    $guards = $this->getDoctrine()->getRepository(Schedule::class)->findByGateGroupByGuard($gate);
                     $data[$building->getName()][$gate->getName()]['guards'] = array();
                     foreach ($guards as $guard) {
                         $data[$building->getName()][$gate->getName()]['guards'][] = $guard->getGuard()->getUser();
@@ -190,5 +190,31 @@ class ManageGatesController extends Controller
             'form' => $form->createView(),
         ));
     }
+
+//    /**
+//     * @Route("/manageGate/gate/{gateId}/edit/delete, name="deleteGate")
+//     * @param $gateId
+//     * @return \Symfony\Component\HttpFoundation\JsonResponse
+//     */
+//    public function deleteGate($gateId)
+//    {
+//        $error = array('success' => 'no');
+//        $success = array('success' => 'yes');
+//
+//        $entityManager = $this->getDoctrine()->getManager();
+//        $gate = $entityManager->getRepository(Gate::class)->find($gateId);
+//
+//        if (!$gate)
+//            return $this->json($error);
+//
+//
+//
+//        try {
+//
+//
+//        } catch (\Exception $e) {
+//            return $this->json($error);
+//        }
+//    }
 
 }

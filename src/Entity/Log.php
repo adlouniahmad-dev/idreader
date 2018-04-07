@@ -27,7 +27,7 @@ class Log
     private $timeExit;
 
     /**
-     * @ORM\Column(type="dateinterval", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
     private $estimatedTime;
 

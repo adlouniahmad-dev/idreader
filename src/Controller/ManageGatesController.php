@@ -11,6 +11,9 @@ namespace App\Controller;
 
 use App\Entity\Building;
 use App\Entity\Gate;
+use App\Entity\Log;
+use App\Entity\LogGate;
+use App\Entity\LogGuard;
 use App\Entity\Schedule;
 use App\Form\Type\GateType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -127,7 +130,7 @@ class ManageGatesController extends Controller
         if (!$gate)
             return $this->render('errors/not_found.html.twig');
 
-        $schedules = $this->getDoctrine()->getRepository(Schedule::class)->findBy(['gate' => $gate]);
+        $schedules = $this->getDoctrine()->getRepository(Schedule::class)->findByGateGroupByGuard($gate);
         $guards = array();
         foreach ($schedules as $schedule)
             $guards[] = $schedule->getGuard();
@@ -191,30 +194,67 @@ class ManageGatesController extends Controller
         ));
     }
 
-//    /**
-//     * @Route("/manageGate/gate/{gateId}/edit/delete, name="deleteGate")
-//     * @param $gateId
-//     * @return \Symfony\Component\HttpFoundation\JsonResponse
-//     */
-//    public function deleteGate($gateId)
-//    {
-//        $error = array('success' => 'no');
-//        $success = array('success' => 'yes');
-//
-//        $entityManager = $this->getDoctrine()->getManager();
-//        $gate = $entityManager->getRepository(Gate::class)->find($gateId);
-//
-//        if (!$gate)
-//            return $this->json($error);
-//
-//
-//
-//        try {
-//
-//
-//        } catch (\Exception $e) {
-//            return $this->json($error);
-//        }
-//    }
+    /**
+     * @Route("/manageGate/gate/{gateId}/edit/delete", name="deleteGate")
+     * @param $gateId
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function deleteGate($gateId)
+    {
+        $error = array('success' => 'no');
+        $success = array('success' => 'yes');
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $gate = $entityManager->getRepository(Gate::class)->find($gateId);
+
+        if (!$gate)
+            return $this->json($error);
+
+        $logGates = $entityManager->getRepository(LogGate::class)->findBy(['gate' => $gate]);
+        if ($logGates) {
+            $logs = array();
+            foreach ($logGates as $logGate) {
+                $log = $entityManager->getRepository(Log::class)->find($logGate->getLog()->getId());
+                if ($log) {
+                    array_push($logs, $log);
+                    $logGuards = $entityManager->getRepository(LogGuard::class)->findBy(['log' => $log]);
+                    if ($logGuards) {
+                        foreach ($logGuards as $logGuard) {
+                            $entityManager->remove($logGuard);
+                            $entityManager->flush();
+                        }
+                    }
+                }
+                $entityManager->remove($logGate);
+                $entityManager->flush();
+            }
+
+            if (!empty($logs)) {
+                foreach ($logs as $log) {
+                    $entityManager->remove($log);
+                    $entityManager->flush();
+                }
+            }
+        }
+
+        $schedules = $entityManager->getRepository(Schedule::class)->findBy(['gate' => $gate]);
+        if ($schedules) {
+            foreach ($schedules as $schedule) {
+                $entityManager->remove($schedule);
+                $entityManager->flush();
+            }
+        }
+
+        try {
+
+            $entityManager->remove($gate);
+            $entityManager->flush();
+
+        } catch (\Exception $e) {
+            return $this->json($error);
+        }
+
+        return $this->json($success);
+    }
 
 }

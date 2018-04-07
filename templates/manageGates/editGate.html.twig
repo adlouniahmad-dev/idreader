@@ -12,11 +12,19 @@
                             <i class="icon-globe theme-font hide"></i>
                             <span class="caption-subject font-blue-madison bold uppercase">Gate Settings</span>
                         </div>
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#gate_info" data-toggle="tab">Visitor Info</a>
+                            </li>
+                            <li>
+                                <a href="#delete_gate" data-toggle="tab">Delete Gate</a>
+                            </li>
+                        </ul>
                     </div>
                     <div class="portlet-body">
                         <div class="tab-content">
 
-                            <div class="tab-pane active" id="tab_1_1">
+                            <div class="tab-pane active" id="gate_info">
                                 {{ form_start(form, {'attr': {'class': 'form-horizontal', 'novalidate': 'novalidate'}}) }}
                                 <div class="form-body">
 
@@ -42,6 +50,20 @@
                                 </div>
                                 {{ form_end(form) }}
                             </div>
+
+                            <div class="tab-pane" id="delete_gate">
+                                <div class="alert hidden">
+                                    <button class="close" data-close="alert"></button>
+                                    <span id="error-text"></span>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p>All the data and content related to the gate will be lost.</p>
+                                        <button class="btn red" data-toggle="confirmation"
+                                                data-placement="right" id="delete_gate_btn">Delete Gate</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -50,6 +72,13 @@
     </div>
     </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/pages/bootstrap-confirmation/bootstrap-confirmation.min.js') }}"></script>
+    <script type="text/javascript">let gateId = {{ gate.id }};</script>
+    <script type="text/javascript" src="{{ asset('js/pages/delete_gate.js') }}"></script>
 {% endblock %}
 
 

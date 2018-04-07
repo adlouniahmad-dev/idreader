@@ -239,6 +239,16 @@
 
                 {%- if 'fowner' in app.session.get('roles') or 'fadmin' in app.session.get('roles') -%}
                     <li class="nav-item">
+                        <a href="{{ path('suspiciousVisits') }}" class="nav-link nav-toggle">
+                            <i class="fa fa-list-ul"></i>
+                            <span class="title">Suspicious Visits</span>
+                            <span class="selected"></span>
+                        </a>
+                    </li>
+                {%- endif -%}
+
+                {%- if 'fowner' in app.session.get('roles') or 'fadmin' in app.session.get('roles') -%}
+                    <li class="nav-item">
                         <a href="#" class="nav-link nav-toggle">
                             <i class="fa fa-angle-double-right"></i>
                             <span class="title">Manage Shifts</span>

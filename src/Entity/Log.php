@@ -27,7 +27,7 @@ class Log
     private $timeExit;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="time", nullable=true)
      */
     private $estimatedTime;
 
@@ -36,10 +36,10 @@ class Log
      */
     private $dateCreated;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $isSuspicious;
+//    /**
+//     * @ORM\Column(type="boolean")
+//     */
+//    private $isSuspicious;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Visitor", inversedBy="logs")
@@ -125,21 +125,21 @@ class Log
         $this->dateCreated = $dateCreated;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getIsSuspicious()
-    {
-        return $this->isSuspicious;
-    }
-
-    /**
-     * @param mixed $isSuspicious
-     */
-    public function setIsSuspicious($isSuspicious): void
-    {
-        $this->isSuspicious = $isSuspicious;
-    }
+//    /**
+//     * @return mixed
+//     */
+//    public function getIsSuspicious()
+//    {
+//        return $this->isSuspicious;
+//    }
+//
+//    /**
+//     * @param mixed $isSuspicious
+//     */
+//    public function setIsSuspicious($isSuspicious): void
+//    {
+//        $this->isSuspicious = $isSuspicious;
+//    }
 
     /**
      * @return mixed

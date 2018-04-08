@@ -65,22 +65,6 @@ class ManageLogsController extends Controller
     }
 
     /**
-     * @Route("/visits", name="visits")
-     * @param Session $session
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
-     */
-    public function visits(Session $session)
-    {
-        if (!$session->has('gmail'))
-            return $this->redirectToRoute('login');
-
-        if (!in_array('powner', $session->get('roles')))
-            return $this->render('errors/access_denied.html.twig');
-
-        return $this->render('visits/visits.html.twig');
-    }
-
-    /**
      * @Route("/visits/today", name="todayVisits", methods={"GET"})
      * @param Session $session
      * @return \Symfony\Component\HttpFoundation\JsonResponse

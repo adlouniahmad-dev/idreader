@@ -36,10 +36,11 @@ class Log
      */
     private $dateCreated;
 
-//    /**
-//     * @ORM\Column(type="boolean")
-//     */
-//    private $isSuspicious;
+    /**
+     * @ORM\Column(type="time", nullable=true)
+     */
+    private $dateLeftFromOffice;
+
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Visitor", inversedBy="logs")
@@ -125,21 +126,6 @@ class Log
         $this->dateCreated = $dateCreated;
     }
 
-//    /**
-//     * @return mixed
-//     */
-//    public function getIsSuspicious()
-//    {
-//        return $this->isSuspicious;
-//    }
-//
-//    /**
-//     * @param mixed $isSuspicious
-//     */
-//    public function setIsSuspicious($isSuspicious): void
-//    {
-//        $this->isSuspicious = $isSuspicious;
-//    }
 
     /**
      * @return mixed
@@ -172,5 +158,22 @@ class Log
     {
         $this->office = $office;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getDateLeftFromOffice()
+    {
+        return $this->dateLeftFromOffice;
+    }
+
+    /**
+     * @param mixed $dateLeftFromOffice
+     */
+    public function setDateLeftFromOffice($dateLeftFromOffice): void
+    {
+        $this->dateLeftFromOffice = $dateLeftFromOffice;
+    }
+
 
 }

@@ -93,15 +93,13 @@
             <ul class="page-sidebar-menu  page-header-fixed page-sidebar-menu-hover-submenu " data-keep-expanded="false"
                 data-auto-scroll="true" data-slide-speed="200">
 
-                {%- if 'fowner' in app.session.get('roles') or 'fadmin' in app.session.get('roles') -%}
-                    <li class="nav-item start">
-                        <a href="{{ path('dashboard') }}" class="nav-link nav-toggle">
-                            <i class="icon-home"></i>
-                            <span class="title">Dashboard</span>
-                            <span class="selected"></span>
-                        </a>
-                    </li>
-                {%- endif -%}
+                <li class="nav-item start">
+                    <a href="{{ path('dashboard') }}" class="nav-link nav-toggle">
+                        <i class="icon-home"></i>
+                        <span class="title">Dashboard</span>
+                        <span class="selected"></span>
+                    </a>
+                </li>
 
                 {%- if 'fowner' in app.session.get('roles') or 'fadmin' in app.session.get('roles') -%}
                     <li class="nav-item">
@@ -247,7 +245,7 @@
                     </li>
                 {%- endif -%}
 
-                {% if 'powner' in app.session.get('roles') %}
+                {%- if 'powner' in app.session.get('roles') -%}
                     <li class="nav-item">
                         <a href="{{ path('visits') }}" class="nav-link nav-toggle">
                             <i class="fa fa-list-ul"></i>
@@ -255,7 +253,7 @@
                             <span class="selected"></span>
                         </a>
                     </li>
-                {% endif %}
+                {%- endif -%}
 
                 {%- if 'fowner' in app.session.get('roles') or 'fadmin' in app.session.get('roles') -%}
                     <li class="nav-item">

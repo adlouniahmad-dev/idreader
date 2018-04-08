@@ -163,7 +163,7 @@ class ManageLogsController extends Controller
     }
 
     /**
-     * @Route("/visits/done/{logId}", name="doneVisit", methods={"POST"})
+     * @Route("/visits/done/{logId}", name="doneVisit", methods={"PUT"})
      * @param $logId
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
@@ -179,6 +179,48 @@ class ManageLogsController extends Controller
         $entityManager->flush();
 
         return $this->json(array('success' => true));
+    }
+
+    /**
+     * @Route("/visits/getTotalVisitsPerDay", methods={"GET"})
+     * @param Session $session
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function getTotalVisitorsPerDay(Session $session)
+    {
+        $user = $session->get('user');
+        $office = $this->getDoctrine()->getRepository(Office::class)->findOneBy(['user' => $user]);
+        $totalVisitsPerDay = $this->getDoctrine()->getRepository(Log::class)->getTotalVisitorsPerDay($office);
+
+        return $this->json(array('count' => $totalVisitsPerDay[0][1]));
+    }
+
+    /**
+     * @Route("/visits/doneVisitorsPerDay", methods={"GET"})
+     * @param Session $session
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function doneVisitorsPerDay(Session $session)
+    {
+        $user = $session->get('user');
+        $office = $this->getDoctrine()->getRepository(Office::class)->findOneBy(['user' => $user]);
+        $DoneVisitsPerDay = $this->getDoctrine()->getRepository(Log::class)->getDoneVisitsPerDay($office);
+
+        return $this->json(array('count' => $DoneVisitsPerDay[0][1]));
+    }
+
+    /**
+     * @Route("/visits/getCountOfTotalVisits", methods={"GET"})
+     * @param Session $session
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function getCountOfTotalVisits(Session $session)
+    {
+        $user = $session->get('user');
+        $office = $this->getDoctrine()->getRepository(Office::class)->findOneBy(['user' => $user]);
+        $totalVisits = $this->getDoctrine()->getRepository(Log::class)->getCountTotalVisits($office);
+
+        return $this->json(array('count' => $totalVisits[0][1]));
     }
 
 }

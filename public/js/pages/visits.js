@@ -49,9 +49,12 @@ function renderCountVisitors() {
         $('#nb_visitors').html(($('.visitor-list').children().size() / 2));
 }
 
-$($visitorList).on('click', 'li', function () {
-    let logId = $(this).data('logid');
-    getVisitorAndLogInfo(logId, this);
+$($visitorList).on('click', 'li', function (e) {
+    if (!$(this).hasClass('active')) {
+        e.preventDefault();
+        let logId = $(this).data('logid');
+        getVisitorAndLogInfo(logId, this);
+    }
 });
 
 function getVisitorAndLogInfo(logId, li) {
@@ -111,7 +114,7 @@ function toggleActiveButton(li) {
 $doneVisitContainer.on('click', '#done_visit_btn', function () {
     $.ajax({
         url: '/visits/done/' + $(this).data('logid'),
-        type: 'post',
+        type: 'put',
         success: function (response) {
             if (response.success === true) {
                 $('.loading-visitor-info').addClass('hidden');
@@ -130,4 +133,72 @@ getVisitors();
 
 setInterval(function () {
     getVisitors()
+}, 5000);
+
+////////////////////////////////////////////////////////////////////
+
+let $totalVisitorsPerDay = $('#totalVisitorsPerDay');
+function totalVisitorsPerDay() {
+    $.ajax({
+        url: '/visits/getTotalVisitsPerDay',
+        dataType: 'json',
+        type: 'get',
+        success: function (response) {
+            if ($totalVisitorsPerDay.attr('data-value') !== response.count) {
+                $totalVisitorsPerDay.attr('data-value', response.count);
+                $totalVisitorsPerDay.counterUp({
+                    'time': 400,
+                    'delay': 10
+                });
+            }
+        }
+    })
+}
+
+
+let $doneVisitorsPerDay = $('#doneVisitorsPerDay');
+function doneVisitorsPerDay() {
+    $.ajax({
+        url: '/visits/doneVisitorsPerDay',
+        dataType: 'json',
+        type: 'get',
+        success: function (response) {
+            if ($doneVisitorsPerDay.attr('data-value') !== response.count) {
+                $doneVisitorsPerDay.attr('data-value', response.count);
+                $doneVisitorsPerDay.counterUp({
+                    'time': 400,
+                    'delay': 10
+                });
+            }
+        }
+    })
+}
+
+
+let $totalVisitors = $('#totalVisitors');
+function totalVisitors() {
+    $.ajax({
+        url: '/visits/getCountOfTotalVisits',
+        dataType: 'json',
+        type: 'get',
+        success: function (response) {
+            if ($totalVisitors.attr('data-value') !== response.count) {
+                $totalVisitors.attr('data-value', response.count);
+                $totalVisitors.counterUp({
+                    'time': 400,
+                    'delay': 10
+                });
+            }
+        }
+    })
+}
+
+totalVisitorsPerDay();
+doneVisitorsPerDay();
+totalVisitors();
+
+setInterval(function () {
+    totalVisitorsPerDay();
+    doneVisitorsPerDay();
+    totalVisitors();
 }, 5000);

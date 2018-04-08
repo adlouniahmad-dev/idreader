@@ -70,4 +70,48 @@ class LogRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
     }
 
+    /**
+     * @param Office|null $office
+     * @return mixed
+     */
+    public function getTotalVisitorsPerDay(Office $office = null)
+    {
+        return $this->createQueryBuilder('l')
+            ->select('count(l.id)')
+            ->where('l.office = :office')->setParameter('office', $office)
+            ->andWhere('l.dateCreated = :today')->setParameter('today', date_format(new \DateTime(), 'Y-m-d'))
+            ->getQuery()
+            ->getScalarResult();
+    }
+
+    /**
+     * @param Office $office
+     * @return array
+     */
+    public function getDoneVisitsPerDay(Office $office = null)
+    {
+        $query = $this->createQueryBuilder('l');
+        $query
+            ->select('count(l.id)')
+            ->where('l.office = :office')->setParameter('office', $office)
+            ->andWhere('l.dateCreated = :today')->setParameter('today', date_format(new \DateTime(), 'Y-m-d'))
+            ->andWhere($query->expr()->isNotNull('l.dateLeftFromOffice'));
+
+        return $query->getQuery()->getScalarResult();
+    }
+
+    /**
+     * @param Office $office
+     * @return array
+     */
+    public function getCountTotalVisits(Office $office = null)
+    {
+        $query = $this->createQueryBuilder('l');
+        $query
+            ->select('count(l.id)')
+            ->where('l.office = :office')->setParameter('office', $office);
+
+        return $query->getQuery()->getScalarResult();
+    }
+
 }

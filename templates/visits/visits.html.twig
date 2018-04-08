@@ -6,10 +6,6 @@
 {% block pagebartitle %}Visits{% endblock %}
 
 {% block stylesheets %}
-    <link href="{{ asset('global/datatables/datatables.min.css') }}" rel="stylesheet"
-          type="text/css"/>
-    <link href="{{ asset('global/datatables/plugins/bootstrap/datatables.bootstrap.css') }}" rel="stylesheet"
-          type="text/css"/>
     <link href="{{ asset('css/visits.min.css') }}" rel="stylesheet" type="text/css">
     {{ parent() }}
 {% endblock %}

@@ -343,3 +343,8 @@ iframe {
         -webkit-transform: scaleY(1.0);
     }
 }
+
+.dashboard-stat2 {
+    padding: 15px 15px 10px;
+    border-bottom: 5px solid;
+}

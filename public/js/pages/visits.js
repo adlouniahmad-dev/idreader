@@ -138,6 +138,7 @@ setInterval(function () {
 ////////////////////////////////////////////////////////////////////
 
 let $totalVisitorsPerDay = $('#totalVisitorsPerDay');
+
 function totalVisitorsPerDay() {
     $.ajax({
         url: '/visits/getTotalVisitsPerDay',
@@ -157,6 +158,7 @@ function totalVisitorsPerDay() {
 
 
 let $doneVisitorsPerDay = $('#doneVisitorsPerDay');
+
 function doneVisitorsPerDay() {
     $.ajax({
         url: '/visits/doneVisitorsPerDay',
@@ -176,6 +178,7 @@ function doneVisitorsPerDay() {
 
 
 let $totalVisitors = $('#totalVisitors');
+
 function totalVisitors() {
     $.ajax({
         url: '/visits/getCountOfTotalVisits',
@@ -193,12 +196,28 @@ function totalVisitors() {
     })
 }
 
+let $pendingVisitors = $('#pendingVisitorsPerDay');
+
+function pendingVisitors() {
+    let pendingValue = $('.visitor-list').children().size() === 0 ? 0 : ($('.visitor-list').children().size() / 2);
+    if ($pendingVisitors.attr('data-value') != pendingValue) {
+        $pendingVisitors.attr('data-value', pendingValue);
+        $pendingVisitors.counterUp({
+            'time': 400,
+            'delay': 10
+        });
+    }
+
+}
+
 totalVisitorsPerDay();
+pendingVisitors();
 doneVisitorsPerDay();
 totalVisitors();
 
 setInterval(function () {
     totalVisitorsPerDay();
+    pendingVisitors();
     doneVisitorsPerDay();
     totalVisitors();
 }, 5000);

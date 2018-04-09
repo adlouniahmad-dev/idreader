@@ -17,11 +17,6 @@ class LogGuard
     private $id;
 
     /**
-     * @ORM\Column(type="datetime")
-     */
-    private $time;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Guard")
      * @ORM\JoinColumn(name="guard_id", referencedColumnName="id")
      */
@@ -39,23 +34,6 @@ class LogGuard
     public function getId()
     {
         return $this->id;
-    }
-
-
-    /**
-     * @return mixed
-     */
-    public function getTime()
-    {
-        return $this->time;
-    }
-
-    /**
-     * @param mixed $time
-     */
-    public function setTime($time): void
-    {
-        $this->time = $time;
     }
 
     /**

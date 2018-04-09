@@ -19,72 +19,74 @@
 {%- endblock -%}
 
 {% block content %}
-    <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 relative">
-            <div class="dashboard-stat2 border-bottom-green-sharp">
-                <div class="display">
-                    <div class="number">
-                        <h3 class="font-green-sharp">
-                            <span data-counter="counterup" data-value="0" id="totalVisitorsPerDay">0</span>
-                            <small class="font-green-sharp">Visitor(s)</small>
-                        </h3>
-                        <small>TOTAL VISITORS / DAY</small>
+    {% if 'powner' in app.session.get('roles') %}
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 relative">
+                <div class="dashboard-stat2 border-bottom-green-sharp">
+                    <div class="display">
+                        <div class="number">
+                            <h3 class="font-green-sharp">
+                                <span data-counter="counterup" data-value="0" id="totalVisitorsPerDay">0</span>
+                                <small class="font-green-sharp">Visitor(s)</small>
+                            </h3>
+                            <small>TOTAL VISITORS / DAY</small>
+                        </div>
+                        <div class="icon">
+                            <i class="icon-users"></i>
+                        </div>
                     </div>
-                    <div class="icon">
-                        <i class="icon-users"></i>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="dashboard-stat2 border-bottom-red-haze">
+                    <div class="display">
+                        <div class="number">
+                            <h3 class="font-red-haze">
+                                <span data-counter="counterup" data-value="0" id="pendingVisitorsPerDay">0</span>
+                                <small class="font-red-haze">Visitor(s)</small>
+                            </h3>
+                            <small>PENDING VISITORS / DAY</small>
+                        </div>
+                        <div class="icon">
+                            <i class="icon-users"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="dashboard-stat2 border-bottom-blue-sharp">
+                    <div class="display">
+                        <div class="number">
+                            <h3 class="font-blue-sharp">
+                                <span data-counter="counterup" data-value="0" id="doneVisitorsPerDay">0</span>
+                                <small class="font-blue-sharp">Visitor(s)</small>
+                            </h3>
+                            <small>DONE VISITORS / DAY</small>
+                        </div>
+                        <div class="icon">
+                            <i class="icon-users"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="dashboard-stat2 border-bottom-purple-soft">
+                    <div class="display">
+                        <div class="number">
+                            <h3 class="font-purple-soft">
+                                <span data-counter="counterup" data-value="0" id="totalVisitors">0</span>
+                                <small class="font-purple-soft">Visitor(s)</small>
+                            </h3>
+                            <small>TOTAL VISITORS</small>
+                        </div>
+                        <div class="icon">
+                            <i class="icon-users"></i>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <div class="dashboard-stat2 border-bottom-red-haze">
-                <div class="display">
-                    <div class="number">
-                        <h3 class="font-red-haze">
-                            <span data-counter="counterup" data-value="0" id="pendingVisitorsPerDay">0</span>
-                            <small class="font-red-haze">Visitor(s)</small>
-                        </h3>
-                        <small>PENDING VISITORS / DAY</small>
-                    </div>
-                    <div class="icon">
-                        <i class="icon-users"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <div class="dashboard-stat2 border-bottom-blue-sharp">
-                <div class="display">
-                    <div class="number">
-                        <h3 class="font-blue-sharp">
-                            <span data-counter="counterup" data-value="0" id="doneVisitorsPerDay">0</span>
-                            <small class="font-blue-sharp">Visitor(s)</small>
-                        </h3>
-                        <small>DONE VISITORS / DAY</small>
-                    </div>
-                    <div class="icon">
-                        <i class="icon-users"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <div class="dashboard-stat2 border-bottom-purple-soft">
-                <div class="display">
-                    <div class="number">
-                        <h3 class="font-purple-soft">
-                            <span data-counter="counterup" data-value="0" id="totalVisitors">0</span>
-                            <small class="font-purple-soft">Visitor(s)</small>
-                        </h3>
-                        <small>TOTAL VISITORS</small>
-                    </div>
-                    <div class="icon">
-                        <i class="icon-users"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    {% endif %}
 
     {% if 'powner' in app.session.get('roles') %}
         <div class="inbox">
@@ -151,7 +153,7 @@
 
     {% if 'fowner' in app.session.get('roles') or 'fadmin' in app.session.get('roles') %}
         <div class="row">
-        <div class="col-md-6 col-sm-6">
+        <div class="col-md-12 col-sm-12 col-lg-6">
             <div class="portlet light bordered">
                 <div class="portlet-title">
                     <div class="caption">
@@ -181,7 +183,7 @@
             </div>
         </div>
 
-        <div class="col-md-6 col-sm-6">
+        <div class="col-md-12 col-sm-12 col-lg-6">
             <div class="portlet light bordered">
                 <div class="portlet-title">
                     <div class="caption">

@@ -17,16 +17,6 @@ class LogGate
     private $id;
 
     /**
-     * @ORM\Column(type="time")
-     */
-    private $time;
-
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $date;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Gate")
      * @ORM\JoinColumn(name="gate_id", referencedColumnName="id")
      */
@@ -44,23 +34,6 @@ class LogGate
     public function getId()
     {
         return $this->id;
-    }
-
-
-    /**
-     * @return mixed
-     */
-    public function getTime()
-    {
-        return $this->time;
-    }
-
-    /**
-     * @param mixed $time
-     */
-    public function setTime($time): void
-    {
-        $this->time = $time;
     }
 
     /**
@@ -93,22 +66,6 @@ class LogGate
     public function setLog($log): void
     {
         $this->log = $log;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDate()
-    {
-        return $this->date;
-    }
-
-    /**
-     * @param mixed $date
-     */
-    public function setDate($date): void
-    {
-        $this->date = $date;
     }
 
 }

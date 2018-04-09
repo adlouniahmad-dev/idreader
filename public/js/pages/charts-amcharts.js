@@ -1,4 +1,4 @@
-var scansPerGate = function (building, date) {
+var scansPerGate = function (building, date, buildingName) {
     var chart = AmCharts.makeChart("scansPerGateChart", {
         "type": "serial",
         "theme": "light",
@@ -12,7 +12,7 @@ var scansPerGate = function (building, date) {
         "titles": [{
             "text": "Number of Scans per Gate in " + date
         }, {
-            "text": "In Building.",
+            "text": "In " + buildingName + " Building.",
             "bold": false
         }],
         "balloon": {
@@ -57,7 +57,7 @@ var scansPerGate = function (building, date) {
 };
 
 
-var scansPerDayPerMonth = function (building, month, year) {
+var scansPerDayPerMonth = function (building, month, year, buildingName) {
     var chart = AmCharts.makeChart("scansPerDayPerMonthChart", {
         "type": "serial",
         "theme": "light",
@@ -66,7 +66,7 @@ var scansPerDayPerMonth = function (building, month, year) {
         "titles": [{
            "text": "Number of scans per day for month " + month + " in " + year + "."
         }, {
-            "text": "In Building.",
+            "text": "In " + buildingName + " Building.",
             "bold": false
         }],
         "dataLoader": {
@@ -105,7 +105,7 @@ var scansPerDayPerMonth = function (building, month, year) {
             "zoomable": false
         },
         "dataDateFormat": "YYYY-MM-DD",
-        "categoryField": "date",
+        "categoryField": "date_created",
         "categoryAxis": {
             "dateFormats": [{
                 "period": "DD",
@@ -142,14 +142,17 @@ jQuery(document).ready(function () {
     var dateChart2 = $('#monthDate').val();
     var dateChart2Array = dateChart2.split("-");
     var buildingId = $('#gateBuildings').val();
+    var buildingName1 = $('#gateBuildings option:selected').text();
+    var buildingName2 = $('#gateBuildingsMonth option:selected').text();
 
-    scansPerGate(buildingId, dateChart1);
-    scansPerDayPerMonth(buildingId, dateChart2Array[1], dateChart2Array[0]);
+    scansPerGate(buildingId, dateChart1, buildingName1);
+    scansPerDayPerMonth(buildingId, dateChart2Array[1], dateChart2Array[0], buildingName2);
 
     $('#gateDoneButton').on('click', function () {
         var date = $('#gateDate').val();
         var buildingId = $('#gateBuildings').val();
-        scansPerGate(buildingId, date);
+        var buildingName = $('#gateBuildings option:selected').text();
+        scansPerGate(buildingId, date, buildingName);
     });
 
     $('#monthDoneButton').on('click', function () {

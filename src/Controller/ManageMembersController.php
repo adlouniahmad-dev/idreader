@@ -248,6 +248,7 @@ class ManageMembersController extends Controller
         if (!$session->has('gmail'))
             return $this->redirectToRoute('login');
 
+
         if ($session->get('user')->getId() != $userId) {
             if (!in_array('fowner', $session->get('roles')) && !in_array('fadmin', $session->get('roles')))
                 return $this->render('errors/access_denied.html.twig');
@@ -274,6 +275,8 @@ class ManageMembersController extends Controller
                 $userDetails['offices'] = $offices;
             }
 
+            $buildingIn = $this->getUserBuildings($user);
+
             /**
              * @var Building $buildings
              * @var Guard $guard
@@ -282,7 +285,8 @@ class ManageMembersController extends Controller
             return $this->render('manageMembers/viewUserProfile.html.twig', array(
                 'user' => $user,
                 'roles' => $this->getUserRoles($user),
-                'userDetails' => $userDetails
+                'userDetails' => $userDetails,
+                'buildingIn' => $buildingIn
             ));
         }
 
@@ -528,7 +532,7 @@ class ManageMembersController extends Controller
     }
 
     /**
-     * @Route("/api/getGuardSchedule/{guardId}", methods={"POST", "GET"})
+     * @Route("/api/getGuardSchedule/{guardId}", methods={"GET", "POST"})
      * @param $guardId
      * @return JsonResponse
      */
@@ -541,15 +545,19 @@ class ManageMembersController extends Controller
 
         $schedules = $this->getDoctrine()->getRepository(Schedule::class)->findBy(['guard' => $guard]);
         $scheduleArray = array();
+        $day = date('w');
+        $week_end = date('d', strtotime('+'.(6-$day).' days'));
+
         foreach ($schedules as $schedule) {
             $scheduleInfo = array();
             $scheduleInfo['title'] = $schedule->getGate()->getName();
 
-            $scheduleDay = $schedule->getShift()->getDay();
-            if ($scheduleDay === 'Sunday' || $scheduleDay === 'Monday' || $scheduleDay === 'Tuesday' || $scheduleDay === 'Wednesday')
+            $dateFromShiftDay = date('d', strtotime($schedule->getShift()->getDay()));
+            if ($dateFromShiftDay > $week_end) {
                 $dateFromShiftDay = strtotime('-7 days', strtotime($schedule->getShift()->getDay()));
-            else
+            } else {
                 $dateFromShiftDay = strtotime($schedule->getShift()->getDay());
+            }
 
             $dayLetter = date('D', $dateFromShiftDay);
             $dayNumber = date('d', $dateFromShiftDay);

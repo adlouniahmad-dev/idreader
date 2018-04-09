@@ -1,5 +1,5 @@
-var scansPerGate = function (building, date, buildingName) {
-    var chart = AmCharts.makeChart("scansPerGateChart", {
+let scansPerGate = function (building, date, buildingName) {
+    let chart = AmCharts.makeChart("scansPerGateChart", {
         "type": "serial",
         "theme": "light",
         "addClassNames": true,
@@ -57,8 +57,8 @@ var scansPerGate = function (building, date, buildingName) {
 };
 
 
-var scansPerDayPerMonth = function (building, month, year, buildingName) {
-    var chart = AmCharts.makeChart("scansPerDayPerMonthChart", {
+let scansPerDayPerMonth = function (building, month, year, buildingName) {
+    let chart = AmCharts.makeChart("scansPerDayPerMonthChart", {
         "type": "serial",
         "theme": "light",
         "color":    '#888888',
@@ -138,26 +138,26 @@ var scansPerDayPerMonth = function (building, month, year, buildingName) {
 
 
 jQuery(document).ready(function () {
-    var dateChart1 = $('#gateDate').val();
-    var dateChart2 = $('#monthDate').val();
-    var dateChart2Array = dateChart2.split("-");
-    var buildingId = $('#gateBuildings').val();
-    var buildingName1 = $('#gateBuildings option:selected').text();
-    var buildingName2 = $('#gateBuildingsMonth option:selected').text();
+    let dateChart1 = $('#gateDate').val();
+    let dateChart2 = $('#monthDate').val();
+    let dateChart2Array = dateChart2.split("-");
+    let buildingId = $('#gateBuildings').val();
+    let buildingName1 = $('#gateBuildings option:selected').text();
+    let buildingName2 = $('#gateBuildingsMonth option:selected').text();
 
     scansPerGate(buildingId, dateChart1, buildingName1);
     scansPerDayPerMonth(buildingId, dateChart2Array[1], dateChart2Array[0], buildingName2);
 
     $('#gateDoneButton').on('click', function () {
-        var date = $('#gateDate').val();
-        var buildingId = $('#gateBuildings').val();
-        var buildingName = $('#gateBuildings option:selected').text();
+        let date = $('#gateDate').val();
+        let buildingId = $('#gateBuildings').val();
+        let buildingName = $('#gateBuildings option:selected').text();
         scansPerGate(buildingId, date, buildingName);
     });
 
     $('#monthDoneButton').on('click', function () {
-        var dateChart2 = $('#monthDate').val().split("-");
-        var buildingId = $('#gateBuildingsMonth').val();
+        let dateChart2 = $('#monthDate').val().split("-");
+        let buildingId = $('#gateBuildingsMonth').val();
         scansPerDayPerMonth(buildingId, dateChart2[1], dateChart2[0]);
     });
 });

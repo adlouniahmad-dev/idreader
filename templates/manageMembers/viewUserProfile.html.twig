@@ -31,6 +31,14 @@
                         <li><i class="fa fa-phone"></i> +961 {{ user.phoneNb }}</li>
                     </ul>
 
+                    <hr>
+                    <h4 class="block">Building:</h4>
+                    <ul class="list-inline">
+                        {% for building in buildingIn %}
+                            <li><i class="fa fa-building-o"></i> {{ building }}</li>
+                        {% endfor %}
+                    </ul>
+
                     {% if 'Facility Administrator' in roles %}
                         <hr>
                         <h4 class="block">Administrator of:</h4>

@@ -105,7 +105,6 @@ class ManageMembersController extends Controller
             );
 
             return $this->redirectToRoute('addMember');
-
         }
 
         return $this->render('manageMembers/addMember.html.twig', array(
@@ -538,7 +537,6 @@ class ManageMembersController extends Controller
      */
     public function getGuardSchedule($guardId)
     {
-
         $guard = $this->getDoctrine()->getRepository(Guard::class)->find($guardId);
         if (!$guard)
             die();
@@ -553,11 +551,10 @@ class ManageMembersController extends Controller
             $scheduleInfo['title'] = $schedule->getGate()->getName();
 
             $dateFromShiftDay = date('d', strtotime($schedule->getShift()->getDay()));
-            if ($dateFromShiftDay > $week_end) {
+            if ($dateFromShiftDay > $week_end)
                 $dateFromShiftDay = strtotime('-7 days', strtotime($schedule->getShift()->getDay()));
-            } else {
+            else
                 $dateFromShiftDay = strtotime($schedule->getShift()->getDay());
-            }
 
             $dayLetter = date('D', $dateFromShiftDay);
             $dayNumber = date('d', $dateFromShiftDay);
@@ -707,7 +704,6 @@ class ManageMembersController extends Controller
 
         if ($member_role !== null)
             $role = $this->getDoctrine()->getRepository(Role::class)->find($member_role);
-
 
         $users = $this->getDoctrine()->getRepository(User::class)->advancedSearch($member_id, $first_name, $last_name,
             $gmail, $phone_number, $member_role, $buildingId, $dateCreated);

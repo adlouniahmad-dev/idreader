@@ -32,7 +32,6 @@ class GuardRestController extends Controller
      */
     public function checkLogin($gmail, $macAddress)
     {
-
         $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['gmail' => $gmail]);
         if (!$user)
             return $this->json(array(
@@ -55,7 +54,8 @@ class GuardRestController extends Controller
 
         return $this->json(array(
             'success' => true,
-            'message' => 'Can be logged in.'
+            'guardId' => $guard->getId(),
+            'message' => 'Logged in Successfully.'
         ), Response::HTTP_OK);
     }
 

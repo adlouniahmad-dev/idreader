@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Log;
 use App\Entity\Office;
+use App\Entity\Visitor;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Configuration;
 use Doctrine\ORM\QueryBuilder;
@@ -114,4 +115,23 @@ class LogRepository extends ServiceEntityRepository
         return $query->getQuery()->getScalarResult();
     }
 
+    /**
+     * @param Visitor $visitor
+     * @return mixed
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function getLastLogForSpecificVisitor(Visitor $visitor)
+    {
+        $query = $this->createQueryBuilder('l');
+        $query
+            ->where('l.visitor = :visitor')->setParameter('visitor', $visitor)
+            ->andWhere('l.dateCreated = :today')->setParameter('today', date_format(new \DateTime(), 'Y-m-d'))
+            ->andWhere($query->expr()->isNull('l.timeExit'))
+            ->orderBy('l.id', 'DESC')
+            ->setFirstResult(0)
+            ->setMaxResults(1);
+
+        return $query->getQuery()->getSingleResult();
+    }
 }

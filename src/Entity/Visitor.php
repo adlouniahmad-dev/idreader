@@ -50,11 +50,6 @@ class Visitor
     private $documentType;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $hasCard;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $dateCreated;
@@ -166,22 +161,6 @@ class Visitor
     public function setDocumentType($documentType): void
     {
         $this->documentType = $documentType;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getHasCard()
-    {
-        return $this->hasCard;
-    }
-
-    /**
-     * @param mixed $hasCard
-     */
-    public function setHasCard($hasCard): void
-    {
-        $this->hasCard = $hasCard;
     }
 
     /**

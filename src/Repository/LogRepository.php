@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Building;
 use App\Entity\Log;
 use App\Entity\Office;
 use App\Entity\Visitor;
@@ -133,5 +134,19 @@ class LogRepository extends ServiceEntityRepository
             ->setMaxResults(1);
 
         return $query->getQuery()->getSingleResult();
+    }
+
+    /**
+     * @param Building $building
+     * @return mixed
+     */
+    public function findByBuilding(Building $building)
+    {
+        $query = $this->createQueryBuilder('l');
+        $query
+            ->leftJoin('l.office', 'o')
+            ->innerJoin('o.building', 'b', 'WITH', 'b = :building')->setParameter('building', $building);
+
+        return $query->getQuery()->getResult();
     }
 }

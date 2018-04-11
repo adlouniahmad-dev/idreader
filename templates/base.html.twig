@@ -250,6 +250,7 @@
                         <a href="#" class="nav-link nav-toggle">
                             <i class="fa fa-angle-double-right"></i>
                             <span class="title">Manage Shifts</span>
+                            <span class="arrow open"></span>
                             <span class="selected"></span>
                         </a>
                         <ul class="sub-menu">
@@ -268,6 +269,29 @@
                         </ul>
                     </li>
                 {%- endif -%}
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link nav-toggle">
+                        <i class="fa fa-file-o"></i>
+                        <span class="title">Logs</span>
+                        <span class="arrow open"></span>
+                        <span class="selected"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item start ">
+                            <a href="{{ path('viewLogs') }}" class="nav-link ">
+                                <i class="fa fa-plus"></i>
+                                <span class="title">View Logs</span>
+                            </a>
+                        </li>
+                        <li class="nav-item start ">
+                            <a href="#" class="nav-link ">
+                                <i class="fa fa-list-ul"></i>
+                                <span class="title">Search Logs</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
                 {%- if 'fowner' in app.session.get('roles') -%}
                     <li class="nav-item">

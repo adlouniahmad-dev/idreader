@@ -11,6 +11,8 @@ namespace App\Controller;
 
 use App\Entity\Blacklist;
 use App\Entity\Log;
+use App\Entity\LogGate;
+use App\Entity\LogGuard;
 use App\Entity\Office;
 use Doctrine\DBAL\DBALException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -205,6 +207,85 @@ class ManageLogsController extends Controller
         $totalVisits = $this->getDoctrine()->getRepository(Log::class)->getCountTotalVisits($office);
 
         return $this->json(array('count' => $totalVisits[0][1]));
+    }
+
+    /**
+     * @Route("/logs/view", name="viewLogs")
+     * @param Session $session
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    public function viewLogs(Session $session)
+    {
+
+        if (!$session->has('gmail'))
+            return $this->redirectToRoute('login');
+
+        return $this->render('logs/logs.html.twig');
+    }
+
+    /**
+     * @Route("/logs/get", methods={"GET"})
+     * @param Session $session
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function getLogs(Session $session)
+    {
+        if (in_array('fowner', $session->get('roles')))
+            $logs = $this->getDoctrine()->getRepository(Log::class)->findAll();
+        else if (in_array('fadmin', $session->get('roles'))) {
+            $building = $session->get('user')->getBuildings()[0];
+            $logs = $this->getDoctrine()->getRepository(Log::class)->findByBuilding($building);
+        } else {
+            $office = $this->getDoctrine()->getRepository(Office::class)->findOneBy(['user' => $session->get('user')]);
+            $logs = $this->getDoctrine()->getRepository(Log::class)->findBy(['office' => $office]);
+        }
+
+        $logsArray = array();
+        foreach ($logs as $log) {
+
+            $logGateEntrance = $this->getDoctrine()->getRepository(LogGate::class)->findOneBy(array(
+                'log' => $log,
+                'status' => 'entrance'
+            ));
+            $logGateExit = $this->getDoctrine()->getRepository(LogGate::class)->findOneBy(array(
+                'log' => $log,
+                'status' => 'exit'
+            ));
+            $logGuardEntrance = $this->getDoctrine()->getRepository(LogGuard::class)->findOneBy(array(
+                'log' => $log,
+                'status' => 'entrance'
+            ));
+            $logGuardExit = $this->getDoctrine()->getRepository(LogGuard::class)->findOneBy(array(
+                'log' => $log,
+                'status' => 'exit'
+            ));
+
+            $logInfo = array();
+            $logInfo['visitorName'] = $log->getVisitor()->getFullName();
+            $logInfo['office'] = $log->getOffice()->getOfficeNb();
+            $logInfo['building'] = $log->getOffice()->getBuilding()->getName();
+            $logInfo['date'] = date_format($log->getDateCreated(), 'jS F, Y');
+
+            if (!in_array('powner', $session->get('roles'))) {
+                $logInfo['timeEntered'] = $log->getTimeEntered() === null ? '' : date_format($log->getTimeEntered(), 'H:i A');
+                $logInfo['checkInGuard'] = $logGuardEntrance->getGuard()->getUser()->getFullName();
+                $logInfo['checkInGate'] = $logGateEntrance->getGate()->getName();
+            }
+
+            $logInfo['leftOfficeTime'] = $log->getDateLeftFromOffice() === null ? '' : date_format($log->getDateLeftFromOffice(), 'H:i A');
+
+            if (!in_array('powner', $session->get('roles'))) {
+                $logInfo['timeLeft'] = $log->getTimeExit() === null ? '' : date_format($log->getTimeExit(), 'H:i A');
+                $logInfo['checkOutGuard'] = !$logGuardExit ? '' : $logGuardExit->getGuard()->getUser()->getFullName();
+                $logInfo['checkOutGate'] = !$logGateExit ? '' : $logGateExit->getGate()->getName();
+            }
+
+            $logInfo['estimatedTime'] = $log->getEstimatedTime() === null ? '' : date_format($log->getEstimatedTime(), 'H:i A');
+
+            array_push($logsArray, $logInfo);
+        }
+
+        return $this->json(array('data' => $logsArray));
     }
 
 }

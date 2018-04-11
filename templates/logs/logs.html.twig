@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Visitors' Logs{% endblock %}
+{% block pagetitle %}Visitors' Logs{% endblock %}
+{% block pagetitlesmall %}{% endblock %}
+{% block pagebartitle %}Visitors' Logs{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('global/datatables/datatables.min.css') }}" rel="stylesheet"
+          type="text/css"/>
+    <link href="{{ asset('global/datatables/plugins/bootstrap/datatables.bootstrap.css') }}" rel="stylesheet"
+          type="text/css"/>
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light ">
+                <div class="portlet-title">
+                    <div class="caption font-dark">
+                        <i class="icon-settings font-dark"></i>
+                        <span class="caption-subject bold uppercase">Visitors' Logs</span>
+                    </div>
+                    <div class="tools"></div>
+                </div>
+                <div class="portlet-body">
+                    <table class="table table-striped table-bordered table-hover" id="logs">
+                        <thead>
+                        <tr>
+                            <th> Visitor Name</th>
+                            <th> Office</th>
+                            <th> Building</th>
+                            <th> Date</th>
+                            {% if 'powner' not in app.session.get('roles') %}
+                                <th> Time Entered</th>
+                                <th> Guard (Check In)</th>
+                                <th> Gate (Check In)</th>
+                            {% endif %}
+                            <th> Time Left From Office</th>
+                            {% if 'powner' not in app.session.get('roles') %}
+                                <th> Time Exit</th>
+                                <th> Guard (Check Out)</th>
+                                <th> Gate (Check Out)</th>
+                            {% endif %}
+                            <th> Estimated Time to Exit</th>
+                        </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('global/datatables/datatables.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('global/datatables/plugins/bootstrap/datatables.bootstrap.js') }}"></script>
+    <script type="text/javascript">
+        {%- if 'powner' not in app.session.get('roles') -%}
+        let r = true;
+        {%- else -%}
+        let r = false;
+        {%- endif -%}
+    </script>
+    <script type="text/javascript" src="{{ asset('js/pages/view-logs.js') }}"></script>
+{% endblock %}

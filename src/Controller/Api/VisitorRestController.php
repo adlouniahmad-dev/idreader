@@ -223,9 +223,10 @@ class VisitorRestController extends Controller
      *
      * @param Log $log
      * @param $guardId
+     * @param string $status
      * @return bool
      */
-    private function addLogGate(Log $log, $guardId)
+    private function addLogGate(Log $log, $guardId, $status = 'entrance')
     {
         $entityManager = $this->getDoctrine()->getManager();
         $guard = $entityManager->getRepository(Guard::class)->find($guardId);
@@ -236,6 +237,7 @@ class VisitorRestController extends Controller
             $logGate = new LogGate();
             $logGate->setGate($gate);
             $logGate->setLog($log);
+            $logGate->setStatus($status);
 
             $entityManager->persist($logGate);
             $entityManager->flush();
@@ -252,9 +254,10 @@ class VisitorRestController extends Controller
      *
      * @param Log $log
      * @param $guardId
+     * @param string $status
      * @return bool
      */
-    private function addLogGuard(Log $log, $guardId)
+    private function addLogGuard(Log $log, $guardId, $status = 'entrance')
     {
         $entityManager = $this->getDoctrine()->getManager();
         $guard = $entityManager->getRepository(Guard::class)->find($guardId);
@@ -263,6 +266,7 @@ class VisitorRestController extends Controller
             $logGuard = new LogGuard();
             $logGuard->setLog($log);
             $logGuard->setGuard($guard);
+            $logGuard->setStatus($status);
 
             $entityManager->persist($logGuard);
             $entityManager->flush();
@@ -321,8 +325,8 @@ class VisitorRestController extends Controller
             ), Response::HTTP_NOT_FOUND);
         }
 
-        $this->addLogGate($log, $guardId);
-        $this->addLogGuard($log, $guardId);
+        $this->addLogGate($log, $guardId, 'exit');
+        $this->addLogGuard($log, $guardId, 'exit');
 
         return $this->json(array(
             'success' => true,

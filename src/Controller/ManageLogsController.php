@@ -418,7 +418,6 @@ class ManageLogsController extends Controller
                     '<option value="' . $schedule->getGuard()->getId() . '">' . $schedule->getGuard()->getUser()->getFullName() . '</option>';
             }
         }
-
         return $this->json(array('guards' => $guardOptions));
     }
 

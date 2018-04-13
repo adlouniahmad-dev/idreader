@@ -17,6 +17,8 @@ use App\Entity\LogGuard;
 use App\Entity\Office;
 use App\Entity\Schedule;
 use App\Entity\Visitor;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -281,16 +283,14 @@ class VisitorRestController extends Controller
     /**
      * API to check out a visitor
      *
-     * @Route("/update/log/checkOut/{guardId}", methods={"PUT"})
+     * @Route("/update/log/checkOut/{guardId}", methods={"POST"})
      * @param $guardId
      * @param Request $request
      * @return bool|\Symfony\Component\HttpFoundation\JsonResponse
-     * @throws \Doctrine\ORM\NoResultException
-     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function updateLog($guardId, Request $request)
     {
-        if ($request->get('ssn') === null)
+        if ($request->request->get('ssn') === null)
             return $this->json(array(
                 'success' => false,
                 'message' => 'Visitor ID Not Defined.'
@@ -306,12 +306,14 @@ class VisitorRestController extends Controller
                 'message' => 'Visitor not found.'
             ), Response::HTTP_NOT_FOUND);
 
-        $log = $entityManager->getRepository(Log::class)->getLastLogForSpecificVisitor($visitor);
-        if (!$log)
+        try {
+            $log = $entityManager->getRepository(Log::class)->getLastLogForSpecificVisitor($visitor);
+        } catch (NoResultException | NonUniqueResultException $e) {
             return $this->json(array(
                 'success' => false,
                 'message' => 'Log not found.'
             ), Response::HTTP_NOT_FOUND);
+        }
 
         try {
 

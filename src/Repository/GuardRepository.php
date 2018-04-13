@@ -25,4 +25,9 @@ class GuardRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findByBuilding()
+    {
+
+    }
 }

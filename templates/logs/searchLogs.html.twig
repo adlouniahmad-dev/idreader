@@ -1,0 +1,227 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Search Logs{% endblock %}
+{% block pagetitle %}Search Logs{% endblock %}
+{% block pagetitlesmall %}{% endblock %}
+{% block pagebartitle %}Search Logs{% endblock %}
+
+{% block stylesheets %}
+    <link type="text/css" href="{{ asset('global/datatables/datatables.min.js') }}">
+    <link type="text/css" href="{{ asset('global/datatables/plugins/bootstrap/datatables.bootstrap.css') }}">
+    {{ parent() }}
+    <link type="text/css" rel="stylesheet"
+          href="{{ asset('css/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css') }}">
+    <link type="text/css" rel="stylesheet"
+          href="{{ asset('assets/global/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') }}">
+    <link type="text/css" rel="stylesheet"
+          href="{{ asset('assets/global/bootstrap-timepicker/css/bootstrap-timepicker.min.css') }}">
+    <link type="text/css" rel="stylesheet"
+          href="{{ asset('assets/global/clockface/css/clockface.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light portlet-fit portlet-datatable ">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-settings font-dark"></i>
+                        <span class="caption-subject font-dark sbold uppercase">Search Logs</span>
+                    </div>
+
+                </div>
+                <div class="portlet-body">
+                    <div class="table-container">
+                        <table class="table table-striped table-bordered table-hover table-checkable"
+                               id="datatable_ajax">
+                            <thead>
+                            <tr role="row" class="heading">
+                                <th width="2%">
+                                    <input type="checkbox" class="group-checkable">
+                                </th>
+                                <th> Visitor Name</th>
+                                <th> Building</th>
+                                <th> Office</th>
+                                {% if 'powner' not in app.session.get('roles') %}
+                                    <th> Gate</th>
+                                    <th> Guard</th>
+                                    <th> Date</th>
+                                    <th> Time Entered</th>
+                                    <th> Time Exit</th>
+                                {% endif %}
+                                {% if 'powner' in app.session.get('roles') %}
+                                    <th>Time Left</th>
+                                {% endif %}
+                                <th> Actions</th>
+                            </tr>
+                            <tr role="row" class="filter">
+                                <td></td>
+                                <td>
+                                    <input type="text" class="form-control form-filter input-sm" name="visitor_name">
+                                </td>
+                                <td>
+                                    <select name="building" class="form-control form-filter input-sm">
+                                        {{ buildings|raw }}
+                                    </select>
+                                </td>
+                                <td>
+                                    <select name="office" class="form-control form-filter input-sm">
+                                        {{ offices|raw }}
+                                    </select>
+                                </td>
+                                {% if 'powner' not in app.session.get('roles') %}
+                                    <td>
+                                        <select name="gate_entrance"
+                                                class="form-control form-filter input-sm margin-bottom-5">
+                                            {{ gates|raw }}
+                                        </select>
+
+                                        <select name="gate_exit" class="form-control form-filter input-sm">
+                                            {{ gates|raw }}
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select name="entrance_guard"
+                                                class="form-control form-filter input-sm margin-bottom-5">
+                                            {{ guards|raw }}
+                                        </select>
+
+                                        <select name="exit_guard" class="form-control form-filter input-sm">
+                                            {{ guards|raw }}
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <div class="input-group date date-picker margin-bottom-5"
+                                             data-date-format="yyyy-mm-dd">
+                                            <input type="text" class="form-control form-filter input-sm" readonly
+                                                   name="from_date" placeholder="From">
+                                            <span class="input-group-btn">
+                                            <button class="btn btn-sm default" type="button">
+                                                <i class="fa fa-calendar"></i>
+                                            </button>
+                                        </span>
+                                        </div>
+
+                                        <div class="input-group date date-picker"
+                                             data-date-format="yyyy-mm-dd">
+                                            <input type="text" class="form-control form-filter input-sm" readonly
+                                                   name="to_date" placeholder="To">
+                                            <span class="input-group-btn">
+                                            <button class="btn btn-sm default" type="button">
+                                                <i class="fa fa-calendar"></i>
+                                            </button>
+                                        </span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="input-group margin-bottom-5">
+                                            <input type="text"
+                                                   class="form-control form-filter timepicker timepicker-24 input-sm"
+                                                   placeholder="From"
+                                                   name="entrance_from_time">
+                                            <span class="input-group-btn">
+                                            <button class="btn default btn-sm" type="button">
+                                                <i class="fa fa-clock-o"></i>
+                                            </button>
+                                        </span>
+                                        </div>
+                                        <div class="input-group">
+                                            <input type="text"
+                                                   class="form-control form-filter timepicker timepicker-24 input-sm"
+                                                   placeholder="To"
+                                                   name="entrance_to_time">
+                                            <span class="input-group-btn">
+                                            <button class="btn default btn-sm" type="button">
+                                                <i class="fa fa-clock-o"></i>
+                                            </button>
+                                        </span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="input-group margin-bottom-5">
+                                            <input type="text"
+                                                   class="form-control form-filter timepicker timepicker-24 input-sm"
+                                                   placeholder="From"
+                                                   name="exit_from_time">
+                                            <span class="input-group-btn">
+                                            <button class="btn default btn-sm" type="button">
+                                                <i class="fa fa-clock-o"></i>
+                                            </button>
+                                        </span>
+                                        </div>
+                                        <div class="input-group">
+                                            <input type="text"
+                                                   class="form-control form-filter timepicker timepicker-24 input-sm"
+                                                   placeholder="To"
+                                                   name="exit_to_time">
+                                            <span class="input-group-btn">
+                                            <button class="btn default btn-sm" type="button">
+                                                <i class="fa fa-clock-o"></i>
+                                            </button>
+                                        </span>
+                                        </div>
+                                    </td>
+                                {% endif %}
+                                {% if 'powner' in app.session.get('roles') %}
+                                    <td>
+                                        <div class="input-group margin-bottom-5">
+                                            <input type="text"
+                                                   class="form-control form-filter timepicker timepicker-24 input-sm"
+                                                   placeholder="From"
+                                                   name="time_left_from_office_from">
+                                            <span class="input-group-btn">
+                                            <button class="btn default btn-sm" type="button">
+                                                <i class="fa fa-clock-o"></i>
+                                            </button>
+                                        </span>
+                                        </div>
+                                        <div class="input-group">
+                                            <input type="text"
+                                                   class="form-control form-filter timepicker timepicker-24 input-sm"
+                                                   placeholder="To"
+                                                   name="time_left_from_office_to">
+                                            <span class="input-group-btn">
+                                            <button class="btn default btn-sm" type="button">
+                                                <i class="fa fa-clock-o"></i>
+                                            </button>
+                                        </span>
+                                        </div>
+                                    </td>
+                                {% endif %}
+                                <td>
+                                    <div class="margin-bottom-5">
+                                        <button class="btn btn-sm green btn-outline filter-submit margin-bottom">
+                                            <i class="fa fa-search"></i> Search
+                                        </button>
+                                    </div>
+                                    <button class="btn btn-sm red btn-outline filter-cancel">
+                                        <i class="fa fa-times"></i> Reset
+                                    </button>
+                                </td>
+                            </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/pages/datatable.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('global/datatables/datatables.min.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('global/datatables/plugins/bootstrap/datatables.bootstrap.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/global/plugins/moment.min.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('js/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('assets/global/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('js/global/components-date-time-pickers.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/pages/search_logs.js') }}"></script>
+{% endblock %}

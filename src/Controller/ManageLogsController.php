@@ -10,10 +10,14 @@ namespace App\Controller;
 
 
 use App\Entity\Blacklist;
+use App\Entity\Building;
+use App\Entity\Gate;
+use App\Entity\Guard;
 use App\Entity\Log;
 use App\Entity\LogGate;
 use App\Entity\LogGuard;
 use App\Entity\Office;
+use App\Entity\Schedule;
 use Doctrine\DBAL\DBALException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -278,14 +282,144 @@ class ManageLogsController extends Controller
                 $logInfo['timeLeft'] = $log->getTimeExit() === null ? '' : date_format($log->getTimeExit(), 'H:i A');
                 $logInfo['checkOutGuard'] = !$logGuardExit ? '' : $logGuardExit->getGuard()->getUser()->getFullName();
                 $logInfo['checkOutGate'] = !$logGateExit ? '' : $logGateExit->getGate()->getName();
+                $logInfo['estimatedTime'] = $log->getEstimatedTime() === null ? '' : date_format($log->getEstimatedTime(), 'H:i A');
             }
-
-            $logInfo['estimatedTime'] = $log->getEstimatedTime() === null ? '' : date_format($log->getEstimatedTime(), 'H:i A');
 
             array_push($logsArray, $logInfo);
         }
 
         return $this->json(array('data' => $logsArray));
+    }
+
+    /**
+     * @Route("/logs/search", name="logsAdvancedSearch")
+     * @param Session $session
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    public function advancedSearch(Session $session)
+    {
+        if (!$session->has('gmail'))
+            return $this->redirectToRoute('login');
+
+        $buildingOptions = '';
+        $officeOptions = '';
+        $gateOptions = '';
+        $guardOptions = '';
+
+        if (in_array('fowner', $session->get('roles'))) {
+            $buildings = $this->getDoctrine()->getRepository(Building::class)->findAll();
+
+            $buildingOptions .= '<option value="-1">All</option>';
+            foreach ($buildings as $building) {
+                $buildingOptions .=
+                    '<option value="' . $building->getId() . '">' . $building->getName() . '</option>';
+            }
+
+            $officeOptions = '<option value="-1">All</option>';
+            $gateOptions = '<option value="-1">All</option>';
+            $guardOptions = '<option value="-1">All</option>';
+
+        } else if (in_array('fadmin', $session->get('roles'))) {
+
+            $building = $this->getDoctrine()->getRepository(Building::class)->findOneBy(['admin' => $session->get('user')]);
+            $buildingOptions .= '<option value="' . $building->getId() . '">' . $building->getName() . '</option>';
+
+            $offices = $this->getDoctrine()->getRepository(Office::class)->findBy(['building' => $building]);
+            $officeOptions = '<option value="-1">All</option>';
+            foreach ($offices as $office) {
+                $officeOptions
+                    .= '<option value="' . $office->getId() . '">' . $office->getOfficeNb() . '</option>';
+            }
+
+            $gates = $this->getDoctrine()->getRepository(Gate::class)->findBy(['building' => $building]);
+            $gateOptions = '<option value="-1">All</option>';
+            foreach ($gates as $gate) {
+                $gateOptions
+                    .= '<option value="' . $gate->getId() . '">' . $gate->getName() . '</option>';
+            }
+
+            $guardOptions = '<option value="-1">All</option>';
+
+        } else {
+            $office = $this->getDoctrine()->getRepository(Office::class)->findOneBy(['user' => $session->get('user')]);
+            $officeOptions .= '<option value="' . $office->getId() . '">' . $office->getOfficeNb() . '</option>';
+
+            $building = $office->getBuilding();
+            $buildingOptions .= '<option value="' . $building->getId() . '">' . $building->getName() . '</option>';
+        }
+
+        return $this->render('logs/searchLogs.html.twig', array(
+            'buildings' => $buildingOptions,
+            'offices' => $officeOptions,
+            'gates' => $gateOptions,
+            'guards' => $guardOptions,
+        ));
+    }
+
+    /**
+     * @Route("/api/logs/search/building/{buildingId}")
+     * @param $buildingId
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function onBuildingChange($buildingId)
+    {
+        if ($buildingId == -1) {
+
+            $officeOptions = '<option value="-1">All</option>';
+            $gateOptions = '<option value="-1">All</option>';
+            $guardOptions = '<option value="-1">All</option>';
+
+        } else {
+
+            $building = $this->getDoctrine()->getRepository(Building::class)->find($buildingId);
+            $offices = $this->getDoctrine()->getRepository(Office::class)->findBy(['building' => $building]);
+            $officeOptions = '<option value="-1">All</option>';
+            foreach ($offices as $office) {
+                $officeOptions
+                    .= '<option value="' . $office->getId() . '">' . $office->getOfficeNb() . '</option>';
+            }
+
+            $gates = $this->getDoctrine()->getRepository(Gate::class)->findBy(['building' => $building]);
+            $gateOptions = '<option value="-1">All</option>';
+            foreach ($gates as $gate) {
+                $gateOptions
+                    .= '<option value="' . $gate->getId() . '">' . $gate->getName() . '</option>';
+            }
+
+            $guardOptions = '<option value="-1">All</option>';
+        }
+
+        $response = array(
+            'offices' => $officeOptions,
+            'gates' => $gateOptions,
+            'guards' => $guardOptions
+        );
+
+        return $this->json($response);
+    }
+
+    /**
+     * @Route("/api/logs/search/gate/{gateId}")
+     * @param $gateId
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function onGateChange($gateId)
+    {
+        if ($gateId == -1) {
+            $guardOptions = '<option value="-1">All</option>';
+        } else {
+
+            $gate = $this->getDoctrine()->getRepository(Gate::class)->find($gateId);
+            $schedules = $this->getDoctrine()->getRepository(Schedule::class)->findByGateGroupByGuard($gate);
+
+            $guardOptions = '<option value="-1">All</option>';
+            foreach ($schedules as $schedule) {
+                $guardOptions .=
+                    '<option value="' . $schedule->getGuard()->getId() . '">' . $schedule->getGuard()->getUser()->getFullName() . '</option>';
+            }
+        }
+
+        return $this->json(array('guards' => $guardOptions));
     }
 
 }

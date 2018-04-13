@@ -21,7 +21,6 @@ if (r) {
         {data: 'building'},
         {data: 'date'},
         {data: 'leftOfficeTime'},
-        {data: 'estimatedTime'},
     ];
 }
 

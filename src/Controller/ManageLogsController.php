@@ -16,8 +16,10 @@ use App\Entity\Guard;
 use App\Entity\Log;
 use App\Entity\LogGate;
 use App\Entity\LogGuard;
+use App\Entity\LogsSearchHistory;
 use App\Entity\Office;
 use App\Entity\Schedule;
+use App\Entity\User;
 use Doctrine\DBAL\DBALException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -486,20 +488,23 @@ class ManageLogsController extends Controller
             }
 
             $building = $request->query->get('building');
+            $office = $request->query->get('office');
+            $entranceGate = $request->query->get('gate_entrance');
+            $exitGate = $request->query->get('gate_exit');
+            $entranceGuard = $request->query->get('entrance_guard');
+            $exitGuard = $request->query->get('exit_guard');
+
             if ($building == -1) {
                 $logs = $this->getDoctrine()->getRepository(Log::class)->advancedSearch($visitorName, $fromDate, $toDate,
                     $timeEnteredFrom, $timeEnteredTo, $timeExitFrom, $timeExitTo);
             } else {
 
-                $office = $request->query->get('office');
-                $entranceGate = $request->query->get('gate_entrance');
-                $exitGate = $request->query->get('gate_exit');
-                $entranceGuard = $request->query->get('entrance_guard');
-                $exitGuard = $request->query->get('exit_guard');
-
                 $logs = $this->getDoctrine()->getRepository(Log::class)->advancedSearch($visitorName, $fromDate, $toDate,
                     $timeEnteredFrom, $timeEnteredTo, $timeExitFrom, $timeExitTo, $building, $office, $entranceGuard, $exitGuard, $entranceGate, $exitGate);
             }
+
+            $this->addSearchToHistory($visitorName, $building, $office, $entranceGate, $exitGate, $entranceGuard, $exitGuard, $fromDate, $toDate,
+                $timeEnteredFrom, $timeEnteredTo, $timeExitFrom, $timeExitTo, '', '', $session);
 
         } else {
 
@@ -520,6 +525,8 @@ class ManageLogsController extends Controller
             $office = $this->getDoctrine()->getRepository(Office::class)->findOneBy(['user' => $session->get('user')]);
             $logs = $this->getDoctrine()->getRepository(Log::class)->advancedSearchPremiseOwner($visitorName, $timeLeftFrom, $timeLeftTo, $fromDate, $toDate, $office);
 
+            $this->addSearchToHistory($visitorName, $office->getBuilding()->getId(), $office->getId(), '', '', '', '', $fromDate, $toDate,
+                '', '', '', '', $timeLeftFrom, $timeLeftTo, $session);
         }
 
         $iTotalRecords = count($logs);
@@ -569,5 +576,96 @@ class ManageLogsController extends Controller
         $records['recordsFiltered'] = $iTotalRecords;
 
         return $this->json($records);
+    }
+
+    /**
+     * @param Session $session
+     * @param $visitorName
+     * @param $buildingId
+     * @param $officeId
+     * @param $entranceGateId
+     * @param $exitGateId
+     * @param $entranceGuard
+     * @param $exitGuard
+     * @param $dateFrom
+     * @param $dateTo
+     * @param $timeEnteredFrom
+     * @param $timeEnteredTo
+     * @param $timeLeftFrom
+     * @param $timeLeftTo
+     * @param $timeLeftFromOfficeFrom
+     * @param $timeLeftFromOfficeTo
+     */
+    private function addSearchToHistory($visitorName, $buildingId, $officeId, $entranceGateId, $exitGateId,
+                                        $entranceGuard, $exitGuard, $dateFrom, $dateTo, $timeEnteredFrom, $timeEnteredTo, $timeLeftFrom,
+                                        $timeLeftTo, $timeLeftFromOfficeFrom, $timeLeftFromOfficeTo, Session $session): void
+    {
+
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $search = new LogsSearchHistory();
+        $search->setUser($session->get('user')->getFullName());
+        $search->setRole(implode($this->getUserRoles($session->get('user')), '<br>'));
+        $search->setVisitorName($visitorName);
+        $search->setBuilding($buildingId == -1 ? 'All' : $this->getDoctrine()->getRepository(Building::class)->find($buildingId)->getName());
+        $search->setOffice($officeId == -1 ? 'All' : $this->getDoctrine()->getRepository(Office::class)->find($officeId)->getOfficeNb());
+        $search->setDateFrom($dateFrom);
+        $search->setDateTo($dateTo);
+        $search->setDateTimeSearch(new \DateTime());
+
+        if (!in_array('powner', $session->get('roles'))) {
+
+            $search->setEntranceGuard($entranceGuard == -1 ? 'All' : $this->getDoctrine()->getRepository(Guard::class)
+                ->find($entranceGuard)->getUser()->getFullName());
+            $search->setExitGuard($exitGuard == -1 ? 'All' : $this->getDoctrine()->getRepository(Guard::class)
+                ->find($exitGuard)->getUser()->getFullName());
+            $search->setEntranceGate($entranceGateId == -1 ? 'All' : $this->getDoctrine()->getRepository(Gate::class)
+                ->find($entranceGateId)->getName());
+            $search->setExitGate($exitGateId == -1 ? 'All' : $this->getDoctrine()->getRepository(Gate::class)
+                ->find($exitGateId)->getName());
+            $search->setTimeEnteredFrom($timeEnteredFrom);
+            $search->setTimeEnteredTo($timeEnteredTo);
+            $search->setTimeExitFrom($timeLeftFrom);
+            $search->setTimeExitTo($timeLeftTo);
+
+        } else {
+            $search->setTimeLeftFromOfficeFrom($timeLeftFromOfficeFrom);
+            $search->setTimeLeftFromOfficeTo($timeLeftFromOfficeTo);
+        }
+
+        $entityManager->persist($search);
+        $entityManager->flush();
+
+    }
+
+    /**
+     * @param User $user
+     * @return array
+     */
+    private function getUserRoles(User $user): array
+    {
+        $roles = $user->getRoles();
+        $rolesArray = array();
+        foreach ($roles as $value) {
+            $rolesArray[] = $this->getRoleName($value);
+        }
+
+        return $rolesArray;
+    }
+
+    /**
+     * @param $role
+     * @return string
+     */
+    private function getRoleName($role): string
+    {
+        if ($role->getRoleName() == 'fowner')
+            return 'Facility Owner';
+        else if ($role->getRoleName() == 'fadmin')
+            return 'Facility Administrator';
+        else if ($role->getRoleName() == 'powner')
+            return 'Premise Owner';
+        else
+            return 'Security Guard';
     }
 }

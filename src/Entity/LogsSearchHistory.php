@@ -102,19 +102,16 @@ class LogsSearchHistory
     private $timeLeftFromOfficeTo;
 
     /**
+     * @ORM\Column(type="datetime")
+     */
+    private $dateTimeSearch;
+
+    /**
      * @return mixed
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id): void
-    {
-        $this->id = $id;
     }
 
     /**
@@ -389,4 +386,20 @@ class LogsSearchHistory
         $this->timeLeftFromOfficeTo = $timeLeftFromOfficeTo;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getDateTimeSearch()
+    {
+        return $this->dateTimeSearch;
+    }
+
+    /**
+     * @param mixed $dateTimeSearch
+     */
+    public function setDateTimeSearch($dateTimeSearch): void
+    {
+        $this->dateTimeSearch = $dateTimeSearch;
+    }
+    
 }

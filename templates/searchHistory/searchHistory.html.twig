@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Logs Search History{% endblock %}
+{% block pagetitle %}Logs Search History{% endblock %}
+{% block pagetitlesmall %}{% endblock %}
+{% block pagebartitle %}Logs Search History{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('global/datatables/datatables.min.css') }}" rel="stylesheet"
+          type="text/css"/>
+    <link href="{{ asset('global/datatables/plugins/bootstrap/datatables.bootstrap.css') }}" rel="stylesheet"
+          type="text/css"/>
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light ">
+                <div class="portlet-title">
+                    <div class="caption font-dark">
+                        <i class="icon-settings font-dark"></i>
+                        <span class="caption-subject bold uppercase">Logs Search History</span>
+                    </div>
+                    <div class="tools"></div>
+                </div>
+                <div class="portlet-body">
+                    <table class="table table-striped table-bordered table-hover" id="sample_1">
+                        <thead>
+                        <tr>
+                            <th> Member</th>
+                            <th> Visitor Name</th>
+                            <th> Building</th>
+                            <th> Gate</th>
+                            <th> Guard</th>
+                            <th> Date</th>
+                            <th> Time Entered</th>
+                            <th> Time Left</th>
+                            <th> Time Left from Office</th>
+                            <th> Date of query</th>
+                        </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('global/datatables/datatables.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('global/datatables/plugins/bootstrap/datatables.bootstrap.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/pages/logs-search-history-list.js') }}"></script>
+{% endblock %}

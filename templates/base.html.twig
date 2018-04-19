@@ -11,6 +11,7 @@
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport"/>
+        <link rel="icon" type="image/x-icon" href="{{ asset('logo/favicon.ico') }}">
     {%- endblock metatags -%}
 
     <title>{%- block title -%}ID Card Reader{%- endblock -%}</title>
@@ -295,7 +296,7 @@
 
                 {%- if 'fowner' in app.session.get('roles') -%}
                     <li class="nav-item">
-                        <a href="{{ path('dashboard') }}" class="nav-link nav-toggle">
+                        <a href="{{ path('searchHistory') }}" class="nav-link nav-toggle">
                             <i class="fa fa-history"></i>
                             <span class="title">Search History</span>
                             <span class="selected"></span>

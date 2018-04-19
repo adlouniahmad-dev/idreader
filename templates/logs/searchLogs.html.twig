@@ -50,7 +50,8 @@
                                     <th> Time Exit</th>
                                 {% endif %}
                                 {% if 'powner' in app.session.get('roles') %}
-                                    <th>Time Left</th>
+                                    <th> Date</th>
+                                    <th>Time Left From Office</th>
                                 {% endif %}
                                 <th> Actions</th>
                             </tr>
@@ -163,6 +164,29 @@
                                     </td>
                                 {% endif %}
                                 {% if 'powner' in app.session.get('roles') %}
+                                    <td>
+                                        <div class="input-group date date-picker margin-bottom-5"
+                                             data-date-format="yyyy-mm-dd">
+                                            <input type="text" class="form-control form-filter input-sm" readonly
+                                                   name="from_date" placeholder="From">
+                                            <span class="input-group-btn">
+                                            <button class="btn btn-sm default" type="button">
+                                                <i class="fa fa-calendar"></i>
+                                            </button>
+                                        </span>
+                                        </div>
+
+                                        <div class="input-group date date-picker"
+                                             data-date-format="yyyy-mm-dd">
+                                            <input type="text" class="form-control form-filter input-sm" readonly
+                                                   name="to_date" placeholder="To">
+                                            <span class="input-group-btn">
+                                            <button class="btn btn-sm default" type="button">
+                                                <i class="fa fa-calendar"></i>
+                                            </button>
+                                        </span>
+                                        </div>
+                                    </td>
                                     <td>
                                         <div class="input-group margin-bottom-5">
                                             <input type="text"

@@ -3,6 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Building;
+use App\Entity\Gate;
+use App\Entity\Guard;
 use App\Entity\Log;
 use App\Entity\Office;
 use App\Entity\Visitor;
@@ -148,5 +150,167 @@ class LogRepository extends ServiceEntityRepository
             ->innerJoin('o.building', 'b', 'WITH', 'b = :building')->setParameter('building', $building);
 
         return $query->getQuery()->getResult();
+    }
+
+    /**
+     * @param $visitorName
+     * @param $timeLeftFrom
+     * @param $timeLeftTo
+     * @param $dateFrom
+     * @param $dateTo
+     * @param Office $office
+     * @return mixed
+     */
+    public function advancedSearchPremiseOwner($visitorName, $timeLeftFrom, $timeLeftTo, $dateFrom, $dateTo, Office $office)
+    {
+        $query = $this->createQueryBuilder('l');
+        $query
+            ->innerJoin('l.visitor', 'v')
+            ->innerJoin('l.office', 'o', 'WITH', 'o = :office')->setParameter('office', $office)
+            ->where('CONCAT(v.firstName, \' \', v.middleName, \' \', v.lastName) LIKE :visitorName')->setParameter('visitorName', '%' . $visitorName . '%')
+            ->andWhere('l.dateLeftFromOffice BETWEEN :timeFrom AND :timeTo')
+            ->orWhere($query->expr()->isNull('l.dateLeftFromOffice'))
+            ->andWhere('l.dateCreated BETWEEN :dateFrom AND :dateTo')
+            ->setParameter('timeFrom', $timeLeftFrom)
+            ->setParameter('timeTo', $timeLeftTo)
+            ->setParameter('dateFrom', $dateFrom)
+            ->setParameter('dateTo', $dateTo);
+
+        return $query->getQuery()->getResult();
+    }
+
+    /**
+     * @param $visitorName
+     * @param $dateFrom
+     * @param $dateTo
+     * @param $timeEnteredFrom
+     * @param $timeEnteredTo
+     * @param $timeExitFrom
+     * @param $timeExitTo
+     * @param Building|null $building
+     * @param Office|null $office
+     * @param Guard|null $entranceGuard
+     * @param Guard|null $exitGuard
+     * @param Gate|null $entranceGate
+     * @param Gate|null $exitGate
+     * @return mixed
+     * @throws \Doctrine\DBAL\DBALException
+     */
+    public function advancedSearch($visitorName, $dateFrom, $dateTo, $timeEnteredFrom, $timeEnteredTo, $timeExitFrom, $timeExitTo,
+                                   $building = null, $office = null,
+                                   $entranceGuard = null, $exitGuard = null, $entranceGate = null, $exitGate = null)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        if ($building === null) {
+
+            $sql = "select log.id as logId, concat(visitor.first_name, ' ', visitor.last_name) as visitorName, officeBuilding.name as buildingName, officeBuilding.office_nb as officeName, logGateEntrance.name as entranceGate, logGateExit.name as exitGate, logGuardEntrance.sName as entranceGuard, logGuardExit.sName as exitGuard, log.date_created as dateCreated, log.time_entered as timeEntered, log.time_exit as timeExit
+                    from log
+                    left join (select log_gate.log_id, gate.name from log_gate inner join gate on log_gate.gate_id = gate.id and log_gate.status = 'entrance') logGateEntrance on log.id = logGateEntrance.log_id
+                    left join (select log_gate.log_id, gate.name from log_gate inner join gate on log_gate.gate_id = gate.id and log_gate.status = 'exit') logGateExit on log.id = logGateExit.log_id
+                    left join (select log_guard.log_id, concat(user.given_name, ' ', user.family_name) as sName from log_guard inner join guard on log_guard.guard_id = guard.id and log_guard.status = 'entrance', user where guard.user_id = user.id) logGuardEntrance on log.id = logGuardEntrance.log_id
+                    left join (select log_guard.log_id, concat(user.given_name, ' ', user.family_name) as sName from log_guard inner join guard on log_guard.guard_id = guard.id and log_guard.status = 'exit', user where guard.user_id = user.id) logGuardExit on log.id = logGuardExit.log_id
+                    inner join visitor on log.visitor_id = visitor.id and concat(visitor.first_name, ' ', visitor.last_name) LIKE :visitorName
+                    inner join (select office.id as officeId, office.office_nb, building.id as buildingId, building.name from office INNER JOIN building on office.building_id = building.id) officeBuilding on log.office_id = officeBuilding.officeId 
+                    where log.date_created between :dateFrom and :dateTo
+                    and log.time_entered between :timeEnteredFrom and :timeEnteredTo
+                    and log.time_exit between :timeExitFrom and :timeExitTo or log.time_exit is null
+                    order by log.id desc";
+
+            $stmt = $conn->prepare($sql);
+            $stmt->execute(array(
+                'visitorName' => '%' . $visitorName . '%',
+                'dateFrom' => $dateFrom,
+                'dateTo' => $dateTo,
+                'timeEnteredFrom' => $timeEnteredFrom,
+                'timeEnteredTo' => $timeEnteredTo,
+                'timeExitFrom' => $timeExitFrom,
+                'timeExitTo' => $timeExitTo
+            ));
+
+        } else {
+
+            $sql = "select log.id as logId, concat(visitor.first_name, ' ', visitor.last_name) as visitorName, officeBuilding.name as buildingName, 
+                    officeBuilding.office_nb as officeName, logGateEntrance.name as entranceGate, logGateExit.name as exitGate, logGuardEntrance.sName 
+                    as entranceGuard, logGuardExit.sName as exitGuard, log.date_created as dateCreated ,log.time_entered as timeEntered, log.time_exit as timeExit
+                    from log
+                    inner join (select log_gate.log_id, gate.name from log_gate inner join gate on log_gate.gate_id = gate.id and log_gate.status = 'entrance'";
+
+            if ($entranceGate == -1)
+                $sql .= " and log_gate.gate_id is not null)";
+            else
+                $sql .= " and log_gate.gate_id = :entranceGate)";
+
+            $sql .= " logGateEntrance on log.id = logGateEntrance.log_id
+                    inner join (select log_gate.log_id, gate.name from log_gate inner join gate on log_gate.gate_id = gate.id and log_gate.status = 'exit'";
+
+            if ($exitGate == -1)
+                $sql .= " and log_gate.gate_id is not null or log_gate.gate_id is null)";
+            else
+                $sql .= " and log_gate.gate_id = :exitGate)";
+
+            $sql .= " logGateExit on log.id = logGateExit.log_id
+                    inner join (select log_guard.log_id, concat(user.given_name, ' ', user.family_name) as sName from log_guard inner join guard on log_guard.guard_id = guard.id and log_guard.status = 'entrance'";
+
+            if ($entranceGuard == -1)
+                $sql .= " and log_guard.guard_id is not null";
+            else
+                $sql .= " and log_guard.guard_id = :entranceGuard";
+
+            $sql .= ", user where guard.user_id = user.id) logGuardEntrance on log.id = logGuardEntrance.log_id
+                    inner join (select log_guard.log_id, concat(user.given_name, ' ', user.family_name) as sName from log_guard inner join guard on log_guard.guard_id = guard.id and log_guard.status = 'exit'";
+
+            if ($exitGuard == -1)
+                $sql .= " and log_guard.guard_id is not null or log_guard.guard_id is null";
+            else
+                $sql .= " and log_guard.guard_id = :exitGuard";
+
+            $sql .= ", user where guard.user_id = user.id) logGuardExit on log.id = logGuardExit.log_id
+                    inner join visitor on log.visitor_id = visitor.id and concat(visitor.first_name, ' ', visitor.last_name) LIKE :visitorName
+                    inner join (select office.id as officeId, office.office_nb, building.id as buildingId, building.name from office INNER JOIN building on office.building_id = building.id and office.building_id = :building";
+
+            if ($office == -1)
+                $sql .= " and office.id is not null";
+            else
+                $sql .= " and office.id = :office";
+
+            $sql .= ") officeBuilding on log.office_id = officeBuilding.officeId 
+                    where log.date_created between :dateFrom and :dateTo
+                    and log.time_entered between :timeEnteredFrom and :timeEnteredTo
+                    and log.time_exit between :timeExitFrom and :timeExitTo or log.time_exit is null
+                    order by log.id desc";
+
+            $stmt = $conn->prepare($sql);
+
+            $tokens = array(
+                'visitorName' => '%' . $visitorName . '%',
+                'dateFrom' => $dateFrom,
+                'dateTo' => $dateTo,
+                'timeEnteredFrom' => $timeEnteredFrom,
+                'timeEnteredTo' => $timeEnteredTo,
+                'timeExitFrom' => $timeExitFrom,
+                'timeExitTo' => $timeExitTo,
+                'building' => $building,
+            );
+
+            if ($entranceGate != -1)
+                $tokens['entranceGate'] = $entranceGate;
+
+            if ($exitGate != -1)
+                $tokens['exitGate'] = $exitGate;
+
+            if ($entranceGuard != -1)
+                $tokens['entranceGuard'] = $entranceGuard;
+
+            if ($exitGuard != -1)
+                $tokens['exitGuard'] = $exitGuard;
+
+            if ($office != -1)
+                $tokens['office'] = $office;
+
+            $stmt->execute($tokens);
+        }
+
+        return $stmt->fetchAll();
+
     }
 }

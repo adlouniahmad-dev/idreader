@@ -20,6 +20,7 @@ use App\Entity\Office;
 use App\Entity\Schedule;
 use Doctrine\DBAL\DBALException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -358,10 +359,11 @@ class ManageLogsController extends Controller
 
     /**
      * @Route("/api/logs/search/building/{buildingId}")
+     * @param Session $session
      * @param $buildingId
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-    public function onBuildingChange($buildingId)
+    public function onBuildingChange(Session $session, $buildingId)
     {
         if ($buildingId == -1) {
 
@@ -371,28 +373,33 @@ class ManageLogsController extends Controller
 
         } else {
 
-            $building = $this->getDoctrine()->getRepository(Building::class)->find($buildingId);
-            $offices = $this->getDoctrine()->getRepository(Office::class)->findBy(['building' => $building]);
-            $officeOptions = '<option value="-1">All</option>';
-            foreach ($offices as $office) {
-                $officeOptions
-                    .= '<option value="' . $office->getId() . '">' . $office->getOfficeNb() . '</option>';
-            }
+            if (in_array('powner', $session->get('roles'))) {
+                $office = $this->getDoctrine()->getRepository(Office::class)->findOneBy(['user' => $session->get('user')]);
+                $officeOptions = '<option value="' . $office->getId() . '">' . $office->getOfficeNb() . '</option>';
+            } else {
+                $building = $this->getDoctrine()->getRepository(Building::class)->find($buildingId);
+                $offices = $this->getDoctrine()->getRepository(Office::class)->findBy(['building' => $building]);
+                $officeOptions = '<option value="-1">All</option>';
+                foreach ($offices as $office) {
+                    $officeOptions
+                        .= '<option value="' . $office->getId() . '">' . $office->getOfficeNb() . '</option>';
+                }
 
-            $gates = $this->getDoctrine()->getRepository(Gate::class)->findBy(['building' => $building]);
-            $gateOptions = '<option value="-1">All</option>';
-            foreach ($gates as $gate) {
-                $gateOptions
-                    .= '<option value="' . $gate->getId() . '">' . $gate->getName() . '</option>';
-            }
+                $gates = $this->getDoctrine()->getRepository(Gate::class)->findBy(['building' => $building]);
+                $gateOptions = '<option value="-1">All</option>';
+                foreach ($gates as $gate) {
+                    $gateOptions
+                        .= '<option value="' . $gate->getId() . '">' . $gate->getName() . '</option>';
+                }
 
-            $guardOptions = '<option value="-1">All</option>';
+                $guardOptions = '<option value="-1">All</option>';
+            }
         }
 
         $response = array(
             'offices' => $officeOptions,
-            'gates' => $gateOptions,
-            'guards' => $guardOptions
+            'gates' => isset($gateOptions) ? $gateOptions : '',
+            'guards' => isset($guardOptions) ? $guardOptions : ''
         );
 
         return $this->json($response);
@@ -421,4 +428,146 @@ class ManageLogsController extends Controller
         return $this->json(array('guards' => $guardOptions));
     }
 
+
+    /**
+     * @Route("/api/logs/search", methods={"GET"})
+     * @param Session $session
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * @throws DBALException
+     */
+    public function searchLogs(Session $session, Request $request)
+    {
+
+        $visitorName = $request->query->get('visitor_name');
+
+        if ($request->query->get('from_date') == '' && $request->query->get('to_date') == '') {
+            $fromDate = '';
+            $toDate = date("Y-m-d");
+        } else if ($request->query->get('from_date') == '' && $request->query->get('to_date') != '') {
+            $fromDate = '';
+            $toDate = $request->query->get('to_date');
+        } else if ($request->query->get('from_date') != '' && $request->query->get('to_date') == '') {
+            $fromDate = $request->query->get('from_date');
+            $toDate = date("Y-m-d");
+        } else {
+            $fromDate = $request->query->get('from_date');
+            $toDate = $request->query->get('to_date');
+        }
+
+        if (!in_array('powner', $session->get('roles'))) {
+
+            if ($request->query->get('entrance_from_time') == '' && $request->query->get('entrance_to_time') == '') {
+                $timeEnteredFrom = '00:00';
+                $timeEnteredTo = '23:59';
+            } else if ($request->query->get('entrance_from_time') == '' && $request->query->get('entrance_to_time') != '') {
+                $timeEnteredFrom = '00:00';
+                $timeEnteredTo = $request->query->get('entrance_to_time');
+            } else if ($request->query->get('entrance_from_time') != '' && $request->query->get('entrance_to_time') == '') {
+                $timeEnteredFrom = $request->query->get('entrance_from_time');
+                $timeEnteredTo = '23:59';
+            } else {
+                $timeEnteredFrom = $request->query->get('entrance_from_time');
+                $timeEnteredTo = $request->query->get('entrance_to_time');
+            }
+
+            if ($request->query->get('exit_from_time') == '' && $request->query->get('exit_to_time') == '') {
+                $timeExitFrom = '00:00';
+                $timeExitTo = '23:59';
+            } else if ($request->query->get('exit_from_time') == '' && $request->query->get('exit_to_time') != '') {
+                $timeExitFrom = '00:00';
+                $timeExitTo = $request->query->get('exit_to_time');
+            } else if ($request->query->get('exit_from_time') != '' && $request->query->get('exit_to_time') == '') {
+                $timeExitFrom = $request->query->get('exit_from_time');
+                $timeExitTo = '23:59';
+            } else {
+                $timeExitFrom = $request->query->get('exit_from_time');
+                $timeExitTo = $request->query->get('exit_to_time');
+            }
+
+            $building = $request->query->get('building');
+            if ($building == -1) {
+                $logs = $this->getDoctrine()->getRepository(Log::class)->advancedSearch($visitorName, $fromDate, $toDate,
+                    $timeEnteredFrom, $timeEnteredTo, $timeExitFrom, $timeExitTo);
+            } else {
+
+                $office = $request->query->get('office');
+                $entranceGate = $request->query->get('gate_entrance');
+                $exitGate = $request->query->get('gate_exit');
+                $entranceGuard = $request->query->get('entrance_guard');
+                $exitGuard = $request->query->get('exit_guard');
+
+                $logs = $this->getDoctrine()->getRepository(Log::class)->advancedSearch($visitorName, $fromDate, $toDate,
+                    $timeEnteredFrom, $timeEnteredTo, $timeExitFrom, $timeExitTo, $building, $office, $entranceGuard, $exitGuard, $entranceGate, $exitGate);
+            }
+
+        } else {
+
+            if ($request->query->get('time_left_from_office_from') == '' && $request->query->get('time_left_from_office_to') == '') {
+                $timeLeftFrom = '00:00';
+                $timeLeftTo = '23:59';
+            } else if ($request->query->get('time_left_from_office_from') == '' && $request->query->get('time_left_from_office_to') != '') {
+                $timeLeftFrom = '00:00';
+                $timeLeftTo = $request->query->get('time_left_from_office_to');
+            } else if ($request->query->get('time_left_from_office_from') != '' && $request->query->get('time_left_from_office_to') == '') {
+                $timeLeftFrom = $request->query->get('time_left_from_office_from');
+                $timeLeftTo = '23:59';
+            } else {
+                $timeLeftFrom = $request->query->get('time_left_from_office_from');
+                $timeLeftTo = $request->query->get('time_left_from_office_to');
+            }
+
+            $office = $this->getDoctrine()->getRepository(Office::class)->findOneBy(['user' => $session->get('user')]);
+            $logs = $this->getDoctrine()->getRepository(Log::class)->advancedSearchPremiseOwner($visitorName, $timeLeftFrom, $timeLeftTo, $fromDate, $toDate, $office);
+
+        }
+
+        $iTotalRecords = count($logs);
+        $iDisplayLength = intval($request->query->get('length'));
+        $iDisplayLength = $iDisplayLength < 0 ? $iTotalRecords : $iDisplayLength;
+        $iDisplayStart = intval($request->query->get('start'));
+        $sEcho = intval($request->query->get('draw'));
+
+        $records = array();
+        $records['data'] = array();
+
+        $end = $iDisplayStart + $iDisplayLength;
+        $end = $end > $iTotalRecords ? $iTotalRecords : $end;
+
+        for ($i = $iDisplayStart; $i < $end; $i++) {
+            $log = $logs[$i];
+            $id = ($i + 1);
+            if (!in_array('powner', $session->get('roles'))) {
+                $records['data'][] = array(
+                    '<input type="checkbox" name="id[' . $log['logId'] . ']" value="' . $id . '">',
+                    $log['visitorName'],
+                    $log['buildingName'],
+                    $log['officeName'],
+                    '<b>Entrance Gate:</b> ' . $log['entranceGate'] . '<br><b>Exit Gate: </b>' . $log['exitGate'],
+                    '<b>Entrance Guard:</b> ' . $log['entranceGuard'] . '<br><b>Exit Guard: </b>' . $log['exitGuard'],
+                    $log['dateCreated'],
+                    $log['timeEntered'],
+                    $log['timeExit'],
+                    '',
+                );
+            } else {
+                $records['data'][] = array(
+                    '<input type="checkbox" name="id[' . $log->getId() . ']" value="' . $id . '">',
+                    $log->getVisitor()->getFullName(),
+                    $log->getOffice()->getBuilding()->getName(),
+                    $log->getOffice()->getOfficeNb(),
+                    $log->getDateCreated()->format('jS F, Y'),
+                    $log->getDateLeftFromOffice() === null ? '' : $log->getDateLeftFromOffice()->format('H:i'),
+                    '',
+                );
+            }
+
+        }
+
+        $records['draw'] = $sEcho;
+        $records['recordsTotal'] = $iTotalRecords;
+        $records['recordsFiltered'] = $iTotalRecords;
+
+        return $this->json($records);
+    }
 }

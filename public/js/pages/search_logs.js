@@ -10,7 +10,7 @@ let TableDatatablesAjax = function () {
             onDataLoad: function(grid) {},
             loadingMessage: 'Loading...',
             dataTable: {
-
+                "deferLoading": 0,
                 "dom": "<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'<'table-group-actions pull-right'>>r>t<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'>>",
                 "ordering": false,
                 "bStateSave": true,
@@ -20,7 +20,7 @@ let TableDatatablesAjax = function () {
                 ],
                 "pageLength": 10,
                 "ajax": {
-                    "url": "/api/members/search",
+                    "url": "/api/logs/search",
                     "type": "get"
                 },
             }

@@ -2,147 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50e69e48-8f17-4cc9-ac75-48078c3b9921" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/LICENSE" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/README.md" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/css/bootstrap-datepicker.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/css/bootstrap-datepicker.min.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/css/bootstrap-datepicker.standalone.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/css/bootstrap-datepicker.standalone.min.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/css/bootstrap-datepicker3.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/css/bootstrap-datepicker3.standalone.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/css/bootstrap-datepicker3.standalone.min.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/js/bootstrap-datepicker.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/js/bootstrap-datepicker.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.ar.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.az.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.bg.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.bs.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.ca.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.cs.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.cy.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.da.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.de.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.el.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.en-GB.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.et.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.eu.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.fa.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.fi.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.fo.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.fr-CH.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.fr.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.gl.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.he.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.hr.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.hu.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.hy.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.id.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.is.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.it-CH.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.it.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.ja.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.ka.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.kh.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.kk.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.kr.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.lt.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.lv.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.me.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.mk.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.ms.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.nb.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.nl-BE.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.nl.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.no.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.pl.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.pt.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.ro.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.rs-latin.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.rs.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.ru.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.sk.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.sl.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.sq.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.sr-latin.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.sr.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.sv.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.sw.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.th.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.tr.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.uk.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.vi.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datepicker/locales/bootstrap-datepicker.zh-TW.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/LICENSE" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/README.md" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.bg.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.ca.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.cs.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.da.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.de.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.el.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.es.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.fi.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.fr.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.he.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.hr.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.hu.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.id.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.is.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.it.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.ja.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.kr.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.lt.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.lv.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.ms.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.nb.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.nl.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.pl.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.pt-BR.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.pt.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.ro.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.rs-latin.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.rs.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.ru.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.sk.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.sl.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.sv.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.sw.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.th.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.tr.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.ua.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.uk.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-TW.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-timepicker/LICENSE" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-timepicker/README.md" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-timepicker/css/bootstrap-timepicker.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-timepicker/css/bootstrap-timepicker.min.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-timepicker/js/bootstrap-timepicker.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/bootstrap-timepicker/js/bootstrap-timepicker.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/clockface/CHANGELOG.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/clockface/LICENSE-MIT" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/clockface/README.md" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/clockface/css/clockface.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/assets/global/clockface/js/clockface.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/components-date-time-pickers.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/global/components-date-time-pickers.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/public/js/pages/search_logs.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/Entity/LogsSearchHistory.php" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/public/js/pages/search_members.js" afterPath="$PROJECT_DIR$/public/js/pages/search_members.js" />
-      <change beforePath="$PROJECT_DIR$/public/js/pages/view-logs.js" afterPath="$PROJECT_DIR$/public/js/pages/view-logs.js" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Api/VisitorRestController.php" afterPath="$PROJECT_DIR$/src/Controller/Api/VisitorRestController.php" />
+      <change beforePath="$PROJECT_DIR$/public/js/pages/search_logs.js" afterPath="$PROJECT_DIR$/public/js/pages/search_logs.js" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ManageLogsController.php" afterPath="$PROJECT_DIR$/src/Controller/ManageLogsController.php" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/GuardRepository.php" afterPath="$PROJECT_DIR$/src/Repository/GuardRepository.php" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" afterPath="$PROJECT_DIR$/templates/base.html.twig" />
-      <change beforePath="$PROJECT_DIR$/templates/logs/logs.html.twig" afterPath="$PROJECT_DIR$/templates/logs/logs.html.twig" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/LogRepository.php" afterPath="$PROJECT_DIR$/src/Repository/LogRepository.php" />
       <change beforePath="$PROJECT_DIR$/templates/logs/searchLogs.html.twig" afterPath="$PROJECT_DIR$/templates/logs/searchLogs.html.twig" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -172,11 +36,19 @@
       <file leaf-file-name="searchLogs.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/logs/searchLogs.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="575">
-              <caret line="217" column="102" lean-forward="false" selection-start-line="217" selection-start-column="102" selection-end-line="217" selection-end-column="102" />
-              <folding>
-                <element signature="e#12#26#0#Twig" expanded="true" />
-              </folding>
+            <state relative-caret-position="60">
+              <caret line="75" column="89" lean-forward="false" selection-start-line="75" selection-start-column="89" selection-end-line="75" selection-end-column="104" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LogsSearchHistory.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Entity/LogsSearchHistory.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="780">
+              <caret line="390" column="0" lean-forward="false" selection-start-line="390" selection-start-column="0" selection-end-line="390" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -184,22 +56,76 @@
       <file leaf-file-name="search_logs.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/pages/search_logs.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
-              <caret line="67" column="24" lean-forward="false" selection-start-line="67" selection-start-column="24" selection-end-line="67" selection-end-column="24" />
+            <state relative-caret-position="240">
+              <caret line="12" column="33" lean-forward="false" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ManageLogsController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LogRepository.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Repository/LogRepository.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="421">
+              <caret line="250" column="29" lean-forward="true" selection-start-line="250" selection-start-column="29" selection-end-line="250" selection-end-column="29" />
+              <folding>
+                <marker date="1524144695605" expanded="true" signature="738:807" ph="SELECT g.nam... gate" />
+                <marker date="1524144695605" expanded="true" signature="738:1173" ph="SELECT v.fir... log" />
+                <marker date="1524144695605" expanded="true" signature="738:1204" ph="SELECT v.fir... log" />
+                <marker date="1524144695605" expanded="true" signature="7145:9265" ph="select log.i... log" />
+                <marker date="1524144695605" expanded="true" signature="7607:7733" ph="select log_g... log_gate" />
+                <marker date="1524144695605" expanded="true" signature="7817:7939" ph="select log_g... log_gate" />
+                <marker date="1524144695605" expanded="true" signature="8015:8230" ph="select log_g... log_guard" />
+                <marker date="1524144695605" expanded="true" signature="8316:8527" ph="select log_g... log_guard" />
+                <marker date="1524144695605" expanded="true" signature="8749:8905" ph="select offic... office" />
+                <marker date="1524144695605" expanded="true" signature="9736:12997" ph="select log.i... log" />
+                <marker date="1524144695605" expanded="true" signature="10241:10367" ph="select log_g... log_gate" />
+                <marker date="1524144695605" expanded="true" signature="10241:10575" ph="select log_g... log_gate" />
+                <marker date="1524144695605" expanded="true" signature="10659:11009" ph="select log_g... log_gate" />
+                <marker date="1524144695605" expanded="true" signature="11085:11512" ph="select log_g... log_guard" />
+                <marker date="1524144695605" expanded="true" signature="11599:12044" ph="select log_g... log_guard" />
+                <marker date="1524144695605" expanded="true" signature="12266:12637" ph="select offic... office" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ManageLogsController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/ManageLogsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2255">
-              <caret line="414" column="56" lean-forward="false" selection-start-line="414" selection-start-column="56" selection-end-line="414" selection-end-column="56" />
-              <folding>
-                <element signature="e#8076#8097#1#PHP" expanded="true" />
-                <element signature="e#13889#13916#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="241">
+              <caret line="494" column="70" lean-forward="false" selection-start-line="494" selection-start-column="70" selection-end-line="494" selection-end-column="70" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LogGate.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Entity/LogGate.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="440">
+              <caret line="22" column="18" lean-forward="false" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Log.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Entity/Log.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3280">
+              <caret line="164" column="33" lean-forward="false" selection-start-line="164" selection-start-column="33" selection-end-line="164" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ManageMembersController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Controller/ManageMembersController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15120">
+              <caret line="778" column="0" lean-forward="false" selection-start-line="778" selection-start-column="0" selection-end-line="778" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -237,10 +163,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>$element</find>
-      <find>viewUsers</find>
-      <find>members</find>
-      <find>roles</find>
       <find>Pales</find>
       <find>addPremiseO</find>
       <find>addSecu</find>
@@ -267,6 +189,10 @@
       <find>advancedS</find>
       <find>getBuildingFloors</find>
       <find>var</find>
+      <find>advanced</find>
+      <find>api/member</find>
+      <find>format</find>
+      <find>forma</find>
     </findStrings>
     <replaceStrings>
       <replace>href=&quot;#&quot;</replace>
@@ -279,7 +205,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Entity/Shift.php" />
         <option value="$PROJECT_DIR$/src/Repository/VisitorRepository.php" />
         <option value="$PROJECT_DIR$/src/Entity/Office.php" />
         <option value="$PROJECT_DIR$/templates/visitors/editVisitor.html.twig" />
@@ -315,7 +240,6 @@
         <option value="$PROJECT_DIR$/src/Entity/Visitor.php" />
         <option value="$PROJECT_DIR$/src/Controller/ManageMembersController.php" />
         <option value="$PROJECT_DIR$/src/Controller/Api/GuardRestController.php" />
-        <option value="$PROJECT_DIR$/src/Repository/LogRepository.php" />
         <option value="$PROJECT_DIR$/src/Repository/LogGateRepository.php" />
         <option value="$PROJECT_DIR$/src/Repository/LogGuardRepository.php" />
         <option value="$PROJECT_DIR$/src/Entity/LogGate.php" />
@@ -327,9 +251,11 @@
         <option value="$PROJECT_DIR$/public/js/pages/view-logs.js" />
         <option value="$PROJECT_DIR$/src/Repository/GuardRepository.php" />
         <option value="$PROJECT_DIR$/public/js/pages/search_members.js" />
+        <option value="$PROJECT_DIR$/public/js/pages/search_logs.js" />
         <option value="$PROJECT_DIR$/templates/logs/searchLogs.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/ManageLogsController.php" />
-        <option value="$PROJECT_DIR$/public/js/pages/search_logs.js" />
+        <option value="$PROJECT_DIR$/src/Repository/LogRepository.php" />
+        <option value="$PROJECT_DIR$/src/Entity/LogsSearchHistory.php" />
       </list>
     </option>
   </component>
@@ -681,6 +607,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -875,8 +803,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -987,21 +913,9 @@
       <workItem from="1522492556209" duration="1235000" />
       <workItem from="1522496979509" duration="26263000" />
       <workItem from="1522576996684" duration="47902000" />
-      <workItem from="1522850422943" duration="178455000" />
-    </task>
-    <task id="LOCAL-00027" summary="DONE">
-      <created>1521664334795</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1521664334795</updated>
-    </task>
-    <task id="LOCAL-00028" summary="DONE">
-      <created>1521667119791</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1521667119791</updated>
+      <workItem from="1522850422943" duration="179758000" />
+      <workItem from="1523980450240" duration="21108000" />
+      <workItem from="1524124467460" duration="13888000" />
     </task>
     <task id="LOCAL-00029" summary="DONE">
       <created>1521910155114</created>
@@ -1332,11 +1246,25 @@
       <option name="project" value="LOCAL" />
       <updated>1523456576070</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="DONE">
+      <created>1523642643998</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1523642643998</updated>
+    </task>
+    <task id="LOCAL-00077" summary="DONE">
+      <created>1523644558507</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1523644558507</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="934686000" />
+    <option name="totallyTimeSpent" value="970985000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1347,7 +1275,6 @@
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1361,6 +1288,7 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1382,38 +1310,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/css/layout/custom.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="775">
-          <caret line="348" column="4" lean-forward="false" selection-start-line="348" selection-start-column="4" selection-end-line="348" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/visits/visits.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="51" column="33" lean-forward="false" selection-start-line="51" selection-start-column="33" selection-end-line="51" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/DashboardController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1000">
-          <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/pages/charts-amcharts.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1972">
           <caret line="26" column="28" lean-forward="false" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
-          <folding>
-            <marker date="1523287904737" expanded="true" signature="1195:1210" ph="..." />
-            <marker date="1523287904737" expanded="true" signature="1255:1271" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1421,10 +1321,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="235">
           <caret line="124" column="41" lean-forward="false" selection-start-line="124" selection-start-column="41" selection-end-line="124" selection-end-column="41" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="false" />
-            <element signature="e#5679#5703#0#HTML" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1432,7 +1328,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="900">
           <caret line="45" column="42" lean-forward="false" selection-start-line="45" selection-start-column="42" selection-end-line="45" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1440,7 +1335,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1448,7 +1342,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1482,9 +1375,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="760">
           <caret line="67" column="26" lean-forward="false" selection-start-line="67" selection-start-column="26" selection-end-line="67" selection-end-column="26" />
-          <folding>
-            <element signature="e#12#37#0#Twig" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1500,7 +1390,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1508,9 +1397,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="21" column="25" lean-forward="false" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
-          <folding>
-            <element signature="e#12#40#0#Twig" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1526,7 +1412,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2000">
           <caret line="195" column="6" lean-forward="false" selection-start-line="195" selection-start-column="6" selection-end-line="195" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1534,7 +1419,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="21" column="34" lean-forward="false" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1581,31 +1465,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="580">
           <caret line="67" column="89" lean-forward="true" selection-start-line="67" selection-start-column="89" selection-end-line="67" selection-end-column="98" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/LogGate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="935">
-          <caret line="90" column="0" lean-forward="false" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Log.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-105">
-          <caret line="90" column="7" lean-forward="true" selection-start-line="90" selection-start-column="7" selection-end-line="90" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="25" column="31" lean-forward="false" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1613,29 +1472,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="535">
           <caret line="41" column="22" lean-forward="true" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/pages/suspicious-list.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="8" column="75" lean-forward="false" selection-start-line="8" selection-start-column="75" selection-end-line="8" selection-end-column="75" />
-          <folding>
-            <marker date="1523130945968" expanded="true" signature="44:1991" ph="{...}" />
-            <marker date="1523130945968" expanded="true" signature="80:1826" ph="{...}" />
-            <marker date="1523130945968" expanded="true" signature="155:1818" ph="{&quot;ajax&quot;: '/suspicious/get'...}" />
-            <marker date="1523130945968" expanded="true" signature="182:791" ph="{&quot;emptyTable&quot;: &quot;No data available in table&quot;...}" />
-            <marker date="1523130945968" expanded="true" signature="208:380" ph="{&quot;sortAscending&quot;: &quot;: activate to sort column ascending&quot;...}" />
-            <marker date="1523130945968" expanded="true" signature="851:1131" ph="[...]" />
-            <marker date="1523130945968" expanded="true" signature="1154:1384" ph="[...]" />
-            <marker date="1523130945968" expanded="true" signature="1407:1449" ph="[...]" />
-            <marker date="1523130945968" expanded="true" signature="1477:1568" ph="[...]" />
-            <marker date="1523130945968" expanded="true" signature="1840:1988" ph="{...}" />
-            <marker date="1523130945968" expanded="true" signature="1868:1982" ph="{...}" />
-            <marker date="1523130945968" expanded="true" signature="1907:1946" ph="{...}" />
-            <marker date="1523130945968" expanded="true" signature="2030:2071" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1651,7 +1487,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="740">
           <caret line="39" column="62" lean-forward="true" selection-start-line="39" selection-start-column="62" selection-end-line="39" selection-end-column="62" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1659,7 +1494,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1667,7 +1501,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-6079">
           <caret line="21" column="31" lean-forward="true" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1675,21 +1508,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/LogRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="142" column="31" lean-forward="false" selection-start-line="142" selection-start-column="31" selection-end-line="142" selection-end-column="31" />
-          <folding>
-            <element signature="e#34#58#0#PHP" expanded="false" />
-            <marker date="1523442953368" expanded="true" signature="695:764" ph="SELECT g.nam... gate" />
-            <marker date="1523442953368" expanded="true" signature="695:1130" ph="SELECT v.fir... log" />
-            <marker date="1523442953368" expanded="true" signature="695:1161" ph="SELECT v.fir... log" />
-            <marker date="1523442953368" expanded="true" signature="4141:5019" ph="SELECT l FRO... App" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1697,7 +1515,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
           <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1705,7 +1522,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="698">
           <caret line="56" column="41" lean-forward="false" selection-start-line="56" selection-start-column="41" selection-end-line="56" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1713,7 +1529,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="38" column="39" lean-forward="false" selection-start-line="38" selection-start-column="39" selection-end-line="38" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1721,7 +1536,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
           <caret line="22" column="33" lean-forward="false" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1729,7 +1543,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3200">
           <caret line="304" column="35" lean-forward="false" selection-start-line="304" selection-start-column="35" selection-end-line="304" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1757,37 +1570,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/ManageMembersController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3000">
-          <caret line="172" column="18" lean-forward="false" selection-start-line="172" selection-start-column="18" selection-end-line="172" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/pages/search_members.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/ManageOfficeController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="240" column="23" lean-forward="false" selection-start-line="240" selection-start-column="23" selection-end-line="240" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/logs/searchLogs.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="217" column="102" lean-forward="false" selection-start-line="217" selection-start-column="102" selection-end-line="217" selection-end-column="102" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1815,22 +1601,125 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="25" column="31" lean-forward="false" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/pages/suspicious-list.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6">
+          <caret line="8" column="40" lean-forward="false" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/pages/search_members.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="928">
+          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Repository/UserRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2425">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1522834424858" expanded="true" signature="859:969" ph="SELECT role_... role" />
+            <marker date="1522834424858" expanded="true" signature="4252:4900" ph="SELECT user.... user" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/ManageMembersController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15120">
+          <caret line="778" column="0" lean-forward="false" selection-start-line="778" selection-start-column="0" selection-end-line="778" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Log.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3280">
+          <caret line="164" column="33" lean-forward="false" selection-start-line="164" selection-start-column="33" selection-end-line="164" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/LogGate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="22" column="18" lean-forward="false" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/pages/search_logs.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="67" column="24" lean-forward="false" selection-start-line="67" selection-start-column="24" selection-end-line="67" selection-end-column="24" />
+        <state relative-caret-position="240">
+          <caret line="12" column="33" lean-forward="false" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/ManageLogsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2255">
-          <caret line="414" column="56" lean-forward="false" selection-start-line="414" selection-start-column="56" selection-end-line="414" selection-end-column="56" />
+        <state relative-caret-position="241">
+          <caret line="494" column="70" lean-forward="false" selection-start-line="494" selection-start-column="70" selection-end-line="494" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Blacklist.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Repository/LogRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="421">
+          <caret line="250" column="29" lean-forward="true" selection-start-line="250" selection-start-column="29" selection-end-line="250" selection-end-column="29" />
           <folding>
-            <element signature="e#8076#8097#1#PHP" expanded="true" />
-            <element signature="e#13889#13916#0#PHP" expanded="true" />
+            <marker date="1524144695605" expanded="true" signature="738:807" ph="SELECT g.nam... gate" />
+            <marker date="1524144695605" expanded="true" signature="738:1173" ph="SELECT v.fir... log" />
+            <marker date="1524144695605" expanded="true" signature="738:1204" ph="SELECT v.fir... log" />
+            <marker date="1524144695605" expanded="true" signature="7145:9265" ph="select log.i... log" />
+            <marker date="1524144695605" expanded="true" signature="7607:7733" ph="select log_g... log_gate" />
+            <marker date="1524144695605" expanded="true" signature="7817:7939" ph="select log_g... log_gate" />
+            <marker date="1524144695605" expanded="true" signature="8015:8230" ph="select log_g... log_guard" />
+            <marker date="1524144695605" expanded="true" signature="8316:8527" ph="select log_g... log_guard" />
+            <marker date="1524144695605" expanded="true" signature="8749:8905" ph="select offic... office" />
+            <marker date="1524144695605" expanded="true" signature="9736:12997" ph="select log.i... log" />
+            <marker date="1524144695605" expanded="true" signature="10241:10367" ph="select log_g... log_gate" />
+            <marker date="1524144695605" expanded="true" signature="10241:10575" ph="select log_g... log_gate" />
+            <marker date="1524144695605" expanded="true" signature="10659:11009" ph="select log_g... log_gate" />
+            <marker date="1524144695605" expanded="true" signature="11085:11512" ph="select log_g... log_guard" />
+            <marker date="1524144695605" expanded="true" signature="11599:12044" ph="select log_g... log_guard" />
+            <marker date="1524144695605" expanded="true" signature="12266:12637" ph="select offic... office" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/logs/searchLogs.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="75" column="89" lean-forward="false" selection-start-line="75" selection-start-column="89" selection-end-line="75" selection-end-column="104" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/LogsSearchHistory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="780">
+          <caret line="390" column="0" lean-forward="false" selection-start-line="390" selection-start-column="0" selection-end-line="390" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

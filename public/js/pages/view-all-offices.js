@@ -39,7 +39,7 @@ function renderRecords(offices) {
                 '<tr role="row" class="' + checkRowIndex(index) + '">' +
                 '<td class="sorting_1">' + office.id + '</td>' +
                 '<td>' + office.officeNb + '</td>' +
-                '<td>' + office.member.name + '</td>' +
+                '<td' + (office.member.name === '' ? ' class="bg-grey"' : '') + '>' + office.member.name + '</td>' +
                 '<td>' + office.building + '</td>' +
                 '<td>' + office.floorNb + '</td>' +
                 '<td>' + office.dateCreated + '</td>' +

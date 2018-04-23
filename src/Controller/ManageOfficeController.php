@@ -295,7 +295,7 @@ class ManageOfficeController extends Controller
             $officeInfo['officeNb'] = $office->getOfficeNb();
 
             $officeInfo['member'] = array();
-            $officeInfo['member']['name'] = $office->getUser() === null ? '-----' : $office->getUser()->getFullName();
+            $officeInfo['member']['name'] = $office->getUser() === null ? '' : $office->getUser()->getFullName();
 
             $officeInfo['building'] = $office->getBuilding()->getName();
             $officeInfo['floorNb'] = $office->getFloorNb();

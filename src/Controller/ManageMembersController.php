@@ -69,10 +69,11 @@ class ManageMembersController extends Controller
             $user->addRole($role);
             $user->addBuilding($building);
             $user->setDateCreated(new \DateTime());
-            $em->persist($user);
-            $em->flush();
 
             if ($role->getRoleName() == 'sguard') {
+
+                $em->persist($user);
+                $em->flush();
 
                 $guard = new Guard();
                 $guard->setUser($user);
@@ -87,10 +88,28 @@ class ManageMembersController extends Controller
             } else if ($role->getRoleName() == 'fadmin') {
 
                 $building = $em->getRepository(Building::class)->find($form['building']->getData()->getId());
-                $building->setAdmin($user);
-                $em->flush();
+
+                if ($building->getAdmin() === null) {
+                    $em->persist($user);
+                    $em->flush();
+
+                    $building->setAdmin($user);
+                    $em->flush();
+                } else {
+                    $this->addFlash(
+                        'danger',
+                        $building->getName() . ' already has an Administrator!'
+                    );
+
+                    return $this->render('manageMembers/addMember.html.twig', array(
+                        'form' => $form->createView()
+                    ));
+                }
 
             } else if ($role->getRoleName() == 'powner') {
+
+                $em->persist($user);
+                $em->flush();
 
                 return $this->redirectToRoute('addPremiseOwner', array(
                     'userId' => $user->getId(),

@@ -248,7 +248,7 @@ class LogRepository extends ServiceEntityRepository
             else
                 $sql .= " and log_gate.gate_id = :exitGate)";
 
-            $sql .= " logGateExit on log.id = logGateExit.log_id
+            $sql .= " logGateExit on log.id = logGateExit.log_id    
                     inner join (select log_guard.log_id, concat(user.given_name, ' ', user.family_name) as sName from log_guard inner join guard on log_guard.guard_id = guard.id and log_guard.status = 'entrance'";
 
             if ($entranceGuard == -1)

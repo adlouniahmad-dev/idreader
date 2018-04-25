@@ -10,6 +10,9 @@ namespace App\Controller;
 
 
 use App\Entity\Building;
+use App\Entity\Log;
+use App\Entity\LogGate;
+use App\Entity\LogGuard;
 use App\Entity\Office;
 use App\Form\Type\OfficeType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -306,6 +309,55 @@ class ManageOfficeController extends Controller
         $data['offices'] = $officesArray;
 
         return new JsonResponse($data);
+    }
+
+    /**
+     * @Route("/manageOffice/office/{officeId}/edit/delete", name="deleteOffice")
+     * @param $officeId
+     * @return JsonResponse
+     */
+    public function deleteOffice($officeId)
+    {
+        $error = array('success' => 'no');
+        $success = array('success' => 'yes');
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $office = $entityManager->getRepository(Office::class)->find($officeId);
+
+        if (!$office)
+            return $this->json($error);
+
+        $logs = $entityManager->getRepository(Log::class)->findBy(['office' => $office]);
+        if ($logs) {
+            foreach ($logs as $log) {
+                $logGates = $entityManager->getRepository(LogGate::class)->findBy(['log' => $log]);
+                if ($logGates) {
+                    foreach ($logGates as $logGate) {
+                        $entityManager->remove($logGate);
+                        $entityManager->flush();
+                    }
+                }
+
+                $logGuards = $entityManager->getRepository(LogGuard::class)->findBy(['log' => $log]);
+                if ($logGuards) {
+                    foreach ($logGuards as $logGuard) {
+                        $entityManager->remove($logGuard);
+                        $entityManager->flush();
+                    }
+                }
+            }
+        }
+
+        try {
+
+            $entityManager->remove($office);
+            $entityManager->flush();
+
+        } catch (\Exception $e) {
+            return $this->json($error);
+        }
+
+        return $this->json($success);
     }
 
 }

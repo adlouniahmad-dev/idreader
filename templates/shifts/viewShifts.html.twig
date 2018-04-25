@@ -20,21 +20,18 @@
                 <div class="portlet-title">
                     <div class="caption font-dark">
                         <i class="icon-settings font-dark"></i>
-                        <span class="caption-subject bold uppercase">Suspicious Visits</span>
+                        <span class="caption-subject bold uppercase">Shifts</span>
                     </div>
                     <div class="tools"></div>
                 </div>
                 <div class="portlet-body">
-                    <table class="table table-striped table-bordered table-hover" id="sample_1">
+                    <table class="table table-striped table-hover table-bordered" id="sample_editable_1">
                         <thead>
                         <tr>
-                            <th> First Name</th>
-                            <th> Middle Name</th>
-                            <th> Last Name</th>
-                            <th> Date of Suspicion</th>
-                            <th> Expected to left in</th>
-                            <th> Left after</th>
-                            <th> Action</th>
+                            <th> Day</th>
+                            <th> Start Time</th>
+                            <th> End Time</th>
+                            <th> Delete</th>
                         </tr>
                         </thead>
                         <tbody></tbody>
@@ -50,5 +47,5 @@
     <script type="text/javascript" src="{{ asset('global/datatables/datatables.js') }}"></script>
     <script type="text/javascript"
             src="{{ asset('global/datatables/plugins/bootstrap/datatables.bootstrap.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/pages/suspicious-list.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/pages/view-shifts.js') }}"></script>
 {% endblock %}

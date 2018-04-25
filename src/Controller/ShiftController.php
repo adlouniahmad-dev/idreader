@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 
+use App\Entity\Schedule;
 use App\Entity\Shift;
 use App\Form\Type\ShiftType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -81,6 +82,60 @@ class ShiftController extends Controller
 
         return $this->render('shifts/viewShifts.html.twig', array(
             'shifts' => $shifts,
+        ));
+    }
+
+    /**
+     * @Route("/shifts/get", name="getShifts", methods={"GET"})
+     */
+    public function getShifts()
+    {
+        $shifts = $this->getDoctrine()->getRepository(Shift::class)->findAll();
+        $shiftsArray = array();
+        if ($shifts) {
+            foreach ($shifts as $shift) {
+                $shiftInfo = array(
+                    'day' => $shift->getDay(),
+                    'startTime' => date_format($shift->getStartTime(), 'H:i'),
+                    'endTime' => date_format($shift->getEndTime(), 'H:i'),
+                    'delete' => '<button href="javascript:;" class="delete btn btn-sm red" data-shift="' . $shift->getId() . '"> Delete </button>',
+                );
+                $shiftsArray[] = $shiftInfo;
+            }
+        }
+
+        return $this->json(array('data' => $shiftsArray));
+    }
+
+    /**
+     * @Route("/shifts/{shiftId}/delete", name="deleteShift")
+     * @param $shiftId
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function deleteShift($shiftId)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $shift = $entityManager->getRepository(Shift::class)->find($shiftId);
+
+        if ($shift) {
+            $schedules = $entityManager->getRepository(Schedule::class)->findBy(['shift' => $shift]);
+            if ($schedules) {
+                foreach ($schedules as $schedule) {
+                    $entityManager->remove($schedule);
+                    $entityManager->flush();
+                }
+            }
+
+            $entityManager->remove($shift);
+            $entityManager->flush();
+
+            return $this->json(array(
+                'success' => true
+            ));
+        }
+
+        return $this->json(array(
+            'success' => false
         ));
     }
 }

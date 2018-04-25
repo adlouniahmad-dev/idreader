@@ -171,7 +171,7 @@ class Visitor
      */
     public function getFullName()
     {
-        return $this->firstName . ' ' . $this->middleName . ' ' . $this->lastName;
+        return $this->firstName . ' ' . $this->lastName;
     }
 
     /**

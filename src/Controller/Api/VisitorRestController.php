@@ -60,7 +60,6 @@ class VisitorRestController extends Controller
         $visitorInfo = array(
             'id' => $visitor->getId(),
             'firstName' => $visitor->getFirstName(),
-            'middleName' => $visitor->getMiddleName(),
             'lastName' => $visitor->getLastName(),
             'nationality' => $visitor->getCountry(),
             'typeOfDocument' => $visitor->getDocumentType(),
@@ -100,7 +99,6 @@ class VisitorRestController extends Controller
         try {
             $visitor = new Visitor();
             $visitor->setFirstName($data['firstName']);
-            $visitor->setMiddleName($data['middleName']);
             $visitor->setLastName($data['lastName']);
             $visitor->setDateCreated(new \DateTime());
             $visitor->setDocumentType($data['documentType']);

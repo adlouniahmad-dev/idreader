@@ -33,10 +33,10 @@ class VisitorType extends AbstractType
                 'attr' => ['class' => 'form-control'],
                 'label' => 'First Name',
             ))
-            ->add('middleName', TextType::class, array(
-                'attr' => ['class' => 'form-control'],
-                'label' => 'Middle Name',
-            ))
+//            ->add('middleName', TextType::class, array(
+//                'attr' => ['class' => 'form-control'],
+//                'label' => 'Middle Name',
+//            ))
             ->add('lastName', TextType::class, array(
                 'attr' => ['class' => 'form-control'],
                 'label' => 'Last Name',

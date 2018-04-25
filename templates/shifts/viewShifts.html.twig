@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Shifts{% endblock %}
+{% block pagetitle %}Shifts{% endblock %}
+{% block pagetitlesmall %}{% endblock %}
+{% block pagebartitle %}Shifts{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('global/datatables/datatables.min.css') }}" rel="stylesheet"
+          type="text/css"/>
+    <link href="{{ asset('global/datatables/plugins/bootstrap/datatables.bootstrap.css') }}" rel="stylesheet"
+          type="text/css"/>
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light ">
+                <div class="portlet-title">
+                    <div class="caption font-dark">
+                        <i class="icon-settings font-dark"></i>
+                        <span class="caption-subject bold uppercase">Suspicious Visits</span>
+                    </div>
+                    <div class="tools"></div>
+                </div>
+                <div class="portlet-body">
+                    <table class="table table-striped table-bordered table-hover" id="sample_1">
+                        <thead>
+                        <tr>
+                            <th> First Name</th>
+                            <th> Middle Name</th>
+                            <th> Last Name</th>
+                            <th> Date of Suspicion</th>
+                            <th> Expected to left in</th>
+                            <th> Left after</th>
+                            <th> Action</th>
+                        </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('global/datatables/datatables.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('global/datatables/plugins/bootstrap/datatables.bootstrap.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/pages/suspicious-list.js') }}"></script>
+{% endblock %}

@@ -32,11 +32,6 @@ class Visitor
     /**
      * @ORM\Column(type="string")
      */
-    private $middleName;
-
-    /**
-     * @ORM\Column(type="string")
-     */
     private $lastName;
 
     /**
@@ -97,22 +92,6 @@ class Visitor
     public function setFirstName($firstName): void
     {
         $this->firstName = $firstName;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getMiddleName()
-    {
-        return $this->middleName;
-    }
-
-    /**
-     * @param mixed $middleName
-     */
-    public function setMiddleName($middleName): void
-    {
-        $this->middleName = $middleName;
     }
 
     /**

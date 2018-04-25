@@ -289,8 +289,8 @@ class ManageMembersController extends Controller
             }
 
             if (in_array('Premise Owner', $this->getUserRoles($user))) {
-                $offices = $this->getDoctrine()->getRepository(Office::class)->findOneBy(['user' => $user]);
-                $userDetails['offices'] = $offices;
+                $office = $this->getDoctrine()->getRepository(Office::class)->findOneBy(['user' => $user]);
+                $userDetails['offices'] = $office === null ? null : $office;
             }
 
             $buildingIn = $this->getUserBuildings($user);

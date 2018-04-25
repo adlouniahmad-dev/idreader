@@ -21,7 +21,7 @@ class ShiftController extends Controller
 {
 
     /**
-     * @Route("/addShift", name="addShift")
+     * @Route("/shifts/add", name="addShift")
      * @param Request $request
      * @param Session $session
      * @return \Symfony\Component\HttpFoundation\Response
@@ -61,6 +61,26 @@ class ShiftController extends Controller
 
         return $this->render('shifts/addShift.html.twig', array(
             'form' => $form->createView()
+        ));
+    }
+
+    /**
+     * @Route("/shifts/view", name="viewShifts")
+     * @param Session $session
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    public function viewShifts(Session $session)
+    {
+        if (!$session->has('gmail'))
+            return $this->redirectToRoute('login');
+
+        if (!in_array('fowner', $session->get('roles')) && !in_array('fadmin', $session->get('roles')))
+            return $this->render('errors/access_denied.html.twig');
+
+        $shifts = $this->getDoctrine()->getRepository(Shift::class)->findAll();
+
+        return $this->render('shifts/viewShifts.html.twig', array(
+            'shifts' => $shifts,
         ));
     }
 }

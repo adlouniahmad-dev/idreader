@@ -39,7 +39,6 @@ function renderRecords(visitors) {
                 '<tr role="row" class="' + checkRowIndex(index) + '">' +
                 '<td class="sorting_1">' + visitor.id + '</td>' +
                 '<td>' + visitor.firstName + '</td>' +
-                '<td>' + visitor.middleName + '</td>' +
                 '<td>' + visitor.lastName + '</td>' +
                 '<td>' + visitor.nationality + '</td>' +
                 '<td>' + visitor.documentType + '</td>' +

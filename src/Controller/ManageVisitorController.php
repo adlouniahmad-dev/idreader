@@ -148,7 +148,6 @@ class ManageVisitorController extends Controller
             $visitorInfo = array();
             $visitorInfo['id'] = $visitor->getId();
             $visitorInfo['firstName'] = $visitor->getFirstName();
-            $visitorInfo['middleName'] = $visitor->getMiddleName();
             $visitorInfo['lastName'] = $visitor->getLastName();
             $visitorInfo['nationality'] = $visitor->getCountry();
             $visitorInfo['documentType'] = $visitor->getDocumentType();

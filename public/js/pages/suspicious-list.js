@@ -20,7 +20,6 @@ var TableDatatablesRowreorder = function () {
             ajax: '/suspicious/get',
             columns: [
                 { data: 'firstName' },
-                { data: 'middleName' },
                 { data: 'lastName' },
                 { data: 'date' },
                 { data: 'expected' },

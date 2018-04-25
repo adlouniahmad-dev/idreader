@@ -58,7 +58,6 @@ class ManageLogsController extends Controller
             foreach ($suspiciousVisits as $suspiciousVisit) {
                 $susInfo = array();
                 $susInfo['firstName'] = $suspiciousVisit['first_name'];
-                $susInfo['middleName'] = $suspiciousVisit['middle_name'];
                 $susInfo['lastName'] = $suspiciousVisit['last_name'];
                 $susInfo['date'] = $suspiciousVisit['date_created'];
                 $susInfo['expected'] = (int)$suspiciousVisit['expected'] . ' min';
@@ -223,7 +222,6 @@ class ManageLogsController extends Controller
      */
     public function viewLogs(Session $session)
     {
-
         if (!$session->has('gmail'))
             return $this->redirectToRoute('login');
 
@@ -269,8 +267,8 @@ class ManageLogsController extends Controller
 
             $logInfo = array();
             $logInfo['visitorName'] = $log->getVisitor()->getFullName();
-            $logInfo['office'] = $log->getOffice()->getOfficeNb();
-            $logInfo['building'] = $log->getOffice()->getBuilding()->getName();
+            $logInfo['office'] = $log->getOffice() !== null ? $log->getOffice()->getOfficeNb() : '';
+            $logInfo['building'] = $log->getOffice() !== null ? $log->getOffice()->getBuilding()->getName() : '';
             $logInfo['date'] = date_format($log->getDateCreated(), 'jS F, Y');
 
             if (!in_array('powner', $session->get('roles'))) {

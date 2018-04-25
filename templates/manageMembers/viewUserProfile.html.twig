@@ -52,17 +52,31 @@
                         <h4 class="block">Office:</h4>
                         <ul class="list-inline">
                             <li>
-                                <i class="fa fa-building-o"></i> {{ userDetails['offices'].officeNb }}
-                                - {{ userDetails['offices'].building.name }}
+                                <i class="fa fa-building-o"></i>
+                                {% if userDetails['offices'] is not null %}
+                                    {{ userDetails['offices'].officeNb }} - {{ userDetails['offices'].building.name }}
+                                {% else %}
+                                    No Office. - <a
+                                        href="{{ path('editProfile', {'userId': user.id, '_fragment': 'office_info'}) }}">Add
+                                    Office</a>
+                                {% endif %}
                             </li>
                         </ul>
                     {% endif %}
 
-                    {% if 'Security Guard' in roles and userDetails['guard'].device is not null %}
+                    {% if 'Security Guard' in roles %}
                         <hr>
                         <h4 class="block">Device MAC Address:</h4>
                         <ul class="list-inline">
-                            <li><i class="fa fa-mobile-phone"></i> {{ userDetails['guard'].device.macAddress|upper }}
+                            <li>
+                                <i class="fa fa-mobile-phone"></i>
+                                {% if userDetails['guard'].device is not null %}
+                                    {{ userDetails['guard'].device.macAddress|upper }}
+                                {% else %}
+                                    Device not created yet. - <a
+                                        href="{{ path('editProfile', {'userId': user.id, '_fragment': 'device_info'}) }}">Add
+                                    Device</a>
+                                {% endif %}
                             </li>
                         </ul>
                         <hr>

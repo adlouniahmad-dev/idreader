@@ -29,7 +29,7 @@ class LogRepository extends ServiceEntityRepository
 
         $conn = $this->getEntityManager()->getConnection();
 
-        $sql = "SELECT v.id, v.first_name, v.middle_name, v.last_name, l.date_created, 
+        $sql = "SELECT v.id, v.first_name, v.last_name, l.date_created, 
                 TIME_TO_SEC(TIMEDIFF(l.estimated_time, l.time_entered)) / 60 AS expected, 
                 TIME_TO_SEC(TIMEDIFF(l.time_exit, l.time_entered)) / 60 AS realExit
                 FROM log l INNER JOIN visitor v ON l.visitor_id = v.id

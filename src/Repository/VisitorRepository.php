@@ -31,7 +31,6 @@ class VisitorRepository extends ServiceEntityRepository
             ->where(
                 'v.id LIKE :string
                 OR v.firstName LIKE :string
-                OR v.middleName LIKE :string
                 OR v.lastName LIKE :string
                 OR v.dateCreated LIKE :string
                 OR v.documentType LIKE :string

@@ -7,6 +7,10 @@ parameters:
     google_redirect: http://localhost:8000/login/check-user
     locale: 'en'
 
+    firbase_server_key: AAAA6_OaYRE:APA91bH_WlCcoqy__IpFP4nbtFC0G2djPeanBsmOH26zGH7Ih7AEqJ1oa-3Mw1h0XfZ0qP_xMePv7FV4N1NFXxJ5kpJVLCas_xz5kyEOpXYMeSTzdTPumTfNE8Vjvws191YV0bSYu-U4
+    firebase_legacy_server_key: AIzaSyBoSPBVIjcc6LLupNMIn35E0S-6t1ty7DU
+    firebase_sender_id: 1013404295441
+
 services:
     # default configuration for services in *this* file
     _defaults:

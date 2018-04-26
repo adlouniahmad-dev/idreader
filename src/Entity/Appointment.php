@@ -32,6 +32,11 @@ class Appointment
     private $premiseOwner;
 
     /**
+     * @ORM\Column(type="string")
+     */
+    private $office;
+
+    /**
      * @ORM\Column(type="date")
      */
     private $date;
@@ -95,6 +100,22 @@ class Appointment
     public function setPremiseOwner($premiseOwner): void
     {
         $this->premiseOwner = $premiseOwner;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOffice()
+    {
+        return $this->office;
+    }
+
+    /**
+     * @param mixed $office
+     */
+    public function setOffice($office): void
+    {
+        $this->office = $office;
     }
 
     /**

@@ -11,9 +11,11 @@ namespace App\Controller\Api;
 
 use App\Entity\Token;
 use App\Entity\User;
+use App\EntityClass\Notification;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route as FRoute;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -31,17 +33,13 @@ class NotificationRestController extends Controller
      */
     public function sendNotification(Request $request)
     {
-
         $title = $request->request->get('title');
         $message = $request->request->get('message');
         $userId = $request->request->get('userId');
 
-        $notification = $this->createNotification($title, $message, $userId);
-
-        $headers = array(
-            'Authorization: key=' . $this->getParameter('firebase_server_key'),
-            'Content-Type: application/json'
-        );
+        $notificationBuilder = new Notification($title, $message, $this->getUserToken($userId), $this->getParameter('firebase_server_key'));
+        $notification = $notificationBuilder->build();
+        $headers = $notificationBuilder->getHeader();
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $this->getParameter('firebase_url'));
@@ -55,7 +53,7 @@ class NotificationRestController extends Controller
             return $this->json(array(
                 'success' => false,
                 'message' => curl_error($ch)
-            ));
+            ), Response::HTTP_NOT_FOUND);
         }
 
         curl_close($ch);
@@ -63,32 +61,13 @@ class NotificationRestController extends Controller
         return $this->json(array(
             'success' => true,
             'message' => 'Notification sent successfully.'
-        ));
+        ), Response::HTTP_OK);
     }
 
-    private function createNotification($title, $message, $userId)
-    {
-        $to = $this->getUserToken($userId);
-
-        $dataPayload = array();
-        $msg['data']['title'] = $title;
-        $msg['data']['message'] = $message;
-
-        $notificationPayload = array(
-            'title' => $title,
-            'body' => $message,
-            'sound' => 'default',
-        );
-
-        $fields = array(
-            'to' => $to,
-            'data' => $dataPayload,
-            'notification' => $notificationPayload
-        );
-
-        return $fields;
-    }
-
+    /**
+     * @param $userId
+     * @return Token|null|object
+     */
     private function getUserToken($userId)
     {
         $user = $this->getDoctrine()->getRepository(User::class)->find($userId);

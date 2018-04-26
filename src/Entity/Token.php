@@ -23,7 +23,7 @@ class Token
     private $user;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=true, unique=true)
      */
     private $token;
 

@@ -13,7 +13,6 @@ use App\Entity\Appointment;
 use App\Entity\NotificationSettings;
 use App\Entity\Office;
 use App\Entity\Token;
-use App\Entity\User;
 use App\EntityClass\Firebase;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
@@ -56,36 +55,35 @@ class AppointmentRestController extends Controller
             $premiseOwner = $office->getUser();
             $notificationSettings = $this->getDoctrine()->getRepository(NotificationSettings::class)->findOneBy(['user' => $premiseOwner]);
 
-            if ($notificationSettings->getEnabled() === false)
+            if (!$notificationSettings->isEnabled())
                 return $this->json(array(
                     'success' => false,
-                    'notificationSettings' => false,
+                    'notificationSettings' => $notificationSettings->isEnabled(),
                     'message' => 'Notifications are disabled.'
                 ));
 
             $timeOfAppointment = $appointment->getTime();
-
-            date_default_timezone_set("Asia/Beirut");
             $timeNow = new \DateTime();
-
             $interval = $timeNow->diff($timeOfAppointment);
-            $interval->format('h:m:s');
 
+            $intervalToString = $interval->format('%H:%I:%S');
+            $timeExploded = explode(":", $intervalToString);
+            $hour = (int) $timeExploded[0];
+            $min = (int) $timeExploded[1];
 
+            if ($hour == 0)
+                $shouldSendAppointment = $min > $notificationSettings->getLateAfter() ? true : false;
+            else
+                $shouldSendAppointment = ($min + ($hour * 60)) > $notificationSettings->getLateAfter() ? true : false;
 
+            if ($shouldSendAppointment) {
 
-            // some process will be here (not done yet)
-            $flag = true;
-
-            if (!$flag) {
-
-                $securityGuard = $this->getDoctrine()->getRepository(User::class)->find($userId);
-                $securityToken = $this->getDoctrine()->getRepository(Token::class)->findOneBy(['user' => $securityGuard]);
+                $premiseOwnerToken = $this->getDoctrine()->getRepository(Token::class)->findOneBy(['user' => $premiseOwner])->getToken();
 
                 $title = 'Allow Entering?';
                 $message = 'Allow ' . $appointment->getApplicantName() . ' to enter the meeting?';
 
-                $notificationBuilder = new Notification($title, $message, $securityToken, $this->getParameter('firebase_server_key'), $from);
+                $notificationBuilder = new Notification($title, $message, $premiseOwnerToken, $this->getParameter('firebase_server_key'), $from);
                 $notification = $notificationBuilder->build();
                 $headers = $notificationBuilder->getHeader();
 
@@ -93,17 +91,15 @@ class AppointmentRestController extends Controller
                 if ($result = $firebase->sendNotification() === true)
                     return $this->json(array(
                         'success' => true,
-                        'notification' => true,
                         'hasAppointment' => true,
-                        'inTime' => $flag,
+                        'inTime' => false,
                         'message' => 'Notification sent successfully.'
                     ));
 
                 return $this->json(array(
-                    'success' => true,
-                    'notification' => false,
+                    'success' => false,
                     'hasAppointment' => true,
-                    'inTime' => $flag,
+                    'inTime' => false,
                     'message' => 'Error in sending notification. Please try again.'
                 ));
             }
@@ -111,21 +107,18 @@ class AppointmentRestController extends Controller
             return $this->json(array(
                 'success' => true,
                 'hasAppointment' => true,
-                'inTime' => $flag,
-                'message' => $flag ? 'Can access.' : 'Can\'t access.'
+                'inTime' => true,
+                'message' => 'Can access.'
             ));
-
 
         } catch (NoResultException | NonUniqueResultException $e) {
 
             return $this->json(array(
                 'success' => true,
                 'hasAppointment' => false,
-                'inTime' => false,
-                'message' => 'Visitor has no appointment'
+                'message' => 'Visitor has no appointment.'
             ));
         }
-
     }
 
 }

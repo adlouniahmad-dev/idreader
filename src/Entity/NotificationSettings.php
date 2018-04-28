@@ -73,7 +73,7 @@ class NotificationSettings
     /**
      * @return mixed
      */
-    public function getEnabled()
+    public function isEnabled()
     {
         return $this->enabled;
     }

@@ -334,4 +334,17 @@ class VisitorRestController extends Controller
         ), Response::HTTP_OK);
     }
 
+    /**
+     * @Route("/test")
+     * @param Log $log
+     */
+    public function setEstimationTime(Log $log)
+    {
+        $office = $log->getOffice();
+        $logs = $this->getDoctrine()->getRepository(Log::class)->getVisitsOnPageLoad($office);
+
+
+
+    }
+
 }

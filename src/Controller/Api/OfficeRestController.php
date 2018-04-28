@@ -63,6 +63,7 @@ class OfficeRestController extends Controller
             $officeInfo['officeNb'] = $office->getOfficeNb();
             $officeInfo['floorNb'] = $office->getFloorNb();
             $officeInfo['premiseOwner'] = $office->getUser()->getFullName();
+            $officeInfo['premiseOwnerId'] = $office->getUser()->getId();
 
             $officesArray[] = $officeInfo;
         }

@@ -13,16 +13,21 @@ class AppointmentRepository extends ServiceEntityRepository
         parent::__construct($registry, Appointment::class);
     }
 
-    /*
-    public function findBySomething($value)
+    /**
+     * @param $ssn
+     * @return mixed
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findBySsnAndTodayDay($ssn)
     {
-        return $this->createQueryBuilder('a')
-            ->where('a.something = :value')->setParameter('value', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $query = $this->createQueryBuilder('a');
+        $query
+            ->where('a.applicantSsn = :ssn')->setParameter('ssn', $ssn)
+            ->andWhere('a.date = :today')->setParameter('today', new \DateTime())
+            ->setFirstResult(0)
+            ->setMaxResults(1);
+
+        return $query->getQuery()->getSingleResult();
     }
-    */
 }

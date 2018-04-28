@@ -9,7 +9,6 @@
 namespace App\EntityClass;
 
 
-
 class Notification
 {
 
@@ -17,13 +16,15 @@ class Notification
     private $message;
     private $token;
     private $key;
+    private $from;
 
-    public function __construct($title, $message, $token, $key)
+    public function __construct($title, $message, $token, $key, $from)
     {
         $this->title = $title;
         $this->message = $message;
         $this->token = $token;
         $this->key = $key;
+        $this->from = $from;
     }
 
     /**
@@ -100,6 +101,7 @@ class Notification
         $dataPayload = array();
         $dataPayload['data']['title'] = $this->title;
         $dataPayload['data']['message'] = $this->message;
+        $dataPayload['data']['from'] = $this->from;
 
         $notificationPayload = array(
             'title' => $this->title,

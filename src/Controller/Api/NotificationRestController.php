@@ -11,6 +11,7 @@ namespace App\Controller\Api;
 
 use App\Entity\Token;
 use App\Entity\User;
+use App\EntityClass\Firebase;
 use App\EntityClass\Notification;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route as FRoute;
@@ -35,33 +36,25 @@ class NotificationRestController extends Controller
     {
         $title = $request->request->get('title');
         $message = $request->request->get('message');
-        $userId = $request->request->get('userId');
+        $from = $request->request->get('from_userId');
+        $to = $request->request->get('to_userId');
 
-        $notificationBuilder = new Notification($title, $message, $this->getUserToken($userId), $this->getParameter('firebase_server_key'));
+        $notificationBuilder = new Notification($title, $message, $this->getUserToken($to), $this->getParameter('firebase_server_key'), $from);
         $notification = $notificationBuilder->build();
         $headers = $notificationBuilder->getHeader();
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $this->getParameter('firebase_url'));
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($notification));
+        $firebase = new Firebase($this->getParameter('firebase_url'), $headers, $notification);
 
-        if (!curl_exec($ch)) {
+        if ($result = $firebase->sendNotification() === true)
             return $this->json(array(
-                'success' => false,
-                'message' => curl_error($ch)
-            ), Response::HTTP_NOT_FOUND);
-        }
-
-        curl_close($ch);
+                'success' => true,
+                'message' => 'Notification sent successfully.'
+            ), Response::HTTP_OK);
 
         return $this->json(array(
-            'success' => true,
-            'message' => 'Notification sent successfully.'
-        ), Response::HTTP_OK);
+            'success' => false,
+            'message' => $result
+        ), Response::HTTP_NOT_FOUND);
     }
 
     /**

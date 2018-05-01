@@ -10,11 +10,13 @@ namespace App\Controller\Api;
 
 
 use App\Country;
+use App\Entity\Blacklist;
 use App\Entity\Guard;
 use App\Entity\Log;
 use App\Entity\LogGate;
 use App\Entity\LogGuard;
 use App\Entity\Office;
+use App\Entity\OfficeSettings;
 use App\Entity\Schedule;
 use App\Entity\Visitor;
 use Doctrine\ORM\NonUniqueResultException;
@@ -57,6 +59,12 @@ class VisitorRestController extends Controller
                 'message' => 'Visitor Not Found.'
             ), Response::HTTP_OK);
 
+        $blacklisted = $this->getDoctrine()->getRepository(Blacklist::class)->findOneBy(['visitor' => $visitor]);
+        if (!$blacklisted)
+            $blacklist = false;
+        else
+            $blacklist = true;
+
         $visitorInfo = array(
             'id' => $visitor->getId(),
             'firstName' => $visitor->getFirstName(),
@@ -64,6 +72,7 @@ class VisitorRestController extends Controller
             'nationality' => $visitor->getCountry(),
             'typeOfDocument' => $visitor->getDocumentType(),
             'ssn' => $visitor->getSsn(),
+            'blacklist' => $blacklist
         );
 
         $response = array(
@@ -114,7 +123,7 @@ class VisitorRestController extends Controller
 
             return $this->json(array(
                 'success' => false,
-                'message' => $e->getMessage(),
+                'message' => 'Can\'t add visitor.',
             ), Response::HTTP_NOT_FOUND);
         }
 
@@ -206,7 +215,14 @@ class VisitorRestController extends Controller
             $log->setOffice($office);
             $log->setDateCreated(new \DateTime());
             $log->setTimeEntered(new \DateTime());
-            $log->setEstimatedTime(new \DateTime());
+
+            $getEstimatedTime = $this->setEstimationTimeOnCheckIn($office);
+            if ($getEstimatedTime instanceof \DateTime) {
+                $log->setEstimatedTime($getEstimatedTime);
+            } else {
+                $estimatedTime = (new \DateTime())->add(new \DateInterval('PT' . $getEstimatedTime . 'M'));
+                $log->setEstimatedTime($estimatedTime);
+            }
 
             $entityManager->persist($log);
             $entityManager->flush();
@@ -328,6 +344,8 @@ class VisitorRestController extends Controller
         $this->addLogGate($log, $guardId, 'exit');
         $this->addLogGuard($log, $guardId, 'exit');
 
+        $this->setEstimationTimeOnCheckOut($log);
+
         return $this->json(array(
             'success' => true,
             'message' => 'Visitor checked out successfully.'
@@ -335,16 +353,66 @@ class VisitorRestController extends Controller
     }
 
     /**
-     * @Route("/test")
+     * @param Office $office
+     * @return float|int
+     * @throws \Exception
+     */
+    public function setEstimationTimeOnCheckIn(Office $office)
+    {
+        $logs = $this->getDoctrine()->getRepository(Log::class)->getVisitsToday($office);
+        $officeSettings = $this->getDoctrine()->getRepository(OfficeSettings::class)->findOneBy(['office' => $office]);
+
+        $estimatedTime = ($officeSettings->getWalkTime() * 2) + $officeSettings->getAverageWaitingTime();
+        if (!$logs)
+            return $estimatedTime;
+
+        $length = count($logs);
+        $lastLogEstimated = $logs[$length - 1]->getEstimatedTime();
+        $estimatedTime = $lastLogEstimated->add(new \DateInterval('PT' . $estimatedTime . 'M'));
+
+        return $estimatedTime;
+    }
+
+    /**
      * @param Log $log
      */
-    public function setEstimationTime(Log $log)
+    public function setEstimationTimeOnCheckOut(Log $log)
     {
         $office = $log->getOffice();
-        $logs = $this->getDoctrine()->getRepository(Log::class)->getVisitsOnPageLoad($office);
+        $entityManager = $this->getDoctrine()->getManager();
+        $logs = $entityManager->getRepository(Log::class)->getVisitsToday($office);
 
+        if (!$logs)
+            return;
 
+        $estimatedTime = $log->getEstimatedTime();
+        $timeExit = $log->getTimeExit();
+        $diff = $timeExit->diff($estimatedTime);
 
+        $flag = $estimatedTime > $timeExit ? true : false;
+
+        foreach ($logs as $aLog) {
+            $oldEstimatedTime = $aLog->getEstimatedTime();
+            $newEstimatedTime = $flag ? $oldEstimatedTime->add($diff) : $oldEstimatedTime->sub($diff);
+
+            $entityManager->refresh($aLog);
+            $aLog->setEstimatedTime($newEstimatedTime);
+            $entityManager->flush();
+        }
+        return;
+    }
+
+    /**
+     * @param $minutes
+     * @return \DateTime
+     */
+    private function convertToHoursMins($minutes)
+    {
+        $hrs = floor($minutes / 60);
+        $min = $minutes % 60;
+        $time = $hrs . ':' . $min . ':00';
+
+        return new \DateTime($time);
     }
 
 }

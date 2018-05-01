@@ -9,6 +9,9 @@
 namespace App\Controller\Api;
 
 
+use App\Entity\NotificationSettings;
+use App\Entity\Office;
+use App\Entity\OfficeSettings;
 use App\Entity\Token;
 use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -66,6 +69,28 @@ class TokenRestController extends Controller
                 $entityManager->flush();
             }
 
+            $roles = $this->getUserRoles($user);
+            if (in_array('Premise Owner', $roles)) {
+
+                $office = $this->getDoctrine()->getRepository(Office::class)->findOneBy(['user' => $user]);
+                $settings = $this->getDoctrine()->getRepository(OfficeSettings::class)->findOneBy(['office' => $office]);
+
+                if (!$settings) {
+                    $officeSetting = new OfficeSettings();
+                    $officeSetting->setOffice($office);
+                    $entityManager->persist($officeSetting);
+                    $entityManager->flush();
+                }
+
+                $notification = $entityManager->getRepository(NotificationSettings::class)->findOneBy(['user' => $user]);
+                if (!$notification) {
+                    $notificationSettings = new NotificationSettings();
+                    $notificationSettings->setUser($user);
+                    $entityManager->persist($notificationSettings);
+                    $entityManager->flush();
+                }
+            }
+
             return $this->json(array(
                 'success' => true,
                 'message' => 'Token added successfully.'
@@ -78,6 +103,35 @@ class TokenRestController extends Controller
                 'message' => 'Error adding the token'
             ), Response::HTTP_NOT_FOUND);
         }
+    }
 
+    /**
+     * @param User $user
+     * @return array
+     */
+    private function getUserRoles(User $user): array
+    {
+        $roles = $user->getRoles();
+        $rolesArray = array();
+        foreach ($roles as $value) {
+            $rolesArray[] = $this->getRoleName($value);
+        }
+        return $rolesArray;
+    }
+
+    /**
+     * @param $role
+     * @return string
+     */
+    private function getRoleName($role): string
+    {
+        if ($role->getRoleName() == 'fowner')
+            return 'Facility Owner';
+        else if ($role->getRoleName() == 'fadmin')
+            return 'Facility Administrator';
+        else if ($role->getRoleName() == 'powner')
+            return 'Premise Owner';
+        else
+            return 'Security Guard';
     }
 }

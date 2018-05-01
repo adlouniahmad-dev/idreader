@@ -61,7 +61,7 @@ class MemberRestController extends Controller
 
         $response['success'] = true;
         $response['userId'] = $user->getId();
-        $response['message'] = 'Logged in successfully.';
+        $response['message'] = 'Logged in Successfully.';
 
         return $this->json($response, Response::HTTP_OK);
     }

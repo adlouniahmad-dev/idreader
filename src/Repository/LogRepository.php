@@ -58,6 +58,21 @@ class LogRepository extends ServiceEntityRepository
     }
 
     /**
+     * @param Office $office
+     * @return mixed
+     */
+    public function getVisitsToday(Office $office)
+    {
+        $query = $this->createQueryBuilder('l');
+        $query->where('l.office = :office')->setParameter('office', $office)
+            ->andWhere('l.dateCreated = :today')->setParameter('today', date_format(new \DateTime(), 'Y-m-d'))
+            ->andWhere($query->expr()->isNull('l.timeExit'))
+            ->orderBy('l.dateCreated', 'ASC');
+
+        return $query->getQuery()->getResult();
+    }
+
+    /**
      * @param Office|null $office
      * @param $lastLogId
      * @return mixed

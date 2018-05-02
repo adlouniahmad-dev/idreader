@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50e69e48-8f17-4cc9-ac75-48078c3b9921" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Controller/Api/OfficeSettingsRestController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Api/MemberRestController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Api/MemberRestController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Api/TokenRestController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Api/TokenRestController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Api/VisitorRestController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Api/VisitorRestController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/LogRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/LogRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/logs/suspicious.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/logs/suspicious.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/visitors/editVisitor.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/visitors/editVisitor.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ManageMembersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ManageMembersController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ManageOfficeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ManageOfficeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/OfficeSettings.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/OfficeSettings.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -38,8 +35,8 @@
       <file leaf-file-name="MemberRestController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/Api/MemberRestController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="773">
-              <caret line="60" selection-start-line="60" selection-end-line="60" />
+            <state relative-caret-position="433">
+              <caret line="40" column="30" selection-start-line="40" selection-start-column="30" selection-end-line="40" selection-end-column="30" />
               <folding>
                 <element signature="e#130#151#0#PHP" expanded="true" />
               </folding>
@@ -47,7 +44,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OfficeSettingsRestController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="services.yaml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/services.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="12" column="37" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OfficeSettingsRestController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Controller/Api/OfficeSettingsRestController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-160">
@@ -59,20 +65,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OfficeSettings.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Entity/OfficeSettings.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="32" column="22" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VisitorRestController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="VisitorRestController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/Api/VisitorRestController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="660">
-              <caret line="125" column="49" selection-start-line="125" selection-start-column="49" selection-end-line="125" selection-end-column="49" />
+              <caret line="38" column="53" selection-start-line="38" selection-start-column="53" selection-end-line="38" selection-end-column="53" />
               <folding>
                 <element signature="e#130#146#0#PHP" expanded="true" />
               </folding>
@@ -88,6 +85,15 @@
               <folding>
                 <element signature="e#12#40#0#Twig" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ManageOfficeController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Controller/ManageOfficeController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="513">
+              <caret line="354" column="36" selection-start-line="354" selection-start-column="36" selection-end-line="354" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -113,19 +119,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LogRepository.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Repository/LogRepository.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="69" column="43" selection-start-line="69" selection-start-column="43" selection-end-line="69" selection-end-column="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="TokenRestController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/Api/TokenRestController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="580">
+            <state relative-caret-position="200">
               <caret line="59" selection-start-line="59" selection-end-line="59" />
               <folding>
                 <element signature="e#130#166#0#PHP" expanded="true" />
@@ -134,11 +131,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NotificationSettings.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Entity/NotificationSettings.php">
+      <file leaf-file-name="OfficeSettings.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Entity/OfficeSettings.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="560">
-              <caret line="32" column="22" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="22" />
+            <state relative-caret-position="540">
+              <caret line="27" column="31" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -156,8 +153,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>visits</find>
-      <find>scan</find>
       <find>in bui</find>
       <find>schedule</find>
       <find>getGua</find>
@@ -172,7 +167,6 @@
       <find>api/member</find>
       <find>format</find>
       <find>forma</find>
-      <find>remove</find>
       <find>delet</find>
       <find>api/off</find>
       <find>view</find>
@@ -186,6 +180,9 @@
       <find>date_form</find>
       <find>exploded</find>
       <find>setE</find>
+      <find>oldOff</find>
+      <find>remove</find>
+      <find>delete</find>
     </findStrings>
     <replaceStrings>
       <replace>href=&quot;#&quot;</replace>
@@ -209,9 +206,7 @@
         <option value="$PROJECT_DIR$/public/js/pages/view-all-offices.js" />
         <option value="$PROJECT_DIR$/templates/manageGates/editGate.html.twig" />
         <option value="$PROJECT_DIR$/templates/manageOffices/editOffice.html.twig" />
-        <option value="$PROJECT_DIR$/src/Controller/ManageOfficeController.php" />
         <option value="$PROJECT_DIR$/public/js/pages/delete_office.js" />
-        <option value="$PROJECT_DIR$/src/Controller/ManageMembersController.php" />
         <option value="$PROJECT_DIR$/templates/manageMembers/viewUserProfile.html.twig" />
         <option value="$PROJECT_DIR$/src/Form/Type/VisitorType.php" />
         <option value="$PROJECT_DIR$/src/Repository/VisitorRepository.php" />
@@ -231,7 +226,6 @@
         <option value="$PROJECT_DIR$/src/Entity/TestToken.php" />
         <option value="$PROJECT_DIR$/src/Controller/Api/Notification.php" />
         <option value="$PROJECT_DIR$/src/Entity/Token.php" />
-        <option value="$PROJECT_DIR$/config/services.yaml" />
         <option value="$PROJECT_DIR$/src/Entity/Appointment.php" />
         <option value="$PROJECT_DIR$/src/Repository/UserRepository.php" />
         <option value="$PROJECT_DIR$/src/Controller/Api/OfficeRestController.php" />
@@ -241,7 +235,6 @@
         <option value="$PROJECT_DIR$/src/Repository/AppointmentRepository.php" />
         <option value="$PROJECT_DIR$/src/Entity/NotificationSettings.php" />
         <option value="$PROJECT_DIR$/src/Controller/Api/AppointmentRestController.php" />
-        <option value="$PROJECT_DIR$/src/Entity/OfficeSettings.php" />
         <option value="$PROJECT_DIR$/templates/logs/suspicious.html.twig" />
         <option value="$PROJECT_DIR$/src/Repository/LogRepository.php" />
         <option value="$PROJECT_DIR$/src/Controller/Api/OfficeSettingsRestController.php" />
@@ -249,6 +242,10 @@
         <option value="$PROJECT_DIR$/templates/visitors/editVisitor.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/Api/MemberRestController.php" />
         <option value="$PROJECT_DIR$/src/Controller/Api/VisitorRestController.php" />
+        <option value="$PROJECT_DIR$/config/services.yaml" />
+        <option value="$PROJECT_DIR$/src/Entity/OfficeSettings.php" />
+        <option value="$PROJECT_DIR$/src/Controller/ManageMembersController.php" />
+        <option value="$PROJECT_DIR$/src/Controller/ManageOfficeController.php" />
       </list>
     </option>
   </component>
@@ -839,14 +836,7 @@
       <workItem from="1524124467460" duration="28696000" />
       <workItem from="1524503738474" duration="11843000" />
       <workItem from="1524653814441" duration="36000" />
-      <workItem from="1524653880655" duration="90352000" />
-    </task>
-    <task id="LOCAL-00043" summary="DONE">
-      <created>1522274538766</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1522274538766</updated>
+      <workItem from="1524653880655" duration="93926000" />
     </task>
     <task id="LOCAL-00044" summary="DONE">
       <created>1522274584812</created>
@@ -1184,11 +1174,18 @@
       <option name="project" value="LOCAL" />
       <updated>1524942508674</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="DONE">
+      <created>1525196803311</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1525196803312</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1088024000" />
+    <option name="totallyTimeSpent" value="1091598000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1239,13 +1236,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
           <caret line="20" column="29" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/ManageOfficeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="342" column="55" selection-start-line="342" selection-start-column="55" selection-end-line="342" selection-end-column="55" />
         </state>
       </provider>
     </entry>
@@ -1426,13 +1416,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/services.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="52" selection-start-line="10" selection-start-column="52" selection-end-line="10" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/Api/Notification.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1380">
@@ -1505,13 +1488,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/ManageMembersController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="835" column="56" lean-forward="true" selection-start-line="835" selection-start-column="56" selection-end-line="835" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/Api/AppointmentRestController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="193">
@@ -1532,27 +1508,10 @@
     <entry file="file://$PROJECT_DIR$/src/Entity/Office.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/OfficeSettings.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="32" column="22" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Entity/NotificationSettings.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="560">
           <caret line="32" column="22" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/Api/TokenRestController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="580">
-          <caret line="59" selection-start-line="59" selection-end-line="59" />
-          <folding>
-            <element signature="e#130#166#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1570,13 +1529,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/Api/OfficeSettingsRestController.php">
+    <entry file="file://$PROJECT_DIR$/src/Controller/Api/GuardRestController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-160">
-          <caret line="44" column="41" selection-start-line="44" selection-start-column="41" selection-end-line="44" selection-end-column="41" />
+        <state relative-caret-position="1080">
+          <caret line="59" column="5" selection-start-line="59" selection-start-column="5" selection-end-line="59" selection-end-column="5" />
           <folding>
-            <element signature="e#129#165#0#PHP" expanded="true" />
+            <element signature="e#130#151#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/services.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="12" column="37" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/Api/MemberRestController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="433">
+          <caret line="40" column="30" selection-start-line="40" selection-start-column="30" selection-end-line="40" selection-end-column="30" />
+          <folding>
+            <element signature="e#130#151#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/Api/TokenRestController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="59" selection-start-line="59" selection-end-line="59" />
+          <folding>
+            <element signature="e#130#166#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/OfficeSettings.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="27" column="31" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/ManageMembersController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="488">
+          <caret line="633" column="55" selection-start-line="633" selection-start-column="55" selection-end-line="633" selection-end-column="55" />
         </state>
       </provider>
     </entry>
@@ -1590,32 +1590,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/Api/GuardRestController.php">
+    <entry file="file://$PROJECT_DIR$/src/Controller/ManageOfficeController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="59" column="5" selection-start-line="59" selection-start-column="5" selection-end-line="59" selection-end-column="5" />
-          <folding>
-            <element signature="e#130#151#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/Api/MemberRestController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="773">
-          <caret line="60" selection-start-line="60" selection-end-line="60" />
-          <folding>
-            <element signature="e#130#151#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="513">
+          <caret line="354" column="36" selection-start-line="354" selection-start-column="36" selection-end-line="354" selection-end-column="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/Api/VisitorRestController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
-          <caret line="125" column="49" selection-start-line="125" selection-start-column="49" selection-end-line="125" selection-end-column="49" />
+          <caret line="38" column="53" selection-start-line="38" selection-start-column="53" selection-end-line="38" selection-end-column="53" />
           <folding>
             <element signature="e#130#146#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/Api/OfficeSettingsRestController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-160">
+          <caret line="44" column="41" selection-start-line="44" selection-start-column="41" selection-end-line="44" selection-end-column="41" />
+          <folding>
+            <element signature="e#129#165#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

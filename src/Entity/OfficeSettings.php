@@ -94,4 +94,10 @@ class OfficeSettings
         $this->walkTime = $walkTime;
     }
 
+    public function initializeSettings(): void
+    {
+        $this->averageWaitingTime = 20;
+        $this->walkTime = 5;
+    }
+
 }

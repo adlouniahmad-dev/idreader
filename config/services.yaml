@@ -8,9 +8,9 @@ parameters:
     locale: 'en'
 
     firebase_url: https://fcm.googleapis.com/fcm/send
-    firebase_server_key: AAAA6_OaYRE:APA91bH_WlCcoqy__IpFP4nbtFC0G2djPeanBsmOH26zGH7Ih7AEqJ1oa-3Mw1h0XfZ0qP_xMePv7FV4N1NFXxJ5kpJVLCas_xz5kyEOpXYMeSTzdTPumTfNE8Vjvws191YV0bSYu-U4
-    firebase_legacy_server_key: AIzaSyBoSPBVIjcc6LLupNMIn35E0S-6t1ty7DU
-    firebase_sender_id: 1013404295441
+    firebase_server_key: AAAA9O_Je2k:APA91bEcBEuV2qM6sxcs782EqmD4lZrgD7YU3JKIU9F0aI4yxKIJxkU23ac-NapdJUBG-4Xsl8R-VhCfY8c1juCQNLLYLPdfKprrrSLlC3M1aZqTQmpA7nBAUmxwqUV4ZFYuU74SwlCv
+    firebase_legacy_server_key: AIzaSyDqLR1vTJnwoN0bGeSuZa8pe7rJuh_x-eQ
+    firebase_sender_id: 1051994979177
 
 services:
     # default configuration for services in *this* file

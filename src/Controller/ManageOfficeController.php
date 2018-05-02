@@ -14,6 +14,7 @@ use App\Entity\Log;
 use App\Entity\LogGate;
 use App\Entity\LogGuard;
 use App\Entity\Office;
+use App\Entity\OfficeSettings;
 use App\Form\Type\OfficeType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -346,6 +347,12 @@ class ManageOfficeController extends Controller
                     }
                 }
             }
+        }
+
+        $officeSettings = $entityManager->getRepository(OfficeSettings::class)->findOneBy(['office' => $office]);
+        if ($officeSettings) {
+            $entityManager->remove($officeSettings);
+            $entityManager->flush();
         }
 
         try {

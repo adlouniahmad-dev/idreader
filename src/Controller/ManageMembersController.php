@@ -12,9 +12,12 @@ namespace App\Controller;
 use App\Entity\Building;
 use App\Entity\Device;
 use App\Entity\Guard;
+use App\Entity\NotificationSettings;
 use App\Entity\Office;
+use App\Entity\OfficeSettings;
 use App\Entity\Role;
 use App\Entity\Schedule;
+use App\Entity\Token;
 use App\Entity\User;
 use App\Form\Type\AdminBuildingUpdateType;
 use App\Form\Type\DeviceType;
@@ -440,8 +443,10 @@ class ManageMembersController extends Controller
                 }
 
                 $oldOffice = $entityManager->getRepository(Office::class)->findOneBy(['user' => $user]);
-                $oldOffice->removeUser();
-                $entityManager->flush();
+                if ($oldOffice) {
+                    $oldOffice->removeUser();
+                    $entityManager->flush();
+                }
 
                 $newOffice = $officeForm->get('office')->getData();
                 $newOffice->setUser($user);
@@ -623,6 +628,13 @@ class ManageMembersController extends Controller
             $offices = $entityManager->getRepository(Office::class)->findBy(['user' => $user]);
             if ($offices) {
                 foreach ($offices as $office) {
+
+                    $officeSettings = $entityManager->getRepository(OfficeSettings::class)->findOneBy(['office' => $office]);
+                    if ($officeSettings) {
+                        $officeSettings->initializeSettings();
+                        $entityManager->flush();
+                    }
+
                     $office->removeUser();
                     $entityManager->flush();
                 }
@@ -642,8 +654,20 @@ class ManageMembersController extends Controller
             $entityManager->flush();
         }
 
+        $token = $entityManager->getRepository(Token::class)->findOneBy(['user' => $user]);
+        if ($token) {
+            $entityManager->remove($token);
+            $entityManager->flush();
+        }
+
         $entityManager->remove($user);
         $entityManager->flush();
+
+        $notificationSettings = $entityManager->getRepository(NotificationSettings::class)->findOneBy(['user' => $user]);
+        if ($notificationSettings) {
+            $entityManager->remove($token);
+            $entityManager->flush();
+        }
 
         $user = $entityManager->getRepository(User::class)->find($userId);
 

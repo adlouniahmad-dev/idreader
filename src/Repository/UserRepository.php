@@ -51,6 +51,7 @@ class UserRepository extends ServiceEntityRepository
             ->innerJoin('u.buildings', 'b')
             ->where('b.id = :building')
             ->setParameter('building', $building->getId())
+            ->orderBy('u.dateCreated', 'DESC')
             ->getQuery();
 
         $paginator = $this->paginate($query, $currentPage);
@@ -84,6 +85,7 @@ class UserRepository extends ServiceEntityRepository
                  OR b.name LIKE :string'
                 )
                 ->setParameter('string', '%' . $string . '%')
+                ->orderBy('u.dateCreated', 'DESC')
                 ->getQuery();
         } else {
             $query = $qb->select('u')
@@ -100,6 +102,7 @@ class UserRepository extends ServiceEntityRepository
                 )
                 ->setParameter('string', '%' . $string . '%')
                 ->setParameter('building', $building->getId())
+                ->orderBy('u.dateCreated', 'DESC')
                 ->getQuery();
         }
 

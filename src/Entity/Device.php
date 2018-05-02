@@ -20,7 +20,7 @@ class Device
     private $id;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", unique=true)
      * @Assert\NotBlank()
      * @Assert\Regex(
      *     pattern="/^([0-9A-Fa-f]{2}[:]){5}([0-9A-Fa-f]{2})$/",

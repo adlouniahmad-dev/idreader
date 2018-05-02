@@ -15,6 +15,7 @@ use App\Entity\Guard;
 use App\Entity\Log;
 use App\Entity\LogGate;
 use App\Entity\LogGuard;
+use App\Entity\LogsHistory;
 use App\Entity\Office;
 use App\Entity\OfficeSettings;
 use App\Entity\Schedule;
@@ -227,6 +228,15 @@ class VisitorRestController extends Controller
             $entityManager->persist($log);
             $entityManager->flush();
 
+            $history = new LogsHistory();
+            $history->setLogId($log->getId());
+            $history->setVisitorName($visitor->getFullName());
+            $history->setTimeEntered(new \DateTime());
+            $history->setOfficeName($office->getOfficeNb());
+            $history->setBuilding($office->getBuilding()->getName());
+            $entityManager->persist($history);
+            $entityManager->flush();
+
         } catch (\Exception $exception) {
             return false;
         }
@@ -256,6 +266,18 @@ class VisitorRestController extends Controller
             $logGate->setStatus($status);
 
             $entityManager->persist($logGate);
+            $entityManager->flush();
+
+            $history = $entityManager->getRepository(LogsHistory::class)->findOneBy(['logId' => $log->getId()]);
+            if ($status === 'entrance') {
+                $history->setGuardCheckIn($guard->getUser()->getFullName());
+                $history->setGateCheckIn($gate->getName());
+            } else {
+                $history->setGuardCheckOut($guard->getUser()->getFullName());
+                $history->setGateCheckOut($gate->getName());
+            }
+
+            $entityManager->refresh($history);
             $entityManager->flush();
 
         } catch (\Exception $e) {
@@ -334,6 +356,11 @@ class VisitorRestController extends Controller
             $log->setTimeExit(new \DateTime());
             $entityManager->flush();
 
+            $history = $entityManager->getRepository(LogsHistory::class)->findOneBy(['logId' => $log->getId()]);
+            $history->setTimeExit(new \DateTime());
+            $entityManager->refresh($history);
+            $entityManager->flush();
+
         } catch (\Exception $e) {
             return $this->json(array(
                 'success' => false,
@@ -403,16 +430,15 @@ class VisitorRestController extends Controller
     }
 
     /**
-     * @param $minutes
-     * @return \DateTime
+     * @param $guardId
+     * @return bool
      */
-    private function convertToHoursMins($minutes)
+    private function checkGuard($guardId)
     {
-        $hrs = floor($minutes / 60);
-        $min = $minutes % 60;
-        $time = $hrs . ':' . $min . ':00';
-
-        return new \DateTime($time);
+        $guard = $this->getDoctrine()->getRepository(Guard::class)->find($guardId);
+        if (!$guard)
+            return false;
+        return true;
     }
 
 }

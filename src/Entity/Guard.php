@@ -17,16 +17,6 @@ class Guard
     private $id;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $isActivated = 0;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $isBlocked = 0;
-
-    /**
      * @ORM\OneToOne(targetEntity="App\Entity\User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
@@ -44,38 +34,6 @@ class Guard
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIsActivated()
-    {
-        return $this->isActivated;
-    }
-
-    /**
-     * @param mixed $isActivated
-     */
-    public function setIsActivated($isActivated): void
-    {
-        $this->isActivated = $isActivated;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIsBlocked()
-    {
-        return $this->isBlocked;
-    }
-
-    /**
-     * @param mixed $isBlocked
-     */
-    public function setIsBlocked($isBlocked): void
-    {
-        $this->isBlocked = $isBlocked;
     }
 
     /**

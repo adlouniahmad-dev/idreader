@@ -16,6 +16,7 @@ use App\Entity\Guard;
 use App\Entity\Log;
 use App\Entity\LogGate;
 use App\Entity\LogGuard;
+use App\Entity\LogsHistory;
 use App\Entity\LogsSearchHistory;
 use App\Entity\Office;
 use App\Entity\Schedule;
@@ -107,6 +108,10 @@ class ManageLogsController extends Controller
         return $this->json(array('visitors' => $this->renderVisits($visits)));
     }
 
+    /**
+     * @param $visits
+     * @return array
+     */
     private function renderVisits($visits)
     {
         $visitsArray = array();
@@ -169,6 +174,13 @@ class ManageLogsController extends Controller
 
         $log->setDateLeftFromOffice(new \DateTime());
         $entityManager->flush();
+
+        $history = $entityManager->getRepository(LogsHistory::class)->findOneBy(['logId' => $log->getId()]);
+        if ($history) {
+            $history->setTimeLeftFromOffice(new \DateTime());
+            $entityManager->refresh($history);
+            $entityManager->flush();
+        }
 
         return $this->json(array('success' => true));
     }

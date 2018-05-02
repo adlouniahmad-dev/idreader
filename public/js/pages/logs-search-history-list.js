@@ -36,7 +36,7 @@ var TableDatatablesRowreorder = function () {
                 { extend: 'csv', className: 'btn purple btn-outline ' }
             ],
             "order": [
-                [0, 'asc']
+                [9, 'desc']
             ],
             "lengthMenu": [
                 [5, 10, 15, 20, -1],

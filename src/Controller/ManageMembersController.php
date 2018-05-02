@@ -30,6 +30,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class ManageMembersController extends Controller
 {
@@ -168,6 +169,35 @@ class ManageMembersController extends Controller
                 $em = $this->getDoctrine()->getManager();
 
                 $deviceMac = $form['device']->getData();
+                if ($deviceMac === null) {
+                    $this->addFlash(
+                        'danger',
+                        'Mac address should not be null.'
+                    );
+                    return $this->render('manageMembers/addSecurityGuard.html.twig', array(
+                        'form' => $form->createView()
+                    ));
+                } else if (!$this->checkMacAddressRegex($deviceMac)) {
+                    $this->addFlash(
+                        'danger',
+                        'MAC address must be consist of six groups of two hexadecimal digits, separated by colons :'
+                    );
+                    return $this->render('manageMembers/addSecurityGuard.html.twig', array(
+                        'form' => $form->createView()
+                    ));
+                } else {
+                    $isThereOne = $this->getDoctrine()->getRepository(Device::class)->findOneBy(['macAddress' => $deviceMac]);
+                    if ($isThereOne) {
+                        $this->addFlash(
+                            'danger',
+                            'MAC address already exists.'
+                        );
+                        return $this->render('manageMembers/addSecurityGuard.html.twig', array(
+                            'form' => $form->createView()
+                        ));
+                    }
+                }
+
                 $device = new Device();
                 $device->setDateCreated(new \DateTime());
                 $device->setMacAddress($deviceMac);
@@ -203,6 +233,11 @@ class ManageMembersController extends Controller
         }
 
         return $this->render('errors/access_denied.html.twig');
+    }
+
+    private function checkMacAddressRegex($macAddress)
+    {
+        return (preg_match('/^([0-9A-Fa-f]{2}[:]){5}([0-9A-Fa-f]{2})$/', $macAddress) == 1);
     }
 
     /**
@@ -568,7 +603,7 @@ class ManageMembersController extends Controller
         $schedules = $this->getDoctrine()->getRepository(Schedule::class)->findBy(['guard' => $guard]);
         $scheduleArray = array();
         $day = date('w');
-        $week_end = date('d', strtotime('+'.(6-$day).' days'));
+        $week_end = date('d', strtotime('+' . (6 - $day) . ' days'));
 
         foreach ($schedules as $schedule) {
             $scheduleInfo = array();
@@ -585,8 +620,8 @@ class ManageMembersController extends Controller
             $month = date('M', $dateFromShiftDay);
             $year = date('Y', $dateFromShiftDay);
 
-            $startDate = $dayLetter . ' ' . $month .  ' ' . $dayNumber . ' ' . $year . ' ' . date_format($schedule->getShift()->getStartTime(), 'H:i:s') . ' GMT0000';
-            $endDate = $dayLetter . ' ' . $month .  ' ' . $dayNumber . ' ' . $year . ' ' . date_format($schedule->getShift()->getEndTime(), 'H:i:s') . ' GMT0000';
+            $startDate = $dayLetter . ' ' . $month . ' ' . $dayNumber . ' ' . $year . ' ' . date_format($schedule->getShift()->getStartTime(), 'H:i:s') . ' GMT0000';
+            $endDate = $dayLetter . ' ' . $month . ' ' . $dayNumber . ' ' . $year . ' ' . date_format($schedule->getShift()->getEndTime(), 'H:i:s') . ' GMT0000';
 
             $scheduleInfo['start'] = $startDate;
             $scheduleInfo['end'] = $endDate;
@@ -650,6 +685,19 @@ class ManageMembersController extends Controller
                     $entityManager->flush();
                 }
             }
+
+            $device = $guard->getDevice();
+            if ($device !== null) {
+                $guard->setDevice(null);
+                $entityManager->flush();
+
+                $getDevice = $entityManager->getRepository(Device::class)->find($device);
+                if ($getDevice) {
+                    $entityManager->remove($getDevice);
+                    $entityManager->flush();
+                }
+            }
+
             $entityManager->remove($guard);
             $entityManager->flush();
         }

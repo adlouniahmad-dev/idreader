@@ -31,6 +31,7 @@ class OfficeRepository extends ServiceEntityRepository
             ->orderBy('o.id', 'ASC')
             ->where('o.building = :building')
             ->setParameter('building', $building)
+            ->orderBy('o.dateCreated', 'DESC')
             ->getQuery();
 
         $paginator = $this->paginate($query, $currentPage);
@@ -64,6 +65,7 @@ class OfficeRepository extends ServiceEntityRepository
                 OR b.name LIKE :string'
                 )
                 ->setParameter('string', '%' . $string . '%')
+                ->orderBy('o.dateCreated', 'DESC')
                 ->getQuery();
         } else {
 
@@ -81,6 +83,7 @@ class OfficeRepository extends ServiceEntityRepository
                 )
                 ->setParameter('string', '%' . $string . '%')
                 ->setParameter('building', $building)
+                ->orderBy('o.dateCreated', 'DESC')
                 ->getQuery();
         }
 

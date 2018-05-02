@@ -294,22 +294,24 @@
                     </ul>
                 </li>
 
-                {%- if 'fowner' in app.session.get('roles') -%}
+                {%- if 'fowner' in app.session.get('roles') or 'fadmin' in app.session.get('roles') -%}
                     <li class="nav-item">
                         <a href="#" class="nav-link nav-toggle">
                             <i class="fa fa-history"></i>
                             <span class="title">History</span>
-                            <span class="selected"></span>
+                            <span class="arrow open"></span>
                         </a>
                         <ul class="sub-menu">
+                            {% if 'fowner' in app.session.get('roles') %}
+                                <li class="nav-item start ">
+                                    <a href="{{ path('searchHistory') }}" class="nav-link ">
+                                        <i class="fa fa-history"></i>
+                                        <span class="title">Search History</span>
+                                    </a>
+                                </li>
+                            {% endif %}
                             <li class="nav-item start ">
-                                <a href="{{ path('searchHistory') }}" class="nav-link ">
-                                    <i class="fa fa-history"></i>
-                                    <span class="title">Search History</span>
-                                </a>
-                            </li>
-                            <li class="nav-item start ">
-                                <a href="{{ path('logsAdvancedSearch') }}" class="nav-link ">
+                                <a href="{{ path('logsHistory') }}" class="nav-link ">
                                     <i class="fa fa-history"></i>
                                     <span class="title">Logs History</span>
                                 </a>

@@ -47,6 +47,7 @@ class SearchHistoryController extends Controller
                 $historyInfo['member'] = '<b>Name:</b> ' . $history->getUser() . '<br><b>Role(s):</b><br>' . $history->getRole();
                 $historyInfo['visitorName'] = $history->getVisitorName();
                 $historyInfo['building'] = $history->getBuilding();
+                $historyInfo['office'] = $history->getOffice();
                 $historyInfo['gate'] = '<b>Entrance Gate:</b> ' . $history->getEntranceGate() . '<br><b>Exit Gate:</b> ' . $history->getExitGate();
                 $historyInfo['guard'] = '<b>Entrance Guard:</b> ' . $history->getEntranceGuard() . '<br><b>Exit Guard:</b> ' . $history->getExitGuard();
                 $historyInfo['date'] = '<b>From:</b> ' . $history->getDateFrom() . '<br><b>To:</b> ' . $history->getDateTo();

@@ -17,19 +17,15 @@ var TableDatatablesRowreorder = function () {
                 "search": "Search:",
                 "zeroRecords": "No matching records found"
             },
-            ajax: '/api/search/history/get',
+            ajax: '/api/history/logs',
             columns: [
-                { data: 'member' },
-                { data: 'visitorName' },
+                { data: 'visitor' },
                 { data: 'building' },
                 { data: 'office' },
                 { data: 'gate' },
                 { data: 'guard' },
                 { data: 'date' },
-                { data: 'timeEntered' },
-                { data: 'timeLeft' },
-                { data: 'timeLeftFromOffice' },
-                { data: 'dateOfQuery' },
+                { data: 'time' },
             ],
             buttons: [
                 { extend: 'print', className: 'btn dark btn-outline' },
@@ -37,7 +33,7 @@ var TableDatatablesRowreorder = function () {
                 { extend: 'csv', className: 'btn purple btn-outline ' }
             ],
             "order": [
-                [9, 'desc']
+                [5, 'desc']
             ],
             "lengthMenu": [
                 [5, 10, 15, 20, -1],

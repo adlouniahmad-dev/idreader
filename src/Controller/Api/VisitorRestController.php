@@ -232,6 +232,7 @@ class VisitorRestController extends Controller
             $history->setLogId($log->getId());
             $history->setVisitorName($visitor->getFullName());
             $history->setTimeEntered(new \DateTime());
+            $history->setDateEntered(new \DateTime());
             $history->setOfficeName($office->getOfficeNb());
             $history->setBuilding($office->getBuilding()->getName());
             $entityManager->persist($history);
@@ -269,6 +270,7 @@ class VisitorRestController extends Controller
             $entityManager->flush();
 
             $history = $entityManager->getRepository(LogsHistory::class)->findOneBy(['logId' => $log->getId()]);
+            $entityManager->refresh($history);
             if ($status === 'entrance') {
                 $history->setGuardCheckIn($guard->getUser()->getFullName());
                 $history->setGateCheckIn($gate->getName());
@@ -277,7 +279,6 @@ class VisitorRestController extends Controller
                 $history->setGateCheckOut($gate->getName());
             }
 
-            $entityManager->refresh($history);
             $entityManager->flush();
 
         } catch (\Exception $e) {
@@ -357,8 +358,8 @@ class VisitorRestController extends Controller
             $entityManager->flush();
 
             $history = $entityManager->getRepository(LogsHistory::class)->findOneBy(['logId' => $log->getId()]);
-            $history->setTimeExit(new \DateTime());
             $entityManager->refresh($history);
+            $history->setTimeExit(new \DateTime());
             $entityManager->flush();
 
         } catch (\Exception $e) {

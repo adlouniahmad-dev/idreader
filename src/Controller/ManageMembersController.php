@@ -660,14 +660,14 @@ class ManageMembersController extends Controller
             $entityManager->flush();
         }
 
-        $entityManager->remove($user);
-        $entityManager->flush();
-
         $notificationSettings = $entityManager->getRepository(NotificationSettings::class)->findOneBy(['user' => $user]);
         if ($notificationSettings) {
-            $entityManager->remove($token);
+            $entityManager->remove($notificationSettings);
             $entityManager->flush();
         }
+
+        $entityManager->remove($user);
+        $entityManager->flush();
 
         $user = $entityManager->getRepository(User::class)->find($userId);
 

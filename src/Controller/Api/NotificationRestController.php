@@ -64,7 +64,7 @@ class NotificationRestController extends Controller
     private function getUserToken($userId)
     {
         $user = $this->getDoctrine()->getRepository(User::class)->find($userId);
-        $token = $this->getDoctrine()->getRepository(Token::class)->findOneBy(['user' => $user]);
+        $token = $this->getDoctrine()->getRepository(Token::class)->findOneBy(['user' => $user])->getToken();
         return $token;
     }
 

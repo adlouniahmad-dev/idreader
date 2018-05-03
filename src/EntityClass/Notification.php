@@ -96,21 +96,21 @@ class Notification
      */
     public function build()
     {
-        $to = $this->token;
 
         $dataPayload = array();
         $dataPayload['data']['title'] = $this->title;
         $dataPayload['data']['message'] = $this->message;
-        $dataPayload['data']['from'] = $this->from;
+        $dataPayload['data']['from'] = $this->from . '';
 
         $notificationPayload = array(
             'title' => $this->title,
             'body' => $this->message,
             'sound' => 'default',
+            'click_action' => 'com.test'
         );
 
         $fields = array(
-            'to' => $to,
+            'registration_ids' => array($this->token),
             'data' => $dataPayload,
             'notification' => $notificationPayload
         );

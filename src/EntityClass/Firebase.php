@@ -71,7 +71,9 @@ class Firebase
         $this->notification = $notification;
     }
 
-
+    /**
+     * @return bool|string
+     */
     public function sendNotification()
     {
         $ch = curl_init();
@@ -82,7 +84,7 @@ class Firebase
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($this->notification));
 
-        if (!curl_exec($ch)) {
+        if (curl_exec($ch) === false) {
             $error = curl_error($ch);
             curl_close($ch);
             return $error;

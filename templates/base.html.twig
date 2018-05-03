@@ -72,9 +72,11 @@
                                             class="icon-user"></i> My Profile </a>
                             </li>
                             <li class="divider"></li>
-                            <li>
-                                <a href="#"><i class="icon-lock"></i> Lock Screen </a>
-                            </li>
+                            {% if 'powner' in app.session.get('roles') %}
+                                <li>
+                                    <a href="#"><i class="icon-lock"></i> Office Settings </a>
+                                </li>
+                            {% endif %}
                             <li>
                                 <a href="#logout" id="logout"><i class="icon-key"></i> Log Out </a>
                             </li>

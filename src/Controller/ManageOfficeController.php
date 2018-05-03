@@ -54,9 +54,13 @@ class ManageOfficeController extends Controller
             }
 
             $office->setDateCreated(new \DateTime());
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($office);
+            $em->flush();
+
+            $officeSetting = new OfficeSettings();
+            $officeSetting->setOffice($office);
+            $em->persist($officeSetting);
             $em->flush();
 
             $this->addFlash(

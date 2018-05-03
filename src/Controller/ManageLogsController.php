@@ -355,6 +355,9 @@ class ManageLogsController extends Controller
 
         } else {
             $office = $this->getDoctrine()->getRepository(Office::class)->findOneBy(['user' => $session->get('user')]);
+            if (!$office)
+                return $this->render('errors/not_found.html.twig');
+
             $officeOptions .= '<option value="' . $office->getId() . '">' . $office->getOfficeNb() . '</option>';
 
             $building = $office->getBuilding();

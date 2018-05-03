@@ -10,8 +10,6 @@ namespace App\Controller\Api;
 
 
 use App\Entity\NotificationSettings;
-use App\Entity\Office;
-use App\Entity\OfficeSettings;
 use App\Entity\Token;
 use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -71,16 +69,6 @@ class TokenRestController extends Controller
 
             $roles = $this->getUserRoles($user);
             if (in_array('Premise Owner', $roles)) {
-
-                $office = $this->getDoctrine()->getRepository(Office::class)->findOneBy(['user' => $user]);
-                $settings = $this->getDoctrine()->getRepository(OfficeSettings::class)->findOneBy(['office' => $office]);
-
-                if (!$settings) {
-                    $officeSetting = new OfficeSettings();
-                    $officeSetting->setOffice($office);
-                    $entityManager->persist($officeSetting);
-                    $entityManager->flush();
-                }
 
                 $notification = $entityManager->getRepository(NotificationSettings::class)->findOneBy(['user' => $user]);
                 if (!$notification) {

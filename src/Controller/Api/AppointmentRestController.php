@@ -57,31 +57,33 @@ class AppointmentRestController extends Controller
 
             if (!$notificationSettings->isEnabled())
                 return $this->json(array(
-                    'success' => false,
-                    'notificationSettings' => $notificationSettings->isEnabled(),
+                    'success' => true,
+                    'hasAppointment' => true,
+                    'messageSent' => false,
                     'message' => 'Notifications are disabled.'
-                ));
+                ), Response::HTTP_OK);
 
-            $timeOfAppointment = $appointment->getTime();
+
             $timeNow = new \DateTime();
-            $interval = $timeNow->diff($timeOfAppointment);
 
-            $intervalToString = $interval->format('%H:%I:%S');
-            $timeExploded = explode(":", $intervalToString);
-            $hour = (int) $timeExploded[0];
-            $min = (int) $timeExploded[1];
+            $timeOfAppointmentString = $appointment->getTime()->format('H:i');
+            $timeNowString = $timeNow->format('H:i');
 
-            if ($hour == 0)
-                $shouldSendAppointment = $min > $notificationSettings->getLateAfter() ? true : false;
-            else
-                $shouldSendAppointment = ($min + ($hour * 60)) > $notificationSettings->getLateAfter() ? true : false;
+            $timeOfAppointmentArray = explode(':', $timeOfAppointmentString);
+            $timeNowArray = explode(':', $timeNowString);
+
+            $timeAppointmentInMin = (((int)$timeOfAppointmentArray[0]) * 60) + (int)$timeOfAppointmentArray[1];
+            $timeNowInMin = (((int)$timeNowArray[0]) * 60) + (int)$timeNowArray[1];
+
+            $interval = $timeNowInMin - $timeAppointmentInMin;
+            $shouldSendAppointment = $interval > $notificationSettings->getLateAfter() ? true : false;
 
             if ($shouldSendAppointment) {
 
                 $premiseOwnerToken = $this->getDoctrine()->getRepository(Token::class)->findOneBy(['user' => $premiseOwner])->getToken();
 
-                $title = 'Allow Entering?';
-                $message = 'Allow ' . $appointment->getApplicantName() . ' to enter the meeting?';
+                $title = 'ID Card Reader';
+                $message = 'Allow ' . $appointment->getApplicantName() . ' to enter? He is ' . $interval . ' minutes late.';
 
                 $notificationBuilder = new Notification($title, $message, $premiseOwnerToken, $this->getParameter('firebase_server_key'), $from);
                 $notification = $notificationBuilder->build();
@@ -92,6 +94,7 @@ class AppointmentRestController extends Controller
                     return $this->json(array(
                         'success' => true,
                         'hasAppointment' => true,
+                        'messageSent' => true,
                         'inTime' => false,
                         'message' => 'Notification sent successfully.'
                     ));

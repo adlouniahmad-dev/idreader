@@ -60,7 +60,9 @@ class AppointmentRestController extends Controller
                     'success' => true,
                     'hasAppointment' => true,
                     'messageSent' => false,
-                    'message' => 'Notifications are disabled.'
+                    'inTime' => true,
+                    'message' => 'Notifications are disabled.',
+                    'office' => $office->getId()
                 ), Response::HTTP_OK);
 
 
@@ -96,22 +98,27 @@ class AppointmentRestController extends Controller
                         'hasAppointment' => true,
                         'messageSent' => true,
                         'inTime' => false,
-                        'message' => 'Notification sent successfully.'
+                        'message' => 'Notification sent successfully.',
+                        'office' => $office->getId()
                     ));
 
                 return $this->json(array(
                     'success' => false,
                     'hasAppointment' => true,
+                    'messageSent' => false,
                     'inTime' => false,
-                    'message' => 'Error in sending notification. Please try again.'
+                    'message' => 'Error in sending notification. Please try again.',
+                    'office' => $office->getId()
                 ));
             }
 
             return $this->json(array(
                 'success' => true,
                 'hasAppointment' => true,
+                'messageSent' => false,
                 'inTime' => true,
-                'message' => 'Can access.'
+                'message' => 'Can access.',
+                'office' => $office->getId()
             ));
 
         } catch (NoResultException | NonUniqueResultException $e) {

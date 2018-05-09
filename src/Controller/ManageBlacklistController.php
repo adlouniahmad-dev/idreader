@@ -70,7 +70,6 @@ class ManageBlacklistController extends Controller
             $visitorInfo['visitor'] = array();
             $visitorInfo['visitor']['id'] = $visitor->getVisitor()->getId();
             $visitorInfo['visitor']['firstName'] = $visitor->getVisitor()->getFirstName();
-            $visitorInfo['visitor']['middleName'] = $visitor->getVisitor()->getMiddleName();
             $visitorInfo['visitor']['lastName'] = $visitor->getVisitor()->getLastName();
             $visitorInfo['visitor']['nationality'] = $visitor->getVisitor()->getCountry();
 

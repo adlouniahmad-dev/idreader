@@ -32,7 +32,6 @@ class BlacklistRepository extends ServiceEntityRepository
                 'b.dateAdded LIKE :string
                 OR b.id LIKE :string
                 OR v.firstName LIKE :string
-                OR v.middleName LIKE :string
                 OR v.lastName LIKE :string
                 OR v.nationality LIKE :string'
             )

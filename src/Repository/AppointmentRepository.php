@@ -25,6 +25,7 @@ class AppointmentRepository extends ServiceEntityRepository
         $query
             ->where('a.applicantSsn = :ssn')->setParameter('ssn', $ssn)
             ->andWhere('a.date = :today')->setParameter('today', date_format(new \DateTime(), 'Y-m-d'))
+            ->orderBy('a.id','DESC')
             ->setFirstResult(0)
             ->setMaxResults(1);
 

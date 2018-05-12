@@ -30,11 +30,11 @@ class LogRepository extends ServiceEntityRepository
         $conn = $this->getEntityManager()->getConnection();
 
         $sql = "SELECT v.id, v.first_name, v.last_name, l.date_created, 
-                TIME_TO_SEC(TIMEDIFF(l.estimated_time, l.time_entered)) / 60 AS expected, 
-                TIME_TO_SEC(TIMEDIFF(l.time_exit, l.time_entered)) / 60 AS realExit
+                ABS(TIME_TO_SEC(TIMEDIFF(l.estimated_time, l.time_entered)) / 60) AS expected, 
+                ABS(TIME_TO_SEC(TIMEDIFF(l.time_exit, l.time_entered)) / 60) AS realExit
                 FROM log l INNER JOIN visitor v ON l.visitor_id = v.id
                 WHERE l.time_exit IS NOT NULL
-                AND TIMEDIFF(l.time_exit, l.time_entered) > TIMEDIFF(l.estimated_time, l.time_entered)";
+                AND ABS(TIMEDIFF(l.time_exit, l.time_entered)) > ABS(TIMEDIFF(l.estimated_time, l.time_entered))";
 
         $stmt = $conn->prepare($sql);
         $stmt->execute();
@@ -182,7 +182,7 @@ class LogRepository extends ServiceEntityRepository
         $query
             ->innerJoin('l.visitor', 'v')
             ->innerJoin('l.office', 'o', 'WITH', 'o = :office')->setParameter('office', $office)
-            ->where('CONCAT(v.firstName, \' \', v.middleName, \' \', v.lastName) LIKE :visitorName')->setParameter('visitorName', '%' . $visitorName . '%')
+            ->where('CONCAT(v.firstName, \' \', v.lastName) LIKE :visitorName')->setParameter('visitorName', '%' . $visitorName . '%')
             ->andWhere('l.dateLeftFromOffice BETWEEN :timeFrom AND :timeTo')
             ->orWhere($query->expr()->isNull('l.dateLeftFromOffice'))
             ->andWhere('l.dateCreated BETWEEN :dateFrom AND :dateTo')

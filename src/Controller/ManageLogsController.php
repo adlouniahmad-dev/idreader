@@ -250,7 +250,7 @@ class ManageLogsController extends Controller
         if (in_array('fowner', $session->get('roles')))
             $logs = $this->getDoctrine()->getRepository(Log::class)->findAll();
         else if (in_array('fadmin', $session->get('roles'))) {
-            $building = $session->get('user')->getBuildings()[0];
+            $building = $this->getDoctrine()->getRepository(Building::class)->findOneBy(['admin' => $session->get('user')]);
             $logs = $this->getDoctrine()->getRepository(Log::class)->findByBuilding($building);
         } else {
             $office = $this->getDoctrine()->getRepository(Office::class)->findOneBy(['user' => $session->get('user')]);

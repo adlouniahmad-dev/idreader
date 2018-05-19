@@ -28,7 +28,7 @@ class LogsHistoryController extends Controller
         if (!$session->has('gmail'))
             return $this->redirectToRoute('login');
 
-        if (!in_array('fowner', $session->get('roles')))
+        if (!in_array('fowner', $session->get('roles')) && !in_array('fadmin', $session->get('roles')))
             return $this->render('errors/access_denied.html.twig');
 
         return $this->render('logsHistory/logsHistory.html.twig');
@@ -45,7 +45,7 @@ class LogsHistoryController extends Controller
         if (in_array('fowner', $session->get('roles')))
             $logs = $this->getDoctrine()->getRepository(LogsHistory::class)->findAll();
         else {
-            $building = $this->getDoctrine()->getRepository(Building::class)->findOneBy(['users' => $session->get('user')]);
+            $building = $this->getDoctrine()->getRepository(Building::class)->findOneBy(['admin' => $session->get('user')]);
             $logs = $this->getDoctrine()->getRepository(LogsHistory::class)->findBy(['building' => $building->getName()]);
         }
 

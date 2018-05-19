@@ -34,6 +34,9 @@ class ManageVisitorController extends Controller
         if (!$session->has('gmail'))
             return $this->redirectToRoute('login');
 
+        if (!in_array('fowner', $session->get('roles')) && !in_array('fadmin', $session->get('roles')))
+            return $this->render('errors/access_denied.html.twig');
+
         return $this->render('visitors/viewVisitors.html.twig');
     }
 
@@ -47,6 +50,9 @@ class ManageVisitorController extends Controller
     {
         if (!$session->has('gmail'))
             return $this->redirectToRoute('login');
+
+        if (!in_array('fowner', $session->get('roles')) && !in_array('fadmin', $session->get('roles')))
+            return $this->render('errors/access_denied.html.twig');
 
         $visitor = $this->getDoctrine()->getRepository(Visitor::class)->find($visitorId);
         if (!$visitor)
@@ -71,6 +77,9 @@ class ManageVisitorController extends Controller
     {
         if (!$session->has('gmail'))
             return $this->redirectToRoute('login');
+
+        if (!in_array('fowner', $session->get('roles')) && !in_array('fadmin', $session->get('roles')))
+            return $this->render('errors/access_denied.html.twig');
 
         $entityManager = $this->getDoctrine()->getManager();
         $visitor = $entityManager->getRepository(Visitor::class)->find($visitorId);

@@ -195,7 +195,7 @@
                                     <span class="title">Add Member</span>
                                 </a>
                             </li>
-                            {% if 'fowner' in app.session.get('roles') %}
+                            {% if 'fowner' in app.session.get('roles') or 'fadmin' in app.session.get('roles') %}
                                 <li class="nav-item">
                                     <a href="{{ path('viewUsers') }}" class="nav-link ">
                                         <i class="fa fa-list-ul"></i>

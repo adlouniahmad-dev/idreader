@@ -24,6 +24,7 @@ var TableDatatablesRowreorder = function () {
                 { data: 'date' },
                 { data: 'expected' },
                 { data: 'realExit' },
+                { data: 'reason' },
                 { data: 'moreInfo' },
             ],
             buttons: [

@@ -3,12 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="50e69e48-8f17-4cc9-ac75-48078c3b9921" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/LogsHistoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/LogsHistoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ManageGatesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ManageGatesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/pages/suspicious-list.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/pages/suspicious-list.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ManageLogsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ManageLogsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ManageOfficeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ManageOfficeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ManageVisitorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ManageVisitorController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/LogRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/LogRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/logs/suspicious.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/logs/suspicious.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -34,22 +32,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="NotificationRestController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/Api/NotificationRestController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="413">
-              <caret line="52" selection-start-line="52" selection-end-line="52" />
-              <folding>
-                <element signature="e#130#151#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="base.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
+            <state relative-caret-position="3940">
               <caret line="197" column="108" selection-start-line="197" selection-start-column="108" selection-end-line="197" selection-end-column="108" />
             </state>
           </provider>
@@ -60,9 +46,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="420">
               <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="37" selection-end-column="67" />
-              <folding>
-                <element signature="e#1082#1114#1#PHP" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -70,11 +53,8 @@
       <file leaf-file-name="ManageOfficeController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/ManageOfficeController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-5741">
+            <state relative-caret-position="460">
               <caret line="40" column="67" selection-start-line="40" selection-start-column="67" selection-end-line="40" selection-end-column="67" />
-              <folding>
-                <element signature="e#1213#1245#1#PHP" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -82,24 +62,16 @@
       <file leaf-file-name="ManageGatesController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/ManageGatesController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
+            <state relative-caret-position="440">
               <caret line="38" column="67" selection-start-line="38" selection-start-column="67" selection-end-line="38" selection-end-column="67" />
-              <folding>
-                <element signature="e#1142#1174#1#PHP" expanded="true" />
-              </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ManageBuildingController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Controller/ManageBuildingController.php">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file leaf-file-name="addPremiseOwner.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/manageMembers/addPremiseOwner.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="613">
+            <state relative-caret-position="720">
               <caret line="36" column="71" selection-start-line="36" selection-start-column="71" selection-end-line="36" selection-end-column="71" />
             </state>
           </provider>
@@ -108,8 +80,8 @@
       <file leaf-file-name="VisitorRestController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/Api/VisitorRestController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2940">
-              <caret line="169" column="54" selection-start-line="169" selection-start-column="54" selection-end-line="169" selection-end-column="54" />
+            <state relative-caret-position="1753">
+              <caret line="410" column="71" selection-start-line="410" selection-start-column="71" selection-end-line="410" selection-end-column="71" />
               <folding>
                 <element signature="e#130#146#0#PHP" expanded="true" />
               </folding>
@@ -117,23 +89,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AppointmentRestController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/Api/AppointmentRestController.php">
+      <file leaf-file-name="LogRepository.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Repository/LogRepository.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="520">
-              <caret line="43" column="61" selection-start-line="43" selection-start-column="61" selection-end-line="43" selection-end-column="61" />
+              <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
               <folding>
-                <element signature="e#130#157#0#PHP" expanded="true" />
+                <element signature="e#34#58#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AppointmentRepository.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Repository/AppointmentRepository.php">
+      <file leaf-file-name="ManageLogsController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Controller/ManageLogsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="500">
-              <caret line="27" column="27" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
+            <state relative-caret-position="508">
+              <caret line="65" column="133" selection-start-line="65" selection-start-column="133" selection-end-line="65" selection-end-column="133" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="suspicious-list.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/pages/suspicious-list.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="513">
+              <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="suspicious.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/logs/suspicious.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="513">
+              <caret line="35" column="39" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -193,7 +183,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/public/js/pages/suspicious-list.js" />
         <option value="$PROJECT_DIR$/templates/visitors/viewVisitors.html.twig" />
         <option value="$PROJECT_DIR$/src/Entity/Visitor.php" />
         <option value="$PROJECT_DIR$/templates/shifts/viewShifts.html.twig" />
@@ -207,7 +196,6 @@
         <option value="$PROJECT_DIR$/src/Entity/Appointment.php" />
         <option value="$PROJECT_DIR$/src/Controller/Api/OfficeRestController.php" />
         <option value="$PROJECT_DIR$/src/Entity/NotificationSettings.php" />
-        <option value="$PROJECT_DIR$/templates/logs/suspicious.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/Api/OfficeSettingsRestController.php" />
         <option value="$PROJECT_DIR$/templates/visitors/editVisitor.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/Api/MemberRestController.php" />
@@ -237,13 +225,15 @@
         <option value="$PROJECT_DIR$/templates/manageMembers/addPremiseOwner.html.twig" />
         <option value="$PROJECT_DIR$/public/js/pages/logs-search-history-list.js" />
         <option value="$PROJECT_DIR$/src/Repository/AppointmentRepository.php" />
-        <option value="$PROJECT_DIR$/src/Repository/LogRepository.php" />
         <option value="$PROJECT_DIR$/src/Controller/LogsHistoryController.php" />
-        <option value="$PROJECT_DIR$/src/Controller/ManageLogsController.php" />
         <option value="$PROJECT_DIR$/templates/base.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/ManageVisitorController.php" />
         <option value="$PROJECT_DIR$/src/Controller/ManageOfficeController.php" />
         <option value="$PROJECT_DIR$/src/Controller/ManageGatesController.php" />
+        <option value="$PROJECT_DIR$/src/Controller/ManageLogsController.php" />
+        <option value="$PROJECT_DIR$/public/js/pages/suspicious-list.js" />
+        <option value="$PROJECT_DIR$/templates/logs/suspicious.html.twig" />
+        <option value="$PROJECT_DIR$/src/Repository/LogRepository.php" />
       </list>
     </option>
   </component>
@@ -881,14 +871,8 @@
       <workItem from="1526128456659" duration="3035000" />
       <workItem from="1526135215154" duration="4614000" />
       <workItem from="1526629697187" duration="601000" />
-      <workItem from="1526732354583" duration="3347000" />
-    </task>
-    <task id="LOCAL-00054" summary="DONE">
-      <created>1522693423345</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1522693423345</updated>
+      <workItem from="1526732354583" duration="4164000" />
+      <workItem from="1527605401501" duration="2557000" />
     </task>
     <task id="LOCAL-00055" summary="DONE">
       <created>1522835421539</created>
@@ -1226,11 +1210,18 @@
       <option name="project" value="LOCAL" />
       <updated>1526156551366</updated>
     </task>
-    <option name="localTasksCounter" value="103" />
+    <task id="LOCAL-00103" summary="DONE">
+      <created>1526737280065</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1526737280066</updated>
+    </task>
+    <option name="localTasksCounter" value="104" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1153422000" />
+    <option name="totallyTimeSpent" value="1156796000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1295,13 +1286,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="13" column="26" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/logs/suspicious.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="30" column="48" selection-start-line="30" selection-start-column="48" selection-end-line="30" selection-end-column="48" />
         </state>
       </provider>
     </entry>
@@ -1550,40 +1534,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/Api/VisitorRestController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2940">
-          <caret line="169" column="54" selection-start-line="169" selection-start-column="54" selection-end-line="169" selection-end-column="54" />
-          <folding>
-            <element signature="e#130#146#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/LogRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="826">
-          <caret line="313" column="48" selection-start-line="313" selection-start-column="48" selection-end-line="313" selection-end-column="48" />
-          <folding>
-            <element signature="e#34#58#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/LogsHistoryController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="760">
           <caret line="47" column="95" selection-start-line="47" selection-start-column="95" selection-end-line="47" selection-end-column="95" />
-          <folding>
-            <element signature="e#878#910#1#PHP" expanded="true" />
-            <element signature="e#943#978#1#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/Api/NotificationRestController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
+        <state relative-caret-position="780">
           <caret line="52" selection-start-line="52" selection-end-line="52" />
           <folding>
             <element signature="e#130#151#0#PHP" expanded="true" />
@@ -1593,21 +1553,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
+        <state relative-caret-position="3940">
           <caret line="197" column="108" selection-start-line="197" selection-start-column="108" selection-end-line="197" selection-end-column="108" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/ManageLogsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="43" column="8" selection-start-line="43" selection-start-column="8" selection-end-line="44" selection-end-column="67" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/manageMembers/addPremiseOwner.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="613">
+        <state relative-caret-position="720">
           <caret line="36" column="71" selection-start-line="36" selection-start-column="71" selection-end-line="36" selection-end-column="71" />
         </state>
       </provider>
@@ -1616,34 +1569,63 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="37" selection-end-column="67" />
-          <folding>
-            <element signature="e#1082#1114#1#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/ManageOfficeController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5741">
+        <state relative-caret-position="460">
           <caret line="40" column="67" selection-start-line="40" selection-start-column="67" selection-end-line="40" selection-end-column="67" />
-          <folding>
-            <element signature="e#1213#1245#1#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/ManageGatesController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
+        <state relative-caret-position="440">
           <caret line="38" column="67" selection-start-line="38" selection-start-column="67" selection-end-line="38" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/Api/VisitorRestController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1753">
+          <caret line="410" column="71" selection-start-line="410" selection-start-column="71" selection-end-line="410" selection-end-column="71" />
           <folding>
-            <element signature="e#1142#1174#1#PHP" expanded="true" />
+            <element signature="e#130#146#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/ManageBuildingController.php">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/templates/logs/suspicious.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="35" column="39" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/pages/suspicious-list.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/ManageLogsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="508">
+          <caret line="65" column="133" selection-start-line="65" selection-start-column="133" selection-end-line="65" selection-end-column="133" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Repository/LogRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+          <folding>
+            <element signature="e#34#58#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
 </project>

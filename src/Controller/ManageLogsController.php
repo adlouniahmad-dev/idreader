@@ -63,6 +63,7 @@ class ManageLogsController extends Controller
                 $susInfo['date'] = $suspiciousVisit['date_created'];
                 $susInfo['expected'] = (int)$suspiciousVisit['expected'] . ' min';
                 $susInfo['realExit'] = (int)$suspiciousVisit['realExit'] . ' min';
+                $susInfo['reason'] = $suspiciousVisit['officeLeft'] === null ? 'Didn\'t enter the office' : 'Take more time to exit';
                 $susInfo['moreInfo'] = '<a href="' . $this->generateUrl('viewVisitor', ['visitorId' => $suspiciousVisit['id']])
                     . '" class="btn btn-sm btn-outline green margin-bottom-5"><i class="fa fa-search"></i> View</a>';
 

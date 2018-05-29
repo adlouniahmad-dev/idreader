@@ -9,8 +9,6 @@ use App\Entity\Log;
 use App\Entity\Office;
 use App\Entity\Visitor;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\Configuration;
-use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class LogRepository extends ServiceEntityRepository
@@ -31,10 +29,13 @@ class LogRepository extends ServiceEntityRepository
 
         $sql = "SELECT v.id, v.first_name, v.last_name, l.date_created, 
                 ABS(TIME_TO_SEC(TIMEDIFF(l.estimated_time, l.time_entered)) / 60) AS expected, 
-                ABS(TIME_TO_SEC(TIMEDIFF(l.time_exit, l.time_entered)) / 60) AS realExit
+                ABS(TIME_TO_SEC(TIMEDIFF(l.time_exit, l.time_entered)) / 60) AS realExit,
+                l.date_left_from_office as officeLeft
                 FROM log l INNER JOIN visitor v ON l.visitor_id = v.id
                 WHERE l.time_exit IS NOT NULL
-                AND ABS(TIMEDIFF(l.time_exit, l.time_entered)) > ABS(TIMEDIFF(l.estimated_time, l.time_entered))";
+                AND ABS(TIMEDIFF(l.time_exit, l.time_entered)) > ABS(TIMEDIFF(l.estimated_time, l.time_entered))
+                OR l.date_left_from_office IS NULL
+                ORDER BY l.id DESC";
 
         $stmt = $conn->prepare($sql);
         $stmt->execute();

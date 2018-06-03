@@ -282,7 +282,7 @@ class ManageLogsController extends Controller
             $logInfo['visitorName'] = $log->getVisitor()->getFullName();
             $logInfo['office'] = $log->getOffice() !== null ? $log->getOffice()->getOfficeNb() : '';
             $logInfo['building'] = $log->getOffice() !== null ? $log->getOffice()->getBuilding()->getName() : '';
-            $logInfo['date'] = date_format($log->getDateCreated(), 'jS F, Y');
+            $logInfo['date'] = date_format($log->getDateCreated(), 'Y-m-d');
 
             if (!in_array('powner', $session->get('roles'))) {
                 $logInfo['timeEntered'] = $log->getTimeEntered() === null ? '' : date_format($log->getTimeEntered(), 'H:i A');

@@ -30,11 +30,12 @@ class LogRepository extends ServiceEntityRepository
         $sql = "SELECT v.id, v.first_name, v.last_name, l.date_created, 
                 ABS(TIME_TO_SEC(TIMEDIFF(l.estimated_time, l.time_entered)) / 60) AS expected, 
                 ABS(TIME_TO_SEC(TIMEDIFF(l.time_exit, l.time_entered)) / 60) AS realExit,
-                l.date_left_from_office as officeLeft
+                l.date_left_from_office as officeLeft,
+                l.id as logID
                 FROM log l INNER JOIN visitor v ON l.visitor_id = v.id
-                WHERE l.time_exit IS NOT NULL
-                AND ABS(TIMEDIFF(l.time_exit, l.time_entered)) > ABS(TIMEDIFF(l.estimated_time, l.time_entered))
-                OR l.date_left_from_office IS NULL
+                WHERE (l.time_exit IS NOT NULL
+                AND ABS(TIMEDIFF(l.time_exit, l.time_entered)) > ADDTIME(ABS(TIMEDIFF(l.estimated_time, l.time_entered)), SEC_TO_TIME((SELECT o.suspicious_after FROM office_settings o, log ll where o.office_id = ll.office_id and ll.id = l.id) * 60)))
+                OR (l.date_left_from_office IS NULL AND l.time_exit IS NOT NULL)
                 ORDER BY l.id DESC";
 
         $stmt = $conn->prepare($sql);

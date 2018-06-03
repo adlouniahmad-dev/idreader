@@ -32,10 +32,16 @@ class OfficeSettings
      */
     private $walkTime;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $suspiciousAfter;
+
     public function __construct()
     {
         $this->averageWaitingTime = 20;
         $this->walkTime = 5;
+        $this->suspiciousAfter = 5;
     }
 
     /**
@@ -94,10 +100,27 @@ class OfficeSettings
         $this->walkTime = $walkTime;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getSuspiciousAfter()
+    {
+        return $this->suspiciousAfter;
+    }
+
+    /**
+     * @param mixed $suspiciousAfter
+     */
+    public function setSuspiciousAfter($suspiciousAfter): void
+    {
+        $this->suspiciousAfter = $suspiciousAfter;
+    }
+
     public function initializeSettings(): void
     {
         $this->averageWaitingTime = 20;
         $this->walkTime = 5;
+        $this->suspiciousAfter = 5;
     }
 
 }

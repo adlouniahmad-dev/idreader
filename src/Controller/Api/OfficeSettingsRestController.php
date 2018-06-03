@@ -38,7 +38,8 @@ class OfficeSettingsRestController extends Controller
             $request->request->get('walk') === null ||
             $request->request->get('service') === null ||
             $request->request->get('userId') === null ||
-            $request->request->get('late') === null)
+            $request->request->get('late') === null ||
+            $request->request->get('grace') === null)
             return $this->json(array(
                 'success' => false,
                 'message' => 'Some fields are null'
@@ -49,6 +50,7 @@ class OfficeSettingsRestController extends Controller
         $late = $request->request->get('late');
         $walk = $request->request->get('walk');
         $service = $request->request->get('service');
+        $grace = $request->request->get('grace');
 
         $user = $this->getDoctrine()->getRepository(User::class)->find($userId);
         $office = $this->getDoctrine()->getRepository(Office::class)->findOneBy(['user' => $user]);
@@ -59,6 +61,7 @@ class OfficeSettingsRestController extends Controller
 
         $officeSettings->setAverageWaitingTime((int)$service);
         $officeSettings->setWalkTime((int)$walk);
+        $officeSettings->setSuspiciousAfter((int)$grace);
         $entityManager->flush();
 
         $notificationSettings->setEnabled($enabled == 'true' ? true : false);
@@ -95,6 +98,7 @@ class OfficeSettingsRestController extends Controller
         $officeSettings = $this->getDoctrine()->getRepository(OfficeSettings::class)->findOneBy(['office' => $office]);
         $settings['service'] = $officeSettings->getAverageWaitingTime();
         $settings['walk'] = $officeSettings->getWalkTime();
+        $settings['grace'] = $officeSettings->getSuspiciousAfter();
 
         return $this->json(array(
             'success' => true,

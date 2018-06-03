@@ -48,7 +48,7 @@ $('#logs').dataTable({
         {extend: 'csv', className: 'btn purple btn-outline '}
     ],
     "order": [
-        [0, 'asc']
+        [3, 'desc']
     ],
     "lengthMenu": [
         [5, 10, 15, 20, -1],

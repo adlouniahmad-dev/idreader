@@ -3,12 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="50e69e48-8f17-4cc9-ac75-48078c3b9921" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/pages/suspicious-list.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/pages/suspicious-list.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/pages/view-logs.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/pages/view-logs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Api/OfficeSettingsRestController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Api/OfficeSettingsRestController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ManageLogsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ManageLogsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/OfficeSettings.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/OfficeSettings.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/LogRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/LogRepository.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -46,11 +40,8 @@
       <file leaf-file-name="ManageGatesController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/ManageGatesController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="20">
+            <state relative-caret-position="440">
               <caret line="38" column="67" selection-start-line="38" selection-start-column="67" selection-end-line="38" selection-end-column="67" />
-              <folding>
-                <element signature="e#1134#1166#1#PHP" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -58,7 +49,7 @@
       <file leaf-file-name="NotificationRestController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/Api/NotificationRestController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="673">
+            <state relative-caret-position="780">
               <caret line="52" selection-start-line="52" selection-end-line="52" />
             </state>
           </provider>
@@ -67,7 +58,7 @@
       <file leaf-file-name="OfficeSettingsRestController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/Api/OfficeSettingsRestController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
+            <state relative-caret-position="1400">
               <caret line="83" column="27" selection-start-line="83" selection-start-column="27" selection-end-line="83" selection-end-column="27" />
             </state>
           </provider>
@@ -76,7 +67,7 @@
       <file leaf-file-name="LogRepository.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Repository/LogRepository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="720">
+            <state relative-caret-position="620">
               <caret line="38" column="34" selection-start-line="38" selection-start-column="34" selection-end-line="38" selection-end-column="34" />
               <folding>
                 <element signature="e#34#58#0#PHP" expanded="true" />
@@ -106,8 +97,8 @@
       <file leaf-file-name="ManageLogsController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Controller/ManageLogsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="292" column="97" lean-forward="true" selection-start-line="292" selection-start-column="97" selection-end-line="292" selection-end-column="97" />
+            <state relative-caret-position="9140">
+              <caret line="478" column="91" selection-start-line="478" selection-start-column="91" selection-end-line="478" selection-end-column="91" />
             </state>
           </provider>
         </entry>
@@ -115,7 +106,7 @@
       <file leaf-file-name="view-logs.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/pages/view-logs.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="640">
+            <state relative-caret-position="1000">
               <caret line="50" column="19" selection-start-line="50" selection-start-column="19" selection-end-line="50" selection-end-column="19" />
             </state>
           </provider>
@@ -867,14 +858,8 @@
       <workItem from="1526732354583" duration="4164000" />
       <workItem from="1527605401501" duration="2725000" />
       <workItem from="1527765065587" duration="1013000" />
-      <workItem from="1527854620677" duration="7310000" />
-    </task>
-    <task id="LOCAL-00056" summary="DONE">
-      <created>1522835923891</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1522835923891</updated>
+      <workItem from="1527854620677" duration="7968000" />
+      <workItem from="1528092679384" duration="647000" />
     </task>
     <task id="LOCAL-00057" summary="DONE">
       <created>1522841524454</created>
@@ -1212,11 +1197,18 @@
       <option name="project" value="LOCAL" />
       <updated>1527621309653</updated>
     </task>
-    <option name="localTasksCounter" value="105" />
+    <task id="LOCAL-00105" summary="DONE">
+      <created>1528057762453</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1528057762453</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1165287000" />
+    <option name="totallyTimeSpent" value="1166592000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1551,9 +1543,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="93">
           <caret line="410" column="71" selection-start-line="410" selection-start-column="71" selection-end-line="410" selection-end-column="71" />
-          <folding>
-            <element signature="e#130#146#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1566,31 +1555,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/ManageGatesController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
+        <state relative-caret-position="440">
           <caret line="38" column="67" selection-start-line="38" selection-start-column="67" selection-end-line="38" selection-end-column="67" />
-          <folding>
-            <element signature="e#1134#1166#1#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/Api/NotificationRestController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="673">
+        <state relative-caret-position="780">
           <caret line="52" selection-start-line="52" selection-end-line="52" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/Api/OfficeSettingsRestController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
+        <state relative-caret-position="1400">
           <caret line="83" column="27" selection-start-line="83" selection-start-column="27" selection-end-line="83" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Repository/LogRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
+        <state relative-caret-position="620">
           <caret line="38" column="34" selection-start-line="38" selection-start-column="34" selection-end-line="38" selection-end-column="34" />
           <folding>
             <element signature="e#34#58#0#PHP" expanded="true" />
@@ -1607,15 +1593,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/pages/view-logs.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
+        <state relative-caret-position="1000">
           <caret line="50" column="19" selection-start-line="50" selection-start-column="19" selection-end-line="50" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/ManageLogsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="292" column="97" lean-forward="true" selection-start-line="292" selection-start-column="97" selection-end-line="292" selection-end-column="97" />
+        <state relative-caret-position="9140">
+          <caret line="478" column="91" selection-start-line="478" selection-start-column="91" selection-end-line="478" selection-end-column="91" />
         </state>
       </provider>
     </entry>
